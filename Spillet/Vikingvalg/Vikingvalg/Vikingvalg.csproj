@@ -75,6 +75,7 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="IHandleInput.cs" />
     <Compile Include="InputComponent.cs" />
+    <Compile Include="IUseInput.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="IDrawSprites.cs" />
     <Compile Include="Player.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="SpriteComponent.cs" />
+    <Compile Include="StaticSprite.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

@@ -25,7 +25,6 @@ namespace Vikingvalg
         public InputComponent(Game game)
             : base(game)
         {
-            // TODO: Construct any child components here
         }
 
         /// <summary>
@@ -34,7 +33,6 @@ namespace Vikingvalg
         /// </summary>
         public override void Initialize()
         {
-            // TODO: Add your initialization code here
             base.Initialize();
             CurrKeys = Keyboard.GetState();
             CurrMouse = Mouse.GetState();
@@ -46,7 +44,6 @@ namespace Vikingvalg
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            // TODO: Add your update code here
             base.Update(gameTime);
             PrevKeys = CurrKeys;
             CurrKeys = Keyboard.GetState();

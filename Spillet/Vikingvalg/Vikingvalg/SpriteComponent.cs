@@ -12,20 +12,17 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
-    /// <summary>
-    /// This is a game component that implements IUpdateable.
-    /// </summary>
     public class SpriteComponent : Microsoft.Xna.Framework.DrawableGameComponent, IDrawSprites
     {
-
         private SpriteBatch _spriteBatch;
         private List<Sprite> _toDraw = new List<Sprite>();
         private Dictionary<String, Texture2D> _loadedArt = new Dictionary<String,Texture2D>();
 
+        IHandleInput inputService;
+
         public SpriteComponent(Game game)
             : base(game)
         {
-            // TODO: Construct any child components here
         }
 
         protected override void LoadContent()
@@ -42,9 +39,13 @@ namespace Vikingvalg
                 return;
             }
 
-            if(!(_loadedArt.ContainsKey(drawable.ArtName)))
+            if (drawable is StaticSprite)
             {
-                _loadedArt.Add(drawable.ArtName, Game.Content.Load<Texture2D>(drawable.ArtName));
+                StaticSprite staticElement = (StaticSprite)drawable;
+                if (!(_loadedArt.ContainsKey(staticElement.ArtName)))
+                {
+                    _loadedArt.Add(staticElement.ArtName, Game.Content.Load<Texture2D>(staticElement.ArtName));
+                }
             }
             _toDraw.Add(drawable);
         }
@@ -63,6 +64,7 @@ namespace Vikingvalg
             // TODO: Add your initialization code here
 
             base.Initialize();
+            inputService = (IHandleInput)Game.Services.GetService(typeof(IHandleInput));
         }
 
         /// <summary>
@@ -71,12 +73,18 @@ namespace Vikingvalg
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            // TODO: Add your update code here
-
             base.Update(gameTime);
             foreach (Sprite updatable in _toDraw)
             {
-                updatable.Update();
+                if (updatable is IUseInput)
+                {
+                    IUseInput needsInput = (IUseInput)updatable;
+                    needsInput.Update(inputService);
+                }
+                else
+                {
+                    updatable.Update();
+                }
             }
         }
 
@@ -84,8 +92,7 @@ namespace Vikingvalg
         {
             base.Draw(gameTime);
             _spriteBatch.Begin();
-
-            foreach (Sprite drawable in _toDraw)
+            foreach (StaticSprite drawable in _toDraw)
             {
                 _spriteBatch.Draw(_loadedArt[drawable.ArtName], drawable.DestinationRectangle, drawable.SourceRectangle, drawable.Color, drawable.Rotation,
                     drawable.Origin, drawable.Effects, drawable.LayerDepth);

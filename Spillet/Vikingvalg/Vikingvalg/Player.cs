@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
-    class Player : Sprite
+    class Player : StaticSprite, IUseInput
     {
         public Player(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth)
@@ -28,8 +28,24 @@ namespace Vikingvalg
             : this(Vector2.Zero)
         { }
 
-        public override void Update()
+        public void Update(IHandleInput inputService)
         {
+            if(inputService.KeyIsDown(Keys.Right))
+            {
+                _destinationRectangle.X += _speed;
+            }
+            if (inputService.KeyIsDown(Keys.Left))
+            {
+                _destinationRectangle.X -= _speed;
+            }
+            if (inputService.KeyIsDown(Keys.Up))
+            {
+                _destinationRectangle.Y -= _speed;
+            } 
+            if (inputService.KeyIsDown(Keys.Down))
+            {
+                _destinationRectangle.Y += _speed;
+            }
         }
     }
 }

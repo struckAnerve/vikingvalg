@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
-    class Enemy : Sprite
+    class Enemy : StaticSprite
     {
         public Enemy(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth)
@@ -30,6 +30,11 @@ namespace Vikingvalg
 
         public override void Update()
         {
+            if (_destinationRectangle.X < -10 || _destinationRectangle.X > 720)
+            {
+                _speed *= -1;
+            }
+            _destinationRectangle.X += _speed;
         }
     }
 }
