@@ -19,7 +19,7 @@ namespace Vikingvalg
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        GameComponent input;
+        IDrawSprites renderer;
         IHandleInput inputService;
 
         public Game1()
@@ -30,6 +30,10 @@ namespace Vikingvalg
             DrawableGameComponent renderer = new SpriteComponent(this);
             Components.Add(renderer);
             Services.AddService(typeof(IDrawSprites), renderer);
+
+            GameComponent input = new InputComponent(this);
+            Components.Add(input);
+            Services.AddService(typeof(IHandleInput), input);
         }
 
         /// <summary>
@@ -43,9 +47,6 @@ namespace Vikingvalg
             // TODO: Add your initialization logic here
             base.Initialize();
 
-            input = new InputComponent(this);
-            Components.Add(input);
-            Services.AddService(typeof(IHandleInput), input);
             inputService = (IHandleInput)Services.GetService(typeof(IHandleInput));
         }
 
@@ -59,9 +60,15 @@ namespace Vikingvalg
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            Player p1 = new Player();
-            IDrawSprites renderer = (IDrawSprites)Services.GetService(typeof(IDrawSprites));
+            renderer = (IDrawSprites)Services.GetService(typeof(IDrawSprites));
+
+            Player p1 = new Player(new Rectangle(0, 0, 150, 192));
             renderer.AddDrawable((Sprite)p1);
+
+            Enemy e1 = new Enemy(new Vector2(300,200));
+            renderer.AddDrawable((Sprite)e1);
+            Enemy e2 = new Enemy(new Vector2(700,300));
+            renderer.AddDrawable((Sprite)e2);
         }
 
         /// <summary>
@@ -87,10 +94,6 @@ namespace Vikingvalg
             // TODO: Add your update logic here
             
             base.Update(gameTime);
-            if (inputService.KeyIsDown(Keys.E) || inputService.KeyIsDown(Keys.Escape))
-            {
-                this.Exit();
-            }
         }
 
         /// <summary>

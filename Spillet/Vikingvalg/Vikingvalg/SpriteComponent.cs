@@ -74,6 +74,10 @@ namespace Vikingvalg
             // TODO: Add your update code here
 
             base.Update(gameTime);
+            foreach (Sprite updatable in _toDraw)
+            {
+                updatable.Update();
+            }
         }
 
         public override void Draw(GameTime gameTime)

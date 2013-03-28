@@ -14,8 +14,13 @@ namespace Vikingvalg
 {
     public abstract class Sprite
     {
+        protected Rectangle _destinationRectangle;
+
         public String ArtName { get; protected set; }
-        public Rectangle DestinationRectangle { get; protected set; }
+        public Rectangle DestinationRectangle {
+            get { return _destinationRectangle; }
+            protected set { _destinationRectangle = value; }
+        }
         public Rectangle SourceRectangle { get; protected set; }
         public Color Color { get; protected set; }
         public float Rotation { get; protected set; }
@@ -35,5 +40,7 @@ namespace Vikingvalg
             Effects = effects;
             LayerDepth = layerDepth;
         }
+
+        public abstract void Update();
     }
 }

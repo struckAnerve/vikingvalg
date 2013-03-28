@@ -72,6 +72,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enemy.cs" />
     <Compile Include="IHandleInput.cs" />
     <Compile Include="InputComponent.cs" />
     <Compile Include="Sprite.cs" />
