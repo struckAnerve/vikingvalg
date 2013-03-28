@@ -72,6 +72,8 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IHandleInput.cs" />
+    <Compile Include="InputComponent.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="IDrawSprites.cs" />
     <Compile Include="Player.cs" />

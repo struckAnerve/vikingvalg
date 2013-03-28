@@ -19,6 +19,9 @@ namespace Vikingvalg
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        GameComponent input;
+        IHandleInput inputService;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -38,8 +41,12 @@ namespace Vikingvalg
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
             base.Initialize();
+
+            input = new InputComponent(this);
+            Components.Add(input);
+            Services.AddService(typeof(IHandleInput), input);
+            inputService = (IHandleInput)Services.GetService(typeof(IHandleInput));
         }
 
         /// <summary>
@@ -78,8 +85,12 @@ namespace Vikingvalg
                 this.Exit();
 
             // TODO: Add your update logic here
-
+            
             base.Update(gameTime);
+            if (inputService.KeyIsDown(Keys.E) || inputService.KeyIsDown(Keys.Escape))
+            {
+                this.Exit();
+            }
         }
 
         /// <summary>
@@ -91,7 +102,7 @@ namespace Vikingvalg
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-
+            
             base.Draw(gameTime);
         }
     }

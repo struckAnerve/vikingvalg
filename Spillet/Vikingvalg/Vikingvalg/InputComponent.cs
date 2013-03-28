@@ -1,0 +1,74 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+
+
+namespace Vikingvalg
+{
+    /// <summary>
+    /// This is a game component that implements IUpdateable.
+    /// </summary>
+    public class InputComponent : Microsoft.Xna.Framework.GameComponent, IHandleInput
+    {
+        public KeyboardState PrevKeys { get; protected set; }
+        public KeyboardState CurrKeys { get; protected set; }
+        public MouseState PrevMouse { get; protected set; }
+        public MouseState CurrMouse { get; protected set; }
+
+        public InputComponent(Game game)
+            : base(game)
+        {
+            // TODO: Construct any child components here
+        }
+
+        /// <summary>
+        /// Allows the game component to perform any initialization it needs to before starting
+        /// to run.  This is where it can query for any required services and load content.
+        /// </summary>
+        public override void Initialize()
+        {
+            // TODO: Add your initialization code here
+            base.Initialize();
+            CurrKeys = Keyboard.GetState();
+            CurrMouse = Mouse.GetState();
+        }
+
+        /// <summary>
+        /// Allows the game component to update itself.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        public override void Update(GameTime gameTime)
+        {
+            // TODO: Add your update code here
+            base.Update(gameTime);
+            PrevKeys = CurrKeys;
+            CurrKeys = Keyboard.GetState();
+            PrevMouse = CurrMouse;
+            CurrMouse = Mouse.GetState();
+        }
+
+        public bool KeyIsUp(Keys key)
+        {
+            return CurrKeys.IsKeyUp(key);
+        }
+
+        public bool KeyIsDown(Keys key)
+        {
+            return CurrKeys.IsKeyDown(key);
+        }
+
+        public bool KeyWasPressedThisFrame(Keys key)
+        {
+            if (CurrKeys.IsKeyDown(key) && PrevKeys.IsKeyUp(key))
+                return true;
+            return false;
+        }
+    }
+}
