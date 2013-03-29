@@ -19,6 +19,7 @@ namespace Vikingvalg
         private Dictionary<String, Texture2D> _loadedArt = new Dictionary<String,Texture2D>();
 
         IHandleInput inputService;
+        IHandleCollision collisionService;
 
         public SpriteComponent(Game game)
             : base(game)
@@ -29,6 +30,19 @@ namespace Vikingvalg
         {
             base.LoadContent();
             _spriteBatch = new SpriteBatch(this.Game.GraphicsDevice);
+        }
+
+        /// <summary>
+        /// Allows the game component to perform any initialization it needs to before starting
+        /// to run.  This is where it can query for any required services and load content.
+        /// </summary>
+        public override void Initialize()
+        {
+            // TODO: Add your initialization code here
+
+            base.Initialize();
+            collisionService = (IHandleCollision)Game.Services.GetService(typeof(IHandleCollision));
+            inputService = (IHandleInput)Game.Services.GetService(typeof(IHandleInput));
         }
 
         public void AddDrawable(Sprite drawable)
@@ -48,23 +62,17 @@ namespace Vikingvalg
                 }
             }
             _toDraw.Add(drawable);
+
+            if (drawable is ICanCollide)
+            {
+                ICanCollide canCollide = (ICanCollide)drawable;
+                collisionService.AddCollidable(canCollide);
+            }
         }
 
         public void RemoveDrawable(Sprite toRemove)
         {
             _toDraw.Remove(toRemove);
-        }
-
-        /// <summary>
-        /// Allows the game component to perform any initialization it needs to before starting
-        /// to run.  This is where it can query for any required services and load content.
-        /// </summary>
-        public override void Initialize()
-        {
-            // TODO: Add your initialization code here
-
-            base.Initialize();
-            inputService = (IHandleInput)Game.Services.GetService(typeof(IHandleInput));
         }
 
         /// <summary>

@@ -19,7 +19,7 @@ namespace Vikingvalg
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        IDrawSprites renderer;
+        IDrawSprites renderService;
 
         public Game1()
         {
@@ -33,6 +33,10 @@ namespace Vikingvalg
             GameComponent input = new InputComponent(this);
             Components.Add(input);
             Services.AddService(typeof(IHandleInput), input);
+
+            GameComponent collisionDetector = new CollisionComponent(this);
+            Components.Add(collisionDetector);
+            Services.AddService(typeof(IHandleCollision), collisionDetector);
         }
 
         /// <summary>
@@ -55,15 +59,15 @@ namespace Vikingvalg
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            renderer = (IDrawSprites)Services.GetService(typeof(IDrawSprites));
+            renderService = (IDrawSprites)Services.GetService(typeof(IDrawSprites));
 
             Player p1 = new Player(new Rectangle(0, 0, 150, 192));
-            renderer.AddDrawable((Sprite)p1);
+            renderService.AddDrawable((Sprite)p1);
 
             Enemy e1 = new Enemy(new Vector2(300,200));
-            renderer.AddDrawable((Sprite)e1);
+            renderService.AddDrawable((Sprite)e1);
             Enemy e2 = new Enemy(new Vector2(700,300));
-            renderer.AddDrawable((Sprite)e2);
+            renderService.AddDrawable((Sprite)e2);
         }
 
         /// <summary>

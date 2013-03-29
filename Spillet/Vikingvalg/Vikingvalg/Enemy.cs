@@ -12,12 +12,27 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
-    class Enemy : StaticSprite
+    class Enemy : StaticSprite, ICanCollide
     {
+        private Rectangle _footBox;
+
+        public Rectangle FootBox
+        {
+            get { return _footBox; }
+            set { }
+        }
+
+        public bool BlockedLeft { get; set; }
+        public bool BlockedRight { get; set; }
+        public bool BlockedTop { get; set; }
+        public bool BlockedBottom { get; set; }
+
         public Enemy(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth)
-        { }
+        {
+            _footBox = new Rectangle(destinationRectangle.X, (destinationRectangle.Y + destinationRectangle.Height - 40), destinationRectangle.Width, 40);
+        }
         public Enemy(Rectangle destinationRectangle)
             : this("evil", destinationRectangle, new Rectangle(0, 0, 80, 78), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 1)
         { }
@@ -34,7 +49,11 @@ namespace Vikingvalg
             {
                 _speed *= -1;
             }
-            _destinationRectangle.X += _speed;
+            if ((_speed > 0 && !BlockedRight) || (_speed < 0 && !BlockedLeft))
+            {
+                _destinationRectangle.X += _speed;
+                _footBox.X = _destinationRectangle.X;
+            }
         }
     }
 }
