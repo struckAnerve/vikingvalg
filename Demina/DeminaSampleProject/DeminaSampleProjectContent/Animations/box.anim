@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<Animation>
+  <FrameRate>25</FrameRate>
+  <LoopFrame>100</LoopFrame>
+  <Texture dictionary="boxpack.tdict" name="box">box.png</Texture>
+  <Keyframe frame="0" trigger="" vflip="False" hflip="False">
+    <Bone name="box">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>-1</ParentIndex>
+      <TextureIndex>0</TextureIndex>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+  </Keyframe>
+  <Keyframe frame="25" trigger="" vflip="False" hflip="False">
+    <Bone name="box">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>True</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>-1</ParentIndex>
+      <TextureIndex>0</TextureIndex>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+  </Keyframe>
+  <Keyframe frame="50" trigger="" vflip="False" hflip="False">
+    <Bone name="box">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>True</TextureFlipHorizontal>
+      <TextureFlipVertical>True</TextureFlipVertical>
+      <ParentIndex>-1</ParentIndex>
+      <TextureIndex>0</TextureIndex>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+  </Keyframe>
+  <Keyframe frame="75" trigger="" vflip="False" hflip="False">
+    <Bone name="box">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>True</TextureFlipVertical>
+      <ParentIndex>-1</ParentIndex>
+      <TextureIndex>0</TextureIndex>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+  </Keyframe>
+</Animation>

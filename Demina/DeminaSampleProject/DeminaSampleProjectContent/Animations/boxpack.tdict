@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<TextureDictionary>
+  <TexturePath>boxpack.png</TexturePath>
+  <Texture name="box">
+    <X>0</X>
+    <Y>0</Y>
+    <Width>49</Width>
+    <Height>59</Height>
+    <OriginX>47</OriginX>
+    <OriginY>57</OriginY>
+  </Texture>
+</TextureDictionary>

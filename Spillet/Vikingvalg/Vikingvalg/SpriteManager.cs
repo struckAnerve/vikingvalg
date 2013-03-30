@@ -9,14 +9,15 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-
+using Demina;
 namespace Vikingvalg
 {
     public class SpriteManager : Microsoft.Xna.Framework.DrawableGameComponent, IManageSprites
     {
         private SpriteBatch _spriteBatch;
         private List<Sprite> _toDraw = new List<Sprite>();
-        private Dictionary<String, Texture2D> _loadedArt = new Dictionary<String,Texture2D>();
+        private Dictionary<String, Texture2D> _loadedStaticArt = new Dictionary<String,Texture2D>();
+        private List<AnimatedSprite> _loadedAnimations = new List<AnimatedSprite>();
 
         IManageInput inputService;
         IManageCollision collisionService;
@@ -30,6 +31,7 @@ namespace Vikingvalg
         {
             base.LoadContent();
             _spriteBatch = new SpriteBatch(this.Game.GraphicsDevice);
+
         }
 
         /// <summary>
@@ -56,12 +58,23 @@ namespace Vikingvalg
             if (drawable is StaticSprite)
             {
                 StaticSprite staticElement = (StaticSprite)drawable;
-                if (!(_loadedArt.ContainsKey(staticElement.ArtName)))
+                if (!(_loadedStaticArt.ContainsKey(staticElement.ArtName)))
                 {
-                    _loadedArt.Add(staticElement.ArtName, Game.Content.Load<Texture2D>(staticElement.ArtName));
+                    _loadedStaticArt.Add(staticElement.ArtName, Game.Content.Load<Texture2D>(staticElement.ArtName));
                 }
+                _toDraw.Add(drawable);
             }
-            _toDraw.Add(drawable);
+            else if (drawable is AnimatedSprite)
+            {
+                AnimatedSprite drawableAnimation = (AnimatedSprite) drawable;
+                foreach (String animationName in drawableAnimation.animationList)
+                {
+                    drawableAnimation.animationPlayer.AddAnimation(animationName, Game.Content.Load<Animation>(@"Animations/"+drawableAnimation.AnimationDirectory+animationName));
+                }
+                _loadedAnimations.Add(drawableAnimation);
+                drawableAnimation.animationPlayer.StartAnimation("idle"); 
+                
+            }
 
             if (drawable is ICanCollide)
             {
@@ -94,6 +107,15 @@ namespace Vikingvalg
                     updatable.Update();
                 }
             }
+            foreach (AnimatedSprite drawableAnimation in _loadedAnimations)
+            {
+                if (drawableAnimation is IUseInput)
+                {
+                    IUseInput needsInput = (IUseInput)drawableAnimation;
+                    needsInput.Update(inputService);
+                }
+                drawableAnimation.animationPlayer.Update(gameTime);
+            }
         }
 
         public override void Draw(GameTime gameTime)
@@ -102,10 +124,14 @@ namespace Vikingvalg
             _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.NonPremultiplied);
             foreach (StaticSprite drawable in _toDraw)
             {
-                _spriteBatch.Draw(_loadedArt[drawable.ArtName], drawable.DestinationRectangle, drawable.SourceRectangle, drawable.Color, drawable.Rotation,
+                _spriteBatch.Draw(_loadedStaticArt[drawable.ArtName], drawable.DestinationRectangle, drawable.SourceRectangle, drawable.Color, drawable.Rotation,
                     drawable.Origin, drawable.Effects, drawable.LayerDepth);
             }
             _spriteBatch.End();
+            foreach (AnimatedSprite drawableAnimation in _loadedAnimations)
+            {
+                drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, drawableAnimation.Flipped, drawableAnimation.Rotation, drawableAnimation.Scale);
+            }
         }
     }
 }

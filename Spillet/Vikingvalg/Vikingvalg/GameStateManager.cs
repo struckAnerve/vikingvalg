@@ -51,7 +51,7 @@ namespace Vikingvalg
 
             renderService = (IManageSprites)Game.Services.GetService(typeof(IManageSprites));
 
-            Player p1 = new Player(new Rectangle(0, 0, 150, 192));
+            Player p1 = new Player(new Rectangle(200, 200, 150, 192));
             renderService.AddDrawable((Sprite)p1);
 
             Enemy e1 = new Enemy(new Vector2(300, 200));
