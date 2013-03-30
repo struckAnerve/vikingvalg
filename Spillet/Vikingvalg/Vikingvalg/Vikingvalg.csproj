@@ -82,8 +82,10 @@
     <Compile Include="IManageCollision.cs" />
     <Compile Include="IManageInput.cs" />
     <Compile Include="IManageStates.cs" />
+    <Compile Include="InGameManager.cs" />
     <Compile Include="InputManager.cs" />
     <Compile Include="IUseInput.cs" />
+    <Compile Include="MenuManager.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="IManageSprites.cs" />
     <Compile Include="Player.cs" />
