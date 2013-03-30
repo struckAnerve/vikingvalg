@@ -34,16 +34,16 @@ namespace Vikingvalg
             _footBox = new Rectangle(destinationRectangle.X, (destinationRectangle.Y + destinationRectangle.Height -40), destinationRectangle.Width, 40);
         }
         public Player(Rectangle destinationRectangle)
-            : this("mm", destinationRectangle, new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 1)
+            : this("mm", destinationRectangle, new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.6f)
         { }
         public Player(Vector2 destinationPosition)
-            : this("mm", new Rectangle((int)destinationPosition.X, (int)destinationPosition.Y, 375, 485), new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 1)
+            : this(new Rectangle((int)destinationPosition.X, (int)destinationPosition.Y, 375, 485))
         { }
         public Player()
             : this(Vector2.Zero)
         { }
 
-        public void Update(IHandleInput inputService)
+        public void Update(IManageInput inputService)
         {
             if(inputService.KeyIsDown(Keys.Right) && !BlockedRight)
             {

@@ -17,26 +17,17 @@ namespace Vikingvalg
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
+        //trenger vi denne (programmet kjører uten i skrivende stund, men jeg lar den være i tilfelle)?
         SpriteBatch spriteBatch;
-
-        IDrawSprites renderService;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            DrawableGameComponent renderer = new SpriteComponent(this);
-            Components.Add(renderer);
-            Services.AddService(typeof(IDrawSprites), renderer);
-
-            GameComponent input = new InputComponent(this);
-            Components.Add(input);
-            Services.AddService(typeof(IHandleInput), input);
-
-            GameComponent collisionDetector = new CollisionComponent(this);
-            Components.Add(collisionDetector);
-            Services.AddService(typeof(IHandleCollision), collisionDetector);
+            DrawableGameComponent gameManager = new GameStateManager(this);
+            Components.Add(gameManager);
+            Services.AddService(typeof(IManageStates), gameManager);
         }
 
         /// <summary>
@@ -58,16 +49,6 @@ namespace Vikingvalg
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            renderService = (IDrawSprites)Services.GetService(typeof(IDrawSprites));
-
-            Player p1 = new Player(new Rectangle(0, 0, 150, 192));
-            renderService.AddDrawable((Sprite)p1);
-
-            Enemy e1 = new Enemy(new Vector2(300,200));
-            renderService.AddDrawable((Sprite)e1);
-            Enemy e2 = new Enemy(new Vector2(700,300));
-            renderService.AddDrawable((Sprite)e2);
         }
 
         /// <summary>

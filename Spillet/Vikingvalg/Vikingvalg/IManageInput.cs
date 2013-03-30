@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
-    interface IHandleInput
+    interface IManageInput
     {
         bool KeyIsUp(Keys key);
         bool KeyIsDown(Keys key);

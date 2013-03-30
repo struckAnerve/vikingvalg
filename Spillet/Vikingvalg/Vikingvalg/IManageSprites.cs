@@ -5,8 +5,9 @@ using System.Text;
 
 namespace Vikingvalg
 {
-    interface IUseInput
+    interface IManageSprites
     {
-        void Update(IManageInput inputService);
+        void AddDrawable(Sprite drawable);
+        void RemoveDrawable(Sprite drawable);
     }
 }

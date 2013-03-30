@@ -15,14 +15,14 @@ namespace Vikingvalg
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class InputComponent : Microsoft.Xna.Framework.GameComponent, IHandleInput
+    public class InputManager : Microsoft.Xna.Framework.GameComponent, IManageInput
     {
         public KeyboardState PrevKeys { get; protected set; }
         public KeyboardState CurrKeys { get; protected set; }
         public MouseState PrevMouse { get; protected set; }
         public MouseState CurrMouse { get; protected set; }
 
-        public InputComponent(Game game)
+        public InputManager(Game game)
             : base(game)
         {
         }

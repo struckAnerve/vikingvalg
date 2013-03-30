@@ -12,16 +12,16 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
-    public class SpriteComponent : Microsoft.Xna.Framework.DrawableGameComponent, IDrawSprites
+    public class SpriteManager : Microsoft.Xna.Framework.DrawableGameComponent, IManageSprites
     {
         private SpriteBatch _spriteBatch;
         private List<Sprite> _toDraw = new List<Sprite>();
         private Dictionary<String, Texture2D> _loadedArt = new Dictionary<String,Texture2D>();
 
-        IHandleInput inputService;
-        IHandleCollision collisionService;
+        IManageInput inputService;
+        IManageCollision collisionService;
 
-        public SpriteComponent(Game game)
+        public SpriteManager(Game game)
             : base(game)
         {
         }
@@ -41,8 +41,8 @@ namespace Vikingvalg
             // TODO: Add your initialization code here
 
             base.Initialize();
-            collisionService = (IHandleCollision)Game.Services.GetService(typeof(IHandleCollision));
-            inputService = (IHandleInput)Game.Services.GetService(typeof(IHandleInput));
+            collisionService = (IManageCollision)Game.Services.GetService(typeof(IManageCollision));
+            inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
         }
 
         public void AddDrawable(Sprite drawable)
@@ -99,7 +99,7 @@ namespace Vikingvalg
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.NonPremultiplied);
             foreach (StaticSprite drawable in _toDraw)
             {
                 _spriteBatch.Draw(_loadedArt[drawable.ArtName], drawable.DestinationRectangle, drawable.SourceRectangle, drawable.Color, drawable.Rotation,

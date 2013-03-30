@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Vikingvalg
 {
-    interface IHandleCollision
+    interface IManageCollision
     {
         void AddCollidable(ICanCollide canCollide);
         void RemoveCollidable(ICanCollide toRemove);

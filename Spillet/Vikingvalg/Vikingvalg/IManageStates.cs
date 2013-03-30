@@ -5,9 +5,8 @@ using System.Text;
 
 namespace Vikingvalg
 {
-    interface IDrawSprites
+    interface IManageStates
     {
-        void AddDrawable(Sprite drawable);
-        void RemoveDrawable(Sprite drawable);
+        void ChangeState();
     }
 }

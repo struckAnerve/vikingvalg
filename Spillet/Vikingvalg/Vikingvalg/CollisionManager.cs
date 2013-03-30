@@ -15,12 +15,12 @@ namespace Vikingvalg
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class CollisionComponent : Microsoft.Xna.Framework.GameComponent, IHandleCollision
+    public class CollisionManager : Microsoft.Xna.Framework.GameComponent, IManageCollision
     {
         private List<ICanCollide> _canCollideList = new List<ICanCollide>();
         private List<ICanCollide> _listToCheck = new List<ICanCollide>();
 
-        public CollisionComponent(Game game)
+        public CollisionManager(Game game)
             : base(game)
         {
         }
@@ -67,6 +67,23 @@ namespace Vikingvalg
                 canCollide.BlockedRight = false;
                 canCollide.BlockedBottom = false;
                 canCollide.BlockedLeft = false;
+
+                if (canCollide.FootBox.Y <= 0)
+                {
+                    canCollide.BlockedTop = true;
+                }
+                else if (canCollide.FootBox.Y + canCollide.FootBox.Height >= Game.Window.ClientBounds.Height)
+                {
+                    canCollide.BlockedBottom = true;
+                }
+                if (canCollide.FootBox.X <= 0)
+                {
+                    canCollide.BlockedLeft = true;
+                }
+                else if (canCollide.FootBox.X + canCollide.FootBox.Width >= Game.Window.ClientBounds.Width)
+                {
+                    canCollide.BlockedRight = true;
+                }
 
                 if (_listToCheck != null)
                 {

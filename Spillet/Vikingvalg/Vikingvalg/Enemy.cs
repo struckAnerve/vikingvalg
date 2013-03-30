@@ -34,7 +34,7 @@ namespace Vikingvalg
             _footBox = new Rectangle(destinationRectangle.X, (destinationRectangle.Y + destinationRectangle.Height - 40), destinationRectangle.Width, 40);
         }
         public Enemy(Rectangle destinationRectangle)
-            : this("evil", destinationRectangle, new Rectangle(0, 0, 80, 78), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 1)
+            : this("evil", destinationRectangle, new Rectangle(0, 0, 80, 78), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.5f)
         { }
         public Enemy(Vector2 destinationPosition)
             : this(new Rectangle((int)destinationPosition.X, (int)destinationPosition.Y, 80, 78))
@@ -45,15 +45,12 @@ namespace Vikingvalg
 
         public override void Update()
         {
-            if (_destinationRectangle.X < -10 || _destinationRectangle.X > 720)
+            if ((BlockedLeft && _speed < 0) || (BlockedRight && _speed > 0))
             {
                 _speed *= -1;
             }
-            if ((_speed > 0 && !BlockedRight) || (_speed < 0 && !BlockedLeft))
-            {
                 _destinationRectangle.X += _speed;
                 _footBox.X = _destinationRectangle.X;
-            }
         }
     }
 }
