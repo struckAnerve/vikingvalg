@@ -53,13 +53,6 @@ namespace Vikingvalg
 
             gameState = "StartMenu";
             base.Initialize();
-            Player p1 = new Player(new Rectangle(200, 200, 150, 192));
-            renderService.AddDrawable((Sprite)p1);
-
-            Enemy e1 = new Enemy(new Vector2(300, 200));
-            renderService.AddDrawable((Sprite)e1);
-            Enemy e2 = new Enemy(new Vector2(700, 300));
-            renderService.AddDrawable((Sprite)e2);
         }
 
         /// <summary>
