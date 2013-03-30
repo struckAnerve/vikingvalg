@@ -17,7 +17,6 @@ namespace Vikingvalg
         private SpriteBatch _spriteBatch;
         private List<Sprite> _toDraw = new List<Sprite>();
         private Dictionary<String, Texture2D> _loadedStaticArt = new Dictionary<String,Texture2D>();
-        private List<AnimatedSprite> _loadedAnimations = new List<AnimatedSprite>();
 
         IManageInput inputService;
         IManageCollision collisionService;
@@ -62,16 +61,17 @@ namespace Vikingvalg
                 {
                     _loadedStaticArt.Add(staticElement.ArtName, Game.Content.Load<Texture2D>(staticElement.ArtName));
                 }
-                _toDraw.Add(drawable);
+                //_toDraw.Add(drawable);
             }
-            else if (drawable is AnimatedSprite)
+            _toDraw.Add(drawable);
+            if (drawable is AnimatedSprite)
             {
                 AnimatedSprite drawableAnimation = (AnimatedSprite) drawable;
                 foreach (String animationName in drawableAnimation.animationList)
                 {
                     drawableAnimation.animationPlayer.AddAnimation(animationName, Game.Content.Load<Animation>(@"Animations/"+drawableAnimation.AnimationDirectory+animationName));
                 }
-                _loadedAnimations.Add(drawableAnimation);
+                //_toDraw.Add(drawableAnimation);
                 drawableAnimation.animationPlayer.StartAnimation("idle"); 
                 
             }
@@ -106,15 +106,11 @@ namespace Vikingvalg
                 {
                     updatable.Update();
                 }
-            }
-            foreach (AnimatedSprite drawableAnimation in _loadedAnimations)
-            {
-                if (drawableAnimation is IUseInput)
+                if (updatable is AnimatedSprite)
                 {
-                    IUseInput needsInput = (IUseInput)drawableAnimation;
-                    needsInput.Update(inputService);
-                }
-                drawableAnimation.animationPlayer.Update(gameTime);
+                    AnimatedSprite updatableAnimation = (AnimatedSprite)updatable;
+                    updatableAnimation.animationPlayer.Update(gameTime);
+                }   
             }
         }
 
@@ -122,15 +118,24 @@ namespace Vikingvalg
         {
             base.Draw(gameTime);
             _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.NonPremultiplied);
-            foreach (StaticSprite drawable in _toDraw)
+            foreach (Sprite drawable in _toDraw)
             {
-                _spriteBatch.Draw(_loadedStaticArt[drawable.ArtName], drawable.DestinationRectangle, drawable.SourceRectangle, drawable.Color, drawable.Rotation,
-                    drawable.Origin, drawable.Effects, drawable.LayerDepth);
+                if (drawable is StaticSprite)
+                {
+                    StaticSprite staticDrawableSprite = (StaticSprite)drawable;
+                    _spriteBatch.Draw(_loadedStaticArt[staticDrawableSprite.ArtName], staticDrawableSprite.DestinationRectangle, staticDrawableSprite.SourceRectangle, staticDrawableSprite.Color, staticDrawableSprite.Rotation,
+                        staticDrawableSprite.Origin, staticDrawableSprite.Effects, staticDrawableSprite.LayerDepth);
+                }
             }
             _spriteBatch.End();
-            foreach (AnimatedSprite drawableAnimation in _loadedAnimations)
+            foreach (Sprite drawable in _toDraw)
             {
-                drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, drawableAnimation.Flipped, drawableAnimation.Rotation, drawableAnimation.Scale);
+                if (drawable is AnimatedSprite)
+                {
+                    AnimatedSprite drawableAnimation = (AnimatedSprite)drawable;
+                    drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, drawableAnimation.Flipped, drawableAnimation.Rotation, drawableAnimation.Scale);
+                }
+                
             }
         }
     }

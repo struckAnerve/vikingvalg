@@ -73,6 +73,10 @@ namespace Vikingvalg
             {
                 walk(inputService);
             }
+            else
+            {
+                //idle();
+            }
         }
 
         public void idle()
