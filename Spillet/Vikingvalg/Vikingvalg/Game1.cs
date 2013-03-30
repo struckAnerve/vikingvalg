@@ -25,9 +25,9 @@ namespace Vikingvalg
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            DrawableGameComponent gameManager = new GameStateManager(this);
-            Components.Add(gameManager);
-            Services.AddService(typeof(IManageStates), gameManager);
+            GameComponent gameStateManager = new GameStateManager(this);
+            Components.Add(gameStateManager);
+            Services.AddService(typeof(IManageStates), gameStateManager);
         }
 
         /// <summary>

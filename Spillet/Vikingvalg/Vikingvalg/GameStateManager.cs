@@ -15,25 +15,31 @@ namespace Vikingvalg
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class GameStateManager : Microsoft.Xna.Framework.DrawableGameComponent, IManageStates
+    public class GameStateManager : Microsoft.Xna.Framework.GameComponent, IManageStates
     {
+        private String gameState;
 
-        IManageSprites renderService;
+        MenuManager menuService;
+        InGameManager inGameService;
 
         public GameStateManager(Game game)
             : base(game)
         {
-            DrawableGameComponent renderer = new SpriteManager(game);
-            Game.Components.Add(renderer);
-            Game.Services.AddService(typeof(IManageSprites), renderer);
+            DrawableGameComponent spriteManager = new SpriteManager(game);
+            Game.Components.Add(spriteManager);
+            Game.Services.AddService(typeof(IManageSprites), spriteManager);
 
-            GameComponent input = new InputManager(game);
-            Game.Components.Add(input);
-            Game.Services.AddService(typeof(IManageInput), input);
+            GameComponent inputManager = new InputManager(game);
+            Game.Components.Add(inputManager);
+            Game.Services.AddService(typeof(IManageInput), inputManager);
 
-            GameComponent collisionDetector = new CollisionManager(game);
-            Game.Components.Add(collisionDetector);
-            Game.Services.AddService(typeof(IManageCollision), collisionDetector);
+            GameComponent menuManager = new MenuManager(game);
+            Game.Components.Add(menuManager);
+            Game.Services.AddService(typeof(MenuManager), menuManager);
+
+            GameComponent inGameManager = new InGameManager(game);
+            Game.Components.Add(inGameManager);
+            Game.Services.AddService(typeof(InGameManager), inGameManager);
         }
 
         /// <summary>
@@ -42,15 +48,11 @@ namespace Vikingvalg
         /// </summary>
         public override void Initialize()
         {
+            inGameService = (InGameManager)Game.Services.GetService(typeof(InGameManager));
+            menuService = (MenuManager)Game.Services.GetService(typeof(MenuManager));
+
+            gameState = "StartMenu";
             base.Initialize();
-        }
-
-        protected override void LoadContent()
-        {
-            base.LoadContent();
-
-            renderService = (IManageSprites)Game.Services.GetService(typeof(IManageSprites));
-
             Player p1 = new Player(new Rectangle(200, 200, 150, 192));
             renderService.AddDrawable((Sprite)p1);
 
@@ -66,6 +68,21 @@ namespace Vikingvalg
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            switch (gameState)
+            {
+                case "StartMenu":
+                    menuService.Enabled = false;
+                    menuService.Visible = false;
+                    inGameService.Visible = true;
+                    inGameService.Enabled = true;
+                    break;
+                case "InGame":
+                    inGameService.Visible = true;
+                    inGameService.Enabled = true;
+                    menuService.Enabled = false;
+                    menuService.Visible = false;
+                    break;
+            }
             base.Update(gameTime);
         }
 
