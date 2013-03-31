@@ -34,11 +34,13 @@ namespace Vikingvalg
         public override void Initialize()
         {
             spriteService = (IManageSprites)Game.Services.GetService(typeof(IManageSprites));
+
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
+            //Midlertidige plasseringer (?)
             float scale = 0.5f;
             Rectangle playerRectangle = new Rectangle(0, 0, 150, 330);
             Player p1 = new Player(new Rectangle(0, 0, (int)(playerRectangle.Width * scale), (int)(playerRectangle.Height * scale)));

@@ -7,6 +7,7 @@ namespace Vikingvalg
 {
     interface IManageStates
     {
+        String GameState { get; }
         void ChangeState();
     }
 }

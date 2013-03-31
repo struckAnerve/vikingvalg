@@ -16,10 +16,13 @@ namespace Vikingvalg
     {
         private SpriteBatch _spriteBatch;
         private List<Sprite> _toDrawInGame = new List<Sprite>();
+        private List<Sprite> _toDrawMenu = new List<Sprite>();
         private Dictionary<String, Texture2D> _loadedStaticArt = new Dictionary<String,Texture2D>();
         Texture2D smallthing;
+
         IManageInput inputService;
         IManageCollision collisionService;
+        IManageStates stateService;
 
         public SpriteManager(Game game)
             : base(game)
@@ -29,9 +32,9 @@ namespace Vikingvalg
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(this.Game.GraphicsDevice);
-            base.LoadContent();
-            _spriteBatch = new SpriteBatch(this.Game.GraphicsDevice);
             smallthing = Game.Content.Load<Texture2D>(@"redPixel");
+
+            base.LoadContent();
         }
 
         /// <summary>
@@ -42,6 +45,8 @@ namespace Vikingvalg
         {
             collisionService = (IManageCollision)Game.Services.GetService(typeof(IManageCollision));
             inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
+            stateService = (IManageStates)Game.Services.GetService(typeof(IManageStates));
+
             base.Initialize();
         }
 
@@ -54,6 +59,25 @@ namespace Vikingvalg
             }
 
             _toDrawInGame.Add(drawable);
+
+            AddContinued(drawable);
+        }
+
+        public void AddMenuDrawable(Sprite drawable)
+        {
+            if (drawable == null || _toDrawMenu.Contains(drawable))
+            {
+                Console.WriteLine("Unable to add drawable!");
+                return;
+            }
+
+            _toDrawMenu.Add(drawable);
+
+            AddContinued(drawable);
+        }
+
+        private void AddContinued(Sprite drawable)
+        {
             if (drawable is StaticSprite)
             {
                 StaticSprite staticElement = (StaticSprite)drawable;
@@ -64,13 +88,13 @@ namespace Vikingvalg
             }
             else if (drawable is AnimatedSprite)
             {
-                AnimatedSprite drawableAnimation = (AnimatedSprite) drawable;
+                AnimatedSprite drawableAnimation = (AnimatedSprite)drawable;
                 foreach (String animationName in drawableAnimation.animationList)
                 {
-                    drawableAnimation.animationPlayer.AddAnimation(animationName, Game.Content.Load<Animation>(@"Animations/"+drawableAnimation.AnimationDirectory+animationName));
+                    drawableAnimation.animationPlayer.AddAnimation(animationName, Game.Content.Load<Animation>(@"Animations/" + drawableAnimation.AnimationDirectory + animationName));
                 }
-                
-                drawableAnimation.animationPlayer.StartAnimation("idle"); 
+
+                drawableAnimation.animationPlayer.StartAnimation("idle");
             }
 
             if (drawable is ICanCollide)
@@ -84,9 +108,21 @@ namespace Vikingvalg
         {
             _toDrawInGame.Remove(toRemove);
 
+            RemoveContinued(toRemove);
+        }
+
+        public void RemoveMenuDrawable(Sprite toRemove)
+        {
+            _toDrawMenu.Remove(toRemove);
+
+            RemoveContinued(toRemove);
+        }
+
+        private void RemoveContinued(Sprite toRemove)
+        {
             if (toRemove is ICanCollide)
             {
-                ICanCollide collideRemove = (ICanCollide) toRemove;
+                ICanCollide collideRemove = (ICanCollide)toRemove;
                 collisionService.RemoveCollidable(collideRemove);
             }
         }
@@ -97,22 +133,25 @@ namespace Vikingvalg
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            foreach (Sprite updatable in _toDrawInGame)
+            if (stateService.GameState == "InGame")
             {
-                if (updatable is IUseInput)
+                foreach (Sprite updatable in _toDrawInGame)
                 {
-                    IUseInput needsInput = (IUseInput)updatable;
-                    needsInput.Update(inputService);
+                    if (updatable is IUseInput)
+                    {
+                        IUseInput needsInput = (IUseInput)updatable;
+                        needsInput.Update(inputService);
+                    }
+                    else
+                    {
+                        updatable.Update();
+                    }
+                    if (updatable is AnimatedSprite)
+                    {
+                        AnimatedSprite updatableAnimation = (AnimatedSprite)updatable;
+                        updatableAnimation.animationPlayer.Update(gameTime);
+                    }
                 }
-                else
-                {
-                    updatable.Update();
-                }
-                if(updatable is AnimatedSprite)
-                {
-                    AnimatedSprite updatableAnimation = (AnimatedSprite)updatable;
-                    updatableAnimation.animationPlayer.Update(gameTime);
-                }   
             }
 
             base.Update(gameTime);

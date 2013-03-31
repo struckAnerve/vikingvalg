@@ -17,10 +17,10 @@ namespace Vikingvalg
     /// </summary>
     public class GameStateManager : Microsoft.Xna.Framework.GameComponent, IManageStates
     {
-        private String gameState;
-
         MenuManager menuService;
         InGameManager inGameService;
+
+        public String GameState { get; private set; }
 
         public GameStateManager(Game game)
             : base(game)
@@ -51,7 +51,7 @@ namespace Vikingvalg
             inGameService = (InGameManager)Game.Services.GetService(typeof(InGameManager));
             menuService = (MenuManager)Game.Services.GetService(typeof(MenuManager));
 
-            gameState = "StartMenu";
+            GameState = "InGame";
             base.Initialize();
         }
 
@@ -61,7 +61,7 @@ namespace Vikingvalg
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            switch (gameState)
+            switch (GameState)
             {
                 case "StartMenu":
                     menuService.Enabled = false;
