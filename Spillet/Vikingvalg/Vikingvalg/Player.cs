@@ -15,6 +15,7 @@ namespace Vikingvalg
 {
     class Player : AnimatedSprite, IUseInput, ICanCollide
     {
+        //Hitbox til spilleren
         private Rectangle _footBox;
 
         public Rectangle FootBox 
@@ -34,19 +35,24 @@ namespace Vikingvalg
             Vector2 origin, SpriteEffects effects, float layerDepth)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, "playerAnimation/")
         {
+            //Setter hitboxen til spilleren til 40px høy og bredden på spilleren / 2
             footBoxXOfset = destinationRectangle.Width / 2;
             footBoxYOfset = 40;
+            //Plasserer boksen midstilt nederst på spilleren.
             _footBox = new Rectangle(destinationRectangle.X - footBoxXOfset, destinationRectangle.Y + footBoxYOfset, destinationRectangle.Width, footBoxHeight);
 
             animationList = new List<String>();
             animationPlayer = new AnimationPlayer();
 
-            animationList.Add("walkCycle");
-            animationList.Add("idle");
-            animationList.Add("strikeSword");
+
+            //Legger til alle navn på animasjoner som spilleren har, brukes for å laste inn riktige animasjoner.
             animationList.Add("block");
             animationList.Add("strikeSword");
+            animationList.Add("battleBlockWalk");
+            animationList.Add("walkCycle");
+            animationList.Add("idle");
 
+            //Legger til alle navn på ben som hører til animasjonen, brukes for å endre på teksturer
             playerBoneList.Add("head", "head");
             playerBoneList.Add("torso", "torso");
             playerBoneList.Add("bicep", "bicepL");
@@ -71,11 +77,21 @@ namespace Vikingvalg
 
         public void Update(IManageInput inputService)
         {
-            if (inputService.KeyIsDown(Keys.Left) || inputService.KeyIsDown(Keys.Down) || inputService.KeyIsDown(Keys.Up) || inputService.KeyIsDown(Keys.Right))
+
+            if (inputService.KeyIsDown(Keys.Space))
+            {
+                attackSlash();
+            }
+            else if (inputService.KeyIsDown(Keys.LeftShift))
+            {
+                block();
+            }
+            //Hvis én av piltastene er nede, aktiver walk
+            else if (inputService.KeyIsDown(Keys.Left) || inputService.KeyIsDown(Keys.Down) || inputService.KeyIsDown(Keys.Up) || inputService.KeyIsDown(Keys.Right))
             {
                 walk(inputService);
             }
-            else
+            else //Hvis ikke, stå stille
             {
                 idle();
             }
@@ -89,19 +105,28 @@ namespace Vikingvalg
                 AnimationState = "idle";
             }
         }
+        /// <summary>
+        /// Gjør om animasjonen som blir spilt til "strikeSword" hvis den animasjonen ikke allerede er aktiv
+        /// </summary>
         public void attackSlash()
         {
             if (AnimationState != "slashing")
             {
-                animationPlayer.TransitionToAnimation("slashing", 0.2f);
+                animationPlayer.TransitionToAnimation("strikeSword", 0.2f);
                 AnimationState = "slashing";
             }
         }
+        /// <summary>
+        /// Holder oversikt over hvilke knapper som er trykket, og hvorvidt spilleren er blokkert
+        /// </summary>
+        /// <param name="inputService">Inputservice som holder oversikt over input</param>
         public void walk(IManageInput inputService)
         {
+            /* Hvis "walking" animasjonen ikke er aktiv, og AnimationState ikke er "walking"
+             * aktiveres "walking" animasjonen, og bytter AnimationState til "walking" */
             if (spriteAnimation.CurrentAnimation != "walking" && AnimationState != "walking")
             {
-                animationPlayer.TransitionToAnimation("walkCycle", 0.2f);
+                animationPlayer.TransitionToAnimation("battleBlockWalk", 0.2f);
                 AnimationState = "walking";
             }
             if (AnimationState == "walking")
@@ -120,28 +145,31 @@ namespace Vikingvalg
                     _destinationRectangle.X -= _speed;
                     Flipped = true;
                 }
-                else
+                else if (inputService.KeyIsUp(Keys.Up) && inputService.KeyIsUp(Keys.Down) || BlockedTop || BlockedBottom)
                 {
                     idle();
                 }
                 if (inputService.KeyIsDown(Keys.Up) && !BlockedTop)
                 {
                     _destinationRectangle.Y -= _speed;
-                    _footBox.Y = (_destinationRectangle.Y + footBoxYOfset);
                 }
                 else if (inputService.KeyIsDown(Keys.Down) && !BlockedBottom)
                 {
                     _destinationRectangle.Y += _speed;
-                    _footBox.Y = (_destinationRectangle.Y + footBoxYOfset);
                 }
+                //Flytter hitboxen til samme sted som spilleren
+                _footBox.Y = (_destinationRectangle.Y + footBoxYOfset);
                 _footBox.X = _destinationRectangle.X - footBoxXOfset;
             }
         }
+        /// <summary>
+        /// Gjør om animasjonen som blir spilt til "strikeSword" hvis den animasjonen ikke allerede er aktiv
+        /// </summary>
         public void block()
         {
-            if (animationPlayer.CurrentAnimation != "blocking")
+            if (spriteAnimation.CurrentAnimation != "blocking" && AnimationState != "blocking")
             {
-                spriteAnimation.TransitionToAnimation("blocking", 0.2f);
+                animationPlayer.TransitionToAnimation("block", 0.2f);
                 AnimationState = "blocking";
             }
         }

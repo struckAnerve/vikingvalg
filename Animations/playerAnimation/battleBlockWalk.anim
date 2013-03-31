@@ -14,11 +14,27 @@
   <Texture>helmet0.png</Texture>
   <Texture>shield_StudWood_Ready.png</Texture>
   <Keyframe frame="0" trigger="" vflip="False" hflip="False">
+    <Bone name="bicepL">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>6</ParentIndex>
+      <TextureIndex>1</TextureIndex>
+      <Position>
+        <X>5</X>
+        <Y>-43</Y>
+      </Position>
+      <Rotation>-0.7959996</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
     <Bone name="forearmL">
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>2</ParentIndex>
+      <ParentIndex>0</ParentIndex>
       <TextureIndex>2</TextureIndex>
       <Position>
         <X>-1.095609</X>
@@ -34,29 +50,13 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>0</ParentIndex>
+      <ParentIndex>1</ParentIndex>
       <TextureIndex>10</TextureIndex>
       <Position>
         <X>28.67663</X>
         <Y>-0.05289735</Y>
       </Position>
       <Rotation>-0.04</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="bicepL">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
-      <TextureIndex>1</TextureIndex>
-      <Position>
-        <X>5</X>
-        <Y>-43</Y>
-      </Position>
-      <Rotation>-0.7959996</Rotation>
       <Scale>
         <X>1</X>
         <Y>1</Y>
@@ -256,11 +256,27 @@
     </Bone>
   </Keyframe>
   <Keyframe frame="10" trigger="" vflip="False" hflip="False">
+    <Bone name="bicepL">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>6</ParentIndex>
+      <TextureIndex>1</TextureIndex>
+      <Position>
+        <X>5</X>
+        <Y>-43</Y>
+      </Position>
+      <Rotation>-1.072962</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
     <Bone name="forearmL">
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>2</ParentIndex>
+      <ParentIndex>0</ParentIndex>
       <TextureIndex>2</TextureIndex>
       <Position>
         <X>2.383711</X>
@@ -276,29 +292,13 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>0</ParentIndex>
+      <ParentIndex>1</ParentIndex>
       <TextureIndex>10</TextureIndex>
       <Position>
         <X>29.14513</X>
         <Y>-7.654246</Y>
       </Position>
       <Rotation>-0.17</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="bicepL">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
-      <TextureIndex>1</TextureIndex>
-      <Position>
-        <X>5</X>
-        <Y>-43</Y>
-      </Position>
-      <Rotation>-1.072962</Rotation>
       <Scale>
         <X>1</X>
         <Y>1</Y>
