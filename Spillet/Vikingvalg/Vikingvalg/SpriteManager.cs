@@ -22,7 +22,10 @@ namespace Vikingvalg
 
         IManageInput inputService;
         IManageCollision collisionService;
-        IManageStates stateService;
+
+        public bool DrawInGame { get; set; }
+        public bool UpdateInGame { get; set; }
+        public bool DrawAndUpdateMenu { get; set; }
 
         public SpriteManager(Game game)
             : base(game)
@@ -45,7 +48,8 @@ namespace Vikingvalg
         {
             collisionService = (IManageCollision)Game.Services.GetService(typeof(IManageCollision));
             inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
-            stateService = (IManageStates)Game.Services.GetService(typeof(IManageStates));
+
+            DrawAndUpdateMenu = true;
 
             base.Initialize();
         }
@@ -133,34 +137,61 @@ namespace Vikingvalg
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            if (stateService.GameState == "InGame")
+            //Oppdater spill
+            if (UpdateInGame)
             {
-                foreach (Sprite updatable in _toDrawInGame)
-                {
-                    if (updatable is IUseInput)
-                    {
-                        IUseInput needsInput = (IUseInput)updatable;
-                        needsInput.Update(inputService);
-                    }
-                    else
-                    {
-                        updatable.Update();
-                    }
-                    if (updatable is AnimatedSprite)
-                    {
-                        AnimatedSprite updatableAnimation = (AnimatedSprite)updatable;
-                        updatableAnimation.animationPlayer.Update(gameTime);
-                    }
-                }
+                UpdateList(gameTime, _toDrawInGame);
+            }
+            //Oppdater meny
+            if (DrawAndUpdateMenu)
+            {
+                UpdateList(gameTime, _toDrawMenu);
             }
 
             base.Update(gameTime);
         }
 
+        private void UpdateList(GameTime gameTime, List<Sprite> listToUpdate)
+        {
+            foreach (Sprite updatable in listToUpdate)
+            {
+                if (updatable is IUseInput)
+                {
+                    IUseInput needsInput = (IUseInput)updatable;
+                    needsInput.Update(inputService);
+                }
+                else
+                {
+                    updatable.Update();
+                }
+                if (updatable is AnimatedSprite)
+                {
+                    AnimatedSprite updatableAnimation = (AnimatedSprite)updatable;
+                    updatableAnimation.animationPlayer.Update(gameTime);
+                }
+            }
+        }
+
         public override void Draw(GameTime gameTime)
         {
+            //Tegn spill
+            if (DrawInGame)
+            {
+                DrawList(gameTime, _toDrawInGame);
+            }
+            //Tegn meny
+            if (DrawAndUpdateMenu)
+            {
+                DrawList(gameTime, _toDrawMenu);
+            }
+
+            base.Draw(gameTime);
+        }
+
+        private void DrawList(GameTime gameTime, List<Sprite> listToDraw)
+        {
             _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.NonPremultiplied);
-            foreach (Sprite drawable in _toDrawInGame)
+            foreach (Sprite drawable in listToDraw)
             {
                 if (drawable is StaticSprite)
                 {
@@ -170,7 +201,7 @@ namespace Vikingvalg
                 }
             }
             _spriteBatch.End();
-            foreach (Sprite drawable in _toDrawInGame)
+            foreach (Sprite drawable in listToDraw)
             {
                 if (drawable is AnimatedSprite)
                 {

@@ -14,10 +14,14 @@ namespace Vikingvalg
 {
     public abstract class Sprite
     {
+        //Bør flyttes
         protected int _speed = 3;
+
+        //Bør flyttes
         protected int footBoxHeight = 40;
         protected int footBoxXOfset;
         protected int footBoxYOfset;
+
         public Color Color { get; protected set; }
         public float Rotation { get; protected set; }
 

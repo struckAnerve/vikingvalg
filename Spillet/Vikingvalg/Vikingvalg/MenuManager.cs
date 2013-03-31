@@ -15,8 +15,12 @@ namespace Vikingvalg
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class MenuManager : Microsoft.Xna.Framework.DrawableGameComponent
+    public class MenuManager : Microsoft.Xna.Framework.GameComponent
     {
+        IManageStates stateService;
+        IManageInput inputService;
+        IManageSprites spriteService;
+
         public MenuManager(Game game)
             : base(game)
         {
@@ -28,6 +32,21 @@ namespace Vikingvalg
         /// </summary>
         public override void Initialize()
         {
+            stateService = (IManageStates)Game.Services.GetService(typeof(IManageStates));
+            inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
+            spriteService = (IManageSprites)Game.Services.GetService(typeof(IManageSprites));
+
+            //Må forbedres
+            ClickableMenuElement playButton = new ClickableMenuElement("play", new Rectangle(
+                (Game.Window.ClientBounds.Width / 2 - 90),
+                (Game.Window.ClientBounds.Height / 2 - 37),
+                180, 75));
+            spriteService.AddMenuDrawable((Sprite)playButton);
+            ClickableMenuElement settingsButton = new ClickableMenuElement("settings", new Rectangle(
+                (Game.Window.ClientBounds.Width / 2 - 90),
+                (Game.Window.ClientBounds.Height / 2 - 24 + (playButton.SourceRectangle.Height + 40)),
+                180, 49));
+            spriteService.AddMenuDrawable((Sprite)settingsButton);
 
             base.Initialize();
         }
@@ -38,6 +57,12 @@ namespace Vikingvalg
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            //Midlertidig kode for å teste endring av State
+            if (inputService.KeyWasPressedThisFrame(Keys.Tab))
+            {
+                stateService.ChangeState("InGame");
+            }
+
             base.Update(gameTime);
         }
     }

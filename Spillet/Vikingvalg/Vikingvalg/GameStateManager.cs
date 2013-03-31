@@ -17,9 +17,11 @@ namespace Vikingvalg
     /// </summary>
     public class GameStateManager : Microsoft.Xna.Framework.GameComponent, IManageStates
     {
+        IManageSprites spriteService;
         MenuManager menuService;
         InGameManager inGameService;
 
+        private enum _possibleGameStates { MainMenu, InGame };
         public String GameState { get; private set; }
 
         public GameStateManager(Game game)
@@ -48,10 +50,11 @@ namespace Vikingvalg
         /// </summary>
         public override void Initialize()
         {
+            spriteService = (IManageSprites)Game.Services.GetService(typeof(IManageSprites));
             inGameService = (InGameManager)Game.Services.GetService(typeof(InGameManager));
             menuService = (MenuManager)Game.Services.GetService(typeof(MenuManager));
 
-            GameState = "InGame";
+            ChangeState("MainMenu");
             base.Initialize();
         }
 
@@ -63,24 +66,37 @@ namespace Vikingvalg
         {
             switch (GameState)
             {
-                case "StartMenu":
-                    menuService.Enabled = false;
-                    menuService.Visible = false;
-                    inGameService.Visible = true;
-                    inGameService.Enabled = true;
+                case "MainMenu":
+                    menuService.Enabled = true;
+
+                    inGameService.Enabled = false;
+
+                    spriteService.UpdateInGame = false;
+                    spriteService.DrawInGame = false;
+                    spriteService.DrawAndUpdateMenu = true;
                     break;
                 case "InGame":
-                    inGameService.Visible = true;
                     inGameService.Enabled = true;
+
                     menuService.Enabled = false;
-                    menuService.Visible = false;
+
+                    spriteService.UpdateInGame = true;
+                    spriteService.DrawInGame = true;
+                    spriteService.DrawAndUpdateMenu = false;
                     break;
             }
             base.Update(gameTime);
         }
 
-        public void ChangeState()
+        public void ChangeState(String changeTo)
         {
+            if (!Enum.IsDefined(typeof(_possibleGameStates), changeTo))
+            {
+                Console.WriteLine("Unable to change state (you are trying to change to an unkown state: '" + changeTo + "')");
+                return;
+            }
+
+            GameState = changeTo;
         }
     }
 }
