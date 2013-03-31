@@ -15,9 +15,11 @@ namespace Vikingvalg
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class InGameManager : Microsoft.Xna.Framework.DrawableGameComponent
+    public class InGameManager : Microsoft.Xna.Framework.GameComponent
     {
         IManageSprites spriteService;
+        IManageStates stateService;
+        IManageInput inputService;
 
         public InGameManager(Game game)
             : base(game)
@@ -34,12 +36,9 @@ namespace Vikingvalg
         public override void Initialize()
         {
             spriteService = (IManageSprites)Game.Services.GetService(typeof(IManageSprites));
+            stateService = (IManageStates)Game.Services.GetService(typeof(IManageStates));
+            inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
 
-            base.Initialize();
-        }
-
-        protected override void LoadContent()
-        {
             //Midlertidige plasseringer (?)
             float scale = 0.5f;
             Rectangle playerRectangle = new Rectangle(0, 0, 150, 330);
@@ -51,7 +50,7 @@ namespace Vikingvalg
             Enemy e2 = new Enemy(new Vector2(700, 300));
             spriteService.AddInGameDrawable((Sprite)e2);
 
-            base.LoadContent();
+            base.Initialize();
         }
 
         /// <summary>
@@ -60,6 +59,10 @@ namespace Vikingvalg
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            if (inputService.KeyWasPressedThisFrame(Keys.Tab))
+            {
+                stateService.ChangeState("MainMenu");
+            }
             base.Update(gameTime);
         }
     }
