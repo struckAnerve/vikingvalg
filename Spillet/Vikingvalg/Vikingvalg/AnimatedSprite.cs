@@ -23,6 +23,7 @@ namespace Vikingvalg
         public String ArtName { get; protected set; }
         public float Scale { get; protected set; }
         public bool Flipped { get; set; }
+
         public Rectangle DestinationRectangle
         {
             get { return _destinationRectangle; }

@@ -15,7 +15,9 @@ namespace Vikingvalg
     public abstract class Sprite
     {
         protected int _speed = 3;
-
+        protected int footBoxHeight = 40;
+        protected int footBoxXOfset;
+        protected int footBoxYOfset;
         public Color Color { get; protected set; }
         public float Rotation { get; protected set; }
 

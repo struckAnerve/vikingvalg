@@ -39,7 +39,9 @@ namespace Vikingvalg
 
         protected override void LoadContent()
         {
-            Player p1 = new Player(new Rectangle(200, 200, 150, 192));
+            float scale = 0.5f;
+            Rectangle playerRectangle = new Rectangle(0, 0, 150, 330);
+            Player p1 = new Player(new Rectangle(0, 0, (int)(playerRectangle.Width * scale), (int)(playerRectangle.Height * scale)));
             spriteService.AddDrawable((Sprite)p1);
 
             Enemy e1 = new Enemy(new Vector2(300, 200));

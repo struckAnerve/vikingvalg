@@ -17,7 +17,7 @@ namespace Vikingvalg
         private SpriteBatch _spriteBatch;
         private List<Sprite> _toDraw = new List<Sprite>();
         private Dictionary<String, Texture2D> _loadedStaticArt = new Dictionary<String,Texture2D>();
-
+        Texture2D smallthing;
         IManageInput inputService;
         IManageCollision collisionService;
 
@@ -30,7 +30,7 @@ namespace Vikingvalg
         {
             base.LoadContent();
             _spriteBatch = new SpriteBatch(this.Game.GraphicsDevice);
-
+            smallthing = Game.Content.Load<Texture2D>(@"redPixel");
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace Vikingvalg
                 {
                     drawableAnimation.animationPlayer.AddAnimation(animationName, Game.Content.Load<Animation>(@"Animations/"+drawableAnimation.AnimationDirectory+animationName));
                 }
-                //_toDraw.Add(drawableAnimation);
+                
                 drawableAnimation.animationPlayer.StartAnimation("idle"); 
                 
             }
@@ -106,7 +106,7 @@ namespace Vikingvalg
                 {
                     updatable.Update();
                 }
-                if (updatable is AnimatedSprite)
+                if(updatable is AnimatedSprite)
                 {
                     AnimatedSprite updatableAnimation = (AnimatedSprite)updatable;
                     updatableAnimation.animationPlayer.Update(gameTime);
@@ -134,6 +134,16 @@ namespace Vikingvalg
                 {
                     AnimatedSprite drawableAnimation = (AnimatedSprite)drawable;
                     drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, drawableAnimation.Flipped, drawableAnimation.Rotation, drawableAnimation.Scale);
+                    _spriteBatch.Begin();
+                    _spriteBatch.Draw(smallthing, new Vector2(drawableAnimation.DestinationRectangle.X, drawableAnimation.DestinationRectangle.Y), Color.White);
+                    Player p1 = (Player)drawableAnimation;
+                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X,p1.FootBox.Y), Color.White);
+                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X + p1.FootBox.Width, p1.FootBox.Y + p1.FootBox.Height), Color.White);
+                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X + p1.FootBox.Width/2, p1.FootBox.Y + p1.FootBox.Height), Color.White);
+                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X + p1.FootBox.Width, p1.FootBox.Y), Color.White);
+                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X + p1.FootBox.Width/2, p1.FootBox.Y), Color.White);
+                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X, p1.FootBox.Y + p1.FootBox.Height), Color.White);
+                    _spriteBatch.End();
                 }
                 
             }
