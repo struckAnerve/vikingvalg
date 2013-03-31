@@ -59,10 +59,12 @@ namespace Vikingvalg
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            //Midlertidig kode for å teste endring av State
             if (inputService.KeyWasPressedThisFrame(Keys.Tab))
             {
                 stateService.ChangeState("MainMenu");
             }
+
             base.Update(gameTime);
         }
     }

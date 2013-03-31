@@ -137,67 +137,88 @@ namespace Vikingvalg
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            //Oppdater spill
             if (UpdateInGame)
             {
-                foreach (Sprite updatable in _toDrawInGame)
-                {
-                    if (updatable is IUseInput)
-                    {
-                        IUseInput needsInput = (IUseInput)updatable;
-                        needsInput.Update(inputService);
-                    }
-                    else
-                    {
-                        updatable.Update();
-                    }
-                    if (updatable is AnimatedSprite)
-                    {
-                        AnimatedSprite updatableAnimation = (AnimatedSprite)updatable;
-                        updatableAnimation.animationPlayer.Update(gameTime);
-                    }
-                }
+                UpdateList(gameTime, _toDrawInGame);
+            }
+            //Oppdater meny
+            if (DrawAndUpdateMenu)
+            {
+                UpdateList(gameTime, _toDrawMenu);
             }
 
             base.Update(gameTime);
         }
 
+        private void UpdateList(GameTime gameTime, List<Sprite> listToUpdate)
+        {
+            foreach (Sprite updatable in listToUpdate)
+            {
+                if (updatable is IUseInput)
+                {
+                    IUseInput needsInput = (IUseInput)updatable;
+                    needsInput.Update(inputService);
+                }
+                else
+                {
+                    updatable.Update();
+                }
+                if (updatable is AnimatedSprite)
+                {
+                    AnimatedSprite updatableAnimation = (AnimatedSprite)updatable;
+                    updatableAnimation.animationPlayer.Update(gameTime);
+                }
+            }
+        }
+
         public override void Draw(GameTime gameTime)
         {
+            //Tegn spill
             if (DrawInGame)
             {
-                _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.NonPremultiplied);
-                foreach (Sprite drawable in _toDrawInGame)
-                {
-                    if (drawable is StaticSprite)
-                    {
-                        StaticSprite staticDrawableSprite = (StaticSprite)drawable;
-                        _spriteBatch.Draw(_loadedStaticArt[staticDrawableSprite.ArtName], staticDrawableSprite.DestinationRectangle, staticDrawableSprite.SourceRectangle, staticDrawableSprite.Color, staticDrawableSprite.Rotation,
-                            staticDrawableSprite.Origin, staticDrawableSprite.Effects, staticDrawableSprite.LayerDepth);
-                    }
-                }
-                _spriteBatch.End();
-                foreach (Sprite drawable in _toDrawInGame)
-                {
-                    if (drawable is AnimatedSprite)
-                    {
-                        AnimatedSprite drawableAnimation = (AnimatedSprite)drawable;
-                        drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, drawableAnimation.Flipped, drawableAnimation.Rotation, drawableAnimation.Scale);
-                        _spriteBatch.Begin();
-                        _spriteBatch.Draw(smallthing, new Vector2(drawableAnimation.DestinationRectangle.X, drawableAnimation.DestinationRectangle.Y), Color.White);
-                        Player p1 = (Player)drawableAnimation;
-                        _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X, p1.FootBox.Y), Color.White);
-                        _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X + p1.FootBox.Width, p1.FootBox.Y + p1.FootBox.Height), Color.White);
-                        _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X + p1.FootBox.Width / 2, p1.FootBox.Y + p1.FootBox.Height), Color.White);
-                        _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X + p1.FootBox.Width, p1.FootBox.Y), Color.White);
-                        _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X + p1.FootBox.Width / 2, p1.FootBox.Y), Color.White);
-                        _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X, p1.FootBox.Y + p1.FootBox.Height), Color.White);
-                        _spriteBatch.End();
-                    }
-
-                }
+                DrawList(gameTime, _toDrawInGame);
+            }
+            //Tegn meny
+            if (DrawAndUpdateMenu)
+            {
+                DrawList(gameTime, _toDrawMenu);
             }
 
             base.Draw(gameTime);
+        }
+
+        private void DrawList(GameTime gameTime, List<Sprite> listToDraw)
+        {
+            _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.NonPremultiplied);
+            foreach (Sprite drawable in listToDraw)
+            {
+                if (drawable is StaticSprite)
+                {
+                    StaticSprite staticDrawableSprite = (StaticSprite)drawable;
+                    _spriteBatch.Draw(_loadedStaticArt[staticDrawableSprite.ArtName], staticDrawableSprite.DestinationRectangle, staticDrawableSprite.SourceRectangle, staticDrawableSprite.Color, staticDrawableSprite.Rotation,
+                        staticDrawableSprite.Origin, staticDrawableSprite.Effects, staticDrawableSprite.LayerDepth);
+                }
+            }
+            _spriteBatch.End();
+            foreach (Sprite drawable in listToDraw)
+            {
+                if (drawable is AnimatedSprite)
+                {
+                    AnimatedSprite drawableAnimation = (AnimatedSprite)drawable;
+                    drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, drawableAnimation.Flipped, drawableAnimation.Rotation, drawableAnimation.Scale);
+                    _spriteBatch.Begin();
+                    _spriteBatch.Draw(smallthing, new Vector2(drawableAnimation.DestinationRectangle.X, drawableAnimation.DestinationRectangle.Y), Color.White);
+                    Player p1 = (Player)drawableAnimation;
+                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X, p1.FootBox.Y), Color.White);
+                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X + p1.FootBox.Width, p1.FootBox.Y + p1.FootBox.Height), Color.White);
+                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X + p1.FootBox.Width / 2, p1.FootBox.Y + p1.FootBox.Height), Color.White);
+                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X + p1.FootBox.Width, p1.FootBox.Y), Color.White);
+                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X + p1.FootBox.Width / 2, p1.FootBox.Y), Color.White);
+                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X, p1.FootBox.Y + p1.FootBox.Height), Color.White);
+                    _spriteBatch.End();
+                }
+            }
         }
     }
 }

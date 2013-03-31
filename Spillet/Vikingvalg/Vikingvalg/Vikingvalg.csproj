@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnimatedSprite.cs" />
+    <Compile Include="ClickableMenuElement.cs" />
     <Compile Include="CollisionManager.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="GameStateManager.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="InGameManager.cs" />
     <Compile Include="InputManager.cs" />
     <Compile Include="IUseInput.cs" />
+    <Compile Include="MenuElement.cs" />
     <Compile Include="MenuManager.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="IManageSprites.cs" />

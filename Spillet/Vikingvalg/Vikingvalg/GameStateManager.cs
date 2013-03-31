@@ -54,7 +54,7 @@ namespace Vikingvalg
             inGameService = (InGameManager)Game.Services.GetService(typeof(InGameManager));
             menuService = (MenuManager)Game.Services.GetService(typeof(MenuManager));
 
-            GameState = "InGame";
+            ChangeState("MainMenu");
             base.Initialize();
         }
 
