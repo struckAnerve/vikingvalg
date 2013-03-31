@@ -40,12 +40,12 @@ namespace Vikingvalg
         protected override void LoadContent()
         {
             Player p1 = new Player(new Rectangle(200, 200, 150, 192));
-            spriteService.AddDrawable((Sprite)p1);
+            spriteService.AddInGameDrawable((Sprite)p1);
 
             Enemy e1 = new Enemy(new Vector2(300, 200));
-            spriteService.AddDrawable((Sprite)e1);
+            spriteService.AddInGameDrawable((Sprite)e1);
             Enemy e2 = new Enemy(new Vector2(700, 300));
-            spriteService.AddDrawable((Sprite)e2);
+            spriteService.AddInGameDrawable((Sprite)e2);
 
             base.LoadContent();
         }

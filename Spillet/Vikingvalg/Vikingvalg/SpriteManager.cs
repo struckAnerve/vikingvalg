@@ -15,7 +15,7 @@ namespace Vikingvalg
     public class SpriteManager : Microsoft.Xna.Framework.DrawableGameComponent, IManageSprites
     {
         private SpriteBatch _spriteBatch;
-        private List<Sprite> _toDraw = new List<Sprite>();
+        private List<Sprite> _toDrawInGame = new List<Sprite>();
         private Dictionary<String, Texture2D> _loadedStaticArt = new Dictionary<String,Texture2D>();
 
         IManageInput inputService;
@@ -28,9 +28,8 @@ namespace Vikingvalg
 
         protected override void LoadContent()
         {
-            base.LoadContent();
             _spriteBatch = new SpriteBatch(this.Game.GraphicsDevice);
-
+            base.LoadContent();
         }
 
         /// <summary>
@@ -39,21 +38,20 @@ namespace Vikingvalg
         /// </summary>
         public override void Initialize()
         {
-            // TODO: Add your initialization code here
-
-            base.Initialize();
             collisionService = (IManageCollision)Game.Services.GetService(typeof(IManageCollision));
             inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
+            base.Initialize();
         }
 
-        public void AddDrawable(Sprite drawable)
+        public void AddInGameDrawable(Sprite drawable)
         {
-            if (drawable == null || _toDraw.Contains(drawable))
+            if (drawable == null || _toDrawInGame.Contains(drawable))
             {
                 Console.WriteLine("Unable to add drawable!");
                 return;
             }
 
+            _toDrawInGame.Add(drawable);
             if (drawable is StaticSprite)
             {
                 StaticSprite staticElement = (StaticSprite)drawable;
@@ -61,19 +59,15 @@ namespace Vikingvalg
                 {
                     _loadedStaticArt.Add(staticElement.ArtName, Game.Content.Load<Texture2D>(staticElement.ArtName));
                 }
-                //_toDraw.Add(drawable);
             }
-            _toDraw.Add(drawable);
-            if (drawable is AnimatedSprite)
+            else if (drawable is AnimatedSprite)
             {
                 AnimatedSprite drawableAnimation = (AnimatedSprite) drawable;
                 foreach (String animationName in drawableAnimation.animationList)
                 {
                     drawableAnimation.animationPlayer.AddAnimation(animationName, Game.Content.Load<Animation>(@"Animations/"+drawableAnimation.AnimationDirectory+animationName));
                 }
-                //_toDraw.Add(drawableAnimation);
                 drawableAnimation.animationPlayer.StartAnimation("idle"); 
-                
             }
 
             if (drawable is ICanCollide)
@@ -83,9 +77,15 @@ namespace Vikingvalg
             }
         }
 
-        public void RemoveDrawable(Sprite toRemove)
+        public void RemoveInGameDrawable(Sprite toRemove)
         {
-            _toDraw.Remove(toRemove);
+            _toDrawInGame.Remove(toRemove);
+
+            if (toRemove is ICanCollide)
+            {
+                ICanCollide collideRemove = (ICanCollide) toRemove;
+                collisionService.RemoveCollidable(collideRemove);
+            }
         }
 
         /// <summary>
@@ -94,8 +94,7 @@ namespace Vikingvalg
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
-            foreach (Sprite updatable in _toDraw)
+            foreach (Sprite updatable in _toDrawInGame)
             {
                 if (updatable is IUseInput)
                 {
@@ -112,13 +111,14 @@ namespace Vikingvalg
                     updatableAnimation.animationPlayer.Update(gameTime);
                 }   
             }
+
+            base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
         {
-            base.Draw(gameTime);
             _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.NonPremultiplied);
-            foreach (Sprite drawable in _toDraw)
+            foreach (Sprite drawable in _toDrawInGame)
             {
                 if (drawable is StaticSprite)
                 {
@@ -128,7 +128,7 @@ namespace Vikingvalg
                 }
             }
             _spriteBatch.End();
-            foreach (Sprite drawable in _toDraw)
+            foreach (Sprite drawable in _toDrawInGame)
             {
                 if (drawable is AnimatedSprite)
                 {
@@ -137,6 +137,8 @@ namespace Vikingvalg
                 }
                 
             }
+
+            base.Draw(gameTime);
         }
     }
 }

@@ -7,7 +7,12 @@ namespace Vikingvalg
 {
     interface IManageSprites
     {
-        void AddDrawable(Sprite drawable);
-        void RemoveDrawable(Sprite drawable);
+        //Tegn/oppdater det som skjer in-game
+        bool DrawInGame { get; set; }
+        bool UpdateInGame { get; set; }
+        void AddInGameDrawable(Sprite drawable);
+        void RemoveInGameDrawable(Sprite drawable);
+
+        //Tegn/oppdater det som skjer i menyer
     }
 }
