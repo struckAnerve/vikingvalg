@@ -55,6 +55,7 @@ namespace Vikingvalg
             menuService = (MenuManager)Game.Services.GetService(typeof(MenuManager));
 
             ChangeState("MainMenu");
+
             base.Initialize();
         }
 
@@ -64,6 +65,11 @@ namespace Vikingvalg
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            if (!Game.IsActive && GameState == "InGame")
+            {
+                ChangeState("MainMenu");
+            }
+
             switch (GameState)
             {
                 case "MainMenu":
@@ -81,6 +87,7 @@ namespace Vikingvalg
                     spriteService.ListsToDraw.Add(inGameService.ToDrawInGame);
                     break;
             }
+
             base.Update(gameTime);
         }
 

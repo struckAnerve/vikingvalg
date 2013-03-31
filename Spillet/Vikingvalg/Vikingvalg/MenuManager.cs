@@ -107,5 +107,11 @@ namespace Vikingvalg
         {
             ToDrawMenu.Remove(toRemove);
         }
+
+        /* Noe slikt?
+        public void InMainMenu()
+        {
+        }
+        */
     }
 }

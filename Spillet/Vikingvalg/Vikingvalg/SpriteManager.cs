@@ -82,7 +82,7 @@ namespace Vikingvalg
         {
             foreach (List<Sprite> listToDraw in ListsToDraw)
             {
-                _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.NonPremultiplied);
+                _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
                 foreach (Sprite drawable in listToDraw)
                 {
                     if (drawable is StaticSprite)
