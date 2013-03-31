@@ -208,13 +208,24 @@ namespace Vikingvalg
                     AnimatedSprite drawableAnimation = (AnimatedSprite)drawable;
                     drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, drawableAnimation.Flipped, drawableAnimation.Rotation, drawableAnimation.Scale);
                     _spriteBatch.Begin();
-                    ICanCollide p1 = (ICanCollide)drawableAnimation;
+                    Player p1 = (Player)drawableAnimation;
+<<<<<<< HEAD
                     drawBoxPerimeter(p1.FootBox);
+=======
+                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X, p1.FootBox.Y), Color.White);
+                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X + p1.FootBox.Width, p1.FootBox.Y + p1.FootBox.Height), Color.White);
+                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X + p1.FootBox.Width / 2, p1.FootBox.Y + p1.FootBox.Height), Color.White);
+                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X + p1.FootBox.Width, p1.FootBox.Y), Color.White);
+                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X + p1.FootBox.Width / 2, p1.FootBox.Y), Color.White);
+                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X, p1.FootBox.Y + p1.FootBox.Height), Color.White);
+>>>>>>> 6422a98583d495ab335dd65c3dea712bb4ca90f7
                     _spriteBatch.End();
                 }
-                
             }
+<<<<<<< HEAD
             base.Draw(gameTime);
+=======
+>>>>>>> 6422a98583d495ab335dd65c3dea712bb4ca90f7
         }
         private void drawBoxPerimeter(Rectangle box)
         {

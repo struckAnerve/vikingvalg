@@ -45,6 +45,10 @@ namespace Vikingvalg
             Player p1 = new Player(new Rectangle(0, 0, (int)(playerRectangle.Width * scale), (int)(playerRectangle.Height * scale)));
             spriteService.AddInGameDrawable((Sprite)p1);
 
+            Rectangle wolfRectangle = new Rectangle(0, 0, 450, 267);
+            Wolf w1 = new Wolf(new Rectangle(500, 300, (int)(wolfRectangle.Width * scale), (int)(wolfRectangle.Height * scale)));
+            spriteService.AddInGameDrawable((Sprite)w1);
+
             Enemy e1 = new Enemy(new Vector2(300, 200));
             spriteService.AddInGameDrawable((Sprite)e1);
             Enemy e2 = new Enemy(new Vector2(700, 300));
