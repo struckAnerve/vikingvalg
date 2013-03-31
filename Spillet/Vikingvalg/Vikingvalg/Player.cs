@@ -34,7 +34,9 @@ namespace Vikingvalg
             Vector2 origin, SpriteEffects effects, float layerDepth)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, "playerAnimation/")
         {
-            _footBox = new Rectangle(destinationRectangle.X, (destinationRectangle.Y + destinationRectangle.Height -40), destinationRectangle.Width, 40);
+            footBoxXOfset = destinationRectangle.Width / 2;
+            footBoxYOfset = 40;
+            _footBox = new Rectangle(destinationRectangle.X - footBoxXOfset, destinationRectangle.Y + footBoxYOfset, destinationRectangle.Width, footBoxHeight);
 
             animationList = new List<String>();
             animationPlayer = new AnimationPlayer();
@@ -75,23 +77,23 @@ namespace Vikingvalg
             }
             else
             {
-                //idle();
+                idle();
             }
         }
 
         public void idle()
         {
-            if (AnimationState != "standing")
+            if (AnimationState != "idle")
             {
-                spriteAnimation.TransitionToAnimation("standing", 0.2f);
-                AnimationState = "standing";
+                animationPlayer.TransitionToAnimation("idle", 0.2f);
+                AnimationState = "idle";
             }
         }
         public void attackSlash()
         {
             if (AnimationState != "slashing")
             {
-                spriteAnimation.TransitionToAnimation("slashing", 0.2f);
+                animationPlayer.TransitionToAnimation("slashing", 0.2f);
                 AnimationState = "slashing";
             }
         }
@@ -99,12 +101,16 @@ namespace Vikingvalg
         {
             if (spriteAnimation.CurrentAnimation != "walking" && AnimationState != "walking")
             {
-                spriteAnimation.TransitionToAnimation("walkCycle", 0.2f);
+                animationPlayer.TransitionToAnimation("walkCycle", 0.2f);
                 AnimationState = "walking";
             }
             if (AnimationState == "walking")
             {
-                if (inputService.KeyIsDown(Keys.Right) && inputService.KeyIsUp(Keys.Left) && !BlockedRight)
+                if (inputService.KeyIsDown(Keys.Right) && inputService.KeyIsDown(Keys.Left))
+                {
+                    idle();
+                }
+                else if (inputService.KeyIsDown(Keys.Right) && inputService.KeyIsUp(Keys.Left) && !BlockedRight)
                 {
                     _destinationRectangle.X += _speed;
                     Flipped = false;
@@ -114,22 +120,26 @@ namespace Vikingvalg
                     _destinationRectangle.X -= _speed;
                     Flipped = true;
                 }
+                else
+                {
+                    idle();
+                }
                 if (inputService.KeyIsDown(Keys.Up) && !BlockedTop)
                 {
                     _destinationRectangle.Y -= _speed;
-                    _footBox.Y = (_destinationRectangle.Y + _destinationRectangle.Height - 40);
+                    _footBox.Y = (_destinationRectangle.Y + footBoxYOfset);
                 }
                 else if (inputService.KeyIsDown(Keys.Down) && !BlockedBottom)
                 {
                     _destinationRectangle.Y += _speed;
-                    _footBox.Y = (_destinationRectangle.Y + _destinationRectangle.Height - 40);
+                    _footBox.Y = (_destinationRectangle.Y + footBoxYOfset);
                 }
-                _footBox.X = _destinationRectangle.X;
+                _footBox.X = _destinationRectangle.X - footBoxXOfset;
             }
         }
         public void block()
         {
-            if (AnimationState != "blocking")
+            if (animationPlayer.CurrentAnimation != "blocking")
             {
                 spriteAnimation.TransitionToAnimation("blocking", 0.2f);
                 AnimationState = "blocking";
