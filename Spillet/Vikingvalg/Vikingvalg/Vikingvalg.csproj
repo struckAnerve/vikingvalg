@@ -100,6 +100,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="SpriteManager.cs" />
     <Compile Include="StaticSprite.cs" />
+    <Compile Include="wolf.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
