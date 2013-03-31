@@ -21,6 +21,11 @@ namespace Vikingvalg
         IManageInput inputService;
         IManageSprites spriteService;
 
+        private ClickableMenuElement _playButton;
+        private ClickableMenuElement _settingsButton;
+
+        public List<Sprite> ToDrawMenu { get; private set; }
+
         public MenuManager(Game game)
             : base(game)
         {
@@ -36,17 +41,19 @@ namespace Vikingvalg
             inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
             spriteService = (IManageSprites)Game.Services.GetService(typeof(IManageSprites));
 
-            //Må forbedres
-            ClickableMenuElement playButton = new ClickableMenuElement("play", new Rectangle(
+            ToDrawMenu = new List<Sprite>();
+
+            //Må forbedres (FOR Å SI DET SÅNN)
+            _playButton = new ClickableMenuElement("play", new Rectangle(
                 (Game.Window.ClientBounds.Width / 2 - 90),
                 (Game.Window.ClientBounds.Height / 2 - 37),
                 180, 75));
-            spriteService.AddMenuDrawable((Sprite)playButton);
-            ClickableMenuElement settingsButton = new ClickableMenuElement("settings", new Rectangle(
+            AddDrawable((Sprite)_playButton);
+            _settingsButton = new ClickableMenuElement("settings", new Rectangle(
                 (Game.Window.ClientBounds.Width / 2 - 90),
-                (Game.Window.ClientBounds.Height / 2 - 24 + (playButton.SourceRectangle.Height + 40)),
+                (Game.Window.ClientBounds.Height / 2 - 24 + (_playButton.SourceRectangle.Height + 40)),
                 180, 49));
-            spriteService.AddMenuDrawable((Sprite)settingsButton);
+            AddDrawable((Sprite)_settingsButton);
 
             base.Initialize();
         }
@@ -63,7 +70,42 @@ namespace Vikingvalg
                 stateService.ChangeState("InGame");
             }
 
+            foreach (Sprite toUpdate in ToDrawMenu)
+            {
+                if (toUpdate is IUseInput)
+                {
+                    IUseInput needsInput = (IUseInput)toUpdate;
+                    needsInput.Update(inputService);
+                }
+                else
+                {
+                    toUpdate.Update();
+                }
+                if (toUpdate is AnimatedSprite)
+                {
+                    AnimatedSprite updatableAnimation = (AnimatedSprite)toUpdate;
+                    updatableAnimation.animationPlayer.Update(gameTime);
+                }
+            }
+
             base.Update(gameTime);
+        }
+
+        public void AddDrawable(Sprite toAdd)
+        {
+            if (toAdd == null || ToDrawMenu.Contains(toAdd))
+            {
+                Console.WriteLine("MenuManager: Unable to add drawable!");
+                return;
+            }
+
+            spriteService.LoadDrawable(toAdd);
+            ToDrawMenu.Add(toAdd);
+        }
+
+        public void RemoveDrawable(Sprite toRemove)
+        {
+            ToDrawMenu.Remove(toRemove);
         }
     }
 }

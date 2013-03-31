@@ -58,16 +58,15 @@ namespace Vikingvalg
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
             foreach (ICanCollide canCollide in _canCollideList)
             {
-                _listToCheck.Remove(canCollide);
-
+          
                 canCollide.BlockedTop = false;
                 canCollide.BlockedRight = false;
                 canCollide.BlockedBottom = false;
                 canCollide.BlockedLeft = false;
 
+                //Logikk for kollisjon mot klientvinduet
                 if (canCollide.FootBox.Y <= 0)
                 {
                     canCollide.BlockedTop = true;
@@ -85,6 +84,8 @@ namespace Vikingvalg
                     canCollide.BlockedRight = true;
                 }
 
+                //Logikk for kollisjon mot andre objekter
+                _listToCheck.Remove(canCollide);
                 if (_listToCheck != null)
                 {
                     foreach (ICanCollide canCollideTwo in _listToCheck)
@@ -116,6 +117,8 @@ namespace Vikingvalg
                 }
                 _listToCheck.Add(canCollide);
             }
+
+            base.Update(gameTime);
         }
     }
 }

@@ -15,17 +15,12 @@ namespace Vikingvalg
     public class SpriteManager : Microsoft.Xna.Framework.DrawableGameComponent, IManageSprites
     {
         private SpriteBatch _spriteBatch;
-        private List<Sprite> _toDrawInGame = new List<Sprite>();
-        private List<Sprite> _toDrawMenu = new List<Sprite>();
         private Dictionary<String, Texture2D> _loadedStaticArt = new Dictionary<String,Texture2D>();
+
+        //Midlertidig
         Texture2D smallthing;
 
-        IManageInput inputService;
-        IManageCollision collisionService;
-
-        public bool DrawInGame { get; set; }
-        public bool UpdateInGame { get; set; }
-        public bool DrawAndUpdateMenu { get; set; }
+        public List<List<Sprite>> ListsToDraw { get; set; }
 
         public SpriteManager(Game game)
             : base(game)
@@ -35,6 +30,8 @@ namespace Vikingvalg
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(this.Game.GraphicsDevice);
+
+            //midlertidig
             smallthing = Game.Content.Load<Texture2D>(@"redPixel");
 
             base.LoadContent();
@@ -46,88 +43,29 @@ namespace Vikingvalg
         /// </summary>
         public override void Initialize()
         {
-            collisionService = (IManageCollision)Game.Services.GetService(typeof(IManageCollision));
-            inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
-
-            DrawAndUpdateMenu = true;
-
+            ListsToDraw = new List<List<Sprite>>();
             base.Initialize();
         }
 
-        public void AddInGameDrawable(Sprite drawable)
+        public void LoadDrawable(Sprite toLoad)
         {
-            if (drawable == null || _toDrawInGame.Contains(drawable))
+            if (toLoad is StaticSprite)
             {
-                Console.WriteLine("Unable to add drawable!");
-                return;
-            }
-
-            _toDrawInGame.Add(drawable);
-
-            AddContinued(drawable);
-        }
-
-        public void AddMenuDrawable(Sprite drawable)
-        {
-            if (drawable == null || _toDrawMenu.Contains(drawable))
-            {
-                Console.WriteLine("Unable to add drawable!");
-                return;
-            }
-
-            _toDrawMenu.Add(drawable);
-
-            AddContinued(drawable);
-        }
-
-        private void AddContinued(Sprite drawable)
-        {
-            if (drawable is StaticSprite)
-            {
-                StaticSprite staticElement = (StaticSprite)drawable;
+                StaticSprite staticElement = (StaticSprite)toLoad;
                 if (!(_loadedStaticArt.ContainsKey(staticElement.ArtName)))
                 {
                     _loadedStaticArt.Add(staticElement.ArtName, Game.Content.Load<Texture2D>(staticElement.ArtName));
                 }
             }
-            else if (drawable is AnimatedSprite)
+            else if (toLoad is AnimatedSprite)
             {
-                AnimatedSprite drawableAnimation = (AnimatedSprite)drawable;
+                AnimatedSprite drawableAnimation = (AnimatedSprite)toLoad;
                 foreach (String animationName in drawableAnimation.animationList)
                 {
                     drawableAnimation.animationPlayer.AddAnimation(animationName, Game.Content.Load<Animation>(@"Animations/" + drawableAnimation.AnimationDirectory + animationName));
                 }
 
                 drawableAnimation.animationPlayer.StartAnimation("idle");
-            }
-
-            if (drawable is ICanCollide)
-            {
-                ICanCollide canCollide = (ICanCollide)drawable;
-                collisionService.AddCollidable(canCollide);
-            }
-        }
-
-        public void RemoveInGameDrawable(Sprite toRemove)
-        {
-            _toDrawInGame.Remove(toRemove);
-
-            RemoveContinued(toRemove);
-        }
-
-        public void RemoveMenuDrawable(Sprite toRemove)
-        {
-            _toDrawMenu.Remove(toRemove);
-
-            RemoveContinued(toRemove);
-        }
-
-        private void RemoveContinued(Sprite toRemove)
-        {
-            if (toRemove is ICanCollide)
-            {
-                ICanCollide collideRemove = (ICanCollide)toRemove;
-                collisionService.RemoveCollidable(collideRemove);
             }
         }
 
@@ -137,85 +75,41 @@ namespace Vikingvalg
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            //Oppdater spill
-            if (UpdateInGame)
-            {
-                UpdateList(gameTime, _toDrawInGame);
-            }
-            //Oppdater meny
-            if (DrawAndUpdateMenu)
-            {
-                UpdateList(gameTime, _toDrawMenu);
-            }
-
             base.Update(gameTime);
-        }
-
-        private void UpdateList(GameTime gameTime, List<Sprite> listToUpdate)
-        {
-            foreach (Sprite updatable in listToUpdate)
-            {
-                if (updatable is IUseInput)
-                {
-                    IUseInput needsInput = (IUseInput)updatable;
-                    needsInput.Update(inputService);
-                }
-                else
-                {
-                    updatable.Update();
-                }
-                if (updatable is AnimatedSprite)
-                {
-                    AnimatedSprite updatableAnimation = (AnimatedSprite)updatable;
-                    updatableAnimation.animationPlayer.Update(gameTime);
-                }
-            }
         }
 
         public override void Draw(GameTime gameTime)
         {
-            //Tegn spill
-            if (DrawInGame)
+            foreach (List<Sprite> listToDraw in ListsToDraw)
             {
-                DrawList(gameTime, _toDrawInGame);
-            }
-            //Tegn meny
-            if (DrawAndUpdateMenu)
-            {
-                DrawList(gameTime, _toDrawMenu);
+                _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.NonPremultiplied);
+                foreach (Sprite drawable in listToDraw)
+                {
+                    if (drawable is StaticSprite)
+                    {
+                        StaticSprite staticDrawableSprite = (StaticSprite)drawable;
+                        _spriteBatch.Draw(_loadedStaticArt[staticDrawableSprite.ArtName], staticDrawableSprite.DestinationRectangle, staticDrawableSprite.SourceRectangle, staticDrawableSprite.Color, staticDrawableSprite.Rotation,
+                            staticDrawableSprite.Origin, staticDrawableSprite.Effects, staticDrawableSprite.LayerDepth);
+                    }
+                }
+                _spriteBatch.End();
+                foreach (Sprite drawable in listToDraw)
+                {
+                    if (drawable is AnimatedSprite)
+                    {
+                        AnimatedSprite drawableAnimation = (AnimatedSprite)drawable;
+                        drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, drawableAnimation.Flipped, drawableAnimation.Rotation, drawableAnimation.Scale);
+                        _spriteBatch.Begin();
+                        Player p1 = (Player)drawableAnimation;
+                        drawBoxPerimeter(p1.FootBox);
+                        _spriteBatch.End();
+                    }
+                }
             }
 
             base.Draw(gameTime);
         }
 
-        private void DrawList(GameTime gameTime, List<Sprite> listToDraw)
-        {
-            _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.NonPremultiplied);
-            foreach (Sprite drawable in listToDraw)
-            {
-                if (drawable is StaticSprite)
-                {
-                    StaticSprite staticDrawableSprite = (StaticSprite)drawable;
-                    _spriteBatch.Draw(_loadedStaticArt[staticDrawableSprite.ArtName], staticDrawableSprite.DestinationRectangle, staticDrawableSprite.SourceRectangle, staticDrawableSprite.Color, staticDrawableSprite.Rotation,
-                        staticDrawableSprite.Origin, staticDrawableSprite.Effects, staticDrawableSprite.LayerDepth);
-                }
-            }
-            _spriteBatch.End();
-            foreach (Sprite drawable in listToDraw)
-            {
-                if (drawable is AnimatedSprite)
-                {
-                    AnimatedSprite drawableAnimation = (AnimatedSprite)drawable;
-                    drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, drawableAnimation.Flipped, drawableAnimation.Rotation, drawableAnimation.Scale);
-                    _spriteBatch.Begin();
-                    Player p1 = (Player)drawableAnimation;
-                    drawBoxPerimeter(p1.FootBox);
-                    _spriteBatch.End();
-                }
-                
-            }
-            base.Draw(gameTime);
-        }
         private void drawBoxPerimeter(Rectangle box)
         {
             _spriteBatch.Draw(smallthing, new Vector2(box.X, box.Y), Color.White);

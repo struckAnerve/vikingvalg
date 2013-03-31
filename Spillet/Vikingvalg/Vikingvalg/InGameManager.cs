@@ -19,7 +19,13 @@ namespace Vikingvalg
     {
         IManageSprites spriteService;
         IManageStates stateService;
+        IManageCollision collisionService;
         IManageInput inputService;
+
+        private Player _p1;
+        private List<Enemy> _enemyList = new List<Enemy>();
+
+        public List<Sprite> ToDrawInGame { get; private set; }
 
         public InGameManager(Game game)
             : base(game)
@@ -37,18 +43,17 @@ namespace Vikingvalg
         {
             spriteService = (IManageSprites)Game.Services.GetService(typeof(IManageSprites));
             stateService = (IManageStates)Game.Services.GetService(typeof(IManageStates));
+            collisionService = (IManageCollision)Game.Services.GetService(typeof(IManageCollision));
             inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
+
+            ToDrawInGame = new List<Sprite>();
 
             //Midlertidige plasseringer (?)
             float scale = 0.5f;
             Rectangle playerRectangle = new Rectangle(0, 0, 150, 330);
-            Player p1 = new Player(new Rectangle(0, 0, (int)(playerRectangle.Width * scale), (int)(playerRectangle.Height * scale)));
-            spriteService.AddInGameDrawable((Sprite)p1);
 
-            Enemy e1 = new Enemy(new Vector2(300, 200));
-            spriteService.AddInGameDrawable((Sprite)e1);
-            Enemy e2 = new Enemy(new Vector2(700, 300));
-            spriteService.AddInGameDrawable((Sprite)e2);
+            _p1 = new Player(new Rectangle(0, 0, (int)(playerRectangle.Width * scale), (int)(playerRectangle.Height * scale)));
+            AddDrawable((Sprite)_p1);
 
             base.Initialize();
         }
@@ -65,7 +70,71 @@ namespace Vikingvalg
                 stateService.ChangeState("MainMenu");
             }
 
+            //Midlertidig for å teste å legge til enemy
+            if(inputService.KeyWasPressedThisFrame(Keys.D0))
+            {
+                AddDrawable(new Enemy(Vector2.Zero));
+            }
+
+            foreach (Sprite toUpdate in ToDrawInGame)
+            {
+                if (toUpdate is IUseInput)
+                {
+                    IUseInput needsInput = (IUseInput)toUpdate;
+                    needsInput.Update(inputService);
+                }
+                else
+                {
+                    toUpdate.Update();
+                }
+                if (toUpdate is AnimatedSprite)
+                {
+                    AnimatedSprite updatableAnimation = (AnimatedSprite)toUpdate;
+                    updatableAnimation.animationPlayer.Update(gameTime);
+                }
+            }
+
             base.Update(gameTime);
+        }
+
+        public void AddDrawable(Sprite toAdd)
+        {
+            if (toAdd == null || ToDrawInGame.Contains(toAdd))
+            {
+                Console.WriteLine("MenuManager: Unable to add drawable!");
+                return;
+            }
+
+            spriteService.LoadDrawable(toAdd);
+            ToDrawInGame.Add(toAdd);
+            if (toAdd is Enemy)
+            {
+                Enemy addEnemy = (Enemy)toAdd;
+                _enemyList.Add(addEnemy);
+            }   
+
+            if (toAdd is ICanCollide)
+            {
+                ICanCollide canCollide = (ICanCollide)toAdd;
+                collisionService.AddCollidable(canCollide);
+            }
+        }
+
+        public void RemoveDrawable(Sprite toRemove)
+        {
+            ToDrawInGame.Remove(toRemove);
+
+            if (toRemove is Enemy)
+            {
+                Enemy removeEnemy = (Enemy)toRemove;
+                _enemyList.Remove(removeEnemy);
+            } 
+
+            if (toRemove is ICanCollide)
+            {
+                ICanCollide collideRemove = (ICanCollide)toRemove;
+                collisionService.RemoveCollidable(collideRemove);
+            }
         }
     }
 }

@@ -68,21 +68,17 @@ namespace Vikingvalg
             {
                 case "MainMenu":
                     menuService.Enabled = true;
-
                     inGameService.Enabled = false;
 
-                    spriteService.UpdateInGame = false;
-                    spriteService.DrawInGame = false;
-                    spriteService.DrawAndUpdateMenu = true;
+                    spriteService.ListsToDraw.Clear();
+                    spriteService.ListsToDraw.Add(menuService.ToDrawMenu);
                     break;
                 case "InGame":
                     inGameService.Enabled = true;
-
                     menuService.Enabled = false;
 
-                    spriteService.UpdateInGame = true;
-                    spriteService.DrawInGame = true;
-                    spriteService.DrawAndUpdateMenu = false;
+                    spriteService.ListsToDraw.Clear();
+                    spriteService.ListsToDraw.Add(inGameService.ToDrawInGame);
                     break;
             }
             base.Update(gameTime);
