@@ -177,20 +177,22 @@ namespace Vikingvalg
                     AnimatedSprite drawableAnimation = (AnimatedSprite)drawable;
                     drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, drawableAnimation.Flipped, drawableAnimation.Rotation, drawableAnimation.Scale);
                     _spriteBatch.Begin();
-                    _spriteBatch.Draw(smallthing, new Vector2(drawableAnimation.DestinationRectangle.X, drawableAnimation.DestinationRectangle.Y), Color.White);
                     Player p1 = (Player)drawableAnimation;
-                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X,p1.FootBox.Y), Color.White);
-                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X + p1.FootBox.Width, p1.FootBox.Y + p1.FootBox.Height), Color.White);
-                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X + p1.FootBox.Width/2, p1.FootBox.Y + p1.FootBox.Height), Color.White);
-                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X + p1.FootBox.Width, p1.FootBox.Y), Color.White);
-                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X + p1.FootBox.Width/2, p1.FootBox.Y), Color.White);
-                    _spriteBatch.Draw(smallthing, new Vector2(p1.FootBox.X, p1.FootBox.Y + p1.FootBox.Height), Color.White);
+                    drawBoxPerimeter(p1.FootBox);
                     _spriteBatch.End();
                 }
                 
             }
-
             base.Draw(gameTime);
+        }
+        private void drawBoxPerimeter(Rectangle box)
+        {
+            _spriteBatch.Draw(smallthing, new Vector2(box.X, box.Y), Color.White);
+            _spriteBatch.Draw(smallthing, new Vector2(box.X + box.Width, box.Y + box.Height), Color.White);
+            _spriteBatch.Draw(smallthing, new Vector2(box.X + box.Width / 2, box.Y + box.Height), Color.White);
+            _spriteBatch.Draw(smallthing, new Vector2(box.X + box.Width, box.Y), Color.White);
+            _spriteBatch.Draw(smallthing, new Vector2(box.X + box.Width / 2, box.Y), Color.White);
+            _spriteBatch.Draw(smallthing, new Vector2(box.X, box.Y + box.Height), Color.White);
         }
     }
 }

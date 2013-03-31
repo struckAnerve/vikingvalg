@@ -149,7 +149,11 @@ namespace Vikingvalg
                 {
                     idle();
                 }
-                if (inputService.KeyIsDown(Keys.Up) && !BlockedTop)
+                if (inputService.KeyIsDown(Keys.Up) && inputService.KeyIsDown(Keys.Down))
+                {
+                    idle();
+                }
+                else if (inputService.KeyIsDown(Keys.Up) && !BlockedTop)
                 {
                     _destinationRectangle.Y -= _speed;
                 }
