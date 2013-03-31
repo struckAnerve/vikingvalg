@@ -12,7 +12,9 @@
   <Texture>forearm.png</Texture>
   <Texture>swordHand.png</Texture>
   <Texture>helmet0.png</Texture>
-  <Texture>shield_StudWood_Walking.png</Texture>
+  <Texture>shield_StudWood_Ready.png</Texture>
+  <Texture>shield_StudWood_Slashing.png</Texture>
+  <Texture>shieldHand_Blocking.png</Texture>
   <Keyframe frame="0" trigger="" vflip="False" hflip="False">
     <Bone name="Shield">
       <Hidden>False</Hidden>
@@ -37,8 +39,8 @@
       <ParentIndex>2</ParentIndex>
       <TextureIndex>2</TextureIndex>
       <Position>
-        <X>5.075665</X>
-        <Y>68.96297</Y>
+        <X>4.640783</X>
+        <Y>58.97243</Y>
       </Position>
       <Rotation>0.8000004</Rotation>
       <Scale>
@@ -50,13 +52,29 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>1</TextureIndex>
       <Position>
         <X>5</X>
         <Y>-43</Y>
       </Position>
-      <Rotation>0.1000007</Rotation>
+      <Rotation>0.1500009</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="forearmL">
+      <Hidden>True</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>2</ParentIndex>
+      <TextureIndex>11</TextureIndex>
+      <Position>
+        <X>0.6778078</X>
+        <Y>64.76122</Y>
+      </Position>
+      <Rotation>0.9800001</Rotation>
       <Scale>
         <X>1</X>
         <Y>1</Y>
@@ -66,7 +84,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>3</TextureIndex>
       <Position>
         <X>1</X>
@@ -82,7 +100,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>3</ParentIndex>
+      <ParentIndex>4</ParentIndex>
       <TextureIndex>4</TextureIndex>
       <Position>
         <X>2</X>
@@ -98,7 +116,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>4</ParentIndex>
+      <ParentIndex>5</ParentIndex>
       <TextureIndex>5</TextureIndex>
       <Position>
         <X>14</X>
@@ -130,7 +148,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>3</TextureIndex>
       <Position>
         <X>1</X>
@@ -146,7 +164,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>7</ParentIndex>
+      <ParentIndex>8</ParentIndex>
       <TextureIndex>4</TextureIndex>
       <Position>
         <X>3</X>
@@ -162,7 +180,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>8</ParentIndex>
+      <ParentIndex>9</ParentIndex>
       <TextureIndex>5</TextureIndex>
       <Position>
         <X>13</X>
@@ -178,7 +196,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>1</TextureIndex>
       <Position>
         <X>6</X>
@@ -194,7 +212,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>6</TextureIndex>
       <Position>
         <X>2.913749</X>
@@ -210,7 +228,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>11</ParentIndex>
+      <ParentIndex>12</ParentIndex>
       <TextureIndex>9</TextureIndex>
       <Position>
         <X>2.392966</X>
@@ -226,7 +244,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>14</ParentIndex>
+      <ParentIndex>15</ParentIndex>
       <TextureIndex>8</TextureIndex>
       <Position>
         <X>12.00153</X>
@@ -242,7 +260,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>10</ParentIndex>
+      <ParentIndex>11</ParentIndex>
       <TextureIndex>7</TextureIndex>
       <Position>
         <X>6</X>

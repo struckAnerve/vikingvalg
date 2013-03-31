@@ -4,7 +4,7 @@
   <LoopFrame>39</LoopFrame>
   <Texture>torso.png</Texture>
   <Texture>bicep.png</Texture>
-  <Texture>shieldHand_Blocking.png</Texture>
+  <Texture>shieldHand_Walking.png</Texture>
   <Texture>hip.png</Texture>
   <Texture>shin.png</Texture>
   <Texture>foot.png</Texture>
@@ -14,7 +14,7 @@
   <Texture>helmet0.png</Texture>
   <Texture>shield_StudWood_Ready.png</Texture>
   <Texture>shield_StudWood_Slashing.png</Texture>
-  <Texture>shieldHand_Walking.png</Texture>
+  <Texture>shieldHand_Blocking.png</Texture>
   <Keyframe frame="0" trigger="" vflip="False" hflip="False">
     <Bone name="bicepL">
       <Hidden>False</Hidden>
@@ -53,7 +53,7 @@
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
       <ParentIndex>0</ParentIndex>
-      <TextureIndex>12</TextureIndex>
+      <TextureIndex>2</TextureIndex>
       <Position>
         <X>1.561516</X>
         <Y>61.79625</Y>
@@ -295,7 +295,7 @@
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
       <ParentIndex>0</ParentIndex>
-      <TextureIndex>12</TextureIndex>
+      <TextureIndex>2</TextureIndex>
       <Position>
         <X>0.9788985</X>
         <Y>64.80772</Y>
@@ -537,7 +537,7 @@
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
       <ParentIndex>0</ParentIndex>
-      <TextureIndex>12</TextureIndex>
+      <TextureIndex>2</TextureIndex>
       <Position>
         <X>2.81197</X>
         <Y>58.17296</Y>
@@ -779,7 +779,7 @@
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
       <ParentIndex>0</ParentIndex>
-      <TextureIndex>12</TextureIndex>
+      <TextureIndex>2</TextureIndex>
       <Position>
         <X>2.061697</X>
         <Y>60.34693</Y>
