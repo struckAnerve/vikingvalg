@@ -39,14 +39,17 @@ namespace Vikingvalg
         public AnimationPlayer animationPlayer { get; set; }
 
         public AnimatedSprite(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth, String animationDirectory)
+            Vector2 origin, SpriteEffects effects, float layerDepth, String animationDirectory, float scale)
             : base(color, rotation)
         {
             AnimationDirectory = animationDirectory;
             spriteAnimation = new AnimationPlayer();
             Flipped = false;
             AnimationState = "idle";
-            Scale = 0.5f;
+            animationList = new List<String>();
+            animationList.Add("idle");
+            animationPlayer = new AnimationPlayer();
+            Scale = scale;
             ArtName = artName;
             DestinationRectangle = destinationRectangle;
             SourceRectangle = sourceRectangle;

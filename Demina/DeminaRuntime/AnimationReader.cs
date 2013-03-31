@@ -35,7 +35,6 @@ namespace Demina
 				else
 				{
 					textureEntry.Texture = input.ReadExternalReference<Texture2D>();
-                    textureEntry.TextureName = "Tits"+i;
 					textureEntry.TextureBounds = new TextureBounds(
 						new Rectangle(0, 0, textureEntry.Texture.Width, textureEntry.Texture.Height),
 						new Vector2(textureEntry.Texture.Width / 2, textureEntry.Texture.Height / 2));

@@ -52,8 +52,13 @@ namespace Vikingvalg
             float scale = 0.5f;
             Rectangle playerRectangle = new Rectangle(0, 0, 150, 330);
 
-            _p1 = new Player(new Rectangle(0, 0, (int)(playerRectangle.Width * scale), (int)(playerRectangle.Height * scale)));
+            _p1 = new Player(new Rectangle(0, 0, (int)(playerRectangle.Width * scale), (int)(playerRectangle.Height * scale)), scale);
             AddDrawable((Sprite)_p1);
+
+            Rectangle wolfRectangle = new Rectangle(0, 0, 400, 267);
+            scale = 0.5f;
+            Wolf wolf = new Wolf(new Rectangle(300, 300, (int)(wolfRectangle.Width * scale), (int)(wolfRectangle.Height * scale)), scale);
+            AddDrawable((Sprite)wolf);
 
             base.Initialize();
         }

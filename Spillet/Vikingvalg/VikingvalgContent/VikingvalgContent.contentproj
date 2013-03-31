@@ -116,91 +116,109 @@
       <Name>bicep</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
     </Compile>
     <Compile Include="Animations\playerAnimation\foot.png">
       <Name>foot</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
     </Compile>
     <Compile Include="Animations\playerAnimation\forearm.png">
       <Name>forearm</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
     </Compile>
     <Compile Include="Animations\playerAnimation\head.png">
       <Name>head</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
     </Compile>
     <Compile Include="Animations\playerAnimation\helmet0.png">
       <Name>helmet0</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
     </Compile>
     <Compile Include="Animations\playerAnimation\helmet1.png">
       <Name>helmet1</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
     </Compile>
     <Compile Include="Animations\playerAnimation\hip.png">
       <Name>hip</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
     </Compile>
     <Compile Include="Animations\playerAnimation\knifeHand.png">
       <Name>knifeHand</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
     </Compile>
     <Compile Include="Animations\playerAnimation\shieldHand_Blocking.png">
       <Name>shieldHand_Blocking</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
     </Compile>
     <Compile Include="Animations\playerAnimation\shieldHand_Walking.png">
       <Name>shieldHand_Walking</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
     </Compile>
     <Compile Include="Animations\playerAnimation\shield_StudWood_Ready.png">
       <Name>shield_StudWood_Ready</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
     </Compile>
     <Compile Include="Animations\playerAnimation\shield_StudWood_Slashing.png">
       <Name>shield_StudWood_Slashing</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
     </Compile>
     <Compile Include="Animations\playerAnimation\shield_StudWood_Walking.png">
       <Name>shield_StudWood_Walking</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
     </Compile>
     <Compile Include="Animations\playerAnimation\shin.png">
       <Name>shin</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
     </Compile>
     <Compile Include="Animations\playerAnimation\swordHand.png">
       <Name>swordHand</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
     </Compile>
     <Compile Include="Animations\playerAnimation\torso.png">
       <Name>torso</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
     </Compile>
     <Compile Include="Animations\playerAnimation\torsoGreen.png">
       <Name>torsoGreen</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
     </Compile>
     <Compile Include="Animations\playerAnimation\torsoLink.png">
       <Name>torsoLink</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -321,8 +339,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Animations\wolfanimation\bite.anim">
-      <Name>bite</Name>
+    <Compile Include="Animations\wolfanimation\attack1.anim">
+      <Name>attack1</Name>
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
     </Compile>
@@ -331,8 +349,8 @@
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
     </Compile>
-    <Compile Include="Animations\wolfanimation\pounce.anim">
-      <Name>pounce</Name>
+    <Compile Include="Animations\wolfanimation\attack2.anim">
+      <Name>attack2</Name>
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
     </Compile>

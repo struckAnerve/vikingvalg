@@ -17,7 +17,6 @@ namespace Vikingvalg
     {
         //Hitbox til spilleren
         private Rectangle _footBox;
-
         public Rectangle FootBox 
         {
             get { return _footBox; }
@@ -32,25 +31,20 @@ namespace Vikingvalg
         public bool BlockedBottom { get; set; }
 
         public Player(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth)
-            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, "playerAnimation/")
+            Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
+            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, "playerAnimation/", scale)
         {
             //Setter hitboxen til spilleren til 40px høy og bredden på spilleren / 2
             footBoxXOfset = destinationRectangle.Width / 2;
-            footBoxYOfset = 40;
+            footBoxYOfset = 80 * scale;
             //Plasserer boksen midstilt nederst på spilleren.
-            _footBox = new Rectangle(destinationRectangle.X - footBoxXOfset, destinationRectangle.Y + footBoxYOfset, destinationRectangle.Width, footBoxHeight);
-
-            animationList = new List<String>();
-            animationPlayer = new AnimationPlayer();
-
+            _footBox = new Rectangle((int)(destinationRectangle.X - footBoxXOfset), (int)(destinationRectangle.Y + footBoxYOfset), destinationRectangle.Width, (int)footBoxHeight);
 
             //Legger til alle navn på animasjoner som spilleren har, brukes for å laste inn riktige animasjoner.
             animationList.Add("block");
             animationList.Add("strikeSword");
             animationList.Add("battleBlockWalk");
             animationList.Add("walkCycle");
-            animationList.Add("idle");
 
             //Legger til alle navn på ben som hører til animasjonen, brukes for å endre på teksturer
             playerBoneList.Add("head", "head");
@@ -65,8 +59,11 @@ namespace Vikingvalg
             playerBoneList.Add("shin", "shinL");
             playerBoneList.Add("foot", "footL");
         }
+        public Player(Rectangle destinationRectangle, float scale)
+            : this("mm", destinationRectangle, new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.6f, scale)
+        { }
         public Player(Rectangle destinationRectangle)
-            : this("mm", destinationRectangle, new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.6f)
+            : this(destinationRectangle, 1f)
         { }
         public Player(Vector2 destinationPosition)
             : this(new Rectangle((int)destinationPosition.X, (int)destinationPosition.Y, 375, 485))
@@ -162,8 +159,8 @@ namespace Vikingvalg
                     _destinationRectangle.Y += _speed;
                 }
                 //Flytter hitboxen til samme sted som spilleren
-                _footBox.Y = (_destinationRectangle.Y + footBoxYOfset);
-                _footBox.X = _destinationRectangle.X - footBoxXOfset;
+                _footBox.Y = ((int)(_destinationRectangle.Y + footBoxYOfset));
+                _footBox.X = (int)(_destinationRectangle.X - footBoxXOfset);
             }
         }
         /// <summary>

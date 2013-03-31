@@ -82,7 +82,7 @@ namespace Vikingvalg
         {
             foreach (List<Sprite> listToDraw in ListsToDraw)
             {
-                _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.NonPremultiplied);
+                _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
                 foreach (Sprite drawable in listToDraw)
                 {
                     if (drawable is StaticSprite)
@@ -93,6 +93,8 @@ namespace Vikingvalg
                     }
                 }
                 _spriteBatch.End();
+
+                _spriteBatch.GraphicsDevice.BlendState = BlendState.AlphaBlend;
                 foreach (Sprite drawable in listToDraw)
                 {
                     if (drawable is AnimatedSprite)
@@ -100,7 +102,7 @@ namespace Vikingvalg
                         AnimatedSprite drawableAnimation = (AnimatedSprite)drawable;
                         drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, drawableAnimation.Flipped, drawableAnimation.Rotation, drawableAnimation.Scale);
                         _spriteBatch.Begin();
-                        Player p1 = (Player)drawableAnimation;
+                        ICanCollide p1 = (ICanCollide)drawableAnimation;
                         drawBoxPerimeter(p1.FootBox);
                         _spriteBatch.End();
                     }

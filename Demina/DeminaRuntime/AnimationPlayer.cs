@@ -256,7 +256,7 @@ namespace Demina
 			flipHorizontal |= animation.Keyframes[currentKeyframeIndex].FlipHorizontally;
 			flipVertical |= animation.Keyframes[currentKeyframeIndex].FlipVertically;
 
-            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.Default, RasterizerState.CullNone, null,
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, DepthStencilState.Default, RasterizerState.CullNone, null,
                 Matrix.CreateScale(scale.X * (flipHorizontal ? -1 : 1), scale.Y * (flipVertical ? -1 : 1), 1) *
                 Matrix.CreateRotationZ(rotation) *
                 Matrix.CreateTranslation(position.X, position.Y, 0) *
