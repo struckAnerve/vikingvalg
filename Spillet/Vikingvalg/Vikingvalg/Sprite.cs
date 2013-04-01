@@ -18,10 +18,10 @@ namespace Vikingvalg
         protected int _speed = 3;
 
         //Bør flyttes
-        protected float footBoxHeight = 40f;
-        protected float footBoxXOfset;
-        protected float footBoxYOfset;
-        protected int footBoxXOfsetMultiplier = 1;
+        protected int footBoxHeight = 40;
+        protected int footBoxWidth;
+        protected int footBoxXOffset;
+        protected int footBoxYOffset;
 
         public Color Color { get; protected set; }
         public float Rotation { get; protected set; }

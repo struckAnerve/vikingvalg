@@ -202,7 +202,7 @@
       <ParentIndex>-1</ParentIndex>
       <TextureIndex>0</TextureIndex>
       <Position>
-        <X>95</X>
+        <X>25</X>
         <Y>-124</Y>
       </Position>
       <Rotation>0</Rotation>
@@ -588,7 +588,7 @@
       <ParentIndex>-1</ParentIndex>
       <TextureIndex>0</TextureIndex>
       <Position>
-        <X>94.71428</X>
+        <X>25</X>
         <Y>-120.5428</Y>
       </Position>
       <Rotation>0</Rotation>
@@ -974,7 +974,7 @@
       <ParentIndex>-1</ParentIndex>
       <TextureIndex>0</TextureIndex>
       <Position>
-        <X>94.28571</X>
+        <X>25</X>
         <Y>-100.8571</Y>
       </Position>
       <Rotation>0</Rotation>
@@ -1176,393 +1176,7 @@
       </Scale>
     </Bone>
   </Keyframe>
-  <Keyframe frame="20" trigger="" vflip="False" hflip="False">
-    <Bone name="backLegPawR">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>1</ParentIndex>
-      <TextureIndex>15</TextureIndex>
-      <Position>
-        <X>-11</X>
-        <Y>44</Y>
-      </Position>
-      <Rotation>0.61</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="backLegBotR">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>2</ParentIndex>
-      <TextureIndex>4</TextureIndex>
-      <Position>
-        <X>14</X>
-        <Y>55</Y>
-      </Position>
-      <Rotation>-0.7500001</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="backLegMidR">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>3</ParentIndex>
-      <TextureIndex>13</TextureIndex>
-      <Position>
-        <X>5</X>
-        <Y>64</Y>
-      </Position>
-      <Rotation>-0.4899998</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="backLegTopR">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>4</ParentIndex>
-      <TextureIndex>10</TextureIndex>
-      <Position>
-        <X>94.02006</X>
-        <Y>-3.9901</Y>
-      </Position>
-      <Rotation>0.5428572</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="bodyBack">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>11</ParentIndex>
-      <TextureIndex>1</TextureIndex>
-      <Position>
-        <X>-22</X>
-        <Y>2</Y>
-      </Position>
-      <Rotation>0.01</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="tailBottom">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
-      <TextureIndex>7</TextureIndex>
-      <Position>
-        <X>12.81844</X>
-        <Y>68.15929</Y>
-      </Position>
-      <Rotation>-0.7500001</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="tailTop">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>4</ParentIndex>
-      <TextureIndex>6</TextureIndex>
-      <Position>
-        <X>143</X>
-        <Y>-12</Y>
-      </Position>
-      <Rotation>-1.300001</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="frontLegPawR">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>8</ParentIndex>
-      <TextureIndex>14</TextureIndex>
-      <Position>
-        <X>-10.61617</X>
-        <Y>35.79402</Y>
-      </Position>
-      <Rotation>-0.1999999</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="frontLegBotR">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>9</ParentIndex>
-      <TextureIndex>11</TextureIndex>
-      <Position>
-        <X>9.078425</X>
-        <Y>79.15623</Y>
-      </Position>
-      <Rotation>-1.609999</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="frontLegMidR">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>10</ParentIndex>
-      <TextureIndex>12</TextureIndex>
-      <Position>
-        <X>1</X>
-        <Y>50</Y>
-      </Position>
-      <Rotation>-0.24</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="frontLegTopR">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>11</ParentIndex>
-      <TextureIndex>3</TextureIndex>
-      <Position>
-        <X>-111.5</X>
-        <Y>13.5</Y>
-      </Position>
-      <Rotation>-0.4214288</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="bodyFront">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>-1</ParentIndex>
-      <TextureIndex>0</TextureIndex>
-      <Position>
-        <X>104.2857</X>
-        <Y>-101.8571</Y>
-      </Position>
-      <Rotation>0</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="bellyFront">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>11</ParentIndex>
-      <TextureIndex>8</TextureIndex>
-      <Position>
-        <X>-47</X>
-        <Y>47</Y>
-      </Position>
-      <Rotation>0</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="frontLegTopL">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>11</ParentIndex>
-      <TextureIndex>3</TextureIndex>
-      <Position>
-        <X>-73.5</X>
-        <Y>20.5</Y>
-      </Position>
-      <Rotation>0.6514282</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="frontLegMidL">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>13</ParentIndex>
-      <TextureIndex>12</TextureIndex>
-      <Position>
-        <X>-2</X>
-        <Y>45</Y>
-      </Position>
-      <Rotation>-0.6499998</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="frontLegPawL">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>16</ParentIndex>
-      <TextureIndex>14</TextureIndex>
-      <Position>
-        <X>-10.59738</X>
-        <Y>38.05127</Y>
-      </Position>
-      <Rotation>0.7400002</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="frontLegBotL">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>14</ParentIndex>
-      <TextureIndex>11</TextureIndex>
-      <Position>
-        <X>8</X>
-        <Y>74</Y>
-      </Position>
-      <Rotation>-0.7600002</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="bellyBack">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>12</ParentIndex>
-      <TextureIndex>9</TextureIndex>
-      <Position>
-        <X>87</X>
-        <Y>-4</Y>
-      </Position>
-      <Rotation>0</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="backLegTopL">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>4</ParentIndex>
-      <TextureIndex>10</TextureIndex>
-      <Position>
-        <X>109</X>
-        <Y>20</Y>
-      </Position>
-      <Rotation>0.2642859</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="backLegMidL">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>18</ParentIndex>
-      <TextureIndex>13</TextureIndex>
-      <Position>
-        <X>4</X>
-        <Y>63</Y>
-      </Position>
-      <Rotation>-1.549999</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="backLegPawL">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>21</ParentIndex>
-      <TextureIndex>15</TextureIndex>
-      <Position>
-        <X>-11</X>
-        <Y>44</Y>
-      </Position>
-      <Rotation>0</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="backLegBotL">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>19</ParentIndex>
-      <TextureIndex>4</TextureIndex>
-      <Position>
-        <X>15</X>
-        <Y>54</Y>
-      </Position>
-      <Rotation>0.1614287</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="jaw">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>23</ParentIndex>
-      <TextureIndex>5</TextureIndex>
-      <Position>
-        <X>-57.6102</X>
-        <Y>21.61971</Y>
-      </Position>
-      <Rotation>0</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-    <Bone name="head">
-      <Hidden>False</Hidden>
-      <TextureFlipHorizontal>False</TextureFlipHorizontal>
-      <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>11</ParentIndex>
-      <TextureIndex>2</TextureIndex>
-      <Position>
-        <X>-172</X>
-        <Y>-12.5</Y>
-      </Position>
-      <Rotation>0.05999969</Rotation>
-      <Scale>
-        <X>1</X>
-        <Y>1</Y>
-      </Scale>
-    </Bone>
-  </Keyframe>
-  <Keyframe frame="25" trigger="" vflip="False" hflip="False">
+  <Keyframe frame="19" trigger="" vflip="False" hflip="False">
     <Bone name="backLegPawR">
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
@@ -1746,7 +1360,7 @@
       <ParentIndex>-1</ParentIndex>
       <TextureIndex>0</TextureIndex>
       <Position>
-        <X>101.2857</X>
+        <X>25</X>
         <Y>-123.8571</Y>
       </Position>
       <Rotation>0</Rotation>
@@ -2132,7 +1746,7 @@
       <ParentIndex>-1</ParentIndex>
       <TextureIndex>0</TextureIndex>
       <Position>
-        <X>105.3968</X>
+        <X>25</X>
         <Y>-119.8571</Y>
       </Position>
       <Rotation>0</Rotation>
@@ -2518,7 +2132,7 @@
       <ParentIndex>-1</ParentIndex>
       <TextureIndex>0</TextureIndex>
       <Position>
-        <X>107.2857</X>
+        <X>25</X>
         <Y>-108.8571</Y>
       </Position>
       <Rotation>0</Rotation>
@@ -2904,7 +2518,7 @@
       <ParentIndex>-1</ParentIndex>
       <TextureIndex>0</TextureIndex>
       <Position>
-        <X>98.28571</X>
+        <X>25</X>
         <Y>-123.8571</Y>
       </Position>
       <Rotation>0</Rotation>
@@ -3290,7 +2904,7 @@
       <ParentIndex>-1</ParentIndex>
       <TextureIndex>0</TextureIndex>
       <Position>
-        <X>104.2857</X>
+        <X>25</X>
         <Y>-103.8571</Y>
       </Position>
       <Rotation>0</Rotation>
@@ -3676,7 +3290,7 @@
       <ParentIndex>-1</ParentIndex>
       <TextureIndex>0</TextureIndex>
       <Position>
-        <X>105.2857</X>
+        <X>25</X>
         <Y>-115.8571</Y>
       </Position>
       <Rotation>0</Rotation>
@@ -4062,7 +3676,7 @@
       <ParentIndex>-1</ParentIndex>
       <TextureIndex>0</TextureIndex>
       <Position>
-        <X>106.2857</X>
+        <X>25</X>
         <Y>-127.8571</Y>
       </Position>
       <Rotation>0</Rotation>
@@ -4448,7 +4062,7 @@
       <ParentIndex>-1</ParentIndex>
       <TextureIndex>0</TextureIndex>
       <Position>
-        <X>105.2857</X>
+        <X>25</X>
         <Y>-120.8571</Y>
       </Position>
       <Rotation>0</Rotation>
@@ -4834,7 +4448,7 @@
       <ParentIndex>-1</ParentIndex>
       <TextureIndex>0</TextureIndex>
       <Position>
-        <X>99.14285</X>
+        <X>25</X>
         <Y>-127.4286</Y>
       </Position>
       <Rotation>0</Rotation>

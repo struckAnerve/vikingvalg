@@ -56,7 +56,7 @@ namespace Vikingvalg
             AddDrawable((Sprite)_p1);
 
             Rectangle wolfRectangle = new Rectangle(0, 0, 400, 267);
-            scale = 0.5f;
+            scale = 0.3f;
             Wolf wolf = new Wolf(new Rectangle(300, 300, (int)(wolfRectangle.Width * scale), (int)(wolfRectangle.Height * scale)), scale);
             AddDrawable((Sprite)wolf);
 
