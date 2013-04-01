@@ -35,10 +35,10 @@ namespace Vikingvalg
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, "playerAnimation/", scale)
         {
             //Setter hitboxen til spilleren til 40px høy og bredden på spilleren / 2
-            footBoxXOfset = destinationRectangle.Width / 2;
-            footBoxYOfset = 80 * scale;
+            footBoxXOffset = destinationRectangle.Width / 2;
+            footBoxYOffset = (int)(80 * scale);
             //Plasserer boksen midstilt nederst på spilleren.
-            _footBox = new Rectangle((int)(destinationRectangle.X - footBoxXOfset), (int)(destinationRectangle.Y + footBoxYOfset), destinationRectangle.Width, (int)footBoxHeight);
+            _footBox = new Rectangle((int)(destinationRectangle.X - footBoxXOffset), (int)(destinationRectangle.Y + footBoxYOffset), destinationRectangle.Width, (int)footBoxHeight);
 
             //Legger til alle navn på animasjoner som spilleren har, brukes for å laste inn riktige animasjoner.
             animationList.Add("block");
@@ -159,8 +159,8 @@ namespace Vikingvalg
                     _destinationRectangle.Y += _speed;
                 }
                 //Flytter hitboxen til samme sted som spilleren
-                _footBox.Y = ((int)(_destinationRectangle.Y + footBoxYOfset));
-                _footBox.X = (int)(_destinationRectangle.X - footBoxXOfset);
+                _footBox.Y = ((int)(_destinationRectangle.Y + footBoxYOffset));
+                _footBox.X = (int)(_destinationRectangle.X - footBoxXOffset);
             }
         }
         /// <summary>

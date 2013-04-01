@@ -20,8 +20,12 @@ namespace Vikingvalg
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, "wolfanimation/", scale)
         {
-            footBoxXOfset = destinationRectangle.Width;
-            footBoxYOfset = (int)(20 * scale);
+            footBoxXOffset = (int)(20 * scale);
+            footBoxYOffset = (int)(20 * scale);
+            footBoxWidth = (int)(destinationRectangle.Width + (40 * scale));
+            footBoxHeight = (int)(footBoxHeight * scale);
+            setFootBox(new Rectangle(destinationRectangle.X - footBoxWidth /2 + footBoxXOffset , destinationRectangle.Y + footBoxYOffset, footBoxWidth, footBoxHeight));
+            
             Flipped = true;
         }
         public Wolf(Rectangle destinationRectangle, float scale)

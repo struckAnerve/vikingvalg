@@ -16,7 +16,6 @@ namespace Vikingvalg
 {
     class AnimatedEnemy : AnimatedSprite, ICanCollide
     {
-
         public bool BlockedLeft { get; set; }
         public bool BlockedRight { get; set; }
         public bool BlockedTop { get; set; }
@@ -41,12 +40,11 @@ namespace Vikingvalg
             animationList.Add("taunt");
 
             //Plasserer boksen midstilt nederst på karakteren.
-            _footBox = new Rectangle((int)(destinationRectangle.X - footBoxXOfset), (int)(destinationRectangle.Y + footBoxYOfset), destinationRectangle.Width, (int)(footBoxHeight));
+            //_footBox = new Rectangle((int)(destinationRectangle.X - footBoxXOfset), (int)(destinationRectangle.Y + footBoxYOfset), destinationRectangle.Width, (int)(footBoxHeight));
         }
         public override void Update()
         {
-            //walk();
-            Console.WriteLine(footBoxXOfset);
+            walk();
         }
         public void taunt()
         {
@@ -101,13 +99,17 @@ namespace Vikingvalg
                 if ((BlockedLeft && _speed < 0) || (BlockedRight && _speed > 0))
                 {
                     _speed *= -1;
-                    footBoxXOfsetMultiplier *= -1;
+                    footBoxXOffset *= -1;
                     Flipped = !Flipped;
                 }
                 _destinationRectangle.X += _speed;
-                _footBox.Y = (int)(_destinationRectangle.Y + footBoxYOfset);
-                _footBox.X = (int)(_destinationRectangle.X + footBoxXOfset);
+                _footBox.X = _destinationRectangle.X - footBoxWidth / 2 + footBoxXOffset;
+                _footBox.Y = _destinationRectangle.Y + footBoxYOffset;
             }
+        }
+        protected void setFootBox(Rectangle targetBox)
+        {
+            _footBox = new Rectangle(targetBox.X, targetBox.Y, targetBox.Width, targetBox.Height);
         }
     }
 }
