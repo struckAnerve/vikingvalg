@@ -19,12 +19,11 @@ namespace Vikingvalg
     {
         IManageStates stateService;
         IManageInput inputService;
-        IManageSprites spriteService;
 
-        private ClickableMenuElement _playButton;
-        private ClickableMenuElement _settingsButton;
+        Menu mainMenu;
 
-        public List<Sprite> ToDrawMenu { get; private set; }
+        //endres
+        public List<Sprite> ToDrawMainMenu { get; private set; }
 
         public MenuManager(Game game)
             : base(game)
@@ -39,21 +38,10 @@ namespace Vikingvalg
         {
             stateService = (IManageStates)Game.Services.GetService(typeof(IManageStates));
             inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
-            spriteService = (IManageSprites)Game.Services.GetService(typeof(IManageSprites));
 
-            ToDrawMenu = new List<Sprite>();
-
-            //Må forbedres (FOR Å SI DET SÅNN)
-            _playButton = new ClickableMenuElement("play", new Rectangle(
-                (Game.Window.ClientBounds.Width / 2 - 90),
-                (Game.Window.ClientBounds.Height / 2 - 37),
-                180, 75));
-            AddDrawable((Sprite)_playButton);
-            _settingsButton = new ClickableMenuElement("settings", new Rectangle(
-                (Game.Window.ClientBounds.Width / 2 - 90),
-                (Game.Window.ClientBounds.Height / 2 - 24 + (_playButton.SourceRectangle.Height + 40)),
-                180, 49));
-            AddDrawable((Sprite)_settingsButton);
+            mainMenu = new MainMenu((IManageSprites)Game.Services.GetService(typeof(IManageSprites)));
+            mainMenu.MainState();
+            ToDrawMainMenu = mainMenu.toDrawMenuClass;
 
             base.Initialize();
         }
@@ -64,54 +52,18 @@ namespace Vikingvalg
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            //Midlertidig kode for å teste endring av State
-            if (inputService.KeyWasPressedThisFrame(Keys.Tab))
+            if (stateService.GameState == "MainMenu")
             {
-                stateService.ChangeState("InGame");
-            }
+                mainMenu.Update(inputService);
 
-            foreach (Sprite toUpdate in ToDrawMenu)
-            {
-                if (toUpdate is IUseInput)
+                //Midlertidig kode for å teste endring av State
+                if (inputService.KeyWasPressedThisFrame(Keys.Tab))
                 {
-                    IUseInput needsInput = (IUseInput)toUpdate;
-                    needsInput.Update(inputService);
-                }
-                else
-                {
-                    toUpdate.Update();
-                }
-                if (toUpdate is AnimatedSprite)
-                {
-                    AnimatedSprite updatableAnimation = (AnimatedSprite)toUpdate;
-                    updatableAnimation.animationPlayer.Update(gameTime);
+                    stateService.ChangeState("InGame");
                 }
             }
 
             base.Update(gameTime);
         }
-
-        public void AddDrawable(Sprite toAdd)
-        {
-            if (toAdd == null || ToDrawMenu.Contains(toAdd))
-            {
-                Console.WriteLine("MenuManager: Unable to add drawable!");
-                return;
-            }
-
-            spriteService.LoadDrawable(toAdd);
-            ToDrawMenu.Add(toAdd);
-        }
-
-        public void RemoveDrawable(Sprite toRemove)
-        {
-            ToDrawMenu.Remove(toRemove);
-        }
-
-        /* Noe slikt?
-        public void InMainMenu()
-        {
-        }
-        */
     }
 }

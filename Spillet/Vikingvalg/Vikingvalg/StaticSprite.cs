@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
-    public abstract class StaticSprite : Sprite
+    public class StaticSprite : Sprite
     {
         protected Rectangle _destinationRectangle;
 
@@ -37,5 +37,9 @@ namespace Vikingvalg
             Effects = effects;
             LayerDepth = layerDepth;
         }
+        public StaticSprite(String artName, Rectangle destinationRectangle)
+            : this(artName, destinationRectangle, new Rectangle(0, 0, destinationRectangle.Width, destinationRectangle.Height),
+                new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.9f)
+        { }
     }
 }

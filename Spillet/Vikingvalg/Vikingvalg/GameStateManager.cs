@@ -77,7 +77,7 @@ namespace Vikingvalg
                     inGameService.Enabled = false;
 
                     spriteService.ListsToDraw.Clear();
-                    spriteService.ListsToDraw.Add(menuService.ToDrawMenu);
+                    spriteService.ListsToDraw.Add(menuService.ToDrawMainMenu);
                     break;
                 case "InGame":
                     inGameService.Enabled = true;
