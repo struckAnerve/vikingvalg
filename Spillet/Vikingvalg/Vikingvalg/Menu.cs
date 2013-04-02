@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
-    abstract class Menu : IUseInput
+    abstract class Menu
     {
         IManageSprites spriteService;
         public List<Sprite> toDrawMenuClass = new List<Sprite>();
@@ -25,7 +25,7 @@ namespace Vikingvalg
         public abstract void ChangeMenuState(String changeToState);
         public abstract void MainState();
         //public void SettingsState() { }
-        public abstract void Update(IManageInput inputService);
+        public abstract void Update(IManageInput inputService, GameTime gameTime);
 
         public void AddDrawable(Sprite toAdd)
         {
@@ -35,7 +35,6 @@ namespace Vikingvalg
                 return;
             }
 
-            spriteService.LoadDrawable(toAdd);
             toDrawMenuClass.Add(toAdd);
         }
 

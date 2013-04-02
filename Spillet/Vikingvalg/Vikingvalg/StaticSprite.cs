@@ -15,6 +15,7 @@ namespace Vikingvalg
     public class StaticSprite : Sprite
     {
         protected Rectangle _destinationRectangle;
+        protected Rectangle _sourceRectangle;
 
         public String ArtName { get; protected set; }
         public Rectangle DestinationRectangle
@@ -22,7 +23,11 @@ namespace Vikingvalg
             get { return _destinationRectangle; }
             protected set { _destinationRectangle = value; }
         }
-        public Rectangle SourceRectangle { get; protected set; }
+        public Rectangle SourceRectangle
+        {
+            get { return _sourceRectangle; }
+            protected set { _sourceRectangle = value; }
+        }
         public Vector2 Origin { get; protected set; }
         public SpriteEffects Effects { get; protected set; }
         public float LayerDepth { get; protected set; }

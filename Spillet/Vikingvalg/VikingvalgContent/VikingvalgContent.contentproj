@@ -236,18 +236,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="play.png">
-      <Name>play</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="settings.png">
-      <Name>settings</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Animations\wolfanimation\bodyBack.png">
       <Name>bodyBack</Name>
       <Importer>TextureImporter</Importer>
@@ -368,6 +356,18 @@
       <Name>walk</Name>
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="playbutton.png">
+      <Name>playbutton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="settingsbutton.png">
+      <Name>settingsbutton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

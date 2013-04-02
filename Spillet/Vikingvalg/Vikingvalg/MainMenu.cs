@@ -13,8 +13,8 @@ namespace Vikingvalg
 {
     class MainMenu : Menu
     {
-        public StaticSprite playButton;
-        public StaticSprite settingsButton;
+        public PlayButton playButton;
+        public SettingsButton settingsButton;
 
         private enum _possibleMainMenuStates { Main };
         private String _mainMenuState;
@@ -25,14 +25,14 @@ namespace Vikingvalg
             ChangeMenuState("Main");
 
             //Bør forbedres
-            playButton = new StaticSprite("play", new Rectangle(
+            playButton = new PlayButton(new Vector2(
                 ((int)spriteService.GameWindowSize.X / 2 - 90),
-                ((int)spriteService.GameWindowSize.Y / 2 - 37),
-                180, 75));
-            settingsButton = new StaticSprite("settings", new Rectangle(
+                ((int)spriteService.GameWindowSize.Y / 2 - 37)), this);
+            spriteService.LoadDrawable(playButton);
+            settingsButton = new SettingsButton(new Vector2(
                 ((int)spriteService.GameWindowSize.X / 2 - 90),
-                ((int)spriteService.GameWindowSize.Y / 2 - 24 + (playButton.SourceRectangle.Height + 40)),
-                180, 49));
+                ((int)spriteService.GameWindowSize.Y / 2 - 24 + (playButton.SourceRectangle.Height + 40))), this);
+            spriteService.LoadDrawable(settingsButton);
         }
 
         public override void ChangeMenuState(string changeToState)
@@ -48,24 +48,14 @@ namespace Vikingvalg
 
         public override void MainState()
         {
+            toDrawMenuClass.Clear();
             AddDrawable((Sprite)playButton);
             AddDrawable((Sprite)settingsButton);
         }
 
-        public override void Update(IManageInput inputService)
+        public override void Update(IManageInput inputService, GameTime gameTime)
         {
-            //if state == main <-- slik?
-
-            //Midlertidig kode for å teste endring av State
-            /*
-            if (inputService.KeyWasPressedThisFrame(Keys.Tab))
-            {
-                stateService.ChangeState("InGame");
-            }
-            */
-
-            /* Mulig noe av dette må med?
-            foreach (Sprite toUpdate in ToDrawMainMenu)
+            foreach (Sprite toUpdate in toDrawMenuClass)
             {
                 if (toUpdate is IUseInput)
                 {
@@ -82,7 +72,6 @@ namespace Vikingvalg
                     updatableAnimation.animationPlayer.Update(gameTime);
                 }
             }
-            */
         }
     }
 }

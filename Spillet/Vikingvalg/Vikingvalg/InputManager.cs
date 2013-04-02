@@ -17,10 +17,10 @@ namespace Vikingvalg
     /// </summary>
     public class InputManager : Microsoft.Xna.Framework.GameComponent, IManageInput
     {
-        public KeyboardState PrevKeys { get; protected set; }
-        public KeyboardState CurrKeys { get; protected set; }
-        public MouseState PrevMouse { get; protected set; }
-        public MouseState CurrMouse { get; protected set; }
+        private KeyboardState PrevKeys { get; set; }
+        private KeyboardState CurrKeys { get; set; }
+        public MouseState PrevMouse { get; private set; }
+        public MouseState CurrMouse { get; private set; }
 
         public InputManager(Game game)
             : base(game)

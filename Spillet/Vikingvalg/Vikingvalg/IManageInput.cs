@@ -13,6 +13,9 @@ namespace Vikingvalg
 {
     interface IManageInput
     {
+        MouseState PrevMouse { get; }
+        MouseState CurrMouse { get; }
+
         bool KeyIsUp(Keys key);
         bool KeyIsDown(Keys key);
         bool KeyWasPressedThisFrame(Keys key);

@@ -54,7 +54,7 @@ namespace Vikingvalg
         {
             if (stateService.GameState == "MainMenu")
             {
-                mainMenu.Update(inputService);
+                mainMenu.Update(inputService, gameTime);
 
                 //Midlertidig kode for å teste endring av State
                 if (inputService.KeyWasPressedThisFrame(Keys.Tab))
