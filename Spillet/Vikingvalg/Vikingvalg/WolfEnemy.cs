@@ -13,10 +13,10 @@ using Microsoft.Xna.Framework.Media;
 using Demina;
 namespace Vikingvalg
 {
-    class Wolf : AnimatedEnemy
+    class WolfEnemy : AnimatedEnemy
     {
 
-        public Wolf(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
+        public WolfEnemy(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, "wolfanimation/", scale)
         {
@@ -28,16 +28,16 @@ namespace Vikingvalg
 
             hp = 50;
         }
-        public Wolf(Rectangle destinationRectangle, float scale)
+        public WolfEnemy(Rectangle destinationRectangle, float scale)
             : this("mm", destinationRectangle, new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.6f, scale)
         { }
-        public Wolf(Rectangle destinationRectangle)
+        public WolfEnemy(Rectangle destinationRectangle)
             : this(destinationRectangle, 1f)
         { }
-        public Wolf(Vector2 destinationPosition)
+        public WolfEnemy(Vector2 destinationPosition)
             : this(new Rectangle((int)destinationPosition.X, (int)destinationPosition.Y, 375, 485))
         { }
-        public Wolf()
+        public WolfEnemy()
             : this(Vector2.Zero)
         { }       
     }

@@ -67,7 +67,7 @@ namespace Vikingvalg
         {
             if (!Game.IsActive && GameState == "InGame")
             {
-                ChangeState("MainMenu");
+                ChangeState("PauseMenu");
             }
 
             switch (GameState)
