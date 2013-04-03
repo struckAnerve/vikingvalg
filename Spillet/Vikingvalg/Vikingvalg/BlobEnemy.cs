@@ -23,10 +23,10 @@ namespace Vikingvalg
             footBoxXOffset = (int)(20 * scale);
             footBoxYOffset = (int)(30 * scale);
             footBoxWidth = (int)(destinationRectangle.Width + (40 * scale));
-            footBoxHeight = (int)(footBoxHeight * scale + 10);
-            setFootBox(new Rectangle(destinationRectangle.X - footBoxWidth / 2 + footBoxXOffset, destinationRectangle.Y + footBoxYOffset, footBoxWidth, footBoxHeight));
+            footBoxHeight = (int)(40 * scale + 10);
+            _footBox = new Rectangle(destinationRectangle.X - footBoxWidth / 2 + footBoxXOffset, destinationRectangle.Y + footBoxYOffset, footBoxWidth, footBoxHeight);
 
-            Flipped = false;
+            hp = 30;
         }
         public BlobEnemy(Rectangle destinationRectangle, float scale)
             : this("mm", destinationRectangle, new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.6f, scale)

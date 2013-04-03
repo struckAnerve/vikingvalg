@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Animation>
   <FrameRate>50</FrameRate>
-  <LoopFrame>39</LoopFrame>
+  <LoopFrame>-1</LoopFrame>
   <Texture>torso.png</Texture>
   <Texture>bicep.png</Texture>
   <Texture>shieldHand_Walking.png</Texture>

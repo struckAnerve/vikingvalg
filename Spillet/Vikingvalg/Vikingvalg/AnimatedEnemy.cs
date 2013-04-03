@@ -14,22 +14,8 @@ using Demina;
 
 namespace Vikingvalg
 {
-    class AnimatedEnemy : AnimatedSprite, ICanCollide
+    class AnimatedEnemy : AnimatedCharacter, ICanCollide
     {
-        public bool BlockedLeft { get; set; }
-        public bool BlockedRight { get; set; }
-        public bool BlockedTop { get; set; }
-        public bool BlockedBottom { get; set; }
-
-        public AnimatedSprite ColidingWith { get; set; }
-        //Hitbox til spilleren
-        protected Rectangle _footBox;
-
-        public Rectangle FootBox
-        {
-            get { return _footBox; }
-            set { }
-        }
         public AnimatedEnemy(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, String animationDirectory, float scale)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, animationDirectory, scale)
@@ -41,12 +27,14 @@ namespace Vikingvalg
             animationList.Add("run");
             animationList.Add("taunt");
 
-            //Plasserer boksen midstilt nederst på karakteren.
-            //_footBox = new Rectangle((int)(destinationRectangle.X - footBoxXOfset), (int)(destinationRectangle.Y + footBoxYOfset), destinationRectangle.Width, (int)(footBoxHeight));
         }
         public override void Update()
         {
-            //walk();
+            if (ColidingWith != null && (BlockedRight && !Flipped || BlockedLeft && Flipped) && (ColidingWith.AnimationState == "idle" || ColidingWith is Player))
+                {
+                    idle();
+                }
+            else walk();
         }
         public void taunt()
         {
@@ -54,14 +42,6 @@ namespace Vikingvalg
             {
                 animationPlayer.TransitionToAnimation("taunt", 0.2f);
                 AnimationState = "taunting";
-            }
-        }
-        public void idle()
-        {
-            if (animationPlayer.CurrentAnimation != "idle" && AnimationState != "idle")
-            {
-                animationPlayer.TransitionToAnimation("idle", 0.2f);
-                AnimationState = "idle";
             }
         }
         /// <summary>
@@ -109,13 +89,10 @@ namespace Vikingvalg
                 _footBox.Y = _destinationRectangle.Y + footBoxYOffset;
             }
         }
-        protected void setFootBox(Rectangle targetBox)
+        public void takeDamage()
         {
-            _footBox = new Rectangle(targetBox.X, targetBox.Y, targetBox.Width, targetBox.Height);
-        }
-        public void Kill()
-        {
-            Console.WriteLine("Ouch!");
+            hp -= 10;
+            if (hp <= 0) Console.WriteLine("Dead");
         }
     }
 }

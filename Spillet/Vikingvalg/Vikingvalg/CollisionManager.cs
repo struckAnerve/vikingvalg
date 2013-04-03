@@ -70,18 +70,22 @@ namespace Vikingvalg
                 if (canCollide.FootBox.Y <= 0)
                 {
                     canCollide.BlockedTop = true;
+                    canCollide.ColidingWith = null;
                 }
                 else if (canCollide.FootBox.Y + canCollide.FootBox.Height >= Game.Window.ClientBounds.Height)
                 {
                     canCollide.BlockedBottom = true;
+                    canCollide.ColidingWith = null;
                 }
                 if (canCollide.FootBox.X <= 0)
                 {
                     canCollide.BlockedLeft = true;
+                    canCollide.ColidingWith = null;
                 }
                 else if (canCollide.FootBox.X + canCollide.FootBox.Width >= Game.Window.ClientBounds.Width)
                 {
                     canCollide.BlockedRight = true;
+                    canCollide.ColidingWith = null;
                 }
 
                 //Logikk for kollisjon mot andre objekter
@@ -112,11 +116,14 @@ namespace Vikingvalg
                                 canCollide.BlockedLeft = true;
                                 canCollideTwo.BlockedRight = true;
                             }
-                            if(canCollideTwo is AnimatedSprite){
-                                AnimatedSprite animatedSpriteColision = (AnimatedSprite) canCollideTwo;
-                                canCollide.ColidingWith = animatedSpriteColision;
-                            }
-                            
+                            if (canCollide is AnimatedSprite)
+                            {
+                                if (canCollideTwo is AnimatedSprite)
+                                {
+                                    AnimatedSprite animatedSpriteColision = (AnimatedSprite)canCollideTwo;
+                                    canCollide.ColidingWith = animatedSpriteColision;
+                                }
+                            }   
                         }
                     }
                 }

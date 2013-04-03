@@ -18,15 +18,15 @@ namespace Vikingvalg
 
         public Wolf(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
-            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, "wolfAnimation/", scale)
+            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, "wolfanimation/", scale)
         {
             footBoxXOffset = (int)(20 * scale);
-            footBoxYOffset = (int)(20 * scale);
+            footBoxYOffset = 0;
             footBoxWidth = (int)(destinationRectangle.Width + (40 * scale));
-            footBoxHeight = (int)(footBoxHeight * scale);
-            setFootBox(new Rectangle(destinationRectangle.X - footBoxWidth /2 + footBoxXOffset , destinationRectangle.Y + footBoxYOffset, footBoxWidth, footBoxHeight));
-            
-            Flipped = true;
+            footBoxHeight = (int)(60 * scale);
+            _footBox = new Rectangle(destinationRectangle.X - footBoxWidth / 2 + footBoxXOffset, destinationRectangle.Y + footBoxYOffset, footBoxWidth, footBoxHeight);
+
+            hp = 50;
         }
         public Wolf(Rectangle destinationRectangle, float scale)
             : this("mm", destinationRectangle, new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.6f, scale)

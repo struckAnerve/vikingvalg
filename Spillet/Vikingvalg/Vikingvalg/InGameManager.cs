@@ -62,7 +62,7 @@ namespace Vikingvalg
 
             Rectangle blobRectangle = new Rectangle(0, 0, 400, 267);
             scale = 0.5f;
-            BlobEnemy blob = new BlobEnemy(new Rectangle(300, 300, (int)(blobRectangle.Width * scale), (int)(blobRectangle.Height * scale)), scale);
+            BlobEnemy blob = new BlobEnemy(new Rectangle(100, 300, (int)(blobRectangle.Width * scale), (int)(blobRectangle.Height * scale)), scale);
             AddDrawable((Sprite)blob);
 
             base.Initialize();
@@ -100,7 +100,10 @@ namespace Vikingvalg
                 if (toUpdate is AnimatedSprite)
                 {
                     AnimatedSprite updatableAnimation = (AnimatedSprite)toUpdate;
-                    updatableAnimation.animationPlayer.Update(gameTime);
+                    if (updatableAnimation.animationPlayer.Update(gameTime) == true)
+                    {
+                        updatableAnimation.idle();
+                    }
                 }
             }
 
