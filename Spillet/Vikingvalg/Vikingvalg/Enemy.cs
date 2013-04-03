@@ -27,6 +27,8 @@ namespace Vikingvalg
         public bool BlockedTop { get; set; }
         public bool BlockedBottom { get; set; }
 
+        public AnimatedSprite ColidingWith { get; set; }
+
         public Enemy(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth)

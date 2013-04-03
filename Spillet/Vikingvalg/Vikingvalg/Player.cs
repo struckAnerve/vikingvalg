@@ -15,6 +15,8 @@ namespace Vikingvalg
 {
     class Player : AnimatedSprite, IUseInput, ICanCollide
     {
+
+        public AnimatedSprite ColidingWith { get; set; }
         //Hitbox til spilleren
         private Rectangle _footBox;
         public Rectangle FootBox 
@@ -111,6 +113,14 @@ namespace Vikingvalg
             {
                 animationPlayer.TransitionToAnimation("strikeSword", 0.2f);
                 AnimationState = "slashing";
+            }
+            if (BlockedRight == true && Flipped == false || BlockedLeft == true && Flipped == true)
+            {
+                if (ColidingWith is AnimatedEnemy)
+                {
+                    AnimatedEnemy enemyColidedWith = (AnimatedEnemy)ColidingWith;
+                    enemyColidedWith.Kill();
+                }
             }
         }
         /// <summary>

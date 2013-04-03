@@ -20,6 +20,8 @@ namespace Vikingvalg
         public bool BlockedRight { get; set; }
         public bool BlockedTop { get; set; }
         public bool BlockedBottom { get; set; }
+
+        public AnimatedSprite ColidingWith { get; set; }
         //Hitbox til spilleren
         protected Rectangle _footBox;
 
@@ -30,7 +32,7 @@ namespace Vikingvalg
         }
         public AnimatedEnemy(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, String animationDirectory, float scale)
-            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, "wolfanimation/", scale)
+            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, animationDirectory, scale)
         {
             //Legger til alle navn på animasjoner som fienden har, brukes for å laste inn riktige animasjoner.
             animationList.Add("attack1");
@@ -44,7 +46,7 @@ namespace Vikingvalg
         }
         public override void Update()
         {
-            walk();
+            //walk();
         }
         public void taunt()
         {
@@ -114,6 +116,10 @@ namespace Vikingvalg
         protected void setFootBox(Rectangle targetBox)
         {
             _footBox = new Rectangle(targetBox.X, targetBox.Y, targetBox.Width, targetBox.Height);
+        }
+        public void Kill()
+        {
+            Console.WriteLine("Ouch!");
         }
     }
 }
