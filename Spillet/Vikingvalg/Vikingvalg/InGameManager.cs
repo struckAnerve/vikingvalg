@@ -60,9 +60,7 @@ namespace Vikingvalg
             WolfEnemy wolf = new WolfEnemy(new Rectangle(300, 300, 400, 267), 0.3f);
             AddDrawable((Sprite)wolf);
 
-            Rectangle blobRectangle = new Rectangle(0, 0, 400, 267);
-            scale = 0.5f;
-            BlobEnemy blob = new BlobEnemy(new Rectangle(100, 300, (int)(blobRectangle.Width * scale), (int)(blobRectangle.Height * scale)), scale);
+            BlobEnemy blob = new BlobEnemy(new Rectangle(100, 300, 400, 267), 0.5f);
             AddDrawable((Sprite)blob);
 
             base.Initialize();
