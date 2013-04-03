@@ -87,6 +87,10 @@ namespace Vikingvalg
         /// <param name="inputService">Inputservice som holder oversikt over input</param>
         public void walk()
         {
+            if (BlockedLeft || BlockedRight || BlockedTop || BlockedBottom)
+            {
+
+            }
             /* Hvis "walking" animasjonen ikke er aktiv, og AnimationState ikke er "walking"
              * aktiveres "walking" animasjonen, og bytter AnimationState til "walking" */
             if (spriteAnimation.CurrentAnimation != "walking" && AnimationState != "walking")

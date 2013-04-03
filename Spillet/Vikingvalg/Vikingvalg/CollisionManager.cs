@@ -20,6 +20,8 @@ namespace Vikingvalg
         private List<ICanCollide> _canCollideList = new List<ICanCollide>();
         private List<ICanCollide> _listToCheck = new List<ICanCollide>();
 
+        private Rectangle _intersectionRectangle = new Rectangle();
+
         public CollisionManager(Game game)
             : base(game)
         {
@@ -92,25 +94,74 @@ namespace Vikingvalg
                     {
                         if (canCollide.FootBox.Intersects(canCollideTwo.FootBox))
                         {
-                            if (canCollide.FootBox.Y - canCollideTwo.FootBox.Y >= canCollide.FootBox.Height - 6)
+                            _intersectionRectangle = Rectangle.Intersect(canCollide.FootBox, canCollideTwo.FootBox);
+                            //hvis canCollideTwo er i topp-venstre hjørne i forhold til canCollide
+                            if (canCollide.FootBox.Center.X >= canCollideTwo.FootBox.Center.X &&
+                                canCollide.FootBox.Center.Y >= canCollideTwo.FootBox.Center.Y)
                             {
-                                canCollide.BlockedTop = true;
-                                canCollideTwo.BlockedBottom = true;
+                                //hvis det er kræsjet mer fra toppen enn fra siden
+                                if (_intersectionRectangle.Width > _intersectionRectangle.Height)
+                                {
+                                    canCollide.BlockedTop = true;
+                                    canCollideTwo.BlockedBottom = true;
+                                }
+                                //hvis det er kræsjet mer fra siden enn fra toppen (eller det er kræsjet like mye)
+                                else
+                                {
+                                    canCollide.BlockedLeft = true;
+                                    canCollideTwo.BlockedRight = true;
+                                }
                             }
-                            else if (Math.Abs(canCollide.FootBox.Y - canCollideTwo.FootBox.Y) >= canCollide.FootBox.Height - 6)
+                            //hvis canCollideTwo er i topp-høyre hjørne i forhold til canCollide
+                            else if (canCollide.FootBox.Center.X <= canCollideTwo.FootBox.Center.X &&
+                                canCollide.FootBox.Center.Y >= canCollideTwo.FootBox.Center.Y)
                             {
-                                canCollide.BlockedBottom = true;
-                                canCollideTwo.BlockedTop = true;
+                                //hvis det er kræsjet mer fra toppen enn fra siden
+                                if (_intersectionRectangle.Width > _intersectionRectangle.Height)
+                                {
+                                    canCollide.BlockedTop = true;
+                                    canCollideTwo.BlockedBottom = true;
+                                }
+                                //hvis det er kræsjet mer fra siden enn fra toppen (eller det er kræsjet like mye)
+                                else
+                                {
+                                    canCollide.BlockedRight = true;
+                                    canCollideTwo.BlockedLeft = true;
+                                }
                             }
-                            else if (canCollide.FootBox.X - canCollideTwo.FootBox.X < 0)
+                            //hvis canCollideTwo er i bunn-høyre hjørne i forhold til canCollide
+                            else if (canCollide.FootBox.Center.X <= canCollideTwo.FootBox.Center.X &&
+                                canCollide.FootBox.Center.Y <= canCollideTwo.FootBox.Center.Y)
                             {
-                                canCollide.BlockedRight = true;
-                                canCollideTwo.BlockedLeft = true;
+                                //hvis det er kræsjet mer fra bunnen enn fra siden
+                                if (_intersectionRectangle.Width > _intersectionRectangle.Height)
+                                {
+                                    canCollide.BlockedBottom = true;
+                                    canCollideTwo.BlockedTop = true;
+                                }
+                                //hvis det er kræsjet mer fra siden enn fra bunnen (eller det er kræsjet like mye)
+                                else
+                                {
+                                    canCollide.BlockedRight = true;
+                                    canCollideTwo.BlockedLeft = true;
+                                }
                             }
-                            else 
+                            //hvis canCollideTwo er i bunn-venstre hjørne i forhold til canCollide
+                            else if (canCollide.FootBox.Center.X >= canCollideTwo.FootBox.Center.X &&
+                                canCollide.FootBox.Center.Y <= canCollideTwo.FootBox.Center.Y)
                             {
-                                canCollide.BlockedLeft = true;
-                                canCollideTwo.BlockedRight = true;
+                                //hvis det er kræsjet mer fra bunnen enn fra siden
+                                if (_intersectionRectangle.Width > _intersectionRectangle.Height)
+                                {
+                                    canCollide.BlockedBottom = true;
+                                    canCollideTwo.BlockedTop = true;
+                                }
+                                //hvis det er kræsjet mer fra siden enn fra bunnen (eller det er kræsjet like mye)
+                                else
+                                {
+                                    canCollide.BlockedLeft = true;
+                                    canCollideTwo.BlockedRight = true;
+                                }
                             }
                         }
                     }
