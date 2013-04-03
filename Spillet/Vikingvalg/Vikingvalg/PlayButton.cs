@@ -25,6 +25,11 @@ namespace Vikingvalg
 
         public override void Update(IManageInput inputService)
         {
+            if (hovered && inputService.CurrMouse.LeftButton == ButtonState.Pressed)
+            {
+                hovered = false;
+                _menuController.stateService.ChangeState("InGame");
+            }
 
             base.Update(inputService);
         }

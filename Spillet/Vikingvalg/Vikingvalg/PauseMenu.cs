@@ -11,45 +11,45 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
-    class MainMenu : Menu
+    class PauseMenu : Menu
     {
-        public PlayButton playButton;
+        public ContinueButton continueButton;
         public SettingsButton settingsButton;
 
-        private enum _possibleMainMenuStates { Main };
-        private String _mainMenuState;
+        private enum _possiblePauseMenuStates { Main };
+        private String _pauseMenuState;
 
-        public MainMenu(IManageSprites spriteService, IManageStates stateService)
+        public PauseMenu(IManageSprites spriteService, IManageStates stateService)
             : base(spriteService, stateService)
         {
             ChangeMenuState("Main");
 
             //Bør forbedres
-            playButton = new PlayButton(new Vector2(
+            continueButton = new ContinueButton(new Vector2(
                 ((int)spriteService.GameWindowSize.X / 2 - 90),
                 ((int)spriteService.GameWindowSize.Y / 2 - 37)), this);
-            spriteService.LoadDrawable(playButton);
+            spriteService.LoadDrawable(continueButton);
             settingsButton = new SettingsButton(new Vector2(
                 ((int)spriteService.GameWindowSize.X / 2 - 90),
-                ((int)spriteService.GameWindowSize.Y / 2 - 24 + (playButton.SourceRectangle.Height + 40))), this);
+                ((int)spriteService.GameWindowSize.Y / 2 - 24 + (continueButton.SourceRectangle.Height + 40))), this);
             spriteService.LoadDrawable(settingsButton);
         }
 
         public override void ChangeMenuState(string changeToState)
         {
-            if (!Enum.IsDefined(typeof(_possibleMainMenuStates), changeToState))
+            if (!Enum.IsDefined(typeof(_possiblePauseMenuStates), changeToState))
             {
                 Console.WriteLine("Unable to change MainMenu state (you are trying to change to an unkown state: '" + changeToState + "')");
                 return;
             }
 
-            _mainMenuState = changeToState;
+            _pauseMenuState = changeToState;
         }
 
         public override void MainState()
         {
             toDrawMenuClass.Clear();
-            AddDrawable((Sprite)playButton);
+            AddDrawable((Sprite)continueButton);
             AddDrawable((Sprite)settingsButton);
         }
 

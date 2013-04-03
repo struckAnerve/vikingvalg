@@ -21,9 +21,11 @@ namespace Vikingvalg
         IManageInput inputService;
 
         Menu mainMenu;
+        Menu pauseMenu;
 
-        //endres
+        //endres (?? Adrian husker ikke hvofor "endres")
         public List<Sprite> ToDrawMainMenu { get; private set; }
+        public List<Sprite> ToDrawPauseMenu { get; private set; }
 
         public MenuManager(Game game)
             : base(game)
@@ -39,9 +41,13 @@ namespace Vikingvalg
             stateService = (IManageStates)Game.Services.GetService(typeof(IManageStates));
             inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
 
-            mainMenu = new MainMenu((IManageSprites)Game.Services.GetService(typeof(IManageSprites)));
+            mainMenu = new MainMenu((IManageSprites)Game.Services.GetService(typeof(IManageSprites)), stateService);
             mainMenu.MainState();
             ToDrawMainMenu = mainMenu.toDrawMenuClass;
+
+            pauseMenu = new PauseMenu((IManageSprites)Game.Services.GetService(typeof(IManageSprites)), stateService);
+            pauseMenu.MainState();
+            ToDrawPauseMenu = pauseMenu.toDrawMenuClass;
 
             base.Initialize();
         }
@@ -55,12 +61,10 @@ namespace Vikingvalg
             if (stateService.GameState == "MainMenu")
             {
                 mainMenu.Update(inputService, gameTime);
-
-                //Midlertidig kode for å teste endring av State
-                if (inputService.KeyWasPressedThisFrame(Keys.Tab))
-                {
-                    stateService.ChangeState("InGame");
-                }
+            }
+            else if (stateService.GameState == "PauseMenu")
+            {
+                pauseMenu.Update(inputService, gameTime);
             }
 
             base.Update(gameTime);

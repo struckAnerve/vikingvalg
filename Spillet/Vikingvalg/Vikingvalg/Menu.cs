@@ -14,11 +14,14 @@ namespace Vikingvalg
     abstract class Menu
     {
         IManageSprites spriteService;
+        public IManageStates stateService;
+
         public List<Sprite> toDrawMenuClass = new List<Sprite>();
 
-        public Menu(IManageSprites spriteService)
+        public Menu(IManageSprites spriteService, IManageStates stateService)
         {
             this.spriteService = spriteService;
+            this.stateService = stateService;
         }
         
         //Kan kanskje defineres i denne klassen?

@@ -14,7 +14,7 @@ namespace Vikingvalg
 {
     abstract class Button : StaticSprite, IUseInput
     {
-        Menu _menuController;
+        protected Menu _menuController;
 
         protected Rectangle _clickableBox;
         protected bool hovered;

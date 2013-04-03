@@ -72,7 +72,7 @@ namespace Vikingvalg
             //Midlertidig kode for å teste endring av State
             if (inputService.KeyWasPressedThisFrame(Keys.Tab))
             {
-                stateService.ChangeState("MainMenu");
+                stateService.ChangeState("PauseMenu");
             }
 
             //Midlertidig for å teste å legge til enemy

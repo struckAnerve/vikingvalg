@@ -21,7 +21,7 @@ namespace Vikingvalg
         MenuManager menuService;
         InGameManager inGameService;
 
-        private enum _possibleGameStates { MainMenu, InGame };
+        private enum _possibleGameStates { MainMenu, InGame, PauseMenu };
         public String GameState { get; private set; }
 
         public GameStateManager(Game game)
@@ -85,6 +85,14 @@ namespace Vikingvalg
 
                     spriteService.ListsToDraw.Clear();
                     spriteService.ListsToDraw.Add(inGameService.ToDrawInGame);
+                    break;
+                case "PauseMenu":
+                    inGameService.Enabled = false;
+                    menuService.Enabled = true;
+
+                    spriteService.ListsToDraw.Clear();
+                    spriteService.ListsToDraw.Add(inGameService.ToDrawInGame);
+                    spriteService.ListsToDraw.Add(menuService.ToDrawPauseMenu);
                     break;
             }
 
