@@ -19,7 +19,7 @@ namespace Vikingvalg
         protected Rectangle _destinationRectangle;
 
         public AnimationPlayer spriteAnimation { get; set; }
-        protected String AnimationState;
+        public String AnimationState{get; protected set;}
         public String ArtName { get; protected set; }
         public float Scale { get; protected set; }
         public bool Flipped { get; set; }
@@ -56,6 +56,14 @@ namespace Vikingvalg
             Origin = origin;
             Effects = effects;
             LayerDepth = layerDepth;
+        }
+        public void idle()
+        {
+            if (AnimationState != "idle")
+            {
+                animationPlayer.TransitionToAnimation("idle", 0.2f);
+                AnimationState = "idle";
+            }
         }
     }
 }

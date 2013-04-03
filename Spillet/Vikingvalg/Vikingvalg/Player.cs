@@ -13,24 +13,9 @@ using Microsoft.Xna.Framework.Media;
 using Demina;
 namespace Vikingvalg
 {
-    class Player : AnimatedSprite, IUseInput, ICanCollide
+    class Player : AnimatedCharacter, IUseInput, ICanCollide
     {
-
-        public AnimatedSprite ColidingWith { get; set; }
-        //Hitbox til spilleren
-        private Rectangle _footBox;
-        public Rectangle FootBox 
-        {
-            get { return _footBox; }
-            set { }
-        }
-
         Dictionary<string, string> playerBoneList = new Dictionary<string, string>();
-
-        public bool BlockedLeft { get; set; }
-        public bool BlockedRight { get; set; }
-        public bool BlockedTop { get; set; }
-        public bool BlockedBottom { get; set; }
 
         public Player(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
@@ -41,10 +26,14 @@ namespace Vikingvalg
             destinationRectangle.Height= (int)(destinationRectangle.Height*scale);
 
             //Setter hitboxen til spilleren til 40px høy og bredden på spilleren / 2
-            footBoxXOffset = destinationRectangle.Width / 2;
-            footBoxYOffset = (int)(80 * scale);
+            footBoxWidth = (int)destinationRectangle.Width / 2;
+            footBoxXOffset =(int)footBoxWidth / 2;
+            footBoxYOffset = (int)(110 * scale);
+            footBoxHeight = (int)(60 * scale);
             //Plasserer boksen midstilt nederst på spilleren.
-            _footBox = new Rectangle((int)(destinationRectangle.X - footBoxXOffset), (int)(destinationRectangle.Y + footBoxYOffset), destinationRectangle.Width, (int)footBoxHeight);
+            _footBox = new Rectangle(destinationRectangle.X - footBoxXOffset, destinationRectangle.Y + footBoxYOffset, footBoxWidth, (int)footBoxHeight);
+
+            hp = 50;
 
             //Legger til alle navn på animasjoner som spilleren har, brukes for å laste inn riktige animasjoner.
             animationList.Add("block");
@@ -80,32 +69,25 @@ namespace Vikingvalg
 
         public void Update(IManageInput inputService)
         {
-
-            if (inputService.KeyIsDown(Keys.Space))
+            if (AnimationState != "slashing")
             {
-                attackSlash();
-            }
-            else if (inputService.KeyIsDown(Keys.LeftShift))
-            {
-                block();
-            }
-            //Hvis én av piltastene er nede, aktiver walk
-            else if (inputService.KeyIsDown(Keys.Left) || inputService.KeyIsDown(Keys.Down) || inputService.KeyIsDown(Keys.Up) || inputService.KeyIsDown(Keys.Right))
-            {
-                walk(inputService);
-            }
-            else //Hvis ikke, stå stille
-            {
-                idle();
-            }
-        }
-
-        public void idle()
-        {
-            if (AnimationState != "idle")
-            {
-                animationPlayer.TransitionToAnimation("idle", 0.2f);
-                AnimationState = "idle";
+                if (inputService.KeyIsDown(Keys.Space))
+                {
+                    attackSlash();
+                }
+                else if (inputService.KeyIsDown(Keys.LeftShift))
+                {
+                    block();
+                }
+                //Hvis én av piltastene er nede, aktiver walk
+                else if (inputService.KeyIsDown(Keys.Left) || inputService.KeyIsDown(Keys.Down) || inputService.KeyIsDown(Keys.Up) || inputService.KeyIsDown(Keys.Right))
+                {
+                    walk(inputService);
+                }
+                else if (animationPlayer.CurrentAnimation != "slashing") //Hvis ikke, stå stille
+                {
+                    idle();
+                }
             }
         }
         /// <summary>
@@ -123,7 +105,7 @@ namespace Vikingvalg
                 if (ColidingWith is AnimatedEnemy)
                 {
                     AnimatedEnemy enemyColidedWith = (AnimatedEnemy)ColidingWith;
-                    enemyColidedWith.Kill();
+                    enemyColidedWith.takeDamage();
                 }
             }
         }

@@ -78,6 +78,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimatedCharacter.cs" />
     <Compile Include="AnimatedEnemy.cs" />
     <Compile Include="AnimatedSprite.cs" />
     <Compile Include="BlobEnemy.cs" />

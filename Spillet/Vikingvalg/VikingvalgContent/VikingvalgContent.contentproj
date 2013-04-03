@@ -95,16 +95,6 @@
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
     </Compile>
-    <Compile Include="Animations\playerAnimation\strikeSword.anim">
-      <Name>strikeSword</Name>
-      <Importer>AnimationImporter</Importer>
-      <Processor>AnimationProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\playerAnimation\strikeSwordTop.anim">
-      <Name>strikeSwordTop</Name>
-      <Importer>AnimationImporter</Importer>
-      <Processor>AnimationProcessor</Processor>
-    </Compile>
     <Compile Include="Animations\playerAnimation\walkCycle.anim">
       <Name>walkCycle</Name>
       <Importer>AnimationImporter</Importer>
@@ -514,6 +504,13 @@
     </Compile>
     <Compile Include="Animations\blobAnimation\taunt.anim">
       <Name>taunt</Name>
+      <Importer>AnimationImporter</Importer>
+      <Processor>AnimationProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Animations\playerAnimation\strikeSword.anim">
+      <Name>strikeSword</Name>
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
     </Compile>
