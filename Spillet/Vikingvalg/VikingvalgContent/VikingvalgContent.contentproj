@@ -236,123 +236,123 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Animations\wolfanimation\bodyBack.png">
+    <Compile Include="Animations\wolfAnimation\bodyBack.png">
       <Name>bodyBack</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Animations\wolfanimation\bodyFront.png">
+    <Compile Include="Animations\wolfAnimation\bodyFront.png">
       <Name>bodyFront</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Animations\wolfanimation\frontLegBottom.png">
+    <Compile Include="Animations\wolfAnimation\frontLegBottom.png">
       <Name>frontLegBottom</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Animations\wolfanimation\frontLegMid.png">
+    <Compile Include="Animations\wolfAnimation\frontLegMid.png">
       <Name>frontLegMid</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Animations\wolfanimation\frontLegPaw.png">
+    <Compile Include="Animations\wolfAnimation\frontLegPaw.png">
       <Name>frontLegPaw</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Animations\wolfanimation\frontLegTop.png">
+    <Compile Include="Animations\wolfAnimation\frontLegTop.png">
       <Name>frontLegTop</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Animations\wolfanimation\head.png">
+    <Compile Include="Animations\wolfAnimation\head.png">
       <Name>head</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Animations\wolfanimation\howl.anim">
+    <Compile Include="Animations\wolfAnimation\howl.anim">
       <Name>howl</Name>
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Animations\wolfanimation\backLegBottom.png">
+    <Compile Include="Animations\wolfAnimation\backLegBottom.png">
       <Name>backLegBottom</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Animations\wolfanimation\backLegMid.png">
+    <Compile Include="Animations\wolfAnimation\backLegMid.png">
       <Name>backLegMid</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Animations\wolfanimation\backLegPaw.png">
+    <Compile Include="Animations\wolfAnimation\backLegPaw.png">
       <Name>backLegPaw</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Animations\wolfanimation\backLegTop.png">
+    <Compile Include="Animations\wolfAnimation\backLegTop.png">
       <Name>backLegTop</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Animations\wolfanimation\bellyBack.png">
+    <Compile Include="Animations\wolfAnimation\bellyBack.png">
       <Name>bellyBack</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Animations\wolfanimation\bellyfront.png">
+    <Compile Include="Animations\wolfAnimation\bellyfront.png">
       <Name>bellyfront</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Animations\wolfanimation\Jaw.png">
+    <Compile Include="Animations\wolfAnimation\Jaw.png">
       <Name>Jaw</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Animations\wolfanimation\tailBottom.png">
+    <Compile Include="Animations\wolfAnimation\tailBottom.png">
       <Name>tailBottom</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Animations\wolfanimation\tailTop.png">
+    <Compile Include="Animations\wolfAnimation\tailTop.png">
       <Name>tailTop</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Animations\wolfanimation\attack1.anim">
+    <Compile Include="Animations\wolfAnimation\attack1.anim">
       <Name>attack1</Name>
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
     </Compile>
-    <Compile Include="Animations\wolfanimation\idle.anim">
+    <Compile Include="Animations\wolfAnimation\idle.anim">
       <Name>idle</Name>
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
     </Compile>
-    <Compile Include="Animations\wolfanimation\attack2.anim">
+    <Compile Include="Animations\wolfAnimation\attack2.anim">
       <Name>attack2</Name>
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
     </Compile>
-    <Compile Include="Animations\wolfanimation\run.anim">
+    <Compile Include="Animations\wolfAnimation\run.anim">
       <Name>run</Name>
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
     </Compile>
-    <Compile Include="Animations\wolfanimation\taunt.anim">
+    <Compile Include="Animations\wolfAnimation\taunt.anim">
       <Name>taunt</Name>
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
     </Compile>
-    <Compile Include="Animations\wolfanimation\walk.anim">
+    <Compile Include="Animations\wolfAnimation\walk.anim">
       <Name>walk</Name>
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
@@ -375,6 +375,147 @@
       <Name>continuebutton</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Animations\blobAnimation\axeHead.png">
+      <Name>axeHead</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\bone.png">
+      <Name>bone</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\bottomLeftBlob.png">
+      <Name>bottomLeftBlob</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\bottomRightBlob.png">
+      <Name>bottomRightBlob</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\bubble1.png">
+      <Name>bubble1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\bubble2.png">
+      <Name>bubble2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\eye.png">
+      <Name>eye</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\knife.png">
+      <Name>knife</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\leftBottomBlob.png">
+      <Name>leftBottomBlob</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\leftBottomEyebrow.png">
+      <Name>leftBottomEyebrow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\leftTopBlob.png">
+      <Name>leftTopBlob</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\leftTopEyeBlob.png">
+      <Name>leftTopEyeBlob</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\leftTopEyebrow.png">
+      <Name>leftTopEyebrow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\mainBody.png">
+      <Name>mainBody</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\mouthBlob.png">
+      <Name>mouthBlob</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\rightBottomEyebrow.png">
+      <Name>rightBottomEyebrow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\rightTopEyebrow.png">
+      <Name>rightTopEyebrow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\skull.png">
+      <Name>skull</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\topBlob.png">
+      <Name>topBlob</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\topEyeBlob.png">
+      <Name>topEyeBlob</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\topLeftBlob.png">
+      <Name>topLeftBlob</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Animations\blobAnimation\idle.anim">
+      <Name>idle</Name>
+      <Importer>AnimationImporter</Importer>
+      <Processor>AnimationProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\walk.anim">
+      <Name>walk</Name>
+      <Importer>AnimationImporter</Importer>
+      <Processor>AnimationProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Animations\blobAnimation\attack1.anim">
+      <Name>attack1</Name>
+      <Importer>AnimationImporter</Importer>
+      <Processor>AnimationProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\attack2.anim">
+      <Name>attack2</Name>
+      <Importer>AnimationImporter</Importer>
+      <Processor>AnimationProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\run.anim">
+      <Name>run</Name>
+      <Importer>AnimationImporter</Importer>
+      <Processor>AnimationProcessor</Processor>
+    </Compile>
+    <Compile Include="Animations\blobAnimation\taunt.anim">
+      <Name>taunt</Name>
+      <Importer>AnimationImporter</Importer>
+      <Processor>AnimationProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
