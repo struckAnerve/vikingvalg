@@ -22,17 +22,19 @@ namespace Vikingvalg
         IManageCollision collisionService;
         IManageInput inputService;
 
-        private Player _p1;
+        private enum _possibleInGameStates { ChooseDirectionLevel, FightingLevel, MiningLevel, TownLevel };
+        public String InGameState { get; private set; }
+
+        private Player _player1;
         private List<Enemy> _enemyList = new List<Enemy>();
 
         public List<Sprite> ToDrawInGame { get; private set; }
 
+        public int level;
+
         public InGameManager(Game game)
             : base(game)
         {
-            GameComponent collisionManager = new CollisionManager(game);
-            Game.Components.Add(collisionManager);
-            Game.Services.AddService(typeof(IManageCollision), collisionManager);
         }
 
         /// <summary>
@@ -48,21 +50,17 @@ namespace Vikingvalg
 
             ToDrawInGame = new List<Sprite>();
 
+            level = 1;
+
             //Midlertidige plasseringer (?)
-            float scale = 0.5f;
-            Rectangle playerRectangle = new Rectangle(0, 0, 150, 330);
 
-            _p1 = new Player(new Rectangle(0, 0, (int)(playerRectangle.Width * scale), (int)(playerRectangle.Height * scale)), scale);
-            AddDrawable((Sprite)_p1);
+            _player1 = new Player(new Rectangle(0, 0, 150, 330), 0.5f);
+            AddDrawable((Sprite)_player1);
 
-            Rectangle wolfRectangle = new Rectangle(0, 0, 400, 267);
-            scale = 0.3f;
-            WolfEnemy wolf = new WolfEnemy(new Rectangle(300, 300, (int)(wolfRectangle.Width * scale), (int)(wolfRectangle.Height * scale)), scale);
+            WolfEnemy wolf = new WolfEnemy(new Rectangle(300, 300, 400, 267), 0.3f);
             AddDrawable((Sprite)wolf);
 
-            Rectangle blobRectangle = new Rectangle(0, 0, 400, 267);
-            scale = 0.5f;
-            BlobEnemy blob = new BlobEnemy(new Rectangle(300, 300, (int)(blobRectangle.Width * scale), (int)(blobRectangle.Height * scale)), scale);
+            BlobEnemy blob = new BlobEnemy(new Rectangle(300, 300, 400, 267), 0.5f);
             AddDrawable((Sprite)blob);
 
             base.Initialize();
@@ -145,6 +143,17 @@ namespace Vikingvalg
                 ICanCollide collideRemove = (ICanCollide)toRemove;
                 collisionService.RemoveCollidable(collideRemove);
             }
+        }
+
+        public void ChangeInGameState(String changeTo)
+        {
+            if (!Enum.IsDefined(typeof(_possibleInGameStates), changeTo))
+            {
+                Console.WriteLine("Unable to change in-game state (you are trying to change to an unkown state: '" + changeTo + "')");
+                return;
+            }
+
+            InGameState = changeTo;
         }
     }
 }
