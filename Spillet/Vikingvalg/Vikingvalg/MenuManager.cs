@@ -20,8 +20,8 @@ namespace Vikingvalg
         IManageStates stateService;
         IManageInput inputService;
 
-        Menu mainMenu;
-        Menu pauseMenu;
+        MainMenu mainMenu;
+        PauseMenu pauseMenu;
 
         //endres (?? Adrian husker ikke hvofor "endres")
         public List<Sprite> ToDrawMainMenu { get; private set; }

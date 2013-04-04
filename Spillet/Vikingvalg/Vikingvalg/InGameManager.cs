@@ -22,11 +22,13 @@ namespace Vikingvalg
         IManageCollision collisionService;
         IManageInput inputService;
 
+        private ChooseDirectionLevel _chooseDirectionlevel;
+        private FightingLevel _fightingLevel;
+
         private enum _possibleInGameStates { ChooseDirectionLevel, FightingLevel, MiningLevel, TownLevel };
         public String InGameState { get; private set; }
 
         private Player _player1;
-        private List<Enemy> _enemyList = new List<Enemy>();
 
         public List<Sprite> ToDrawInGame { get; private set; }
 
@@ -48,20 +50,16 @@ namespace Vikingvalg
             collisionService = (IManageCollision)Game.Services.GetService(typeof(IManageCollision));
             inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
 
-            ToDrawInGame = new List<Sprite>();
+            //Midlertidige plasseringer (?)
+            _player1 = new Player(new Rectangle(0, 0, 150, 330), 0.5f);
+            spriteService.LoadDrawable(_player1);
 
             level = 1;
 
-            //Midlertidige plasseringer (?)
+            _chooseDirectionlevel = new ChooseDirectionLevel(_player1, spriteService, collisionService, this);
+            _fightingLevel = new FightingLevel(_player1, spriteService, collisionService, this);
 
-            _player1 = new Player(new Rectangle(0, 0, 150, 330), 0.5f);
-            AddDrawable((Sprite)_player1);
-
-            WolfEnemy wolf = new WolfEnemy(new Rectangle(300, 300, 400, 267), 0.3f);
-            AddDrawable((Sprite)wolf);
-
-            BlobEnemy blob = new BlobEnemy(new Rectangle(100, 300, 400, 267), 0.5f);
-            AddDrawable((Sprite)blob);
+            ChangeInGameState("FightingLevel");
 
             base.Initialize();
         }
@@ -78,74 +76,16 @@ namespace Vikingvalg
                 stateService.ChangeState("PauseMenu");
             }
 
-            //Midlertidig for å teste å legge til enemy
-            if(inputService.KeyWasPressedThisFrame(Keys.D0))
+            if (InGameState == "ChooseDirectionLevel")
             {
-                AddDrawable(new Enemy(Vector2.Zero));
+                _chooseDirectionlevel.Update(inputService, gameTime);
             }
-
-            foreach (Sprite toUpdate in ToDrawInGame)
+            else if (InGameState == "FightingLevel")
             {
-                if (toUpdate is IUseInput)
-                {
-                    IUseInput needsInput = (IUseInput)toUpdate;
-                    needsInput.Update(inputService);
-                }
-                else
-                {
-                    toUpdate.Update();
-                }
-                if (toUpdate is AnimatedSprite)
-                {
-                    AnimatedSprite updatableAnimation = (AnimatedSprite)toUpdate;
-                    if (updatableAnimation.animationPlayer.Update(gameTime) == true)
-                    {
-                        updatableAnimation.idle();
-                    }
-                }
+                _fightingLevel.Update(inputService, gameTime);
             }
 
             base.Update(gameTime);
-        }
-
-        public void AddDrawable(Sprite toAdd)
-        {
-            if (toAdd == null || ToDrawInGame.Contains(toAdd))
-            {
-                Console.WriteLine("MenuManager: Unable to add drawable!");
-                return;
-            }
-
-            spriteService.LoadDrawable(toAdd);
-            ToDrawInGame.Add(toAdd);
-            if (toAdd is Enemy)
-            {
-                Enemy addEnemy = (Enemy)toAdd;
-                _enemyList.Add(addEnemy);
-            }   
-
-            if (toAdd is ICanCollide)
-            {
-                ICanCollide canCollide = (ICanCollide)toAdd;
-                collisionService.AddCollidable(canCollide);
-            }
-        }
-
-        public void RemoveDrawable(Sprite toRemove)
-        {
-            ToDrawInGame.Remove(toRemove);
-
-            if (toRemove is Enemy)
-            {
-                Enemy removeEnemy = (Enemy)toRemove;
-                _enemyList.Remove(removeEnemy);
-            } 
-
-            if (toRemove is ICanCollide)
-            {
-                ICanCollide collideRemove = (ICanCollide)toRemove;
-                collisionService.RemoveCollidable(collideRemove);
-            }
         }
 
         public void ChangeInGameState(String changeTo)
@@ -157,6 +97,18 @@ namespace Vikingvalg
             }
 
             InGameState = changeTo;
+
+            switch (InGameState)
+            {
+                case "ChooseDirectionLevel":
+                    _chooseDirectionlevel.InitializeLevel();
+                    ToDrawInGame = _chooseDirectionlevel.ToDrawInGameLevel;
+                    break;
+                case "FightingLevel":
+                    _fightingLevel.InitializeLevel();
+                    ToDrawInGame = _fightingLevel.ToDrawInGameLevel;
+                    break;
+            }
         }
     }
 }
