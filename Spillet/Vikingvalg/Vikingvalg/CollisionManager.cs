@@ -36,6 +36,15 @@ namespace Vikingvalg
             base.Initialize();
         }
 
+        public void Enable()
+        {
+            this.Enabled = true;
+        }
+        public void Disable()
+        {
+            this.Enabled = false;
+        }
+
         public void AddCollidable(ICanCollide canCollide)
         {
             if (canCollide == null || _canCollideList.Contains(canCollide))

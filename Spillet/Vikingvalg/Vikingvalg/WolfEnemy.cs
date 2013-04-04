@@ -20,6 +20,10 @@ namespace Vikingvalg
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, "wolfanimation/", scale)
         {
+            //kan flyttes til base?
+            destinationRectangle.Width = (int)(destinationRectangle.Width * scale);
+            destinationRectangle.Height = (int)(destinationRectangle.Height * scale);
+
             footBoxXOffset = (int)(20 * scale);
             footBoxYOffset = 0;
             footBoxWidth = (int)(destinationRectangle.Width + (40 * scale));

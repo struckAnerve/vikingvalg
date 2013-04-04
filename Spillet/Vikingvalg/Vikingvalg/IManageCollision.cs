@@ -9,5 +9,8 @@ namespace Vikingvalg
     {
         void AddCollidable(ICanCollide canCollide);
         void RemoveCollidable(ICanCollide toRemove);
+
+        void Enable();
+        void Disable();
     }
 }

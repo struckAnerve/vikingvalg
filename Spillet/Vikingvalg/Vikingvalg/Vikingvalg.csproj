@@ -83,14 +83,16 @@
     <Compile Include="AnimatedSprite.cs" />
     <Compile Include="BlobEnemy.cs" />
     <Compile Include="Button.cs" />
+    <Compile Include="ChooseDirectionLevel.cs" />
     <Compile Include="CollisionManager.cs" />
     <Compile Include="ContinueButton.cs" />
-    <Compile Include="Enemy.cs" />
+    <Compile Include="FightingLevel.cs" />
     <Compile Include="GameStateManager.cs" />
     <Compile Include="ICanCollide.cs" />
     <Compile Include="IManageCollision.cs" />
     <Compile Include="IManageInput.cs" />
     <Compile Include="IManageStates.cs" />
+    <Compile Include="InGameLevel.cs" />
     <Compile Include="InGameManager.cs" />
     <Compile Include="InputManager.cs" />
     <Compile Include="IUseInput.cs" />

@@ -18,6 +18,7 @@ namespace Vikingvalg
     public class GameStateManager : Microsoft.Xna.Framework.GameComponent, IManageStates
     {
         IManageSprites spriteService;
+        IManageCollision collisionService;
         MenuManager menuService;
         InGameManager inGameService;
 
@@ -30,6 +31,10 @@ namespace Vikingvalg
             DrawableGameComponent spriteManager = new SpriteManager(game);
             Game.Components.Add(spriteManager);
             Game.Services.AddService(typeof(IManageSprites), spriteManager);
+
+            GameComponent collisionManager = new CollisionManager(game);
+            Game.Components.Add(collisionManager);
+            Game.Services.AddService(typeof(IManageCollision), collisionManager);
 
             GameComponent inputManager = new InputManager(game);
             Game.Components.Add(inputManager);
@@ -51,6 +56,7 @@ namespace Vikingvalg
         public override void Initialize()
         {
             spriteService = (IManageSprites)Game.Services.GetService(typeof(IManageSprites));
+            collisionService = (IManageCollision)Game.Services.GetService(typeof(IManageCollision));
             inGameService = (InGameManager)Game.Services.GetService(typeof(InGameManager));
             menuService = (MenuManager)Game.Services.GetService(typeof(MenuManager));
 
@@ -75,6 +81,7 @@ namespace Vikingvalg
                 case "MainMenu":
                     menuService.Enabled = true;
                     inGameService.Enabled = false;
+                    collisionService.Disable();
 
                     spriteService.ListsToDraw.Clear();
                     spriteService.ListsToDraw.Add(menuService.ToDrawMainMenu);
@@ -82,6 +89,7 @@ namespace Vikingvalg
                 case "InGame":
                     inGameService.Enabled = true;
                     menuService.Enabled = false;
+                    collisionService.Enable();
 
                     spriteService.ListsToDraw.Clear();
                     spriteService.ListsToDraw.Add(inGameService.ToDrawInGame);
@@ -89,6 +97,7 @@ namespace Vikingvalg
                 case "PauseMenu":
                     inGameService.Enabled = false;
                     menuService.Enabled = true;
+                    collisionService.Disable();
 
                     spriteService.ListsToDraw.Clear();
                     spriteService.ListsToDraw.Add(inGameService.ToDrawInGame);

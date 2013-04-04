@@ -21,6 +21,10 @@ namespace Vikingvalg
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, "playerAnimation/", scale)
         {
+            //kan flyttes til base?
+            destinationRectangle.Width = (int)(destinationRectangle.Width*scale);
+            destinationRectangle.Height= (int)(destinationRectangle.Height*scale);
+
             //Setter hitboxen til spilleren til 40px høy og bredden på spilleren / 2
             footBoxWidth = (int)destinationRectangle.Width / 2;
             footBoxXOffset =(int)footBoxWidth / 2;
