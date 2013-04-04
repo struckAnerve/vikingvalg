@@ -200,7 +200,7 @@
         <X>6</X>
         <Y>-38</Y>
       </Position>
-      <Rotation>-0.6616658</Rotation>
+      <Rotation>-1.371665</Rotation>
       <Scale>
         <X>1</X>
         <Y>1</Y>
@@ -255,7 +255,7 @@
       </Scale>
     </Bone>
   </Keyframe>
-  <Keyframe frame="14" trigger="" vflip="False" hflip="False">
+  <Keyframe frame="4" trigger="" vflip="False" hflip="False">
     <Bone name="bicepL">
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
@@ -497,7 +497,7 @@
       </Scale>
     </Bone>
   </Keyframe>
-  <Keyframe frame="24" trigger="" vflip="False" hflip="False">
+  <Keyframe frame="9" trigger="" vflip="False" hflip="False">
     <Bone name="bicepL">
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
@@ -739,7 +739,7 @@
       </Scale>
     </Bone>
   </Keyframe>
-  <Keyframe frame="29" trigger="" vflip="False" hflip="False">
+  <Keyframe frame="12" trigger="strikeDown" vflip="False" hflip="False">
     <Bone name="bicepL">
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>

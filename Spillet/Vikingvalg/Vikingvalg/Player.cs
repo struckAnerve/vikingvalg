@@ -80,10 +80,19 @@ namespace Vikingvalg
                 {
                     walk(inputService);
                 }
-                else if (animationPlayer.CurrentAnimation != "slashing") //Hvis ikke, stå stille
+                else //if (animationPlayer.CurrentAnimation != "slashing") //Hvis ikke, stå stille
                 {
                     idle();
                 }
+            }
+            else if (animationPlayer.Transitioning == false && animationPlayer.CurrentKeyframeIndex > 0 && animationPlayer.CurrentKeyframeIndex == (animationPlayer.currentPlayingAnimation.Keyframes.Count() - 1))
+            {
+                if (BlockedRight == true && Flipped == false || BlockedLeft == true && Flipped == true && ColidingWith is AnimatedEnemy)
+                {
+                    AnimatedEnemy enemyColidedWith = (AnimatedEnemy)ColidingWith;
+                    enemyColidedWith.takeDamage();
+                }
+                idle();
             }
         }
         /// <summary>
@@ -95,14 +104,6 @@ namespace Vikingvalg
             {
                 animationPlayer.TransitionToAnimation("strikeSword", 0.2f);
                 AnimationState = "slashing";
-            }
-            if (BlockedRight == true && Flipped == false || BlockedLeft == true && Flipped == true)
-            {
-                if (ColidingWith is AnimatedEnemy)
-                {
-                    AnimatedEnemy enemyColidedWith = (AnimatedEnemy)ColidingWith;
-                    enemyColidedWith.takeDamage();
-                }
             }
         }
         /// <summary>

@@ -23,7 +23,8 @@ namespace Demina
 		public string CurrentAnimation { get { return currentAnimation; } }
 		public int CurrentKeyframe { get { return animations[currentAnimation].Keyframes[currentKeyframeIndex].FrameNumber; } }
 		public bool Transitioning { get { return transitioning; } }
-
+        public Animation currentPlayingAnimation { get; private set; }
+        public int CurrentKeyframeIndex { get { return currentKeyframeIndex; } }
         public float PlaySpeedMultiplier { get; set; }
 
 		public BoneTransformation[] BoneTransformations { get; protected set; }
@@ -141,6 +142,7 @@ namespace Demina
 					currentKeyframeIndex = 0;
 
 					Animation animation = animations[currentAnimation];
+                    currentPlayingAnimation = animation;
 					animation.GetBoneTransformations(BoneTransformations, transitionStates, currentKeyframeIndex, currentAnimationTime - animation.Keyframes[currentKeyframeIndex].FrameTime);
 				}
 				else
@@ -155,7 +157,7 @@ namespace Demina
 				currentAnimationTime += deltaSeconds;
 
 				Animation animation = animations[currentAnimation];
-
+                currentPlayingAnimation = animation;
 				if (currentKeyframeIndex == animation.Keyframes.Count - 1)
 				{
 					if (animation.Loop)
@@ -217,7 +219,7 @@ namespace Demina
         public void Draw(ref SpriteBatch spriteBatch, Color tintColor, Vector2 position)
         {
             Animation animation = animations[currentAnimation];
-
+            currentPlayingAnimation = animation;
             for (int boneIndex = 0; boneIndex < animation.Keyframes[0].Bones.Count; boneIndex++)
             {
                 Bone bone = animation.Keyframes[currentKeyframeIndex].Bones[boneIndex];
@@ -252,7 +254,6 @@ namespace Demina
 				return;
 
 			Animation animation = animations[currentAnimation];
-
 			flipHorizontal |= animation.Keyframes[currentKeyframeIndex].FlipHorizontally;
 			flipVertical |= animation.Keyframes[currentKeyframeIndex].FlipVertically;
 

@@ -62,6 +62,7 @@ namespace Vikingvalg
         {
             foreach (ICanCollide canCollide in _canCollideList)
             {
+          
                 canCollide.BlockedTop = false;
                 canCollide.BlockedRight = false;
                 canCollide.BlockedBottom = false;
@@ -153,6 +154,19 @@ namespace Vikingvalg
                             else if (canCollide.FootBox.Center.X >= canCollideTwo.FootBox.Center.X &&
                                 canCollide.FootBox.Center.Y <= canCollideTwo.FootBox.Center.Y)
                             {
+<<<<<<< HEAD
+                                canCollide.BlockedLeft = true;
+                                canCollideTwo.BlockedRight = true;
+                            }
+                            if (canCollide is AnimatedSprite)
+                            {
+                                if (canCollideTwo is AnimatedSprite)
+                                {
+                                    AnimatedSprite animatedSpriteColision = (AnimatedSprite)canCollideTwo;
+                                    canCollide.ColidingWith = animatedSpriteColision;
+                                }
+                            }   
+=======
                                 //hvis det er kræsjet mer fra bunnen enn fra siden
                                 if (_intersectionRectangle.Width > _intersectionRectangle.Height)
                                 {
@@ -166,19 +180,18 @@ namespace Vikingvalg
                                     canCollideTwo.BlockedRight = true;
                                 }
                             }
-                            if (canCollide is AnimatedSprite)
-                            {
-                                if (canCollideTwo is AnimatedSprite)
-                                {
-                                    AnimatedSprite animatedSpriteColision = (AnimatedSprite)canCollideTwo;
-                                    canCollide.ColidingWith = animatedSpriteColision;
-                                }
-                            }   
+                        }
+                        if (canCollideTwo is AnimatedSprite)
+                        {
+                            AnimatedSprite animatedSpriteColision = (AnimatedSprite)canCollideTwo;
+                            canCollide.ColidingWith = animatedSpriteColision;
+>>>>>>> e47fb82b84fad3871b7ae0e933fee480425f2608
                         }
                     }
                 }
                 _listToCheck.Add(canCollide);
             }
+
             base.Update(gameTime);
         }
     }

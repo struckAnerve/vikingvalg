@@ -67,7 +67,6 @@ namespace Vikingvalg
 
             base.Initialize();
         }
-
         /// <summary>
         /// Allows the game component to update itself.
         /// </summary>
@@ -100,10 +99,7 @@ namespace Vikingvalg
                 if (toUpdate is AnimatedSprite)
                 {
                     AnimatedSprite updatableAnimation = (AnimatedSprite)toUpdate;
-                    if (updatableAnimation.animationPlayer.Update(gameTime) == true)
-                    {
-                        updatableAnimation.idle();
-                    }
+                    updatableAnimation.animationPlayer.Update(gameTime);
                 }
             }
 
