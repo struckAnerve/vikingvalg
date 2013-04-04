@@ -47,7 +47,11 @@ namespace Vikingvalg
 
         public void AddCollidable(ICanCollide canCollide)
         {
-            if (canCollide == null || _canCollideList.Contains(canCollide))
+            if(_canCollideList.Contains(canCollide))
+            {
+                return;
+            }
+            if (canCollide == null)
             {
                 Console.WriteLine("Unable to add collidable!");
                 return;

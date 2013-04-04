@@ -51,7 +51,7 @@ namespace Vikingvalg
             inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
 
             //Midlertidige plasseringer (?)
-            _player1 = new Player(new Rectangle(0, 0, 150, 330), 0.5f);
+            _player1 = new Player(new Rectangle(40, 100, 150, 330), 0.5f);
             spriteService.LoadDrawable(_player1);
 
             level = 1;
@@ -59,7 +59,7 @@ namespace Vikingvalg
             _chooseDirectionlevel = new ChooseDirectionLevel(_player1, spriteService, collisionService, this);
             _fightingLevel = new FightingLevel(_player1, spriteService, collisionService, this);
 
-            ChangeInGameState("FightingLevel");
+            ChangeInGameState("ChooseDirectionLevel");
 
             base.Initialize();
         }
@@ -82,9 +82,6 @@ namespace Vikingvalg
             else if (InGameState == "FightingLevel")
             {
                 _fightingLevel.Update(inputService, gameTime);
-                    if (updatableAnimation.animationPlayer.Update(gameTime) == true)
-                    updatableAnimation.animationPlayer.Update(gameTime);
-                }
             }
 
             base.Update(gameTime);

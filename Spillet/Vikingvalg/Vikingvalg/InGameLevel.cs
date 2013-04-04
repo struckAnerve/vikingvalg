@@ -13,9 +13,9 @@ namespace Vikingvalg
 {
     abstract class InGameLevel
     {
-        InGameManager inGameService;
-        IManageSprites spriteService;
-        IManageCollision collisionService;
+        protected InGameManager inGameService;
+        protected IManageSprites spriteService;
+        protected IManageCollision collisionService;
 
         protected Player _player1;
 
@@ -36,6 +36,7 @@ namespace Vikingvalg
         public virtual void InitializeLevel()
         {
             _toDrawInGameLevel.Clear();
+            _player1.Reset();
             AddInGameLevelDrawable(_player1);
         }
 
@@ -70,9 +71,6 @@ namespace Vikingvalg
                 Console.WriteLine("InGameManager: Unable to add drawable!");
                 return;
             }
-
-            //flyttes
-            spriteService.LoadDrawable(toAdd);
 
             _toDrawInGameLevel.Add(toAdd);
 
