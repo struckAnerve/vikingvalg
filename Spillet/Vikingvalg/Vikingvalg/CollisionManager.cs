@@ -177,11 +177,13 @@ namespace Vikingvalg
                                     canCollideTwo.BlockedRight = true;
                                 }
                             }
-                            if (canCollide is AnimatedSprite)
+                            if (canCollide is Player)
                             {
                                 if (canCollideTwo is AnimatedSprite)
                                 {
+                                    Player playerCollidable = (Player)canCollide;
                                     AnimatedSprite animatedSpriteColision = (AnimatedSprite)canCollideTwo;
+                                    playerCollidable.ColidingWith = animatedSpriteColision;
                                 }
                             }   
                         }

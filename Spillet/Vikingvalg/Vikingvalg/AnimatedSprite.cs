@@ -38,6 +38,15 @@ namespace Vikingvalg
         public List<String> animationList { get; protected set; }
         public AnimationPlayer animationPlayer { get; set; }
 
+        //Hitbox til spilleren
+        protected Rectangle _footBox;
+
+        public Rectangle FootBox
+        {
+            get { return _footBox; }
+            set { }
+        }
+
         public AnimatedSprite(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
             : base(color, rotation)

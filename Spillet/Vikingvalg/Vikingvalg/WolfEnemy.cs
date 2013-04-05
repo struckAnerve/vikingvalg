@@ -21,13 +21,13 @@ namespace Vikingvalg
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, player1)
         {
             AnimationDirectory = @"wolfAnimation/";
-            setSpeed(4);
+            setSpeed(5);
             //kan flyttes til base?
             destinationRectangle.Width = (int)(destinationRectangle.Width * scale);
             destinationRectangle.Height = (int)(destinationRectangle.Height * scale);
             footBoxXOffset = (int)(20 * scale);
             footBoxYOffset = 0;
-            footBoxWidth = (int)(destinationRectangle.Width + (100 * scale));
+            footBoxWidth = (int)(destinationRectangle.Width + (300 * scale));
             footBoxHeight = (int)(60 * scale);
             _footBox = new Rectangle(destinationRectangle.X - footBoxWidth / 2 + footBoxXOffset, destinationRectangle.Y + footBoxYOffset, footBoxWidth, footBoxHeight);
 
