@@ -56,7 +56,7 @@ namespace Vikingvalg
             if (toLoad is StaticSprite)
             {
                 StaticSprite staticElement = (StaticSprite)toLoad;
-                if (!(_loadedStaticArt.ContainsKey(staticElement.ArtName)))
+                if (!(_loadedStaticArt.ContainsKey(staticElement.ArtName)) && toLoad != null)
                 {
                     _loadedStaticArt.Add(staticElement.ArtName, Game.Content.Load<Texture2D>(staticElement.ArtName));
                 }

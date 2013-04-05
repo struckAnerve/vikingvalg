@@ -68,6 +68,12 @@ namespace Vikingvalg
             : this(Vector2.Zero)
         { }
 
+        public void Reset()
+        {
+            _destinationRectangle.X = 40;
+            _destinationRectangle.Y = 100;
+        }
+
         public void Update(IManageInput inputService)
         {
             if (AnimationState != "slashing")

@@ -18,6 +18,19 @@ namespace Vikingvalg
         { }
 
         public override void InitializeLevel()
-        { }
+        {
+            base.InitializeLevel();
+ 
+        }
+
+        public override void Update(IManageInput inputService, GameTime gameTime)
+        {
+            if (_player1.FootBox.Right >= spriteService.GameWindowSize.X && _player1.FootBox.Bottom < spriteService.GameWindowSize.Y / 2)
+            {
+                inGameService.ChangeInGameState("FightingLevel");
+            }
+
+            base.Update(inputService, gameTime);
+        }
     }
 }
