@@ -22,7 +22,7 @@ namespace Vikingvalg
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale)
         {
             AnimationDirectory =  @"playerAnimation/";
-            setSpeed(3);
+            setSpeed(4);
             hp = 50;
             //kan flyttes til base?
             destinationRectangle.Width = (int)(destinationRectangle.Width*scale);

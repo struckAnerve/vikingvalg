@@ -21,6 +21,8 @@ namespace Vikingvalg
         protected Player _player1 { get; set; }
         private float xDistance;
         private float yDistance;
+        private int targetSpan = 7;
+        private int flipTimer = 0;
         private Rectangle _lastAllowedPosition;
         public AnimatedEnemy(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Player player1)
@@ -38,7 +40,8 @@ namespace Vikingvalg
         }
         public override void Update()
         {
-            xTarget = _player1.FootBox.X + _player1.FootBox.Width;
+            flipTimer--;
+            xTarget = _player1.FootBox.X + _player1.FootBox.Width+5;
             yTarget = _player1.FootBox.Y + _player1.FootBox.Height;
 
             xDistance = _footBox.X - xTarget;
@@ -80,44 +83,60 @@ namespace Vikingvalg
         {
             /* Hvis "walking" animasjonen ikke er aktiv, og AnimationState ikke er "walking"
              * aktiveres "walking" animasjonen, og bytter AnimationState til "walking" */
-            if (spriteAnimation.CurrentAnimation != "walking" && AnimationState != "walking")
+            if (_footBox.X > xTarget - targetSpan && _footBox.X < xTarget + targetSpan && _footBox.Y + _footBox.Height > yTarget - targetSpan && _footBox.Y + _footBox.Height < yTarget + targetSpan)
             {
-                animationPlayer.TransitionToAnimation("walk", 0.2f);
-                AnimationState = "walking";
+                idle();
             }
-            if (AnimationState == "walking")
+            else
             {
-                // Kode fra http://www.berecursive.com/2008/c/rotating-a-sprite-towards-an-object-in-xna //
-                //Calculate the required rotation by doing a two-variable arc-tan
-                float rotation = (float)Math.Atan2(yDistance, xDistance);
+                if (spriteAnimation.CurrentAnimation != "walking" && AnimationState != "walking")
+                {
+                    animationPlayer.TransitionToAnimation("walk", 0.2f);
+                    AnimationState = "walking";
+                }
+                if (AnimationState == "walking")
+                {    
+                    // Kode fra http://www.berecursive.com/2008/c/rotating-a-sprite-towards-an-object-in-xna //
+                    //Calculate the required rotation by doing a two-variable arc-tan
+                    float rotation = (float)Math.Atan2(yDistance, xDistance);
 
-                //Move square towards mouse by closing the gap 3 pixels per update
-                _xSpeed = (int)(_speed * Math.Cos(rotation));
-                _ySpeed = (int)(_speed * Math.Sin(rotation));
-                // Kode fra http://www.berecursive.com/2008/c/rotating-a-sprite-towards-an-object-in-xna //
+                    //Move square towards mouse by closing the gap 3 pixels per update
+                    _xSpeed = (int)(_speed * Math.Cos(rotation));
+                    _ySpeed = (int)(_speed * Math.Sin(rotation));
+                    // Kode fra http://www.berecursive.com/2008/c/rotating-a-sprite-towards-an-object-in-xna //
 
-                _footBox.X -= _xSpeed;
-                _footBox.Y -= _ySpeed;
-                if (_xSpeed >= 0)
-                {
-                    Flipped = true;
-                }
-                else
-                {
-                    Flipped = false;
-                }
-                if (BlockedBottom && _ySpeed < 0 || BlockedTop && _ySpeed > 0 && ColidingWith is AnimatedCharacter)
-                {
-                    _footBox.Y = _lastAllowedPosition.Y;
-                }
-                if (BlockedLeft && _xSpeed < 0 || BlockedRight && _xSpeed > 0 && ColidingWith is AnimatedCharacter)
-                {
-                    _footBox.X = _lastAllowedPosition.X;
-                }
-                _destinationRectangle.X = _footBox.X + footBoxWidth / 2 - footBoxXOffset;
-                _destinationRectangle.Y = _footBox.Y -footBoxXOffset;
-                _lastAllowedPosition = _footBox;
+                    _footBox.X -= _xSpeed;
+                    _footBox.Y -= _ySpeed;
+                    if (_xSpeed >= 0 || _lastAllowedPosition.X == _footBox.X && flipTimer <= 0)
+                    {
+                        Flipped = true;
+                        flipTimer = 4;
+                    }
+                    else if (_xSpeed < 0 && flipTimer <= 0) 
+                    {
+                        Flipped = false;
+                        flipTimer = 4;
+                    }
+                    /*
+                    if (BlockedLeft && _xSpeed < 0 || BlockedRight && _xSpeed > 0 && ColidingWith is AnimatedCharacter)
+                    {
+                        _footBox.X = _lastAllowedPosition.X;
+                    }
+                    */
+                    if (BlockedBottom && _ySpeed < 0 || BlockedTop && _ySpeed > 0 && ColidingWith is AnimatedCharacter)
+                    {
+                        _footBox.Y = _lastAllowedPosition.Y;
+                        if (_footBox.X == _lastAllowedPosition.X)
+                        {
+                            _footBox.X++;
+                            flipTimer = 4;
+                        }
+                    }
+                    _destinationRectangle.X = _footBox.X + footBoxWidth / 2 - footBoxXOffset;
+                    _destinationRectangle.Y = _footBox.Y -footBoxXOffset;
+                    _lastAllowedPosition = _footBox;
 
+                }
             }
         }
         public void takeDamage()

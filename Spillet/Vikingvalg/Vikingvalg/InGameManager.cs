@@ -59,7 +59,7 @@ namespace Vikingvalg
             _chooseDirectionlevel = new ChooseDirectionLevel(_player1, spriteService, collisionService, this);
             _fightingLevel = new FightingLevel(_player1, spriteService, collisionService, this);
 
-            ChangeInGameState("ChooseDirectionLevel");
+            ChangeInGameState("FightingLevel");
 
             base.Initialize();
         }

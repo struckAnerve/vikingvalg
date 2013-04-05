@@ -22,7 +22,7 @@ namespace Vikingvalg
             base.InitializeLevel();
 
             AddInGameLevelDrawable(new WolfEnemy(new Rectangle(300, 300, 400, 267), 0.3f, _player1));
-            AddInGameLevelDrawable(new BlobEnemy(new Rectangle(100, 100, 400, 267), 0.5f, _player1));
+            //AddInGameLevelDrawable(new BlobEnemy(new Rectangle(100, 100, 400, 267), 0.5f, _player1));
         }
     }
 }
