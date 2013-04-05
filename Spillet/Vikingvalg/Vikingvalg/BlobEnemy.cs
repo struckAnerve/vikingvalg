@@ -21,7 +21,7 @@ namespace Vikingvalg
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, player1)
         {
             AnimationDirectory = @"blobAnimation/";
-            setSpeed(3);
+            setSpeed(4);
             //kan flyttes til base?
             destinationRectangle.Width = (int)(destinationRectangle.Width * scale);
             destinationRectangle.Height = (int)(destinationRectangle.Height * scale);

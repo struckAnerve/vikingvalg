@@ -20,8 +20,13 @@ namespace Vikingvalg
         public override void InitializeLevel()
         {
             base.InitializeLevel();
-
-            AddInGameLevelDrawable(new WolfEnemy(new Rectangle(300, 300, 400, 267), 0.3f, _player1));
+            BlobEnemy blob = new BlobEnemy(new Rectangle(100, 100, 400, 267), 0.5f, _player1);
+            WolfEnemy wolf = new WolfEnemy(new Rectangle(300, 300, 400, 267), 0.3f, _player1);
+            AddInGameLevelDrawable(wolf);
+            AddInGameLevelDrawable(blob);
+            _player1.activeEnemy = wolf;
+            wolf.activeEnemy = wolf;
+            blob.activeEnemy = wolf;
             //AddInGameLevelDrawable(new BlobEnemy(new Rectangle(100, 100, 400, 267), 0.5f, _player1));
         }
     }

@@ -14,7 +14,6 @@ namespace Vikingvalg
     public interface ICanCollide
     {
         Rectangle FootBox { get; set; }
-        AnimatedSprite ColidingWith { get; set; }
         bool BlockedLeft { get; set; }
         bool BlockedRight { get; set; }
         bool BlockedTop { get; set; }

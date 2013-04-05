@@ -25,16 +25,10 @@ namespace Vikingvalg
 
         protected int _speed { get; set; }
         protected int _xSpeed { get; set; }
-        protected int _ySpeed {get; set; }
-        //Hitbox til spilleren
-        protected Rectangle _footBox;
+        protected int _ySpeed { get; set; }
 
-        public Rectangle FootBox
-        {
-            get { return _footBox; }
-            set { }
-        }
 
+        public AnimatedEnemy activeEnemy;
         public AnimatedCharacter(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale)

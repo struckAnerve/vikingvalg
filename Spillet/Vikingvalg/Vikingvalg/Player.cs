@@ -16,7 +16,9 @@ namespace Vikingvalg
     class Player : AnimatedCharacter, IUseInput, ICanCollide
     {
         Dictionary<string, string> playerBoneList = new Dictionary<string, string>();
-        public Rectangle targetBox { get; private set; }
+        public Rectangle targetBox;
+        public int targetBoxIncrease = 60;
+        public AnimatedEnemy activeEnemy;
         public Player(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale)
@@ -35,7 +37,7 @@ namespace Vikingvalg
             footBoxHeight = (int)(60 * scale);
             //Plasserer boksen midstilt nederst på spilleren.
             _footBox = new Rectangle(destinationRectangle.X - footBoxXOffset, destinationRectangle.Y + footBoxYOffset, footBoxWidth, (int)footBoxHeight);
-            targetBox = _footBox;
+            targetBox = new Rectangle(_footBox.X - targetBoxIncrease / 2, _footBox.Y, _footBox.Width + targetBoxIncrease, _footBox.Height);
             //Legger til alle navn på animasjoner som spilleren har, brukes for å laste inn riktige animasjoner.
             animationList.Add("block");
             animationList.Add("strikeSword");
@@ -98,10 +100,10 @@ namespace Vikingvalg
             }
             else if (animationPlayer.Transitioning == false && animationPlayer.CurrentKeyframeIndex > 0 && animationPlayer.CurrentKeyframeIndex == (animationPlayer.currentPlayingAnimation.Keyframes.Count() - 1))
             {
-                if (BlockedRight == true && Flipped == false || BlockedLeft == true && Flipped == true && ColidingWith is AnimatedEnemy)
+                if (targetBox.Intersects(activeEnemy.FootBox))
                 {
                     AnimatedEnemy enemyColidedWith = (AnimatedEnemy)ColidingWith;
-                    enemyColidedWith.takeDamage();
+                    activeEnemy.takeDamage();
                 }
                 idle();
             }
@@ -136,12 +138,12 @@ namespace Vikingvalg
                 {
                     idle();
                 }
-                else if (inputService.KeyIsDown(Keys.Right) && inputService.KeyIsUp(Keys.Left) && !BlockedRight)
+                else if (inputService.KeyIsDown(Keys.Right) && inputService.KeyIsUp(Keys.Left))
                 {
                     _destinationRectangle.X += _xSpeed;
                     Flipped = false;
                 }
-                else if (inputService.KeyIsDown(Keys.Left) && inputService.KeyIsUp(Keys.Right) && !BlockedLeft)
+                else if (inputService.KeyIsDown(Keys.Left) && inputService.KeyIsUp(Keys.Right))
                 {
                     _destinationRectangle.X -= _xSpeed;
                     Flipped = true;
@@ -154,17 +156,19 @@ namespace Vikingvalg
                 {
                     idle();
                 }
-                else if (inputService.KeyIsDown(Keys.Up) && !BlockedTop)
+                else if (inputService.KeyIsDown(Keys.Up))
                 {
                     _destinationRectangle.Y -= _xSpeed;
                 }
-                else if (inputService.KeyIsDown(Keys.Down) && !BlockedBottom)
+                else if (inputService.KeyIsDown(Keys.Down))
                 {
                     _destinationRectangle.Y += _xSpeed;
                 }
                 //Flytter hitboxen til samme sted som spilleren
                 _footBox.Y = ((int)(_destinationRectangle.Y + footBoxYOffset));
                 _footBox.X = (int)(_destinationRectangle.X - footBoxXOffset);
+                targetBox.X = (int)(_footBox.X - targetBoxIncrease / 2);
+                targetBox.Y = (int)_footBox.Y;
             }
         }
         /// <summary>
