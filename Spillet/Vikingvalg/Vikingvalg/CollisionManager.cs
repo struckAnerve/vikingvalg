@@ -17,7 +17,9 @@ namespace Vikingvalg
     /// </summary>
     public class CollisionManager : Microsoft.Xna.Framework.GameComponent, IManageCollision
     {
+        //Liste over alt på skjermen som kan kræsje
         private List<ICanCollide> _canCollideList = new List<ICanCollide>();
+        //Liste over alt på skjermen som kan kræsje utenom den det sjekkes mot
         private List<ICanCollide> _listToCheck = new List<ICanCollide>();
 
         private Rectangle _intersectionRectangle = new Rectangle();
@@ -189,6 +191,7 @@ namespace Vikingvalg
                 }
                 _listToCheck.Add(canCollide);
             }
+
             base.Update(gameTime);
         }
     }

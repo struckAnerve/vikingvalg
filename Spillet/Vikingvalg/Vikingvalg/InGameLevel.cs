@@ -74,7 +74,7 @@ namespace Vikingvalg
 
             _toDrawInGameLevel.Add(toAdd);
 
-            if (toAdd is AnimatedEnemy)
+            if (toAdd is AnimatedEnemy || toAdd is Stone)
             {
                 spriteService.LoadDrawable(toAdd);
             }
