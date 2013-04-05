@@ -27,7 +27,6 @@ namespace Vikingvalg
         protected int _xSpeed { get; set; }
         protected int _ySpeed { get; set; }
 
-
         public AnimatedEnemy activeEnemy;
         public AnimatedCharacter(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
