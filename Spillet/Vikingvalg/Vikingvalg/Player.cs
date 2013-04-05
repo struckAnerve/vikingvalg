@@ -142,12 +142,12 @@ namespace Vikingvalg
                 {
                     idle();
                 }
-                else if (inputService.KeyIsDown(Keys.Right) && inputService.KeyIsUp(Keys.Left))
+                else if (inputService.KeyIsDown(Keys.Right) && inputService.KeyIsUp(Keys.Left) && !BlockedRight)
                 {
                     _destinationRectangle.X += _xSpeed;
                     Flipped = false;
                 }
-                else if (inputService.KeyIsDown(Keys.Left) && inputService.KeyIsUp(Keys.Right))
+                else if (inputService.KeyIsDown(Keys.Left) && inputService.KeyIsUp(Keys.Right) && !BlockedLeft)
                 {
                     _destinationRectangle.X -= _xSpeed;
                     Flipped = true;
@@ -160,11 +160,11 @@ namespace Vikingvalg
                 {
                     idle();
                 }
-                else if (inputService.KeyIsDown(Keys.Up))
+                else if (inputService.KeyIsDown(Keys.Up) && !BlockedTop)
                 {
                     _destinationRectangle.Y -= _xSpeed;
                 }
-                else if (inputService.KeyIsDown(Keys.Down))
+                else if (inputService.KeyIsDown(Keys.Down) && !BlockedBottom)
                 {
                     _destinationRectangle.Y += _xSpeed;
                 }
