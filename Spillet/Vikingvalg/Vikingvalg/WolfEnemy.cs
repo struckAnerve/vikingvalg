@@ -17,32 +17,24 @@ namespace Vikingvalg
     {
 
         public WolfEnemy(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
-            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, "wolfanimation/", scale)
+            Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Player player1)
+            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, player1)
         {
+            AnimationDirectory = @"wolfAnimation/";
+            setSpeed(4);
             //kan flyttes til base?
             destinationRectangle.Width = (int)(destinationRectangle.Width * scale);
             destinationRectangle.Height = (int)(destinationRectangle.Height * scale);
-
             footBoxXOffset = (int)(20 * scale);
             footBoxYOffset = 0;
-            footBoxWidth = (int)(destinationRectangle.Width + (40 * scale));
+            footBoxWidth = (int)(destinationRectangle.Width + (100 * scale));
             footBoxHeight = (int)(60 * scale);
             _footBox = new Rectangle(destinationRectangle.X - footBoxWidth / 2 + footBoxXOffset, destinationRectangle.Y + footBoxYOffset, footBoxWidth, footBoxHeight);
 
             hp = 50;
         }
-        public WolfEnemy(Rectangle destinationRectangle, float scale)
-            : this("mm", destinationRectangle, new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.6f, scale)
-        { }
-        public WolfEnemy(Rectangle destinationRectangle)
-            : this(destinationRectangle, 1f)
-        { }
-        public WolfEnemy(Vector2 destinationPosition)
-            : this(new Rectangle((int)destinationPosition.X, (int)destinationPosition.Y, 375, 485))
-        { }
-        public WolfEnemy()
-            : this(Vector2.Zero)
-        { }       
+        public WolfEnemy(Rectangle destinationRectangle, float scale, Player player1)
+            : this("mm", destinationRectangle, new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.6f, scale, player1)
+        { }  
     }
 }

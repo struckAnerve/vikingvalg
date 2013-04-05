@@ -17,9 +17,11 @@ namespace Vikingvalg
     {
 
         public BlobEnemy(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
-            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, @"blobAnimation/", scale)
+            Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Player player1)
+            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, player1)
         {
+            AnimationDirectory = @"blobAnimation/";
+            setSpeed(3);
             //kan flyttes til base?
             destinationRectangle.Width = (int)(destinationRectangle.Width * scale);
             destinationRectangle.Height = (int)(destinationRectangle.Height * scale);
@@ -32,17 +34,8 @@ namespace Vikingvalg
 
             hp = 30;
         }
-        public BlobEnemy(Rectangle destinationRectangle, float scale)
-            : this("mm", destinationRectangle, new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.6f, scale)
-        { }
-        public BlobEnemy(Rectangle destinationRectangle)
-            : this(destinationRectangle, 1f)
-        { }
-        public BlobEnemy(Vector2 destinationPosition)
-            : this(new Rectangle((int)destinationPosition.X, (int)destinationPosition.Y, 375, 485))
-        { }
-        public BlobEnemy()
-            : this(Vector2.Zero)
+        public BlobEnemy(Rectangle destinationRectangle, float scale, Player player1)
+            : this("mm", destinationRectangle, new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.6f, scale, player1)
         { }
     }
 }

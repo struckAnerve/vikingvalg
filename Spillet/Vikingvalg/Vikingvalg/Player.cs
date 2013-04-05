@@ -16,25 +16,26 @@ namespace Vikingvalg
     class Player : AnimatedCharacter, IUseInput, ICanCollide
     {
         Dictionary<string, string> playerBoneList = new Dictionary<string, string>();
-
+        public Rectangle targetBox { get; private set; }
         public Player(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
-            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, "playerAnimation/", scale)
+            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale)
         {
+            AnimationDirectory =  @"playerAnimation/";
+            setSpeed(3);
+            hp = 50;
             //kan flyttes til base?
             destinationRectangle.Width = (int)(destinationRectangle.Width*scale);
             destinationRectangle.Height= (int)(destinationRectangle.Height*scale);
 
             //Setter hitboxen til spilleren til 40px høy og bredden på spilleren / 2
-            footBoxWidth = (int)destinationRectangle.Width / 2;
+            footBoxWidth = (int)destinationRectangle.Width;
             footBoxXOffset =(int)footBoxWidth / 2;
             footBoxYOffset = (int)(110 * scale);
             footBoxHeight = (int)(60 * scale);
             //Plasserer boksen midstilt nederst på spilleren.
             _footBox = new Rectangle(destinationRectangle.X - footBoxXOffset, destinationRectangle.Y + footBoxYOffset, footBoxWidth, (int)footBoxHeight);
-
-            hp = 50;
-
+            targetBox = _footBox;
             //Legger til alle navn på animasjoner som spilleren har, brukes for å laste inn riktige animasjoner.
             animationList.Add("block");
             animationList.Add("strikeSword");
@@ -84,7 +85,7 @@ namespace Vikingvalg
                 {
                     walk(inputService);
                 }
-                else //if (animationPlayer.CurrentAnimation != "slashing") //Hvis ikke, stå stille
+                else
                 {
                     idle();
                 }
@@ -131,12 +132,12 @@ namespace Vikingvalg
                 }
                 else if (inputService.KeyIsDown(Keys.Right) && inputService.KeyIsUp(Keys.Left) && !BlockedRight)
                 {
-                    _destinationRectangle.X += _speed;
+                    _destinationRectangle.X += _xSpeed;
                     Flipped = false;
                 }
                 else if (inputService.KeyIsDown(Keys.Left) && inputService.KeyIsUp(Keys.Right) && !BlockedLeft)
                 {
-                    _destinationRectangle.X -= _speed;
+                    _destinationRectangle.X -= _xSpeed;
                     Flipped = true;
                 }
                 else if (inputService.KeyIsUp(Keys.Up) && inputService.KeyIsUp(Keys.Down) || BlockedTop || BlockedBottom)
@@ -149,11 +150,11 @@ namespace Vikingvalg
                 }
                 else if (inputService.KeyIsDown(Keys.Up) && !BlockedTop)
                 {
-                    _destinationRectangle.Y -= _speed;
+                    _destinationRectangle.Y -= _xSpeed;
                 }
                 else if (inputService.KeyIsDown(Keys.Down) && !BlockedBottom)
                 {
-                    _destinationRectangle.Y += _speed;
+                    _destinationRectangle.Y += _xSpeed;
                 }
                 //Flytter hitboxen til samme sted som spilleren
                 _footBox.Y = ((int)(_destinationRectangle.Y + footBoxYOffset));

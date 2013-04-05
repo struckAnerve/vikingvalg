@@ -14,8 +14,6 @@ namespace Vikingvalg
 {
     public abstract class Sprite
     {
-        //Bør flyttes
-        protected int _speed = 3;
 
         //Bør flyttes
         protected int footBoxHeight { get; set; }

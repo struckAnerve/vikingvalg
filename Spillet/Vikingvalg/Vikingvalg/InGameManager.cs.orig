@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-using Demina;
+
 namespace Vikingvalg
 {
     /// <summary>
@@ -51,7 +51,7 @@ namespace Vikingvalg
             inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
 
             //Midlertidige plasseringer (?)
-            _player1 = new Player(new Rectangle(50, 100, 150, 330), 0.5f);
+            _player1 = new Player(new Rectangle(0, 0, 150, 330), 0.5f);
             spriteService.LoadDrawable(_player1);
 
             level = 1;
@@ -81,7 +81,24 @@ namespace Vikingvalg
             }
             else if (InGameState == "FightingLevel")
             {
+<<<<<<< HEAD
+                if (toUpdate is IUseInput)
+                {
+                    IUseInput needsInput = (IUseInput)toUpdate;
+                    needsInput.Update(inputService);
+                }
+                else
+                {
+                    toUpdate.Update();
+                }
+                if (toUpdate is AnimatedSprite)
+                {
+                    AnimatedSprite updatableAnimation = (AnimatedSprite)toUpdate;
+                    updatableAnimation.animationPlayer.Update(gameTime);
+                }
+=======
                 _fightingLevel.Update(inputService, gameTime);
+>>>>>>> a11b543074c675620d166c572564fd6ccde8c391
             }
 
             base.Update(gameTime);
