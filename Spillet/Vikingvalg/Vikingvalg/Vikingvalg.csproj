@@ -99,6 +99,7 @@
     <Compile Include="MainMenu.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="MenuManager.cs" />
+    <Compile Include="MiningLevel.cs" />
     <Compile Include="PauseMenu.cs" />
     <Compile Include="PlayButton.cs" />
     <Compile Include="SettingsButton.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="SpriteManager.cs" />
     <Compile Include="StaticSprite.cs" />
+    <Compile Include="Stone.cs" />
     <Compile Include="WolfEnemy.cs" />
   </ItemGroup>
   <ItemGroup>

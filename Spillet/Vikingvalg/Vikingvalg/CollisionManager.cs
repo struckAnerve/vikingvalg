@@ -17,7 +17,9 @@ namespace Vikingvalg
     /// </summary>
     public class CollisionManager : Microsoft.Xna.Framework.GameComponent, IManageCollision
     {
+        //Liste over alt på skjermen som kan kræsje
         private List<ICanCollide> _canCollideList = new List<ICanCollide>();
+        //Liste over alt på skjermen som kan kræsje utenom den det sjekkes mot
         private List<ICanCollide> _listToCheck = new List<ICanCollide>();
 
         private Rectangle _intersectionRectangle = new Rectangle();
@@ -84,22 +86,18 @@ namespace Vikingvalg
                 if (canCollide.FootBox.Y <= 0)
                 {
                     canCollide.BlockedTop = true;
-                    canCollide.ColidingWith = null;
                 }
                 else if (canCollide.FootBox.Y + canCollide.FootBox.Height >= Game.Window.ClientBounds.Height)
                 {
                     canCollide.BlockedBottom = true;
-                    canCollide.ColidingWith = null;
                 }
                 if (canCollide.FootBox.X <= 0)
                 {
                     canCollide.BlockedLeft = true;
-                    canCollide.ColidingWith = null;
                 }
                 else if (canCollide.FootBox.X + canCollide.FootBox.Width >= Game.Window.ClientBounds.Width)
                 {
                     canCollide.BlockedRight = true;
-                    canCollide.ColidingWith = null;
                 }
 
                 //Logikk for kollisjon mot andre objekter
@@ -184,7 +182,6 @@ namespace Vikingvalg
                                 if (canCollideTwo is AnimatedSprite)
                                 {
                                     AnimatedSprite animatedSpriteColision = (AnimatedSprite)canCollideTwo;
-                                    canCollide.ColidingWith = animatedSpriteColision;
                                 }
                             }   
                         }
@@ -192,6 +189,7 @@ namespace Vikingvalg
                 }
                 _listToCheck.Add(canCollide);
             }
+
             base.Update(gameTime);
         }
     }

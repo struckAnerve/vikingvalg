@@ -25,9 +25,19 @@ namespace Vikingvalg
 
         public override void Update(IManageInput inputService, GameTime gameTime)
         {
-            if (_player1.FootBox.Right >= spriteService.GameWindowSize.X && _player1.FootBox.Bottom < spriteService.GameWindowSize.Y / 2)
+            //Hvis spilleren er helt til høyre av skjermen
+            if(_player1.FootBox.Right >= spriteService.GameWindowSize.X)
             {
-                inGameService.ChangeInGameState("FightingLevel");
+                //Hvis spilleren er i øvre tredjedel av skjermen skal man endre InGameLevelState til "FightingLevel"
+                if (_player1.FootBox.Bottom < spriteService.GameWindowSize.Y / 3)
+                {
+                    inGameService.ChangeInGameState("FightingLevel");
+                }
+                //Hvis spilleren er i midtre tredjedel av skjermen skal man endre InGameLevelState til "MiningLevel"
+                else if (_player1.FootBox.Top > spriteService.GameWindowSize.Y / 3 && _player1.FootBox.Bottom < spriteService.GameWindowSize.Y - (spriteService.GameWindowSize.Y / 3))
+                {
+                    inGameService.ChangeInGameState("MiningLevel");
+                }
             }
 
             base.Update(inputService, gameTime);

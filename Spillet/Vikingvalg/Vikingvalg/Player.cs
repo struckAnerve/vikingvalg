@@ -72,6 +72,10 @@ namespace Vikingvalg
         {
             _destinationRectangle.X = 40;
             _destinationRectangle.Y = 100;
+
+            //Flytter hitboxen til samme sted som spilleren
+            _footBox.Y = ((int)(_destinationRectangle.Y + footBoxYOffset));
+            _footBox.X = (int)(_destinationRectangle.X - footBoxXOffset);
         }
 
         public void Update(IManageInput inputService)

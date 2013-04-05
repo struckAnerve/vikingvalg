@@ -15,7 +15,8 @@ namespace Vikingvalg
     {
         public FightingLevel(Player player1, IManageSprites spriteService, IManageCollision collisionService, InGameManager inGameService)
             : base(player1, spriteService, collisionService, inGameService)
-        { }
+        {
+        }
 
         public override void InitializeLevel()
         {
