@@ -96,7 +96,11 @@ namespace Vikingvalg
                 _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
                 foreach (Sprite drawable in listToDraw)
                 {
-                    drawStaticSprite(drawable);
+                    if (drawable is StaticSprite && drawable.LayerDepth <= playerDepth)
+                    {
+                        drawStaticSprite(drawable);
+
+                    }
                 }
                 _spriteBatch.End();
 
@@ -109,7 +113,11 @@ namespace Vikingvalg
                 _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
                 foreach (Sprite drawable in listToDraw)
                 {
-                    drawStaticSprite(drawable);
+                    if (drawable is StaticSprite && drawable.LayerDepth > playerDepth)
+                    {
+                        drawStaticSprite(drawable);
+
+                    }
                 }
                 _spriteBatch.End();
             }
@@ -128,12 +136,9 @@ namespace Vikingvalg
         }
         private void drawStaticSprite(Sprite drawable)
         {
-            if (drawable is StaticSprite && drawable.LayerDepth > playerDepth)
-            {
                 StaticSprite staticDrawableSprite = (StaticSprite)drawable;
                 _spriteBatch.Draw(_loadedStaticArt[staticDrawableSprite.ArtName], staticDrawableSprite.DestinationRectangle, staticDrawableSprite.SourceRectangle, staticDrawableSprite.Color, staticDrawableSprite.Rotation,
                     staticDrawableSprite.Origin, staticDrawableSprite.Effects, 1f);
-            }
         }
         private void drawAnimatedSprite(Sprite drawable)
         {
@@ -143,7 +148,7 @@ namespace Vikingvalg
                 //De neste to linjene er lagt til fordi Karl Gustav Georgsen var dum og tegnet ulven feil vei.
                 bool animFlip = drawableAnimation.Flipped;
                 if (drawableAnimation is WolfEnemy) animFlip = !drawableAnimation.Flipped;
-                drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, animFlip, drawableAnimation.Rotation, drawableAnimation.Scale, drawable.LayerDepth);
+                drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, animFlip, drawableAnimation.Rotation, drawableAnimation.Scale);
                 /*
                 //Husk å fjerne
                 if (drawableAnimation is AnimatedCharacter)
