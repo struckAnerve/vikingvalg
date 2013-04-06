@@ -15,7 +15,7 @@
   <Texture>leftTopEyeBlob.png</Texture>
   <Texture>topBlob.png</Texture>
   <Texture>topEyeBlob.png</Texture>
-  <Texture>mouthBlob.png</Texture>
+  <Texture>mouthBlob1.png</Texture>
   <Texture>rightTopEyebrow.png</Texture>
   <Texture>leftBottomEyebrow.png</Texture>
   <Texture>rightBottomEyebrow.png</Texture>
@@ -23,6 +23,12 @@
   <Texture>eye.png</Texture>
   <Texture>bubble2.png</Texture>
   <Texture>bubble1.png</Texture>
+  <Texture>mouthBlob2.png</Texture>
+  <Texture>mouthBlob3.png</Texture>
+  <Texture>spitBubble1.png</Texture>
+  <Texture>spitBubble2.png</Texture>
+  <Texture>spitBubble3.png</Texture>
+  <Texture>spitBubble4.png</Texture>
   <Keyframe frame="0" trigger="" vflip="False" hflip="False">
     <Bone name="body">
       <Hidden>False</Hidden>
@@ -130,13 +136,29 @@
         <X>42.5</X>
         <Y>-72.5</Y>
       </Position>
-      <Rotation>-1.960001</Rotation>
+      <Rotation>-0.520002</Rotation>
       <Scale>
         <X>1</X>
         <Y>1</Y>
       </Scale>
     </Bone>
-    <Bone name="mouthBlob">
+    <Bone name="spitBubble">
+      <Hidden>True</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>8</ParentIndex>
+      <TextureIndex>23</TextureIndex>
+      <Position>
+        <X>65.1053</X>
+        <Y>-33.15569</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="mouthBlob1">
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
@@ -156,7 +178,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>7</ParentIndex>
+      <ParentIndex>8</ParentIndex>
       <TextureIndex>20</TextureIndex>
       <Position>
         <X>59</X>
@@ -204,7 +226,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>10</ParentIndex>
+      <ParentIndex>11</ParentIndex>
       <TextureIndex>19</TextureIndex>
       <Position>
         <X>-22</X>
@@ -236,7 +258,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>12</ParentIndex>
+      <ParentIndex>13</ParentIndex>
       <TextureIndex>18</TextureIndex>
       <Position>
         <X>-20</X>
@@ -252,7 +274,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>12</ParentIndex>
+      <ParentIndex>13</ParentIndex>
       <TextureIndex>17</TextureIndex>
       <Position>
         <X>-24.5</X>
@@ -316,11 +338,11 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>17</ParentIndex>
+      <ParentIndex>18</ParentIndex>
       <TextureIndex>20</TextureIndex>
       <Position>
-        <X>-22.5</X>
-        <Y>-12.5</Y>
+        <X>-29.12763</X>
+        <Y>-18.90896</Y>
       </Position>
       <Rotation>0</Rotation>
       <Scale>
@@ -332,7 +354,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>17</ParentIndex>
+      <ParentIndex>18</ParentIndex>
       <TextureIndex>18</TextureIndex>
       <Position>
         <X>-113.5</X>
@@ -348,7 +370,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>17</ParentIndex>
+      <ParentIndex>18</ParentIndex>
       <TextureIndex>15</TextureIndex>
       <Position>
         <X>-122</X>
@@ -367,8 +389,8 @@
       <ParentIndex>0</ParentIndex>
       <TextureIndex>6</TextureIndex>
       <Position>
-        <X>23</X>
-        <Y>44</Y>
+        <X>32.10374</X>
+        <Y>42.54327</Y>
       </Position>
       <Rotation>0</Rotation>
       <Scale>
@@ -380,7 +402,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>21</ParentIndex>
+      <ParentIndex>22</ParentIndex>
       <TextureIndex>18</TextureIndex>
       <Position>
         <X>136</X>
@@ -396,7 +418,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>21</ParentIndex>
+      <ParentIndex>22</ParentIndex>
       <TextureIndex>16</TextureIndex>
       <Position>
         <X>145</X>
@@ -428,7 +450,875 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>24</ParentIndex>
+      <ParentIndex>25</ParentIndex>
+      <TextureIndex>19</TextureIndex>
+      <Position>
+        <X>-29</X>
+        <Y>23.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+  </Keyframe>
+  <Keyframe frame="9" trigger="" vflip="False" hflip="False">
+    <Bone name="body">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>-1</ParentIndex>
+      <TextureIndex>0</TextureIndex>
+      <Position>
+        <X>-0.5</X>
+        <Y>11</Y>
+      </Position>
+      <Rotation>-0.06</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="knife">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>4</TextureIndex>
+      <Position>
+        <X>27.75734</X>
+        <Y>-49.88655</Y>
+      </Position>
+      <Rotation>-0.05142857</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bone">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>3</TextureIndex>
+      <Position>
+        <X>-72</X>
+        <Y>40</Y>
+      </Position>
+      <Rotation>0.135</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="axehead">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>2</TextureIndex>
+      <Position>
+        <X>61.54534</X>
+        <Y>39.6428</Y>
+      </Position>
+      <Rotation>0.0835714</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="skull">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>1</TextureIndex>
+      <Position>
+        <X>-4.728473</X>
+        <Y>-2.287655</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topEyeBlobk">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>12</TextureIndex>
+      <Position>
+        <X>23.77798</X>
+        <Y>-16.21051</Y>
+      </Position>
+      <Rotation>-0.05785749</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topRightEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>5</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>42.5</X>
+        <Y>-72.5</Y>
+      </Position>
+      <Rotation>-1.960001</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="spitBubble">
+      <Hidden>True</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>8</ParentIndex>
+      <TextureIndex>23</TextureIndex>
+      <Position>
+        <X>65.1053</X>
+        <Y>-33.15569</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="mouthBlob1">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>13</TextureIndex>
+      <Position>
+        <X>42.28605</X>
+        <Y>1.78537</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="mouthBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>8</ParentIndex>
+      <TextureIndex>20</TextureIndex>
+      <Position>
+        <X>59</X>
+        <Y>11.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topRightEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>5</ParentIndex>
+      <TextureIndex>14</TextureIndex>
+      <Position>
+        <X>46.5</X>
+        <Y>-78.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>11</TextureIndex>
+      <Position>
+        <X>16.62649</X>
+        <Y>-75.1835</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>11</ParentIndex>
+      <TextureIndex>19</TextureIndex>
+      <Position>
+        <X>-22</X>
+        <Y>-6.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEyeBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>10</TextureIndex>
+      <Position>
+        <X>-46</X>
+        <Y>-67</Y>
+      </Position>
+      <Rotation>-0.06428571</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>13</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>-20</X>
+        <Y>-19</Y>
+      </Position>
+      <Rotation>-2.26</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>13</ParentIndex>
+      <TextureIndex>17</TextureIndex>
+      <Position>
+        <X>-24.5</X>
+        <Y>-26.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftblob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>9</TextureIndex>
+      <Position>
+        <X>-15.81297</X>
+        <Y>-39.31865</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftTopBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>8</TextureIndex>
+      <Position>
+        <X>-68.31865</X>
+        <Y>-37.18703</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>7</TextureIndex>
+      <Position>
+        <X>-12.15199</X>
+        <Y>23.39904</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>20</TextureIndex>
+      <Position>
+        <X>-29.12763</X>
+        <Y>-18.90896</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>-113.5</X>
+        <Y>-31.5</Y>
+      </Position>
+      <Rotation>0.1500003</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>15</TextureIndex>
+      <Position>
+        <X>-122</X>
+        <Y>-38</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>6</TextureIndex>
+      <Position>
+        <X>30.49519</X>
+        <Y>42.51822</Y>
+      </Position>
+      <Rotation>-0.01285714</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>22</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>136</X>
+        <Y>31</Y>
+      </Position>
+      <Rotation>1.5</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>22</ParentIndex>
+      <TextureIndex>16</TextureIndex>
+      <Position>
+        <X>145</X>
+        <Y>30.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomLeftBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>5</TextureIndex>
+      <Position>
+        <X>-65.46955</X>
+        <Y>40.62814</Y>
+      </Position>
+      <Rotation>-0.02571429</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bubbleBottomLeft">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>25</ParentIndex>
+      <TextureIndex>19</TextureIndex>
+      <Position>
+        <X>-29</X>
+        <Y>23.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+  </Keyframe>
+  <Keyframe frame="12" trigger="" vflip="False" hflip="False">
+    <Bone name="body">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>-1</ParentIndex>
+      <TextureIndex>0</TextureIndex>
+      <Position>
+        <X>-0.5</X>
+        <Y>11</Y>
+      </Position>
+      <Rotation>-0.06</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="knife">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>4</TextureIndex>
+      <Position>
+        <X>27.30294</X>
+        <Y>-48.75462</Y>
+      </Position>
+      <Rotation>-0.02057143</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bone">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>3</TextureIndex>
+      <Position>
+        <X>-72</X>
+        <Y>40</Y>
+      </Position>
+      <Rotation>0.054</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="axehead">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>2</TextureIndex>
+      <Position>
+        <X>61.21814</X>
+        <Y>38.65712</Y>
+      </Position>
+      <Rotation>0.03342856</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="skull">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>1</TextureIndex>
+      <Position>
+        <X>-1.648016</X>
+        <Y>1.704245</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topEyeBlobk">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>12</TextureIndex>
+      <Position>
+        <X>40.91412</X>
+        <Y>-23.44599</Y>
+      </Position>
+      <Rotation>-0.0471432</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topRightEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>5</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>42.5</X>
+        <Y>-72.5</Y>
+      </Position>
+      <Rotation>-1.690001</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="spitBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>8</ParentIndex>
+      <TextureIndex>23</TextureIndex>
+      <Position>
+        <X>65.1053</X>
+        <Y>-33.15569</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="mouthBlob1">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>21</TextureIndex>
+      <Position>
+        <X>73.66965</X>
+        <Y>-4.622844</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="mouthBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>8</ParentIndex>
+      <TextureIndex>20</TextureIndex>
+      <Position>
+        <X>59</X>
+        <Y>11.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topRightEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>5</ParentIndex>
+      <TextureIndex>14</TextureIndex>
+      <Position>
+        <X>46.5</X>
+        <Y>-78.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>11</TextureIndex>
+      <Position>
+        <X>21.05059</X>
+        <Y>-78.0734</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>11</ParentIndex>
+      <TextureIndex>19</TextureIndex>
+      <Position>
+        <X>-22</X>
+        <Y>-6.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEyeBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>10</TextureIndex>
+      <Position>
+        <X>-46</X>
+        <Y>-67</Y>
+      </Position>
+      <Rotation>-0.02571428</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEye">
+      <Hidden>True</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>13</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>-20</X>
+        <Y>-19</Y>
+      </Position>
+      <Rotation>-1.95</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>13</ParentIndex>
+      <TextureIndex>17</TextureIndex>
+      <Position>
+        <X>-24.5</X>
+        <Y>-26.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftblob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>9</TextureIndex>
+      <Position>
+        <X>-18.76532</X>
+        <Y>-38.0577</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftTopBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>8</TextureIndex>
+      <Position>
+        <X>-69.32746</X>
+        <Y>-36.47481</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>7</TextureIndex>
+      <Position>
+        <X>-14.54858</X>
+        <Y>23.98496</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>20</TextureIndex>
+      <Position>
+        <X>-29.12763</X>
+        <Y>-18.90896</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>-113.5</X>
+        <Y>-31.5</Y>
+      </Position>
+      <Rotation>-0.4800003</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>15</TextureIndex>
+      <Position>
+        <X>-122</X>
+        <Y>-38</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>6</TextureIndex>
+      <Position>
+        <X>36.15997</X>
+        <Y>41.01233</Y>
+      </Position>
+      <Rotation>-0.07514286</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>22</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>136</X>
+        <Y>31</Y>
+      </Position>
+      <Rotation>2</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>22</ParentIndex>
+      <TextureIndex>16</TextureIndex>
+      <Position>
+        <X>145</X>
+        <Y>30.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomLeftBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>5</TextureIndex>
+      <Position>
+        <X>-68.18782</X>
+        <Y>40.85126</Y>
+      </Position>
+      <Rotation>-0.01028571</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bubbleBottomLeft">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>25</ParentIndex>
       <TextureIndex>19</TextureIndex>
       <Position>
         <X>-29</X>
@@ -465,10 +1355,10 @@
       <ParentIndex>0</ParentIndex>
       <TextureIndex>4</TextureIndex>
       <Position>
-        <X>28.17809</X>
-        <Y>-50.93464</Y>
+        <X>27</X>
+        <Y>-48</Y>
       </Position>
-      <Rotation>-0.08</Rotation>
+      <Rotation>0</Rotation>
       <Scale>
         <X>1</X>
         <Y>1</Y>
@@ -484,7 +1374,7 @@
         <X>-72</X>
         <Y>40</Y>
       </Position>
-      <Rotation>0.21</Rotation>
+      <Rotation>0</Rotation>
       <Scale>
         <X>1</X>
         <Y>1</Y>
@@ -497,10 +1387,10 @@
       <ParentIndex>0</ParentIndex>
       <TextureIndex>2</TextureIndex>
       <Position>
-        <X>61.8483</X>
-        <Y>40.55546</Y>
+        <X>61</X>
+        <Y>38</Y>
       </Position>
-      <Rotation>0.13</Rotation>
+      <Rotation>0</Rotation>
       <Scale>
         <X>1</X>
         <Y>1</Y>
@@ -513,8 +1403,8 @@
       <ParentIndex>0</ParentIndex>
       <TextureIndex>1</TextureIndex>
       <Position>
-        <X>-6.408952</X>
-        <Y>6.627619</Y>
+        <X>0</X>
+        <Y>0</Y>
       </Position>
       <Rotation>0</Rotation>
       <Scale>
@@ -529,8 +1419,8 @@
       <ParentIndex>0</ParentIndex>
       <TextureIndex>12</TextureIndex>
       <Position>
-        <X>40.00001</X>
-        <Y>-23</Y>
+        <X>52.3382</X>
+        <Y>-28.26963</Y>
       </Position>
       <Rotation>-0.04000035</Rotation>
       <Scale>
@@ -548,21 +1438,37 @@
         <X>42.5</X>
         <Y>-72.5</Y>
       </Position>
-      <Rotation>-1.960001</Rotation>
+      <Rotation>-1.780001</Rotation>
       <Scale>
         <X>1</X>
         <Y>1</Y>
       </Scale>
     </Bone>
-    <Bone name="mouthBlob">
+    <Bone name="spitBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>8</ParentIndex>
+      <TextureIndex>24</TextureIndex>
+      <Position>
+        <X>106.3137</X>
+        <Y>-68.7487</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="mouthBlob1">
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
       <ParentIndex>0</ParentIndex>
-      <TextureIndex>13</TextureIndex>
+      <TextureIndex>22</TextureIndex>
       <Position>
-        <X>58.09715</X>
-        <Y>-1.737157</Y>
+        <X>87.70457</X>
+        <Y>-10.97841</Y>
       </Position>
       <Rotation>0</Rotation>
       <Scale>
@@ -574,7 +1480,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>7</ParentIndex>
+      <ParentIndex>8</ParentIndex>
       <TextureIndex>20</TextureIndex>
       <Position>
         <X>59</X>
@@ -609,8 +1515,8 @@
       <ParentIndex>0</ParentIndex>
       <TextureIndex>11</TextureIndex>
       <Position>
-        <X>25.40735</X>
-        <Y>-78.41275</Y>
+        <X>24</X>
+        <Y>-80</Y>
       </Position>
       <Rotation>0</Rotation>
       <Scale>
@@ -622,7 +1528,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>10</ParentIndex>
+      <ParentIndex>11</ParentIndex>
       <TextureIndex>19</TextureIndex>
       <Position>
         <X>-22</X>
@@ -644,7 +1550,7 @@
         <X>-46</X>
         <Y>-67</Y>
       </Position>
-      <Rotation>-0.09999999</Rotation>
+      <Rotation>0</Rotation>
       <Scale>
         <X>1</X>
         <Y>1</Y>
@@ -654,7 +1560,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>12</ParentIndex>
+      <ParentIndex>13</ParentIndex>
       <TextureIndex>18</TextureIndex>
       <Position>
         <X>-20</X>
@@ -670,7 +1576,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>12</ParentIndex>
+      <ParentIndex>13</ParentIndex>
       <TextureIndex>17</TextureIndex>
       <Position>
         <X>-24.5</X>
@@ -689,8 +1595,8 @@
       <ParentIndex>0</ParentIndex>
       <TextureIndex>9</TextureIndex>
       <Position>
-        <X>-20.67359</X>
-        <Y>-38.21527</Y>
+        <X>-20.73356</X>
+        <Y>-37.21707</Y>
       </Position>
       <Rotation>0</Rotation>
       <Scale>
@@ -705,8 +1611,8 @@
       <ParentIndex>0</ParentIndex>
       <TextureIndex>8</TextureIndex>
       <Position>
-        <X>-67.38457</X>
-        <Y>-37.84649</Y>
+        <X>-70</X>
+        <Y>-36</Y>
       </Position>
       <Rotation>0</Rotation>
       <Scale>
@@ -734,11 +1640,11 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>17</ParentIndex>
+      <ParentIndex>18</ParentIndex>
       <TextureIndex>20</TextureIndex>
       <Position>
-        <X>-22.5</X>
-        <Y>-12.5</Y>
+        <X>-29.12763</X>
+        <Y>-18.90896</Y>
       </Position>
       <Rotation>0</Rotation>
       <Scale>
@@ -750,13 +1656,13 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>17</ParentIndex>
+      <ParentIndex>18</ParentIndex>
       <TextureIndex>18</TextureIndex>
       <Position>
         <X>-113.5</X>
         <Y>-31.5</Y>
       </Position>
-      <Rotation>0.9499999</Rotation>
+      <Rotation>-1.919999</Rotation>
       <Scale>
         <X>1</X>
         <Y>1</Y>
@@ -766,7 +1672,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>17</ParentIndex>
+      <ParentIndex>18</ParentIndex>
       <TextureIndex>15</TextureIndex>
       <Position>
         <X>-122</X>
@@ -785,10 +1691,10 @@
       <ParentIndex>0</ParentIndex>
       <TextureIndex>6</TextureIndex>
       <Position>
-        <X>23</X>
-        <Y>44</Y>
+        <X>50.31119</X>
+        <Y>39.62981</Y>
       </Position>
-      <Rotation>-0.02</Rotation>
+      <Rotation>-0.11</Rotation>
       <Scale>
         <X>1</X>
         <Y>1</Y>
@@ -798,13 +1704,13 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>21</ParentIndex>
+      <ParentIndex>22</ParentIndex>
       <TextureIndex>18</TextureIndex>
       <Position>
         <X>136</X>
         <Y>31</Y>
       </Position>
-      <Rotation>0</Rotation>
+      <Rotation>2.62</Rotation>
       <Scale>
         <X>1</X>
         <Y>1</Y>
@@ -814,7 +1720,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>21</ParentIndex>
+      <ParentIndex>22</ParentIndex>
       <TextureIndex>16</TextureIndex>
       <Position>
         <X>145</X>
@@ -836,7 +1742,7 @@
         <X>-70</X>
         <Y>41</Y>
       </Position>
-      <Rotation>-0.04</Rotation>
+      <Rotation>0</Rotation>
       <Scale>
         <X>1</X>
         <Y>1</Y>
@@ -846,7 +1752,2611 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>24</ParentIndex>
+      <ParentIndex>25</ParentIndex>
+      <TextureIndex>19</TextureIndex>
+      <Position>
+        <X>-29</X>
+        <Y>23.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+  </Keyframe>
+  <Keyframe frame="16" trigger="" vflip="False" hflip="False">
+    <Bone name="body">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>-1</ParentIndex>
+      <TextureIndex>0</TextureIndex>
+      <Position>
+        <X>-0.5</X>
+        <Y>11</Y>
+      </Position>
+      <Rotation>-0.06</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="knife">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>4</TextureIndex>
+      <Position>
+        <X>27</X>
+        <Y>-48</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bone">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>3</TextureIndex>
+      <Position>
+        <X>-72</X>
+        <Y>40</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="axehead">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>2</TextureIndex>
+      <Position>
+        <X>61</X>
+        <Y>38</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="skull">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>1</TextureIndex>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topEyeBlobk">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>12</TextureIndex>
+      <Position>
+        <X>50.69311</X>
+        <Y>-27.56701</Y>
+      </Position>
+      <Rotation>-0.04666702</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topRightEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>5</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>42.5</X>
+        <Y>-72.5</Y>
+      </Position>
+      <Rotation>-1.960001</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="spitBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>8</ParentIndex>
+      <TextureIndex>25</TextureIndex>
+      <Position>
+        <X>155.0106</X>
+        <Y>-128.937</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="mouthBlob1">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>21</TextureIndex>
+      <Position>
+        <X>86.0075</X>
+        <Y>-9.410686</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="mouthBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>8</ParentIndex>
+      <TextureIndex>20</TextureIndex>
+      <Position>
+        <X>59</X>
+        <Y>11.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topRightEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>5</ParentIndex>
+      <TextureIndex>14</TextureIndex>
+      <Position>
+        <X>46.5</X>
+        <Y>-78.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>11</TextureIndex>
+      <Position>
+        <X>24</X>
+        <Y>-80</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>11</ParentIndex>
+      <TextureIndex>19</TextureIndex>
+      <Position>
+        <X>-22</X>
+        <Y>-6.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEyeBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>10</TextureIndex>
+      <Position>
+        <X>-46</X>
+        <Y>-67</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>13</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>-20</X>
+        <Y>-19</Y>
+      </Position>
+      <Rotation>-2.26</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>13</ParentIndex>
+      <TextureIndex>17</TextureIndex>
+      <Position>
+        <X>-24.5</X>
+        <Y>-26.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftblob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>9</TextureIndex>
+      <Position>
+        <X>-20.23575</X>
+        <Y>-37.72146</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftTopBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>8</TextureIndex>
+      <Position>
+        <X>-70</X>
+        <Y>-36</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>7</TextureIndex>
+      <Position>
+        <X>-15.86014</X>
+        <Y>24.05883</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>20</TextureIndex>
+      <Position>
+        <X>-29.12763</X>
+        <Y>-18.90896</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>-113.5</X>
+        <Y>-31.5</Y>
+      </Position>
+      <Rotation>-2.7</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>15</TextureIndex>
+      <Position>
+        <X>-122</X>
+        <Y>-38</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>6</TextureIndex>
+      <Position>
+        <X>51.12951</X>
+        <Y>42.68438</Y>
+      </Position>
+      <Rotation>-0.12</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>22</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>136</X>
+        <Y>31</Y>
+      </Position>
+      <Rotation>3.029999</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>22</ParentIndex>
+      <TextureIndex>16</TextureIndex>
+      <Position>
+        <X>145</X>
+        <Y>30.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomLeftBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>5</TextureIndex>
+      <Position>
+        <X>-70</X>
+        <Y>41</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bubbleBottomLeft">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>25</ParentIndex>
+      <TextureIndex>19</TextureIndex>
+      <Position>
+        <X>-29</X>
+        <Y>23.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+  </Keyframe>
+  <Keyframe frame="18" trigger="" vflip="False" hflip="False">
+    <Bone name="body">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>-1</ParentIndex>
+      <TextureIndex>0</TextureIndex>
+      <Position>
+        <X>-0.5</X>
+        <Y>11</Y>
+      </Position>
+      <Rotation>-0.06</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="knife">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>4</TextureIndex>
+      <Position>
+        <X>27</X>
+        <Y>-48</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bone">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>3</TextureIndex>
+      <Position>
+        <X>-72</X>
+        <Y>40</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="axehead">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>2</TextureIndex>
+      <Position>
+        <X>61</X>
+        <Y>38</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="skull">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>1</TextureIndex>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topEyeBlobk">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>12</TextureIndex>
+      <Position>
+        <X>49.04802</X>
+        <Y>-26.8644</Y>
+      </Position>
+      <Rotation>-0.05333368</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topRightEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>5</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>42.5</X>
+        <Y>-72.5</Y>
+      </Position>
+      <Rotation>-1.960001</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="spitBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>8</ParentIndex>
+      <TextureIndex>26</TextureIndex>
+      <Position>
+        <X>203.986</X>
+        <Y>-177.0868</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="mouthBlob1">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>13</TextureIndex>
+      <Position>
+        <X>71.33385</X>
+        <Y>-8.62249</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="mouthBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>8</ParentIndex>
+      <TextureIndex>20</TextureIndex>
+      <Position>
+        <X>59</X>
+        <Y>11.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topRightEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>5</ParentIndex>
+      <TextureIndex>14</TextureIndex>
+      <Position>
+        <X>46.5</X>
+        <Y>-78.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>11</TextureIndex>
+      <Position>
+        <X>24</X>
+        <Y>-80</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>11</ParentIndex>
+      <TextureIndex>19</TextureIndex>
+      <Position>
+        <X>-22</X>
+        <Y>-6.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEyeBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>10</TextureIndex>
+      <Position>
+        <X>-46</X>
+        <Y>-67</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>13</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>-20</X>
+        <Y>-19</Y>
+      </Position>
+      <Rotation>-2.26</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>13</ParentIndex>
+      <TextureIndex>17</TextureIndex>
+      <Position>
+        <X>-24.5</X>
+        <Y>-26.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftblob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>9</TextureIndex>
+      <Position>
+        <X>-19.73794</X>
+        <Y>-38.22585</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftTopBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>8</TextureIndex>
+      <Position>
+        <X>-70</X>
+        <Y>-36</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>7</TextureIndex>
+      <Position>
+        <X>-15.57396</X>
+        <Y>23.74209</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>20</TextureIndex>
+      <Position>
+        <X>-29.12763</X>
+        <Y>-18.90896</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomEye">
+      <Hidden>True</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>-113.5</X>
+        <Y>-31.5</Y>
+      </Position>
+      <Rotation>-2.77</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>15</TextureIndex>
+      <Position>
+        <X>-122</X>
+        <Y>-38</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>6</TextureIndex>
+      <Position>
+        <X>38.09293</X>
+        <Y>42.90305</Y>
+      </Position>
+      <Rotation>-0.08</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightEye">
+      <Hidden>True</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>22</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>136</X>
+        <Y>31</Y>
+      </Position>
+      <Rotation>3.079999</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>22</ParentIndex>
+      <TextureIndex>16</TextureIndex>
+      <Position>
+        <X>145</X>
+        <Y>30.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomLeftBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>5</TextureIndex>
+      <Position>
+        <X>-70</X>
+        <Y>41</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bubbleBottomLeft">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>25</ParentIndex>
+      <TextureIndex>19</TextureIndex>
+      <Position>
+        <X>-29</X>
+        <Y>23.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+  </Keyframe>
+  <Keyframe frame="20" trigger="" vflip="False" hflip="False">
+    <Bone name="body">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>-1</ParentIndex>
+      <TextureIndex>0</TextureIndex>
+      <Position>
+        <X>-0.5</X>
+        <Y>11</Y>
+      </Position>
+      <Rotation>-0.06</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="knife">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>4</TextureIndex>
+      <Position>
+        <X>27</X>
+        <Y>-48</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bone">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>3</TextureIndex>
+      <Position>
+        <X>-72</X>
+        <Y>40</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="axehead">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>2</TextureIndex>
+      <Position>
+        <X>61</X>
+        <Y>38</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="skull">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>1</TextureIndex>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topEyeBlobk">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>12</TextureIndex>
+      <Position>
+        <X>47.40292</X>
+        <Y>-26.16178</Y>
+      </Position>
+      <Rotation>-0.06000035</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topRightEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>5</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>42.5</X>
+        <Y>-72.5</Y>
+      </Position>
+      <Rotation>-1.960001</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="spitBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>8</ParentIndex>
+      <TextureIndex>26</TextureIndex>
+      <Position>
+        <X>207.7558</X>
+        <Y>-171.0135</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="mouthBlob1">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>13</TextureIndex>
+      <Position>
+        <X>69.63679</X>
+        <Y>-7.054764</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="mouthBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>8</ParentIndex>
+      <TextureIndex>20</TextureIndex>
+      <Position>
+        <X>59</X>
+        <Y>11.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topRightEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>5</ParentIndex>
+      <TextureIndex>14</TextureIndex>
+      <Position>
+        <X>46.5</X>
+        <Y>-78.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>11</TextureIndex>
+      <Position>
+        <X>24</X>
+        <Y>-80</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>11</ParentIndex>
+      <TextureIndex>19</TextureIndex>
+      <Position>
+        <X>-22</X>
+        <Y>-6.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEyeBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>10</TextureIndex>
+      <Position>
+        <X>-46</X>
+        <Y>-67</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>13</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>-20</X>
+        <Y>-19</Y>
+      </Position>
+      <Rotation>-2.26</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>13</ParentIndex>
+      <TextureIndex>17</TextureIndex>
+      <Position>
+        <X>-24.5</X>
+        <Y>-26.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftblob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>9</TextureIndex>
+      <Position>
+        <X>-19.24013</X>
+        <Y>-38.73024</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftTopBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>8</TextureIndex>
+      <Position>
+        <X>-70</X>
+        <Y>-36</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>7</TextureIndex>
+      <Position>
+        <X>-15.28779</X>
+        <Y>23.42535</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>20</TextureIndex>
+      <Position>
+        <X>-29.12763</X>
+        <Y>-18.90896</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>-113.5</X>
+        <Y>-31.5</Y>
+      </Position>
+      <Rotation>-1.943333</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>15</TextureIndex>
+      <Position>
+        <X>-122</X>
+        <Y>-38</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>6</TextureIndex>
+      <Position>
+        <X>35.97661</X>
+        <Y>44.77953</Y>
+      </Position>
+      <Rotation>-0.08</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>22</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>136</X>
+        <Y>31</Y>
+      </Position>
+      <Rotation>2.395555</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>22</ParentIndex>
+      <TextureIndex>16</TextureIndex>
+      <Position>
+        <X>145</X>
+        <Y>30.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomLeftBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>5</TextureIndex>
+      <Position>
+        <X>-70</X>
+        <Y>41</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bubbleBottomLeft">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>25</ParentIndex>
+      <TextureIndex>19</TextureIndex>
+      <Position>
+        <X>-29</X>
+        <Y>23.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+  </Keyframe>
+  <Keyframe frame="25" trigger="" vflip="False" hflip="False">
+    <Bone name="body">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>-1</ParentIndex>
+      <TextureIndex>0</TextureIndex>
+      <Position>
+        <X>-0.5</X>
+        <Y>11</Y>
+      </Position>
+      <Rotation>-0.06</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="knife">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>4</TextureIndex>
+      <Position>
+        <X>27</X>
+        <Y>-48</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bone">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>3</TextureIndex>
+      <Position>
+        <X>-72</X>
+        <Y>40</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="axehead">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>2</TextureIndex>
+      <Position>
+        <X>61</X>
+        <Y>38</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="skull">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>1</TextureIndex>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topEyeBlobk">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>12</TextureIndex>
+      <Position>
+        <X>43.29019</X>
+        <Y>-24.40524</Y>
+      </Position>
+      <Rotation>-0.07666701</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topRightEye">
+      <Hidden>True</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>5</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>42.5</X>
+        <Y>-72.5</Y>
+      </Position>
+      <Rotation>-1.960001</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="spitBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>8</ParentIndex>
+      <TextureIndex>26</TextureIndex>
+      <Position>
+        <X>207.9074</X>
+        <Y>-159.8934</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="mouthBlob1">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>13</TextureIndex>
+      <Position>
+        <X>65.39413</X>
+        <Y>-3.135451</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="mouthBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>8</ParentIndex>
+      <TextureIndex>20</TextureIndex>
+      <Position>
+        <X>59</X>
+        <Y>11.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topRightEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>5</ParentIndex>
+      <TextureIndex>14</TextureIndex>
+      <Position>
+        <X>46.5</X>
+        <Y>-78.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>11</TextureIndex>
+      <Position>
+        <X>24</X>
+        <Y>-80</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>11</ParentIndex>
+      <TextureIndex>19</TextureIndex>
+      <Position>
+        <X>-22</X>
+        <Y>-6.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEyeBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>10</TextureIndex>
+      <Position>
+        <X>-46</X>
+        <Y>-67</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>13</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>-20</X>
+        <Y>-19</Y>
+      </Position>
+      <Rotation>-2.26</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>13</ParentIndex>
+      <TextureIndex>17</TextureIndex>
+      <Position>
+        <X>-24.5</X>
+        <Y>-26.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftblob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>9</TextureIndex>
+      <Position>
+        <X>-17.99562</X>
+        <Y>-39.99121</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftTopBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>8</TextureIndex>
+      <Position>
+        <X>-70</X>
+        <Y>-36</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>7</TextureIndex>
+      <Position>
+        <X>-14.57235</X>
+        <Y>22.63349</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>20</TextureIndex>
+      <Position>
+        <X>-29.12763</X>
+        <Y>-18.90896</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>-113.5</X>
+        <Y>-31.5</Y>
+      </Position>
+      <Rotation>0.1233335</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>15</TextureIndex>
+      <Position>
+        <X>-122</X>
+        <Y>-38</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>6</TextureIndex>
+      <Position>
+        <X>36.1565</X>
+        <Y>41.78492</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>22</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>136</X>
+        <Y>31</Y>
+      </Position>
+      <Rotation>0.6844442</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>22</ParentIndex>
+      <TextureIndex>16</TextureIndex>
+      <Position>
+        <X>145</X>
+        <Y>30.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomLeftBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>5</TextureIndex>
+      <Position>
+        <X>-70</X>
+        <Y>41</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bubbleBottomLeft">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>25</ParentIndex>
+      <TextureIndex>19</TextureIndex>
+      <Position>
+        <X>-29</X>
+        <Y>23.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+  </Keyframe>
+  <Keyframe frame="27" trigger="" vflip="False" hflip="False">
+    <Bone name="body">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>-1</ParentIndex>
+      <TextureIndex>0</TextureIndex>
+      <Position>
+        <X>-0.5</X>
+        <Y>11</Y>
+      </Position>
+      <Rotation>-0.06</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="knife">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>4</TextureIndex>
+      <Position>
+        <X>27</X>
+        <Y>-48</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bone">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>3</TextureIndex>
+      <Position>
+        <X>-72</X>
+        <Y>40</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="axehead">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>2</TextureIndex>
+      <Position>
+        <X>61</X>
+        <Y>38</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="skull">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>1</TextureIndex>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topEyeBlobk">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>12</TextureIndex>
+      <Position>
+        <X>41.6451</X>
+        <Y>-23.70262</Y>
+      </Position>
+      <Rotation>-0.08333368</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topRightEye">
+      <Hidden>True</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>5</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>42.5</X>
+        <Y>-72.5</Y>
+      </Position>
+      <Rotation>-1.960001</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="spitBubble">
+      <Hidden>True</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>8</ParentIndex>
+      <TextureIndex>26</TextureIndex>
+      <Position>
+        <X>208.9826</X>
+        <Y>-158.991</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="mouthBlob1">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>13</TextureIndex>
+      <Position>
+        <X>63.69706</X>
+        <Y>-1.567725</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="mouthBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>8</ParentIndex>
+      <TextureIndex>20</TextureIndex>
+      <Position>
+        <X>59</X>
+        <Y>11.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topRightEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>5</ParentIndex>
+      <TextureIndex>14</TextureIndex>
+      <Position>
+        <X>46.5</X>
+        <Y>-78.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>11</TextureIndex>
+      <Position>
+        <X>24</X>
+        <Y>-80</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>11</ParentIndex>
+      <TextureIndex>19</TextureIndex>
+      <Position>
+        <X>-22</X>
+        <Y>-6.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEyeBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>10</TextureIndex>
+      <Position>
+        <X>-46</X>
+        <Y>-67</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>13</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>-20</X>
+        <Y>-19</Y>
+      </Position>
+      <Rotation>-2.26</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>13</ParentIndex>
+      <TextureIndex>17</TextureIndex>
+      <Position>
+        <X>-24.5</X>
+        <Y>-26.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftblob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>9</TextureIndex>
+      <Position>
+        <X>-17.49781</X>
+        <Y>-40.49561</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftTopBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>8</TextureIndex>
+      <Position>
+        <X>-70</X>
+        <Y>-36</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>7</TextureIndex>
+      <Position>
+        <X>-14.28617</X>
+        <Y>22.31674</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>20</TextureIndex>
+      <Position>
+        <X>-29.12763</X>
+        <Y>-18.90896</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>-113.5</X>
+        <Y>-31.5</Y>
+      </Position>
+      <Rotation>0.9499999</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>15</TextureIndex>
+      <Position>
+        <X>-122</X>
+        <Y>-38</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>6</TextureIndex>
+      <Position>
+        <X>35.15829</X>
+        <Y>41.72496</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>22</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>136</X>
+        <Y>31</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>22</ParentIndex>
+      <TextureIndex>16</TextureIndex>
+      <Position>
+        <X>145</X>
+        <Y>30.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomLeftBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>5</TextureIndex>
+      <Position>
+        <X>-70</X>
+        <Y>41</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bubbleBottomLeft">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>25</ParentIndex>
+      <TextureIndex>19</TextureIndex>
+      <Position>
+        <X>-29</X>
+        <Y>23.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+  </Keyframe>
+  <Keyframe frame="28" trigger="" vflip="False" hflip="False">
+    <Bone name="body">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>-1</ParentIndex>
+      <TextureIndex>0</TextureIndex>
+      <Position>
+        <X>-0.5</X>
+        <Y>11</Y>
+      </Position>
+      <Rotation>-0.06</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="knife">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>4</TextureIndex>
+      <Position>
+        <X>27</X>
+        <Y>-48</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bone">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>3</TextureIndex>
+      <Position>
+        <X>-72</X>
+        <Y>40</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="axehead">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>2</TextureIndex>
+      <Position>
+        <X>61</X>
+        <Y>38</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="skull">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>1</TextureIndex>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topEyeBlobk">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>12</TextureIndex>
+      <Position>
+        <X>40.82255</X>
+        <Y>-23.35131</Y>
+      </Position>
+      <Rotation>-0.08666702</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topRightEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>5</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>42.5</X>
+        <Y>-72.5</Y>
+      </Position>
+      <Rotation>-1.960001</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="spitBubble">
+      <Hidden>True</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>8</ParentIndex>
+      <TextureIndex>26</TextureIndex>
+      <Position>
+        <X>190.3884</X>
+        <Y>-73.53407</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="mouthBlob1">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>13</TextureIndex>
+      <Position>
+        <X>62.84853</X>
+        <Y>-0.7838625</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="mouthBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>8</ParentIndex>
+      <TextureIndex>20</TextureIndex>
+      <Position>
+        <X>59</X>
+        <Y>11.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topRightEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>5</ParentIndex>
+      <TextureIndex>14</TextureIndex>
+      <Position>
+        <X>46.5</X>
+        <Y>-78.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>11</TextureIndex>
+      <Position>
+        <X>24</X>
+        <Y>-80</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>11</ParentIndex>
+      <TextureIndex>19</TextureIndex>
+      <Position>
+        <X>-22</X>
+        <Y>-6.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEyeBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>10</TextureIndex>
+      <Position>
+        <X>-46</X>
+        <Y>-67</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>13</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>-20</X>
+        <Y>-19</Y>
+      </Position>
+      <Rotation>-2.26</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>13</ParentIndex>
+      <TextureIndex>17</TextureIndex>
+      <Position>
+        <X>-24.5</X>
+        <Y>-26.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="topLeftblob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>9</TextureIndex>
+      <Position>
+        <X>-17.2489</X>
+        <Y>-40.7478</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftTopBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>8</TextureIndex>
+      <Position>
+        <X>-70</X>
+        <Y>-36</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>7</TextureIndex>
+      <Position>
+        <X>-14.14309</X>
+        <Y>22.15837</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBubble">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>20</TextureIndex>
+      <Position>
+        <X>-29.12763</X>
+        <Y>-18.90896</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>-113.5</X>
+        <Y>-31.5</Y>
+      </Position>
+      <Rotation>0.9499999</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="leftBottomEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>18</ParentIndex>
+      <TextureIndex>15</TextureIndex>
+      <Position>
+        <X>-122</X>
+        <Y>-38</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>6</TextureIndex>
+      <Position>
+        <X>34.10014</X>
+        <Y>42.6632</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightEye">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>22</ParentIndex>
+      <TextureIndex>18</TextureIndex>
+      <Position>
+        <X>136</X>
+        <Y>31</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomRightEyebrow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>22</ParentIndex>
+      <TextureIndex>16</TextureIndex>
+      <Position>
+        <X>145</X>
+        <Y>30.5</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bottomLeftBlob">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>0</ParentIndex>
+      <TextureIndex>5</TextureIndex>
+      <Position>
+        <X>-70</X>
+        <Y>41</Y>
+      </Position>
+      <Rotation>0</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
+    <Bone name="bubbleBottomLeft">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>25</ParentIndex>
       <TextureIndex>19</TextureIndex>
       <Position>
         <X>-29</X>

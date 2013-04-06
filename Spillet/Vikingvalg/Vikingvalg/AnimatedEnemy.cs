@@ -29,8 +29,8 @@ namespace Vikingvalg
         bool attackRight = true;
         private Rectangle _lastAllowedPosition;
         public AnimatedEnemy(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Player player1)
-            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale)
+            Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Player player1, int hitPoints)
+            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, hitPoints)
         {
             yPosArray = new int[] { 0, -150, -100, 0, 100, 150 };
             _player1 = player1;
@@ -41,13 +41,19 @@ namespace Vikingvalg
             animationList.Add("walk");
             animationList.Add("run");
             animationList.Add("taunt");
-
         }
         public override void Update()
         {
             setLayerDepth((float)(_footBox.Bottom / 70f));
-            
-            walk();
+            if (AnimationState != "attacking")
+            {
+                walk();
+            }
+            else if (animationPlayer.Transitioning == false && animationPlayer.CurrentKeyframeIndex > 0 && animationPlayer.CurrentKeyframeIndex == (animationPlayer.currentPlayingAnimation.Keyframes.Count() - 1))
+            {
+                _player1.takeDamage();
+                idle();
+            }
         }
         public void taunt()
         {
@@ -73,7 +79,7 @@ namespace Vikingvalg
             if (spriteAnimation.CurrentAnimation != "attack2" && AnimationState != "attacking")
             {
                 animationPlayer.TransitionToAnimation("attack2", 0.2f);
-                AnimationState = "attack2";
+                AnimationState = "attacking";
             }
         }
         public void attackFormation()
@@ -90,24 +96,34 @@ namespace Vikingvalg
             }
             yTarget = _player1.FootBox.Y + _player1.FootBox.Height;
             yDistance = _footBox.Y + _footBox.Height - yTarget;
+            if (withinRangeOfTarget() && AnimationState != "attacking" && rand.Next(0, 100) > 95)
+            {
+                if (rand.Next(0, 2) < 1) attack1();
+                else attack2();
+            }
         }
         public void waitingFormation()
         {
-            yTarget = _player1.FootBox.Y + _player1.FootBox.Height + yPosArray[mobIndex];
             // y = sqrt(300^2 - tall^2)
             if (rInt(0, 1000) >= 999)
             {
                 positionRight = !positionRight;
             }
             if (positionRight){
+                yTarget = _player1.FootBox.Y + _player1.FootBox.Height + yPosArray[mobIndex];
                 xTarget = _player1.FootBox.Right + 100 + (int)((Math.Sqrt(Math.Pow(200, 2) - Math.Pow(yPosArray[mobIndex], 2)) * 1.2));
                 xDistance = _footBox.Left - xTarget;
             }
             else if (!positionRight)
             {
+                yTarget = _player1.FootBox.Y + _player1.FootBox.Height + (yPosArray[mobIndex]*-1);
                 xTarget = _player1.FootBox.Left - 100 - (int)((Math.Sqrt(Math.Pow(200, 2) - Math.Pow((yPosArray[mobIndex] * -1), 2)) * 1.2));
                 xDistance = _footBox.Right - xTarget;
-            } 
+            }
+            if (withinRangeOfTarget())
+            {
+                idle();
+            }
             
             yDistance = _footBox.Y + _footBox.Height - yTarget;
         }
@@ -123,7 +139,6 @@ namespace Vikingvalg
             {
                 if (attackRight) Flipped = true;
                 else Flipped = false;
-                idle();
             }
             else
             {
@@ -154,12 +169,14 @@ namespace Vikingvalg
                     _destinationRectangle.X = _footBox.Center.X - footBoxXOffset;
                     _destinationRectangle.Y = _footBox.Y - footBoxXOffset;
                     _lastAllowedPosition = _footBox;
+                    healthbar.setPosition(_destinationRectangle);
                 }
             }
         }
         public void takeDamage()
         {
             hp -= 10;
+            healthbar.updateHealtBar(hp);
             if (hp <= 0) Console.WriteLine("Dead");
         }
         private bool blocked()
@@ -168,7 +185,7 @@ namespace Vikingvalg
             return false;
         }
         private bool withinRangeOfTarget(){
-            if (_footBox.Bottom > yTarget - targetSpan && _footBox.Bottom < yTarget + targetSpan)
+            if (_footBox.Bottom > yTarget + 6 - targetSpan && _footBox.Bottom < yTarget + targetSpan)
             {
                 if (attackRight)
                     return (_footBox.Left > xTarget - targetSpan && _footBox.Left < xTarget + targetSpan);

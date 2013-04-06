@@ -87,7 +87,6 @@ namespace Vikingvalg
         {
             foreach (List<Sprite> listToDraw in ListsToDraw)
             {
-
                 foreach (Sprite spr in listToDraw)
                 {
                     if (spr is Player)
@@ -99,6 +98,16 @@ namespace Vikingvalg
                     if (drawable is StaticSprite && drawable.LayerDepth <= playerDepth)
                     {
                         drawStaticSprite(drawable);
+                    }
+                    else if (drawable is AnimatedCharacter)
+                    {
+                        AnimatedCharacter drawableCharacter = (AnimatedCharacter)drawable;
+                        if (drawableCharacter.healthbar != null)
+                        {
+                            drawStaticSprite(drawableCharacter.healthbar.healthContainerSprite);
+                            drawStaticSprite(drawableCharacter.healthbar.healthBarSprite);
+                        }
+                        
                     }
                 }
                 _spriteBatch.End();
@@ -115,7 +124,6 @@ namespace Vikingvalg
                     if (drawable is StaticSprite && drawable.LayerDepth > playerDepth)
                     {
                         drawStaticSprite(drawable);
-
                     }
                 }
                 _spriteBatch.End();

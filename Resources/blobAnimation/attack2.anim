@@ -143,7 +143,7 @@
       </Scale>
     </Bone>
     <Bone name="spitBubble">
-      <Hidden>False</Hidden>
+      <Hidden>True</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
       <ParentIndex>8</ParentIndex>
@@ -389,8 +389,8 @@
       <ParentIndex>0</ParentIndex>
       <TextureIndex>6</TextureIndex>
       <Position>
-        <X>23</X>
-        <Y>44</Y>
+        <X>32.10374</X>
+        <Y>42.54327</Y>
       </Position>
       <Rotation>0</Rotation>
       <Scale>
@@ -577,7 +577,7 @@
       </Scale>
     </Bone>
     <Bone name="spitBubble">
-      <Hidden>False</Hidden>
+      <Hidden>True</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
       <ParentIndex>8</ParentIndex>
@@ -1257,10 +1257,10 @@
       <ParentIndex>0</ParentIndex>
       <TextureIndex>6</TextureIndex>
       <Position>
-        <X>25.99808</X>
-        <Y>43.40729</Y>
+        <X>36.15997</X>
+        <Y>41.01233</Y>
       </Position>
-      <Rotation>-0.005142857</Rotation>
+      <Rotation>-0.07514286</Rotation>
       <Scale>
         <X>1</X>
         <Y>1</Y>
@@ -1451,8 +1451,8 @@
       <ParentIndex>8</ParentIndex>
       <TextureIndex>24</TextureIndex>
       <Position>
-        <X>108.169</X>
-        <Y>-49.603</Y>
+        <X>106.3137</X>
+        <Y>-68.7487</Y>
       </Position>
       <Rotation>0</Rotation>
       <Scale>
@@ -1691,10 +1691,10 @@
       <ParentIndex>0</ParentIndex>
       <TextureIndex>6</TextureIndex>
       <Position>
-        <X>23</X>
-        <Y>44</Y>
+        <X>50.31119</X>
+        <Y>39.62981</Y>
       </Position>
-      <Rotation>0</Rotation>
+      <Rotation>-0.11</Rotation>
       <Scale>
         <X>1</X>
         <Y>1</Y>
@@ -1885,8 +1885,8 @@
       <ParentIndex>8</ParentIndex>
       <TextureIndex>25</TextureIndex>
       <Position>
-        <X>146.8202</X>
-        <Y>-59.30281</Y>
+        <X>155.0106</X>
+        <Y>-128.937</Y>
       </Position>
       <Rotation>0</Rotation>
       <Scale>
@@ -2125,10 +2125,10 @@
       <ParentIndex>0</ParentIndex>
       <TextureIndex>6</TextureIndex>
       <Position>
-        <X>23</X>
-        <Y>44</Y>
+        <X>51.12951</X>
+        <Y>42.68438</Y>
       </Position>
-      <Rotation>0</Rotation>
+      <Rotation>-0.12</Rotation>
       <Scale>
         <X>1</X>
         <Y>1</Y>
@@ -2319,8 +2319,8 @@
       <ParentIndex>8</ParentIndex>
       <TextureIndex>26</TextureIndex>
       <Position>
-        <X>184.4133</X>
-        <Y>-68.06435</Y>
+        <X>203.986</X>
+        <Y>-177.0868</Y>
       </Position>
       <Rotation>0</Rotation>
       <Scale>
@@ -2559,10 +2559,10 @@
       <ParentIndex>0</ParentIndex>
       <TextureIndex>6</TextureIndex>
       <Position>
-        <X>23</X>
-        <Y>44</Y>
+        <X>38.09293</X>
+        <Y>42.90305</Y>
       </Position>
-      <Rotation>0</Rotation>
+      <Rotation>-0.08</Rotation>
       <Scale>
         <X>1</X>
         <Y>1</Y>
@@ -2753,8 +2753,8 @@
       <ParentIndex>8</ParentIndex>
       <TextureIndex>26</TextureIndex>
       <Position>
-        <X>185.6083</X>
-        <Y>-69.15829</Y>
+        <X>207.7558</X>
+        <Y>-171.0135</Y>
       </Position>
       <Rotation>0</Rotation>
       <Scale>
@@ -2993,10 +2993,10 @@
       <ParentIndex>0</ParentIndex>
       <TextureIndex>6</TextureIndex>
       <Position>
-        <X>23</X>
-        <Y>44</Y>
+        <X>35.97661</X>
+        <Y>44.77953</Y>
       </Position>
-      <Rotation>0</Rotation>
+      <Rotation>-0.08</Rotation>
       <Scale>
         <X>1</X>
         <Y>1</Y>
@@ -3187,8 +3187,8 @@
       <ParentIndex>8</ParentIndex>
       <TextureIndex>26</TextureIndex>
       <Position>
-        <X>188.5958</X>
-        <Y>-71.89315</Y>
+        <X>207.9074</X>
+        <Y>-159.8934</Y>
       </Position>
       <Rotation>0</Rotation>
       <Scale>
@@ -3427,8 +3427,8 @@
       <ParentIndex>0</ParentIndex>
       <TextureIndex>6</TextureIndex>
       <Position>
-        <X>23</X>
-        <Y>44</Y>
+        <X>36.1565</X>
+        <Y>41.78492</Y>
       </Position>
       <Rotation>0</Rotation>
       <Scale>
@@ -3615,14 +3615,14 @@
       </Scale>
     </Bone>
     <Bone name="spitBubble">
-      <Hidden>False</Hidden>
+      <Hidden>True</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
       <ParentIndex>8</ParentIndex>
       <TextureIndex>26</TextureIndex>
       <Position>
-        <X>189.7908</X>
-        <Y>-72.98709</Y>
+        <X>208.9826</X>
+        <Y>-158.991</Y>
       </Position>
       <Rotation>0</Rotation>
       <Scale>
@@ -3861,8 +3861,8 @@
       <ParentIndex>0</ParentIndex>
       <TextureIndex>6</TextureIndex>
       <Position>
-        <X>23</X>
-        <Y>44</Y>
+        <X>35.15829</X>
+        <Y>41.72496</Y>
       </Position>
       <Rotation>0</Rotation>
       <Scale>
@@ -4295,8 +4295,8 @@
       <ParentIndex>0</ParentIndex>
       <TextureIndex>6</TextureIndex>
       <Position>
-        <X>23</X>
-        <Y>44</Y>
+        <X>34.10014</X>
+        <Y>42.6632</Y>
       </Position>
       <Rotation>0</Rotation>
       <Scale>
