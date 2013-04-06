@@ -102,7 +102,7 @@ namespace Vikingvalg
                     else if (drawable is AnimatedCharacter)
                     {
                         AnimatedCharacter drawableCharacter = (AnimatedCharacter)drawable;
-                        if (drawableCharacter.healthbar != null)
+                        if (drawableCharacter.healthbar != null && _loadedStaticArt.ContainsKey(drawableCharacter.healthbar.healthBarSprite.ArtName))
                         {
                             drawStaticSprite(drawableCharacter.healthbar.healthContainerSprite);
                             drawStaticSprite(drawableCharacter.healthbar.healthBarSprite);
