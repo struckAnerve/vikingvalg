@@ -867,8 +867,8 @@
       <ParentIndex>-1</ParentIndex>
       <TextureIndex>0</TextureIndex>
       <Position>
-        <X>48</X>
-        <Y>-7.5</Y>
+        <X>109</X>
+        <Y>-29.5</Y>
       </Position>
       <Rotation>-0.06</Rotation>
       <Scale>
@@ -1203,10 +1203,10 @@
       <ParentIndex>0</ParentIndex>
       <TextureIndex>6</TextureIndex>
       <Position>
-        <X>39.15109</X>
-        <Y>41.96486</Y>
+        <X>59.05513</X>
+        <Y>44.16233</Y>
       </Position>
-      <Rotation>0.08000001</Rotation>
+      <Rotation>-0.02999999</Rotation>
       <Scale>
         <X>1</X>
         <Y>1</Y>

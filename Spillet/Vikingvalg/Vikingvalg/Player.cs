@@ -25,7 +25,7 @@ namespace Vikingvalg
 
         public Player(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
-            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale)
+            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, 50)
         {
             AnimationDirectory =  @"playerAnimation/";
             setSpeed(4);
@@ -191,6 +191,7 @@ namespace Vikingvalg
                 _footBox.X = (int)(_destinationRectangle.X - footBoxXOffset);
                 targetBox.X = (int)(_footBox.X - targetBoxXDif / 2);
                 targetBox.Y = (int)_footBox.Y - targetBoxYDif / 2;
+                healthbar.setPosition(_destinationRectangle);
             }
         }
         /// <summary>
@@ -203,6 +204,20 @@ namespace Vikingvalg
                 animationPlayer.TransitionToAnimation("block", 0.2f);
                 AnimationState = "blocking";
             }
+        }
+        public void takeDamage()
+        {
+            if (AnimationState == "blocking")
+            {
+                hp -= 3;
+            }
+            else
+            {
+                hp -= 10;
+            }
+            healthbar.updateHealtBar(hp);
+            Console.WriteLine(hp);
+            if (hp <= 0) Console.WriteLine("dead");
         }
 
     }

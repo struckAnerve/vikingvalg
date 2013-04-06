@@ -87,7 +87,6 @@ namespace Vikingvalg
         {
             foreach (List<Sprite> listToDraw in ListsToDraw)
             {
-
                 foreach (Sprite spr in listToDraw)
                 {
                     if (spr is Player)
@@ -96,7 +95,20 @@ namespace Vikingvalg
                 _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
                 foreach (Sprite drawable in listToDraw)
                 {
-                    drawStaticSprite(drawable);
+                    if (drawable is StaticSprite && drawable.LayerDepth <= playerDepth)
+                    {
+                        drawStaticSprite(drawable);
+                    }
+                    else if (drawable is AnimatedCharacter)
+                    {
+                        AnimatedCharacter drawableCharacter = (AnimatedCharacter)drawable;
+                        if (drawableCharacter.healthbar != null)
+                        {
+                            drawStaticSprite(drawableCharacter.healthbar.healthContainerSprite);
+                            drawStaticSprite(drawableCharacter.healthbar.healthBarSprite);
+                        }
+                        
+                    }
                 }
                 _spriteBatch.End();
 
@@ -109,7 +121,10 @@ namespace Vikingvalg
                 _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
                 foreach (Sprite drawable in listToDraw)
                 {
-                    drawStaticSprite(drawable);
+                    if (drawable is StaticSprite && drawable.LayerDepth > playerDepth)
+                    {
+                        drawStaticSprite(drawable);
+                    }
                 }
                 _spriteBatch.End();
             }
@@ -128,12 +143,9 @@ namespace Vikingvalg
         }
         private void drawStaticSprite(Sprite drawable)
         {
-            if (drawable is StaticSprite && drawable.LayerDepth > playerDepth)
-            {
                 StaticSprite staticDrawableSprite = (StaticSprite)drawable;
                 _spriteBatch.Draw(_loadedStaticArt[staticDrawableSprite.ArtName], staticDrawableSprite.DestinationRectangle, staticDrawableSprite.SourceRectangle, staticDrawableSprite.Color, staticDrawableSprite.Rotation,
                     staticDrawableSprite.Origin, staticDrawableSprite.Effects, 1f);
-            }
         }
         private void drawAnimatedSprite(Sprite drawable)
         {

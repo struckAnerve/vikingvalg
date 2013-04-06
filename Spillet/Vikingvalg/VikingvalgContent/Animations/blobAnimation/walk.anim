@@ -15,7 +15,7 @@
   <Texture>leftTopEyeBlob.png</Texture>
   <Texture>topBlob.png</Texture>
   <Texture>topEyeBlob.png</Texture>
-  <Texture>mouthBlob.png</Texture>
+  <Texture>mouthBlob1.png</Texture>
   <Texture>rightTopEyebrow.png</Texture>
   <Texture>leftBottomEyebrow.png</Texture>
   <Texture>rightBottomEyebrow.png</Texture>
@@ -136,7 +136,7 @@
         <Y>1</Y>
       </Scale>
     </Bone>
-    <Bone name="mouthBlob">
+    <Bone name="mouthBlob1">
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
@@ -554,7 +554,7 @@
         <Y>1</Y>
       </Scale>
     </Bone>
-    <Bone name="mouthBlob">
+    <Bone name="mouthBlob1">
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>

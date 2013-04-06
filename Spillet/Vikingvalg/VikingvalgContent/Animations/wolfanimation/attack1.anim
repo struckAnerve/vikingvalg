@@ -202,7 +202,7 @@
       <ParentIndex>-1</ParentIndex>
       <TextureIndex>0</TextureIndex>
       <Position>
-        <X>152</X>
+        <X>28</X>
         <Y>-120</Y>
       </Position>
       <Rotation>0</Rotation>
@@ -588,8 +588,8 @@
       <ParentIndex>-1</ParentIndex>
       <TextureIndex>0</TextureIndex>
       <Position>
-        <X>34.66666</X>
-        <Y>-130</Y>
+        <X>-179</X>
+        <Y>-143</Y>
       </Position>
       <Rotation>0</Rotation>
       <Scale>
@@ -974,8 +974,8 @@
       <ParentIndex>-1</ParentIndex>
       <TextureIndex>0</TextureIndex>
       <Position>
-        <X>34.66666</X>
-        <Y>-130</Y>
+        <X>-151</X>
+        <Y>-151</Y>
       </Position>
       <Rotation>0</Rotation>
       <Scale>

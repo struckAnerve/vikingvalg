@@ -21,8 +21,11 @@ namespace Vikingvalg
         public Rectangle DestinationRectangle
         {
             get { return _destinationRectangle; }
-            protected set { _destinationRectangle = value; }
+            set { _destinationRectangle = value; }
         }
+        public int DestinationWidth { get { return _destinationRectangle.Width; } set { _destinationRectangle.Width = value; } }
+        public int DestinationX { get { return _destinationRectangle.X; } set { _destinationRectangle.X = value; } }
+        public int DestinationY { get { return _destinationRectangle.Y; } set { _destinationRectangle.Y = value; } }
         public Rectangle SourceRectangle
         {
             get { return _sourceRectangle; }
@@ -40,9 +43,12 @@ namespace Vikingvalg
             Origin = origin;
             Effects = effects;
         }
-        public StaticSprite(String artName, Rectangle destinationRectangle)
-            : this(artName, destinationRectangle, new Rectangle(0, 0, destinationRectangle.Width, destinationRectangle.Height),
+        public StaticSprite(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle)
+            : this(artName, destinationRectangle, sourceRectangle,
                 new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.9f)
+        { }
+        public StaticSprite(String artName, Rectangle destinationRectangle)
+            : this(artName, destinationRectangle, new Rectangle(0, 0, destinationRectangle.Width, destinationRectangle.Height))
         { }
     }
 }

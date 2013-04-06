@@ -27,12 +27,14 @@ namespace Vikingvalg
         protected int _xSpeed { get; set; }
         protected int _ySpeed { get; set; }
 
+        public Healthbar healthbar {get; set;}
         public AnimatedEnemy activeEnemy;
         public AnimatedCharacter(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
+            Vector2 origin, SpriteEffects effects, float layerDepth, float scale, int hitPoints)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale)
         {
-            //_footBox = new Rectangle(destinationRectangle.X - footBoxXOffset, destinationRectangle.Y + footBoxYOffset, footBoxWidth, footBoxHeight);
+            hp = hitPoints;
+            healthbar = new Healthbar(hitPoints, destinationRectangle);
         }
         protected void setSpeed(int speed)
         {
