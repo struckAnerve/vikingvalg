@@ -49,7 +49,7 @@ namespace Vikingvalg
 
         public AnimatedSprite(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
-            : base(color, rotation)
+            : base(color, rotation, layerDepth)
         {
             spriteAnimation = new AnimationPlayer();
             Flipped = false;

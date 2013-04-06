@@ -21,15 +21,18 @@ namespace Vikingvalg
         protected Player _player1 { get; set; }
         private float xDistance;
         private float yDistance;
+        private static Random rand = new Random();
+        public int mobIndex{get; set;}
         private int targetSpan = 7;
         int[] yPosArray;
+        bool positionRight = true;
+        bool attackRight = true;
         private Rectangle _lastAllowedPosition;
-        private String attackPosition;
         public AnimatedEnemy(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Player player1)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale)
         {
-            yPosArray = new int[] { -200, -100, 0, 100, 200 };
+            yPosArray = new int[] { 0, -150, -100, 0, 100, 150 };
             _player1 = player1;
             _lastAllowedPosition = _destinationRectangle;
             //Legger til alle navn på animasjoner som fienden har, brukes for å laste inn riktige animasjoner.
@@ -42,6 +45,8 @@ namespace Vikingvalg
         }
         public override void Update()
         {
+            setLayerDepth((float)(_footBox.Bottom / 70f));
+            
             walk();
         }
         public void taunt()
@@ -77,35 +82,46 @@ namespace Vikingvalg
             {
                 xTarget = _player1.FootBox.X + _player1.FootBox.Width + 5;
                 xDistance = _footBox.X - xTarget;
-                attackPosition = "right";
             }
             else
             {
                 xTarget = _player1.FootBox.X - 5;
                 xDistance = _footBox.X + _footBox.Width - xTarget;
-                attackPosition = "left";
             }
             yTarget = _player1.FootBox.Y + _player1.FootBox.Height;
             yDistance = _footBox.Y + _footBox.Height - yTarget;
         }
         public void waitingFormation()
         {
-            yTarget = _player1.FootBox.Y + _player1.FootBox.Height + 20;//randomYPos;
+            yTarget = _player1.FootBox.Y + _player1.FootBox.Height + yPosArray[mobIndex];
             // y = sqrt(300^2 - tall^2)
-            xTarget = _player1.FootBox.X + _player1.FootBox.Width + 5 + (int)(Math.Sqrt(Math.Pow(300, 2) - Math.Pow(20, 2)));//randomYPos, 2)));
-            xDistance = _footBox.X - xTarget;
-            attackPosition = "right";
+            if (rInt(0, 1000) >= 999)
+            {
+                positionRight = !positionRight;
+            }
+            if (positionRight){
+                xTarget = _player1.FootBox.Right + 100 + (int)((Math.Sqrt(Math.Pow(200, 2) - Math.Pow(yPosArray[mobIndex], 2)) * 1.2));
+                xDistance = _footBox.Left - xTarget;
+            }
+            else if (!positionRight)
+            {
+                xTarget = _player1.FootBox.Left - 100 - (int)((Math.Sqrt(Math.Pow(200, 2) - Math.Pow((yPosArray[mobIndex] * -1), 2)) * 1.2));
+                xDistance = _footBox.Right - xTarget;
+            } 
+            
             yDistance = _footBox.Y + _footBox.Height - yTarget;
         }
         public void walk()
         {
             if (activeEnemy == this) attackFormation();
             else waitingFormation();
+
+            if (_footBox.Center.X > _player1.FootBox.Center.X) attackRight = true;
+            else attackRight = false;
             
-            //Console.WriteLine(xTarget + " " + (xTarget + targetSpan) + " " + (xTarget - targetSpan) + " " + _footBox.X + " " + _footBox.Right);
             if (withinRangeOfTarget())
             {
-                if (attackPosition == "right") Flipped = true;
+                if (attackRight) Flipped = true;
                 else Flipped = false;
                 idle();
             }
@@ -154,12 +170,17 @@ namespace Vikingvalg
         private bool withinRangeOfTarget(){
             if (_footBox.Bottom > yTarget - targetSpan && _footBox.Bottom < yTarget + targetSpan)
             {
-                if (attackPosition == "right")
+                if (attackRight)
                     return (_footBox.Left > xTarget - targetSpan && _footBox.Left < xTarget + targetSpan);
-                else if (attackPosition == "left")
+                else 
                     return (_footBox.Right > xTarget - targetSpan && _footBox.Right < xTarget + targetSpan && _footBox.Bottom > yTarget - targetSpan && _footBox.Bottom < yTarget + targetSpan);
             }
             return false;
+        }
+        public static int rInt(int min, int max)
+        {
+            int t = rand.Next(min, max);
+            return t;
         }
     }
 }

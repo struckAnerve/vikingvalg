@@ -23,8 +23,9 @@ namespace Vikingvalg
         //Midlertidig
         Texture2D smallthing;
 
+        private float playerDepth;
         public List<List<Sprite>> ListsToDraw { get; set; }
-
+        private List<Sprite> sortedList;
         public SpriteManager(Game game)
             : base(game)
         {
@@ -86,20 +87,27 @@ namespace Vikingvalg
         {
             foreach (List<Sprite> listToDraw in ListsToDraw)
             {
+
+                foreach (Sprite spr in listToDraw)
+                {
+                    if (spr is Player)
+                        playerDepth = spr.LayerDepth;
+                }
                 _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
                 foreach (Sprite drawable in listToDraw)
                 {
-                    if (drawable is StaticSprite)
+                    if (drawable is StaticSprite && drawable.LayerDepth <= playerDepth)
                     {
                         StaticSprite staticDrawableSprite = (StaticSprite)drawable;
                         _spriteBatch.Draw(_loadedStaticArt[staticDrawableSprite.ArtName], staticDrawableSprite.DestinationRectangle, staticDrawableSprite.SourceRectangle, staticDrawableSprite.Color, staticDrawableSprite.Rotation,
-                            staticDrawableSprite.Origin, staticDrawableSprite.Effects, staticDrawableSprite.LayerDepth);
+                            staticDrawableSprite.Origin, staticDrawableSprite.Effects,1f);
                     }
                 }
                 _spriteBatch.End();
 
                 _spriteBatch.GraphicsDevice.BlendState = BlendState.AlphaBlend;
-                foreach (Sprite drawable in listToDraw)
+                sortedList = listToDraw.OrderBy(x => x.LayerDepth).ToList();
+                foreach (Sprite drawable in sortedList)
                 {
                     if (drawable is AnimatedSprite)
                     {
@@ -107,7 +115,7 @@ namespace Vikingvalg
                         //De neste to linjene er lagt til fordi Karl Gustav Georgsen var dum og tegnet ulven feil vei.
                         bool animFlip = drawableAnimation.Flipped;
                         if(drawableAnimation is WolfEnemy) animFlip = !drawableAnimation.Flipped;
-                        drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, animFlip, drawableAnimation.Rotation, drawableAnimation.Scale);
+                        drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, animFlip, drawableAnimation.Rotation, drawableAnimation.Scale, drawable.LayerDepth);
                         /*
                         //Husk å fjerne
                         if (drawableAnimation is AnimatedCharacter)
@@ -120,6 +128,17 @@ namespace Vikingvalg
                         */
                     }
                 }
+                _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
+                foreach (Sprite drawable in listToDraw)
+                {
+                    if (drawable is StaticSprite && drawable.LayerDepth > playerDepth)
+                    {
+                        StaticSprite staticDrawableSprite = (StaticSprite)drawable;
+                        _spriteBatch.Draw(_loadedStaticArt[staticDrawableSprite.ArtName], staticDrawableSprite.DestinationRectangle, staticDrawableSprite.SourceRectangle, staticDrawableSprite.Color, staticDrawableSprite.Rotation,
+                            staticDrawableSprite.Origin, staticDrawableSprite.Effects, 1f);
+                    }
+                }
+                _spriteBatch.End();
             }
 
             base.Draw(gameTime);
