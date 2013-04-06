@@ -20,6 +20,7 @@ namespace Vikingvalg
         protected Player _player1;
 
         protected List<Sprite> _toDrawInGameLevel = new List<Sprite>();
+        protected List<Sprite> _toRemoveInGameLevel = new List<Sprite>();
         public List<Sprite> ToDrawInGameLevel 
         {
             get { return _toDrawInGameLevel; }
@@ -42,6 +43,14 @@ namespace Vikingvalg
 
         public virtual void Update(IManageInput inputService, GameTime gameTime)
         {
+            if (_toRemoveInGameLevel != null)
+            {
+                foreach (Sprite toRemove in _toRemoveInGameLevel)
+                {
+                    _toDrawInGameLevel.Remove(toRemove);
+                }
+                _toRemoveInGameLevel.Clear();
+            }
             foreach (Sprite toUpdate in _toDrawInGameLevel)
             {
                 if (toUpdate is IUseInput)
@@ -88,7 +97,7 @@ namespace Vikingvalg
 
         public virtual void RemoveInGameLevelDrawable(Sprite toRemove)
         {
-            _toDrawInGameLevel.Remove(toRemove);
+            _toRemoveInGameLevel.Add(toRemove);
 
             if (toRemove is ICanCollide)
             {

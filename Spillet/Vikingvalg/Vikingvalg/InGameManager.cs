@@ -26,6 +26,8 @@ namespace Vikingvalg
         private FightingLevel _fightingLevel;
         private MiningLevel _miningLevel;
 
+        public Random rand;
+
         private enum _possibleInGameStates { ChooseDirectionLevel, FightingLevel, MiningLevel, TownLevel };
         public String InGameState { get; private set; }
 
@@ -37,8 +39,7 @@ namespace Vikingvalg
 
         public InGameManager(Game game)
             : base(game)
-        {
-        }
+        { }
 
         /// <summary>
         /// Allows the game component to perform any initialization it needs to before starting
@@ -51,6 +52,8 @@ namespace Vikingvalg
             collisionService = (IManageCollision)Game.Services.GetService(typeof(IManageCollision));
             inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
 
+            rand = new Random();
+
             //Midlertidige plasseringer (?)
             _player1 = new Player(new Rectangle(50, 100, 150, 330), 0.5f);
             spriteService.LoadDrawable(_player1);
@@ -61,7 +64,7 @@ namespace Vikingvalg
             _fightingLevel = new FightingLevel(_player1, spriteService, collisionService, this);
             _miningLevel = new MiningLevel(_player1, spriteService, collisionService, this);
 
-            ChangeInGameState("FightingLevel");
+            ChangeInGameState("MiningLevel");
 
             base.Initialize();
         }

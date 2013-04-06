@@ -26,6 +26,8 @@ namespace Vikingvalg
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferHeight = 700;
             graphics.PreferredBackBufferWidth = 1245;
+            graphics.PreferredBackBufferHeight = 700;
+            
             GameComponent gameStateManager = new GameStateManager(this);
             Components.Add(gameStateManager);
             Services.AddService(typeof(IManageStates), gameStateManager);

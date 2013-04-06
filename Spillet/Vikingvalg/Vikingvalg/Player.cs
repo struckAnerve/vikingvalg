@@ -19,6 +19,10 @@ namespace Vikingvalg
         public Rectangle targetBox;
         public int targetBoxXDif = 60;
         public int targetBoxYDif = -2;
+
+        //Mining
+        public List<Stone> StonesToMine { get; set; }
+
         public Player(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale)
@@ -73,7 +77,7 @@ namespace Vikingvalg
         public void Reset()
         {
             _destinationRectangle.X = 40;
-            _destinationRectangle.Y = 100;
+            _destinationRectangle.Y = 350;
 
             //Flytter hitboxen til samme sted som spilleren
             _footBox.Y = ((int)(_destinationRectangle.Y + footBoxYOffset));
@@ -104,9 +108,23 @@ namespace Vikingvalg
             }
             else if (animationPlayer.Transitioning == false && animationPlayer.CurrentKeyframeIndex > 0 && animationPlayer.CurrentKeyframeIndex == (animationPlayer.currentPlayingAnimation.Keyframes.Count() - 1))
             {
-                if (targetBox.Intersects(activeEnemy.FootBox))
+                if(activeEnemy != null)
                 {
-                    activeEnemy.takeDamage();
+                    if (targetBox.Intersects(activeEnemy.FootBox))
+                    {
+                        AnimatedEnemy enemyColidedWith = (AnimatedEnemy)ColidingWith;
+                        activeEnemy.takeDamage();
+                    }
+                }
+                else if (StonesToMine != null)
+                {
+                    foreach (Stone stone in StonesToMine)
+                    {
+                        if (targetBox.Intersects(stone.FootBox))
+                        {
+                            stone.IsHit();
+                        }
+                    }
                 }
                 idle();
             }

@@ -108,6 +108,7 @@ namespace Vikingvalg
                         bool animFlip = drawableAnimation.Flipped;
                         if(drawableAnimation is WolfEnemy) animFlip = !drawableAnimation.Flipped;
                         drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, animFlip, drawableAnimation.Rotation, drawableAnimation.Scale);
+                        /*
                         //Husk å fjerne
                         if (drawableAnimation is AnimatedCharacter)
                         {
@@ -116,6 +117,7 @@ namespace Vikingvalg
                             drawBoxPerimeter(p1.FootBox);
                             _spriteBatch.End();
                         } 
+                        */
                     }
                 }
             }
