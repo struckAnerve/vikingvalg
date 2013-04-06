@@ -33,17 +33,23 @@ namespace Vikingvalg
                     int stoneColor = inGameService.rand.Next(140, 206);
 
                     int stone = inGameService.rand.Next(1, 4);
-                    String stoneName = "Stone" + stone;
 
                     Rectangle stoneDestination = new Rectangle(stoneX, stoneY, 100, 0);
+                    int sourceYPos = 0;
                     if (stone == 1)
                         stoneDestination.Height = 74;
                     else if (stone == 2)
+                    {
                         stoneDestination.Height = 82;
+                        sourceYPos = 74;
+                    }
                     else
+                    {
                         stoneDestination.Height = 71;
+                        sourceYPos = 74 + 82;
+                    }
 
-                    Stone toAdd = new Stone(stoneName, stoneDestination, stoneColor, this);
+                    Stone toAdd = new Stone(stoneDestination, sourceYPos, stoneColor, this);
 
                     _stones.Add(toAdd);
                     AddInGameLevelDrawable(toAdd);

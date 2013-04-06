@@ -33,13 +33,6 @@
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.VideoImporters, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="evil.png">
-      <Name>evil</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Animations\playerAnimation\battleBlockWalk.anim">
       <Name>battleBlockWalk</Name>
       <Importer>AnimationImporter</Importer>
@@ -516,20 +509,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="stone1.png">
-      <Name>stone1</Name>
+    <Compile Include="stonehit.png">
+      <Name>stonehit</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="stone2.png">
-      <Name>stone2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="stone3.png">
-      <Name>stone3</Name>
+    <Compile Include="stone.png">
+      <Name>stone</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

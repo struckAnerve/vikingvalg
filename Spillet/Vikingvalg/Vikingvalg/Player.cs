@@ -18,7 +18,7 @@ namespace Vikingvalg
         Dictionary<string, string> playerBoneList = new Dictionary<string, string>();
         public Rectangle targetBox;
         public int targetBoxXDif = 60;
-        public int targetBoxYDif = -2;
+        public int targetBoxYDif = -6;
 
         //Mining
         public List<Stone> StonesToMine { get; set; }
@@ -120,7 +120,8 @@ namespace Vikingvalg
                 {
                     foreach (Stone stone in StonesToMine)
                     {
-                        if (targetBox.Intersects(stone.FootBox))
+                        if (targetBox.Intersects(stone.FootBox) &&
+                            ((stone.FootBox.Center.X < this.FootBox.Center.X && this.Flipped) || (stone.FootBox.Center.X > this.FootBox.Center.X && !this.Flipped)))
                         {
                             stone.IsHit();
                         }

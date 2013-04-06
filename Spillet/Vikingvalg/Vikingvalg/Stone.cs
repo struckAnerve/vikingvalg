@@ -39,8 +39,8 @@ namespace Vikingvalg
             _endurance = 8;
             _footBox = new Rectangle(destinationRectangle.X, destinationRectangle.Bottom - 20, destinationRectangle.Width, 20);
         }
-        public Stone(String artName, Rectangle destinationRectangle, int color, MiningLevel miningLevel)
-            : this(artName, destinationRectangle, new Rectangle(0, 0, destinationRectangle.Width, destinationRectangle.Height),
+        public Stone(Rectangle destinationRectangle, int sourceYPos, int color, MiningLevel miningLevel)
+            : this("stone", destinationRectangle, new Rectangle(0, sourceYPos, destinationRectangle.Width, destinationRectangle.Height),
                 new Color(200, color + 30, color, 255), 0, Vector2.Zero, SpriteEffects.None, 0.5f, miningLevel)
         { }
 
