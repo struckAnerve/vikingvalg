@@ -121,7 +121,7 @@ namespace Vikingvalg
                 {
                     foreach (Stone stone in StonesToMine)
                     {
-                        if (targetBox.Intersects(stone.FootBox) &&
+                        if (targetBox.Intersects(stone.FootBox) && stone.endurance > 0 &&
                             ((stone.FootBox.Center.X < this.FootBox.Center.X && this.Flipped) || (stone.FootBox.Center.X > this.FootBox.Center.X && !this.Flipped)))
                         {
                             stone.IsHit();

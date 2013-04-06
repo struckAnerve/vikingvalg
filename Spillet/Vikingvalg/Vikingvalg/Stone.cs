@@ -14,7 +14,7 @@ namespace Vikingvalg
 {
     class Stone : StaticSprite, ICanCollide
     {
-        private MiningLevel _miningLevel;
+        public AnimatedStaticSprite stoneHitArt { get; set; }
 
         private Rectangle _footBox;
         public Rectangle FootBox
@@ -29,30 +29,32 @@ namespace Vikingvalg
         public bool BlockedTop { get; set; }
         public bool BlockedBottom { get; set; }
 
-        private int _endurance;
+        public int endurance;
 
         public Stone(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth, MiningLevel miningLevel)
+            Vector2 origin, SpriteEffects effects, float layerDepth)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth)
         {
-            _miningLevel = miningLevel;
-            _endurance = 8;
+            stoneHitArt = new AnimatedStaticSprite("stoneHit", new Rectangle(_destinationRectangle.X, _destinationRectangle.Y, 180, 99), Vector2.Zero, 4, 1000);
+            stoneHitArt.IsPlaying = false;
+            endurance = 8;
             _footBox = new Rectangle(destinationRectangle.X, destinationRectangle.Bottom - 20, destinationRectangle.Width, 20);
             setLayerDepth((float)(_footBox.Bottom / 70f));
         }
-        public Stone(Rectangle destinationRectangle, int sourceYPos, int color, MiningLevel miningLevel)
+        public Stone(Rectangle destinationRectangle, int sourceYPos, int color)
             : this("stone", destinationRectangle, new Rectangle(0, sourceYPos, destinationRectangle.Width, destinationRectangle.Height),
-                new Color(200, color + 30, color, 255), 0, Vector2.Zero, SpriteEffects.None, 0.5f, miningLevel)
+                new Color(200, color + 30, color, 255), 0, Vector2.Zero, SpriteEffects.None, 0.5f)
         { }
 
         public void IsHit()
         {
-            _endurance--;
-            if (_endurance <= 0)
+            stoneHitArt.IsPlaying = true;
+            endurance--;
+            if (endurance <= 0)
             {
-                _miningLevel.RemoveInGameLevelDrawable(this);
+                _sourceRectangle.X = 400;
             }
-            else if (_endurance % 2 == 0)
+            else if (endurance % 2 == 0)
             {
                 _sourceRectangle.X += _sourceRectangle.Width;
             }

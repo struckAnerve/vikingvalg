@@ -99,7 +99,6 @@ namespace Vikingvalg
                     if (drawable is StaticSprite && drawable.LayerDepth <= playerDepth)
                     {
                         drawStaticSprite(drawable);
-
                     }
                 }
                 _spriteBatch.End();

@@ -17,7 +17,10 @@ namespace Vikingvalg
 
         public MiningLevel(Player player1, IManageSprites spriteService, IManageCollision collisionService, InGameManager inGameService)
             : base(player1, spriteService, collisionService, inGameService)
-        { }
+        {
+            //Laster inn "stoneHit" som Texture2d
+            spriteService.LoadDrawable(new AnimatedStaticSprite("stoneHit", new Rectangle(0, 0, 180, 99), Vector2.Zero, 4, 1000));
+        }
 
         public override void InitializeLevel()
         {
@@ -49,7 +52,7 @@ namespace Vikingvalg
                         sourceYPos = 74 + 82;
                     }
 
-                    Stone toAdd = new Stone(stoneDestination, sourceYPos, stoneColor, this);
+                    Stone toAdd = new Stone(stoneDestination, sourceYPos, stoneColor);
 
                     _stones.Add(toAdd);
                     AddInGameLevelDrawable(toAdd);

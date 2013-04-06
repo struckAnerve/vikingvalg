@@ -67,6 +67,12 @@ namespace Vikingvalg
                     IUseInput needsInput = (IUseInput)toUpdate;
                     needsInput.Update(inputService);
                 }
+                else if (toUpdate is AnimatedStaticSprite)
+                {
+                    AnimatedStaticSprite needsGameTime = (AnimatedStaticSprite)toUpdate;
+                    if(needsGameTime.IsPlaying)
+                        needsGameTime.Update(gameTime);
+                }
                 else
                 {
                     toUpdate.Update();
