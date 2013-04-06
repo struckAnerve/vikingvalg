@@ -19,6 +19,7 @@ namespace Vikingvalg
 
         protected Player _player1;
 
+        protected List<Sprite> _toDrawQueue = new List<Sprite>();
         protected List<Sprite> _toDrawInGameLevel = new List<Sprite>();
         protected List<Sprite> _toRemoveInGameLevel = new List<Sprite>();
         public List<Sprite> ToDrawInGameLevel 
@@ -51,12 +52,26 @@ namespace Vikingvalg
                 }
                 _toRemoveInGameLevel.Clear();
             }
+            if (_toDrawQueue != null)
+            {
+                foreach (Sprite toDraw in _toDrawQueue)
+                {
+                    _toDrawInGameLevel.Add(toDraw);
+                }
+                _toDrawQueue.Clear();
+            }
             foreach (Sprite toUpdate in _toDrawInGameLevel)
             {
                 if (toUpdate is IUseInput)
                 {
                     IUseInput needsInput = (IUseInput)toUpdate;
                     needsInput.Update(inputService);
+                }
+                else if (toUpdate is AnimatedStaticSprite)
+                {
+                    AnimatedStaticSprite needsGameTime = (AnimatedStaticSprite)toUpdate;
+                    if(needsGameTime.IsPlaying)
+                        needsGameTime.Update(gameTime);
                 }
                 else
                 {
@@ -81,7 +96,7 @@ namespace Vikingvalg
                 return;
             }
 
-            _toDrawInGameLevel.Add(toAdd);
+            _toDrawQueue.Add(toAdd);
 
             if (toAdd is AnimatedEnemy || toAdd is Stone)
             {

@@ -155,7 +155,7 @@ namespace Vikingvalg
                 //De neste to linjene er lagt til fordi Karl Gustav Georgsen var dum og tegnet ulven feil vei.
                 bool animFlip = drawableAnimation.Flipped;
                 if (drawableAnimation is WolfEnemy) animFlip = !drawableAnimation.Flipped;
-                drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, animFlip, drawableAnimation.Rotation, drawableAnimation.Scale, drawable.LayerDepth);
+                drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, animFlip, drawableAnimation.Rotation, drawableAnimation.Scale);
                 /*
                 //Husk å fjerne
                 if (drawableAnimation is AnimatedCharacter)

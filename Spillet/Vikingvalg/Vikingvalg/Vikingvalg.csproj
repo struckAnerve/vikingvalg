@@ -81,6 +81,7 @@
     <Compile Include="AnimatedCharacter.cs" />
     <Compile Include="AnimatedEnemy.cs" />
     <Compile Include="AnimatedSprite.cs" />
+    <Compile Include="AnimatedStaticSprite.cs" />
     <Compile Include="BlobEnemy.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="ChooseDirectionLevel.cs" />
