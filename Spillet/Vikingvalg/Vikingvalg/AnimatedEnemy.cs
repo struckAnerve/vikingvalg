@@ -22,13 +22,14 @@ namespace Vikingvalg
         private float xDistance;
         private float yDistance;
         private int targetSpan = 7;
-
+        int[] yPosArray;
         private Rectangle _lastAllowedPosition;
         private String attackPosition;
         public AnimatedEnemy(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Player player1)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale)
         {
+            yPosArray = new int[] { -200, -100, 0, 100, 200 };
             _player1 = player1;
             _lastAllowedPosition = _destinationRectangle;
             //Legger til alle navn på animasjoner som fienden har, brukes for å laste inn riktige animasjoner.
@@ -89,19 +90,11 @@ namespace Vikingvalg
         }
         public void waitingFormation()
         {
-            if (_footBox.Center.X > _player1.FootBox.Center.X)
-            {
-                xTarget = _player1.FootBox.X + _player1.FootBox.Width + 5 + 100;
-                xDistance = _footBox.X - xTarget;
-                attackPosition = "right";
-            }
-            else
-            {
-                xTarget = _player1.FootBox.X - 5 - 100;
-                xDistance = _footBox.X + _footBox.Width - xTarget;
-                attackPosition = "left";
-            }
-            yTarget = _player1.FootBox.Y + _player1.FootBox.Height + 200;
+            yTarget = _player1.FootBox.Y + _player1.FootBox.Height + 20;//randomYPos;
+            // y = sqrt(300^2 - tall^2)
+            xTarget = _player1.FootBox.X + _player1.FootBox.Width + 5 + (int)(Math.Sqrt(Math.Pow(300, 2) - Math.Pow(20, 2)));//randomYPos, 2)));
+            xDistance = _footBox.X - xTarget;
+            attackPosition = "right";
             yDistance = _footBox.Y + _footBox.Height - yTarget;
         }
         public void walk()

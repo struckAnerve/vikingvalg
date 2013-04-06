@@ -17,8 +17,8 @@ namespace Vikingvalg
     {
         Dictionary<string, string> playerBoneList = new Dictionary<string, string>();
         public Rectangle targetBox;
-        public int targetBoxIncrease = 60;
-        public AnimatedEnemy activeEnemy;
+        public int targetBoxXDif = 60;
+        public int targetBoxYDif = -2;
         public Player(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale)
@@ -37,7 +37,7 @@ namespace Vikingvalg
             footBoxHeight = (int)(60 * scale);
             //Plasserer boksen midstilt nederst på spilleren.
             _footBox = new Rectangle(destinationRectangle.X - footBoxXOffset, destinationRectangle.Y + footBoxYOffset, footBoxWidth, (int)footBoxHeight);
-            targetBox = new Rectangle(_footBox.X - targetBoxIncrease / 2, _footBox.Y, _footBox.Width + targetBoxIncrease, _footBox.Height);
+            targetBox = new Rectangle(_footBox.X - targetBoxXDif / 2 - 5, _footBox.Y, _footBox.Width + targetBoxXDif, _footBox.Height + targetBoxYDif);
             //Legger til alle navn på animasjoner som spilleren har, brukes for å laste inn riktige animasjoner.
             animationList.Add("block");
             animationList.Add("strikeSword");
@@ -106,7 +106,6 @@ namespace Vikingvalg
             {
                 if (targetBox.Intersects(activeEnemy.FootBox))
                 {
-                    AnimatedEnemy enemyColidedWith = (AnimatedEnemy)ColidingWith;
                     activeEnemy.takeDamage();
                 }
                 idle();
@@ -171,8 +170,8 @@ namespace Vikingvalg
                 //Flytter hitboxen til samme sted som spilleren
                 _footBox.Y = ((int)(_destinationRectangle.Y + footBoxYOffset));
                 _footBox.X = (int)(_destinationRectangle.X - footBoxXOffset);
-                targetBox.X = (int)(_footBox.X - targetBoxIncrease / 2);
-                targetBox.Y = (int)_footBox.Y;
+                targetBox.X = (int)(_footBox.X - targetBoxXDif / 2);
+                targetBox.Y = (int)_footBox.Y - targetBoxYDif / 2;
             }
         }
         /// <summary>

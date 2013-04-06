@@ -24,7 +24,8 @@ namespace Vikingvalg
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-
+            graphics.PreferredBackBufferHeight = 700;
+            graphics.PreferredBackBufferWidth = 1245;
             GameComponent gameStateManager = new GameStateManager(this);
             Components.Add(gameStateManager);
             Services.AddService(typeof(IManageStates), gameStateManager);

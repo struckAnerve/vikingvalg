@@ -13,6 +13,8 @@ namespace Vikingvalg
 {
     class FightingLevel : InGameLevel
     {
+        public AnimatedEnemy activeEnemy { get; private set; }
+        private List<AnimatedEnemy> levelCharacters = new List<AnimatedEnemy>();
         public FightingLevel(Player player1, IManageSprites spriteService, IManageCollision collisionService, InGameManager inGameService)
             : base(player1, spriteService, collisionService, inGameService)
         {
@@ -21,19 +23,37 @@ namespace Vikingvalg
         public override void InitializeLevel()
         {
             base.InitializeLevel();
-            BlobEnemy blob = new BlobEnemy(new Rectangle(100, 100, 400, 267), 0.5f, _player1);
-            WolfEnemy wolf = new WolfEnemy(new Rectangle(300, 300, 400, 267), 0.3f, _player1);
-            AnimatedEnemy activeEnemy = wolf;
-            AddInGameLevelDrawable(wolf);
-            AddInGameLevelDrawable(blob);
+            levelCharacters.Add(new BlobEnemy(new Rectangle(100, 100, 400, 267), 0.5f, _player1));
+            levelCharacters.Add(new WolfEnemy(new Rectangle(300, 300, 400, 267), 0.3f, _player1));
+
+            levelCharacters.Add(new BlobEnemy(new Rectangle(100, 100, 400, 267), 0.5f, _player1));
+            levelCharacters.Add(new WolfEnemy(new Rectangle(300, 300, 400, 267), 0.3f, _player1));
+            activeEnemy = levelCharacters[0];
             _player1.activeEnemy = activeEnemy;
-            wolf.activeEnemy = activeEnemy;
-            blob.activeEnemy = activeEnemy;
+            foreach (AnimatedCharacter enemy in levelCharacters)
+            {
+                AddInGameLevelDrawable(enemy);
+                enemy.activeEnemy = activeEnemy;
+            }
             //AddInGameLevelDrawable(new BlobEnemy(new Rectangle(100, 100, 400, 267), 0.5f, _player1));
         }
         public override void Update(IManageInput inputService, GameTime gameTime)
         {
             base.Update(inputService, gameTime);
+            if (activeEnemy.hp <= 0)
+            {
+                levelCharacters.Remove(activeEnemy);
+                RemoveInGameLevelDrawable(activeEnemy);
+                if (levelCharacters.Count > 0)
+                {
+                    activeEnemy = levelCharacters[0];
+                    foreach (AnimatedCharacter enemy in levelCharacters)
+                    {
+                        enemy.activeEnemy = activeEnemy;
+                    }
+                    _player1.activeEnemy = activeEnemy;
+                }
+            }
         }
     }
 }
