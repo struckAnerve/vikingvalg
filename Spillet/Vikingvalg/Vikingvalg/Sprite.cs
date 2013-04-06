@@ -21,17 +21,21 @@ namespace Vikingvalg
         protected int footBoxXOffset { get; set; }
         protected int footBoxYOffset { get; set; }
 
+        public float LayerDepth { get; set; }
         public Color Color { get; protected set; }
         public float Rotation { get; protected set; }
 
-        public Sprite(Color color, float rotation)
+        public Sprite(Color color, float rotation, float layerDepth)
         {
             Color = color;
             Rotation = rotation;
+            LayerDepth = layerDepth;
         }
-
+        public void setLayerDepth(float layerDepth)
+        {
+            LayerDepth = layerDepth;
+        }
         public virtual void Update()
         { }
     }
-
 }

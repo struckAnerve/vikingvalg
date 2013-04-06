@@ -38,6 +38,7 @@ namespace Vikingvalg
             _miningLevel = miningLevel;
             _endurance = 8;
             _footBox = new Rectangle(destinationRectangle.X, destinationRectangle.Bottom - 20, destinationRectangle.Width, 20);
+            setLayerDepth((float)(_footBox.Bottom / 70f));
         }
         public Stone(Rectangle destinationRectangle, int sourceYPos, int color, MiningLevel miningLevel)
             : this("stone", destinationRectangle, new Rectangle(0, sourceYPos, destinationRectangle.Width, destinationRectangle.Height),

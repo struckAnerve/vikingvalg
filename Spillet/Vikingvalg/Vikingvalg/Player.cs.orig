@@ -17,12 +17,17 @@ namespace Vikingvalg
     {
         Dictionary<string, string> playerBoneList = new Dictionary<string, string>();
         public Rectangle targetBox;
+<<<<<<< HEAD
         public int targetBoxXDif = 60;
-        public int targetBoxYDif = -6;
+        public int targetBoxYDif = -2;
+=======
+        public int targetBoxIncrease = 60;
+        public AnimatedEnemy activeEnemy;
 
         //Mining
         public List<Stone> StonesToMine { get; set; }
 
+>>>>>>> e04ae60f194f05a40abb7a3ec8ca6179c6d0c25c
         public Player(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale)
@@ -86,7 +91,6 @@ namespace Vikingvalg
 
         public void Update(IManageInput inputService)
         {
-            setLayerDepth((float)(_footBox.Bottom / 70f));
             if (AnimationState != "slashing")
             {
                 if (inputService.KeyIsDown(Keys.Space))
@@ -119,14 +123,17 @@ namespace Vikingvalg
                 }
                 else if (StonesToMine != null)
                 {
+<<<<<<< HEAD
+                    activeEnemy.takeDamage();
+=======
                     foreach (Stone stone in StonesToMine)
                     {
-                        if (targetBox.Intersects(stone.FootBox) &&
-                            ((stone.FootBox.Center.X < this.FootBox.Center.X && this.Flipped) || (stone.FootBox.Center.X > this.FootBox.Center.X && !this.Flipped)))
+                        if (targetBox.Intersects(stone.FootBox))
                         {
                             stone.IsHit();
                         }
                     }
+>>>>>>> e04ae60f194f05a40abb7a3ec8ca6179c6d0c25c
                 }
                 idle();
             }

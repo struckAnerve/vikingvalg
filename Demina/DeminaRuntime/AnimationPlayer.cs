@@ -204,7 +204,7 @@ namespace Demina
 		{
 			Draw(spriteBatch, position, false, false, 0, Color.White, new Vector2(1, 1), Matrix.Identity);
 		}
-        public void Draw(SpriteBatch spriteBatch, Rectangle position, bool flipped, float rotation, float scale)
+        public void Draw(SpriteBatch spriteBatch, Rectangle position, bool flipped, float rotation, float scale, float layerDepth)
         {
             Draw(spriteBatch, new Vector2(position.X, position.Y), flipped, false, rotation, Color.White, new Vector2(scale, scale), Matrix.Identity);
         }

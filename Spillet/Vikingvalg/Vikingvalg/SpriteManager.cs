@@ -23,8 +23,9 @@ namespace Vikingvalg
         //Midlertidig
         Texture2D smallthing;
 
+        private float playerDepth;
         public List<List<Sprite>> ListsToDraw { get; set; }
-
+        private List<Sprite> sortedList;
         public SpriteManager(Game game)
             : base(game)
         {
@@ -86,40 +87,31 @@ namespace Vikingvalg
         {
             foreach (List<Sprite> listToDraw in ListsToDraw)
             {
+
+                foreach (Sprite spr in listToDraw)
+                {
+                    if (spr is Player)
+                        playerDepth = spr.LayerDepth;
+                }
                 _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
                 foreach (Sprite drawable in listToDraw)
                 {
-                    if (drawable is StaticSprite)
-                    {
-                        StaticSprite staticDrawableSprite = (StaticSprite)drawable;
-                        _spriteBatch.Draw(_loadedStaticArt[staticDrawableSprite.ArtName], staticDrawableSprite.DestinationRectangle, staticDrawableSprite.SourceRectangle, staticDrawableSprite.Color, staticDrawableSprite.Rotation,
-                            staticDrawableSprite.Origin, staticDrawableSprite.Effects, staticDrawableSprite.LayerDepth);
-                    }
+                    drawStaticSprite(drawable);
                 }
                 _spriteBatch.End();
 
                 _spriteBatch.GraphicsDevice.BlendState = BlendState.AlphaBlend;
+                sortedList = listToDraw.OrderBy(x => x.LayerDepth).ToList();
+                foreach (Sprite drawable in sortedList)
+                {
+                    drawAnimatedSprite(drawable);
+                }
+                _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
                 foreach (Sprite drawable in listToDraw)
                 {
-                    if (drawable is AnimatedSprite)
-                    {
-                        AnimatedSprite drawableAnimation = (AnimatedSprite)drawable;
-                        //De neste to linjene er lagt til fordi Karl Gustav Georgsen var dum og tegnet ulven feil vei.
-                        bool animFlip = drawableAnimation.Flipped;
-                        if(drawableAnimation is WolfEnemy) animFlip = !drawableAnimation.Flipped;
-                        drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, animFlip, drawableAnimation.Rotation, drawableAnimation.Scale);
-                        /*
-                        //Husk å fjerne
-                        if (drawableAnimation is AnimatedCharacter)
-                        {
-                            _spriteBatch.Begin();
-                            AnimatedCharacter p1 = (AnimatedCharacter)drawableAnimation;
-                            drawBoxPerimeter(p1.FootBox);
-                            _spriteBatch.End();
-                        } 
-                        */
-                    }
+                    drawStaticSprite(drawable);
                 }
+                _spriteBatch.End();
             }
 
             base.Draw(gameTime);
@@ -133,6 +125,37 @@ namespace Vikingvalg
             _spriteBatch.Draw(smallthing, new Vector2(box.X + box.Width, box.Y), Color.White);
             _spriteBatch.Draw(smallthing, new Vector2(box.X + box.Width / 2, box.Y), Color.White);
             _spriteBatch.Draw(smallthing, new Vector2(box.X, box.Y + box.Height), Color.White);
+        }
+        private void drawStaticSprite(Sprite drawable)
+        {
+            if (drawable is StaticSprite && drawable.LayerDepth > playerDepth)
+            {
+                StaticSprite staticDrawableSprite = (StaticSprite)drawable;
+                _spriteBatch.Draw(_loadedStaticArt[staticDrawableSprite.ArtName], staticDrawableSprite.DestinationRectangle, staticDrawableSprite.SourceRectangle, staticDrawableSprite.Color, staticDrawableSprite.Rotation,
+                    staticDrawableSprite.Origin, staticDrawableSprite.Effects, 1f);
+            }
+        }
+        private void drawAnimatedSprite(Sprite drawable)
+        {
+            if (drawable is AnimatedSprite)
+            {
+                AnimatedSprite drawableAnimation = (AnimatedSprite)drawable;
+                //De neste to linjene er lagt til fordi Karl Gustav Georgsen var dum og tegnet ulven feil vei.
+                bool animFlip = drawableAnimation.Flipped;
+                if (drawableAnimation is WolfEnemy) animFlip = !drawableAnimation.Flipped;
+                drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, animFlip, drawableAnimation.Rotation, drawableAnimation.Scale, drawable.LayerDepth);
+                /*
+                //Husk å fjerne
+                if (drawableAnimation is AnimatedCharacter)
+                {
+                    _spriteBatch.Begin();
+                    AnimatedCharacter p1 = (AnimatedCharacter)drawableAnimation;
+                    drawBoxPerimeter(p1.FootBox);
+                    _spriteBatch.End();
+                } 
+                */
+            }
+
         }
     }
 }
