@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Media;
 using Demina;
 namespace Vikingvalg
 {
-    class Player : AnimatedCharacter, IUseInput, ICanCollide
+    class Player : AnimatedCharacter, IUseInput, ICanCollideAll
     {
         Dictionary<string, string> playerBoneList = new Dictionary<string, string>();
         public Rectangle targetBox;

@@ -14,7 +14,7 @@ using Demina;
 
 namespace Vikingvalg
 {
-    class AnimatedEnemy : AnimatedCharacter
+    class AnimatedEnemy : AnimatedCharacter, ICanCollideBorder
     {
         protected Player _player1 { get; set; }
         protected Point _distance;
@@ -24,7 +24,7 @@ namespace Vikingvalg
         private int targetSpan = 7;
         int[] yPosArray;
         bool positionRight = true;
-        bool attackRight = true;
+        bool attackRight = true; 
         private Rectangle _lastAllowedPosition;
         public AnimatedEnemy(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Player player1, int hitPoints)

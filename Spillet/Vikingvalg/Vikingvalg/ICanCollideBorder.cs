@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
-    public interface ICanCollide
+    public interface ICanCollideBorder
     {
         Rectangle FootBox { get; }
         bool BlockedLeft { get; set; }
