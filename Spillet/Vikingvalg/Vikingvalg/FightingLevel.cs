@@ -18,16 +18,16 @@ namespace Vikingvalg
         public FightingLevel(Player player1, IManageSprites spriteService, IManageCollision collisionService, InGameManager inGameService)
             : base(player1, spriteService, collisionService, inGameService)
         {
+            spriteService.LoadDrawable(new StaticSprite("healthBar", new Rectangle(0, 0, 0, 0)));
+            spriteService.LoadDrawable(new StaticSprite("healthContainer", new Rectangle(0, 0, 0, 0)));
+            spriteService.LoadDrawable(new StaticSprite("ground"));
         }
 
         public override void InitializeLevel()
         {
-
-            spriteService.LoadDrawable(new StaticSprite("healthBar", new Rectangle(0, 0, 0, 0)));
-            spriteService.LoadDrawable(new StaticSprite("healthContainer", new Rectangle(0,0,0,0)));
-            spriteService.LoadDrawable(new StaticSprite("ground", new Rectangle(0, 0, 1245, 700)));
-            AddInGameLevelDrawable(new StaticSprite("ground", new Rectangle(0,0,1245,700)));
             base.InitializeLevel();
+
+            AddInGameLevelDrawable(new StaticSprite("ground", new Rectangle(0, 0, 1245, 700)));
             levelCharacters.Add(new BlobEnemy(new Rectangle(100, 100, 400, 267), 0.5f, _player1));
             levelCharacters.Add(new WolfEnemy(new Rectangle(300, 300, 400, 267), 0.3f, _player1));
             levelCharacters.Add(new BlobEnemy(new Rectangle(100, 100, 400, 267), 0.5f, _player1));
@@ -42,7 +42,6 @@ namespace Vikingvalg
                 enemy.activeEnemy = activeEnemy;
                 enemy.mobIndex = levelCharacters.IndexOf(enemy);
             }
-            //AddInGameLevelDrawable(new BlobEnemy(new Rectangle(100, 100, 400, 267), 0.5f, _player1));
         }
         public override void Update(IManageInput inputService, GameTime gameTime)
         {

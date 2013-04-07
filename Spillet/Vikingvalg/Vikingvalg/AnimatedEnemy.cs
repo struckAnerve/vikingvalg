@@ -16,21 +16,24 @@ namespace Vikingvalg
 {
     class AnimatedEnemy : AnimatedCharacter, ICanCollideBorder
     {
-        protected Player _player1 { get; set; }
-        protected Point _distance;
-        protected Point _target;
-        private static Random rand = new Random();
-        public int mobIndex{get; set;}
-        private int targetSpan = 7;
-        int[] yPosArray;
-        bool positionRight = true;
-        bool attackRight = true; 
+        public int mobIndex { get; set; }
+        public Player _player1 { private get; set; }
+        
+        private Point _distance;
+        private Point _target;
+        private static Random _rand = new Random();
+        private int _targetSpan = 7;
+        private int[] _yPosArray;
+        private bool _positionRight = true;
+        private bool _attackRight = true;
+        private bool _attackOfOpportunity = false;
+        private bool _firstAttack = true;
         private Rectangle _lastAllowedPosition;
         public AnimatedEnemy(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Player player1, int hitPoints)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, hitPoints)
         {
-            yPosArray = new int[] { 0, -150, -100, 0, 100, 150 };
+            _yPosArray = new int[] { 0, -150, -100, 0, 100, 150 };
             _player1 = player1;
             _lastAllowedPosition = _destinationRectangle;
             //Legger til alle navn på animasjoner som fienden har, brukes for å laste inn riktige animasjoner.
@@ -48,10 +51,14 @@ namespace Vikingvalg
                 walk();
             }
             else if (animationPlayer.Transitioning == false && animationPlayer.CurrentKeyframeIndex > 0 && animationPlayer.CurrentKeyframeIndex == (animationPlayer.currentPlayingAnimation.Keyframes.Count() - 1))
-            {
+           {
+                
                 setAttackTargetDistance();
-                if(withinRangeOfTarget())
+                _targetSpan += 70;
+                if(withinRangeOfTarget(_footBox,_target))
                 _player1.takeDamage();
+                _targetSpan -= 70;
+                _attackOfOpportunity = false;
                 idle();
             }
         }
@@ -63,9 +70,6 @@ namespace Vikingvalg
                 AnimationState = "taunting";
             }
         }
-        /// <summary>
-        /// Gjør om animasjonen som blir spilt til "strikeSword" hvis den animasjonen ikke allerede er aktiv
-        /// </summary>
         public void attack1()
         {
             if (AnimationState != "attack1" && AnimationState != "attacking")
@@ -85,36 +89,40 @@ namespace Vikingvalg
         public void attackFormation()
         {
             setAttackTargetDistance();
-            if (withinRangeOfTarget() && AnimationState != "attacking" && rand.Next(0, 100) > 95)
+            if (_firstAttack || (withinRangeOfTarget(_footBox, _target) && AnimationState != "attacking" && _rand.Next(0, 100) > 95))
             {
-                if (rand.Next(0, 2) < 1) attack1();
+                if (_rand.Next(0, 2) < 1) attack1();
                 else attack2();
+                _firstAttack = false;
             }
         }
         public void waitingFormation()
         {
-            // y = sqrt(300^2 - tall^2)
             if (rInt(0, 1000) >= 999)
             {
-                positionRight = !positionRight;
+                _positionRight = !_positionRight;
             }
             setWaitingTargetDistance();
-            if (withinRangeOfTarget())
+            if (withinRangeOfTarget(_footBox, _target))
             {
                 idle();
             }
         }
         public void walk()
         {
-            if (activeEnemy == this) attackFormation();
+            if (rInt(0, 1000) >= 999 && _attackOfOpportunity == false) _attackOfOpportunity = true;
+            if (activeEnemy == this || _attackOfOpportunity == true){
+                attackFormation();
+            }
             else waitingFormation();
 
-            if (_footBox.Center.X > _player1.FootBox.Center.X) attackRight = true;
-            else attackRight = false;
+            if (_footBox.Center.X > _player1.FootBox.Center.X) _attackRight = true;
+            else _attackRight = false;
+
             
-            if (withinRangeOfTarget())
+            if (withinRangeOfTarget(_footBox, _target))
             {
-                if (attackRight) Flipped = true;
+                if (_attackRight) Flipped = true;
                 else Flipped = false;
             }
             else
@@ -135,7 +143,7 @@ namespace Vikingvalg
                     // Kode fra http://www.berecursive.com/2008/c/rotating-a-sprite-towards-an-object-in-xna //
                     _footBox.X -= _xSpeed;
                     _footBox.Y -= _ySpeed;
-                    if (_xSpeed >= 0)
+                    if (_xSpeed > 0 && _footBox.Center.X > _target.X)
                     {
                         Flipped = true;
                     }
@@ -143,9 +151,9 @@ namespace Vikingvalg
                     {
                         Flipped = false;
                     }
+                    _firstAttack = true;
                     _destinationRectangle.X = _footBox.Center.X - footBoxXOffset;
                     _destinationRectangle.Y = _footBox.Y - footBoxXOffset;
-                    _lastAllowedPosition = _footBox;
                     healthbar.setPosition(_footBox);
                 }
             }
@@ -161,19 +169,19 @@ namespace Vikingvalg
             if (BlockedBottom || BlockedTop || BlockedLeft || BlockedRight) return true;
             return false;
         }
-        private bool withinRangeOfTarget(){
-            if (_footBox.Bottom > _target.Y + 6 - targetSpan && _footBox.Bottom < _target.Y + targetSpan)
+        private bool withinRangeOfTarget(Rectangle box, Point target){
+            if (box.Bottom > target.Y + 6 - _targetSpan && box.Bottom < target.Y + _targetSpan)
             {
-                if (attackRight)
-                    return (_footBox.Left > _target.X - targetSpan && _footBox.Left < _target.X + targetSpan);
+                if (_attackRight)
+                    return (box.Left > target.X - _targetSpan && box.Left < target.X + _targetSpan);
                 else 
-                    return (_footBox.Right > _target.X - targetSpan && _footBox.Right < _target.X + targetSpan && _footBox.Bottom > _target.Y - targetSpan && _footBox.Bottom < _target.Y + targetSpan);
+                    return (box.Right > target.X - _targetSpan && box.Right < target.X + _targetSpan && box.Bottom > target.Y - _targetSpan && box.Bottom < target.Y + _targetSpan);
             }
             return false;
         }
         public static int rInt(int min, int max)
         {
-            int t = rand.Next(min, max);
+            int t = _rand.Next(min, max);
             return t;
         }
         public void setAttackTargetDistance()
@@ -193,16 +201,22 @@ namespace Vikingvalg
         }
         private void setWaitingTargetDistance()
         {
-            if (positionRight)
+            if (_positionRight)
             {
-                _target.Y = _player1.FootBox.Y + _player1.FootBox.Height + yPosArray[mobIndex];
-                _target.X = _player1.FootBox.Right + 100 + (int)((Math.Sqrt(Math.Pow(200, 2) - Math.Pow(yPosArray[mobIndex], 2)) * 1.2));
+                _target.Y = _player1.FootBox.Top + _yPosArray[mobIndex];
+                while (_target.Y - _footBox.Height - 40 < 170) _target.Y += 1;
+                while (_target.Y > 700) _target.Y -= 2;
+                _target.X = _player1.FootBox.Right + 100 + (int)((Math.Sqrt(Math.Pow(200, 2) - Math.Pow(_yPosArray[mobIndex], 2)) * 1.2));
+                while (_target.X + _footBox.Width > 1350) _target.X--;
                 _distance.X = _footBox.Left - _target.X;
             }
-            else if (!positionRight)
+            else if (!_positionRight)
             {
-                _target.Y = _player1.FootBox.Y + _player1.FootBox.Height + (yPosArray[mobIndex] * -1);
-                _target.X = _player1.FootBox.Left - 100 - (int)((Math.Sqrt(Math.Pow(200, 2) - Math.Pow((yPosArray[mobIndex] * -1), 2)) * 1.2));
+                _target.Y = _player1.FootBox.Top + (_yPosArray[mobIndex] * -1);
+                while (_target.Y - _footBox.Height - 40 < 170) _target.Y += 2;
+                while (_target.Y > 700) _target.Y -= 2;
+                _target.X = _player1.FootBox.Left - 100 - (int)((Math.Sqrt(Math.Pow(200, 2) - Math.Pow((_yPosArray[mobIndex] * -1), 2)) * 1.2));
+                while (_target.X - _footBox.Width < -100) _target.X += 2;
                 _distance.X = _footBox.Right - _target.X;
             }
             _distance.Y = _footBox.Y + _footBox.Height - _target.Y;
