@@ -19,7 +19,6 @@ namespace Vikingvalg
         public Rectangle targetBox;
         public int targetBoxXDif = 60;
         public int targetBoxYDif = -6;
-
         //Mining
         public List<Stone> StonesToMine { get; set; }
         
@@ -110,7 +109,8 @@ namespace Vikingvalg
             {
                 if(activeEnemy != null)
                 {
-                    if (targetBox.Intersects(activeEnemy.FootBox))
+                    if (targetBox.Intersects(activeEnemy.FootBox) &&
+                        ((activeEnemy.FootBox.Center.X < this.FootBox.Center.X && this.Flipped) || (activeEnemy.FootBox.Center.X > this.FootBox.Center.X && !this.Flipped)))
                     {
                         AnimatedEnemy enemyColidedWith = (AnimatedEnemy)ColidingWith;
                         activeEnemy.takeDamage();
