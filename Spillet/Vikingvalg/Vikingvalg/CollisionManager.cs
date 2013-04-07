@@ -17,6 +17,8 @@ namespace Vikingvalg
     /// </summary>
     public class CollisionManager : Microsoft.Xna.Framework.GameComponent, IManageCollision
     {
+        IManageSprites spriteService;
+
         //Liste over alt på skjermen som kan kræsje
         private List<ICanCollide> _canCollideList = new List<ICanCollide>();
         //Liste over alt på skjermen som kan kræsje utenom den det sjekkes mot
@@ -35,6 +37,8 @@ namespace Vikingvalg
         /// </summary>
         public override void Initialize()
         {
+            spriteService = (IManageSprites)Game.Services.GetService(typeof(IManageSprites));
+
             base.Initialize();
         }
 
@@ -83,7 +87,7 @@ namespace Vikingvalg
                 canCollide.BlockedLeft = false;
 
                 //Logikk for kollisjon mot klientvinduet
-                if (canCollide.FootBox.Y <= 0)
+                if (canCollide.FootBox.Y <= spriteService.WalkBlockTop)
                 {
                     canCollide.BlockedTop = true;
                 }

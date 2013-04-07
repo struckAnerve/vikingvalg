@@ -22,8 +22,14 @@ namespace Vikingvalg
         public MiningLevel(Player player1, IManageSprites spriteService, IManageCollision collisionService, InGameManager inGameService)
             : base(player1, spriteService, collisionService, inGameService)
         {
+            //Legger til en bakgrunn
+            _background = new StaticSprite("ground", new Rectangle(0, 0, (int)spriteService.GameWindowSize.X, (int)spriteService.GameWindowSize.Y));
+            spriteService.LoadDrawable(_background);
+            AddInGameLevelDrawable(_background);
+
             //Laster inn "stoneHit" som Texture2d
-            spriteService.LoadDrawable(new AnimatedStaticSprite("stonehit", new Rectangle(0, 0, 180, 99), Vector2.Zero, 4, 1, false));
+            spriteService.LoadDrawable(new StaticSprite("stonehit"));
+
             GoldStones = 3;
         }
 
@@ -62,8 +68,8 @@ namespace Vikingvalg
                     }
 
                     //bestemer "offset" på hver stens utgangsposisjon
-                    int stoneX = (270 * stoneColumn) + inGameService.rand.Next(51) + 150;
-                    int stoneY = (170 * stoneRow) + inGameService.rand.Next(51) + 40;
+                    int stoneX = (350 * stoneColumn) + inGameService.rand.Next(101) + 250;
+                    int stoneY = (170 * stoneRow) + inGameService.rand.Next(51) + spriteService.WalkBlockTop + 20;
 
                     //bestemmer "offset" på hver stens farge
                     int stoneColor = inGameService.rand.Next(140, 206);
