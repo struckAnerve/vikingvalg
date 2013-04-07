@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-
+using Demina;
 namespace Vikingvalg
 {
     /// <summary>
@@ -24,6 +24,9 @@ namespace Vikingvalg
 
         private ChooseDirectionLevel _chooseDirectionlevel;
         private FightingLevel _fightingLevel;
+        private MiningLevel _miningLevel;
+
+        public Random rand;
 
         private enum _possibleInGameStates { ChooseDirectionLevel, FightingLevel, MiningLevel, TownLevel };
         public String InGameState { get; private set; }
@@ -36,8 +39,7 @@ namespace Vikingvalg
 
         public InGameManager(Game game)
             : base(game)
-        {
-        }
+        { }
 
         /// <summary>
         /// Allows the game component to perform any initialization it needs to before starting
@@ -50,16 +52,23 @@ namespace Vikingvalg
             collisionService = (IManageCollision)Game.Services.GetService(typeof(IManageCollision));
             inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
 
+            rand = new Random();
+
             //Midlertidige plasseringer (?)
-            _player1 = new Player(new Rectangle(0, 0, 150, 330), 0.5f);
+            _player1 = new Player(new Rectangle(50, 100, 150, 330), 0.5f);
             spriteService.LoadDrawable(_player1);
 
             level = 1;
 
             _chooseDirectionlevel = new ChooseDirectionLevel(_player1, spriteService, collisionService, this);
             _fightingLevel = new FightingLevel(_player1, spriteService, collisionService, this);
+            _miningLevel = new MiningLevel(_player1, spriteService, collisionService, this);
 
+<<<<<<< HEAD
             ChangeInGameState("FightingLevel");
+=======
+            ChangeInGameState("ChooseDirectionLevel");
+>>>>>>> d0b94143143c8947c207ef01a5e46448384fca04
 
             base.Initialize();
         }
@@ -81,24 +90,11 @@ namespace Vikingvalg
             }
             else if (InGameState == "FightingLevel")
             {
-<<<<<<< HEAD
-                if (toUpdate is IUseInput)
-                {
-                    IUseInput needsInput = (IUseInput)toUpdate;
-                    needsInput.Update(inputService);
-                }
-                else
-                {
-                    toUpdate.Update();
-                }
-                if (toUpdate is AnimatedSprite)
-                {
-                    AnimatedSprite updatableAnimation = (AnimatedSprite)toUpdate;
-                    updatableAnimation.animationPlayer.Update(gameTime);
-                }
-=======
                 _fightingLevel.Update(inputService, gameTime);
->>>>>>> a11b543074c675620d166c572564fd6ccde8c391
+            }
+            else if (InGameState == "MiningLevel")
+            {
+                _miningLevel.Update(inputService, gameTime);
             }
 
             base.Update(gameTime);
@@ -123,6 +119,10 @@ namespace Vikingvalg
                 case "FightingLevel":
                     _fightingLevel.InitializeLevel();
                     ToDrawInGame = _fightingLevel.ToDrawInGameLevel;
+                    break;
+                case "MiningLevel":
+                    _miningLevel.InitializeLevel();
+                    ToDrawInGame = _miningLevel.ToDrawInGameLevel;
                     break;
             }
         }

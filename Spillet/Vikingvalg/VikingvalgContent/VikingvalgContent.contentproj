@@ -92,6 +92,7 @@
       <Name>walkCycle</Name>
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
+      <SubType>Designer</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -574,6 +575,13 @@
   <ItemGroup>
     <Compile Include="ground.png">
       <Name>ground</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Animations\playerAnimation\shadow.png">
+      <Name>shadow</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

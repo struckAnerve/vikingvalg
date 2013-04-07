@@ -85,14 +85,13 @@
     <Compile Include="BlobEnemy.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="ChooseDirectionLevel.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="CollisionManager.cs" />
     <Compile Include="ContinueButton.cs" />
     <Compile Include="FightingLevel.cs" />
-    <Compile Include="FightingPlayer.cs" />
     <Compile Include="GameStateManager.cs" />
     <Compile Include="Healthbar.cs" />
-    <Compile Include="ICanCollide.cs" />
+    <Compile Include="ICanCollideBorder.cs" />
+    <Compile Include="ICanCollideAll.cs" />
     <Compile Include="IManageCollision.cs" />
     <Compile Include="IManageInput.cs" />
     <Compile Include="IManageStates.cs" />
