@@ -31,29 +31,41 @@ namespace Vikingvalg
 
         public int endurance;
 
+        private bool _hasGold;
+
         public Stone(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth)
+            Vector2 origin, SpriteEffects effects, float layerDepth, bool hasGold)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth)
         {
-            stoneHitArt = new AnimatedStaticSprite("stoneHit", new Rectangle(_destinationRectangle.X - 40, _destinationRectangle.Y - ((99-_destinationRectangle.Height)/2), 180, 99), Vector2.Zero, 4, 50, true);
+            stoneHitArt = new AnimatedStaticSprite("stonehit", new Rectangle(_destinationRectangle.X - 40, _destinationRectangle.Y - ((99-_destinationRectangle.Height)/2), 180, 99), Vector2.Zero, 4, 50, true);
             stoneHitArt.IsPlaying = false;
             endurance = 8;
             _footBox = new Rectangle(destinationRectangle.X, destinationRectangle.Bottom - 20, destinationRectangle.Width, 20);
             setLayerDepth((float)(_footBox.Bottom / 70f));
+            _hasGold = hasGold;
         }
-        public Stone(Rectangle destinationRectangle, int sourceYPos, int color)
+        public Stone(Rectangle destinationRectangle, int sourceYPos, int color, bool hasGold)
             : this("stone", destinationRectangle, new Rectangle(0, sourceYPos, destinationRectangle.Width, destinationRectangle.Height),
-                new Color(200, color + 30, color, 255), 0, Vector2.Zero, SpriteEffects.None, 0.5f)
+                new Color(200, color + 30, color, 255), 0, Vector2.Zero, SpriteEffects.None, 0.5f, hasGold)
         { }
 
         public void IsHit()
         {
             stoneHitArt.currentFrame = 0;
-            stoneHitArt.IsPlaying = true;
             endurance--;
+            stoneHitArt.IsPlaying = true;
             if (endurance <= 0)
             {
-                _sourceRectangle.X = 400;
+                if (_hasGold)
+                {
+                    stoneHitArt.ChangeYPosition(198);
+                    _sourceRectangle.X = 500;
+                }
+                else
+                {
+                    stoneHitArt.ChangeYPosition(99);
+                    _sourceRectangle.X = 400;
+                }
             }
             else if (endurance % 2 == 0)
             {

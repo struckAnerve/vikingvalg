@@ -55,5 +55,10 @@ namespace Vikingvalg
                 currentFrame++;
             }
         }
+
+        public void ChangeYPosition(int newYPos)
+        {
+            _sourceRectangle.Y = newYPos;
+        }
     }
 }

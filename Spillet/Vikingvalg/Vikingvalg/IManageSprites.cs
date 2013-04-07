@@ -13,8 +13,9 @@ namespace Vikingvalg
 {
     interface IManageSprites
     {
-        //Skal kanskje ikke stå her? Brukes av Menu-klassene gjennom SpriteManager
+        //Skal kanskje ikke stå her? Brukes flere steder gjennom SpriteManager
         Vector2 GameWindowSize { get; }
+        int WalkBlockTop { get; set; }
 
         List<List<Sprite>> ListsToDraw { get; set; }
         void LoadDrawable(Sprite toLoad);

@@ -29,12 +29,15 @@ namespace Vikingvalg
             if(_player1.FootBox.Right >= spriteService.GameWindowSize.X)
             {
                 //Hvis spilleren er i øvre tredjedel av skjermen skal man endre InGameLevelState til "FightingLevel"
-                if (_player1.FootBox.Bottom < spriteService.GameWindowSize.Y / 3)
+                if (_player1.FootBox.Bottom < ((spriteService.GameWindowSize.Y - spriteService.WalkBlockTop) / 3) + spriteService.WalkBlockTop)
                 {
                     inGameService.ChangeInGameState("FightingLevel");
                 }
+                else if (_player1.FootBox.Top > ((spriteService.GameWindowSize.Y - spriteService.WalkBlockTop) / 3)*2 + spriteService.WalkBlockTop)
+                {
+                }
                 //Hvis spilleren er i midtre tredjedel av skjermen skal man endre InGameLevelState til "MiningLevel"
-                else if (_player1.FootBox.Top > spriteService.GameWindowSize.Y / 3 && _player1.FootBox.Bottom < spriteService.GameWindowSize.Y - (spriteService.GameWindowSize.Y / 3))
+                else
                 {
                     inGameService.ChangeInGameState("MiningLevel");
                 }
