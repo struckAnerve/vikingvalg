@@ -25,6 +25,7 @@ namespace Vikingvalg
         private ChooseDirectionLevel _chooseDirectionlevel;
         private FightingLevel _fightingLevel;
         private MiningLevel _miningLevel;
+        private TownLevel _townLevel;
 
         public Random rand;
 
@@ -63,6 +64,7 @@ namespace Vikingvalg
             _chooseDirectionlevel = new ChooseDirectionLevel(_player1, spriteService, collisionService, this);
             _fightingLevel = new FightingLevel(_player1, spriteService, collisionService, this);
             _miningLevel = new MiningLevel(_player1, spriteService, collisionService, this);
+            _townLevel = new TownLevel(_player1, spriteService, collisionService, this);
 
             ChangeInGameState("FightingLevel");
 
@@ -92,6 +94,10 @@ namespace Vikingvalg
             {
                 _miningLevel.Update(inputService, gameTime);
             }
+            else if (InGameState == "TownLevel")
+            {
+                _townLevel.Update(inputService, gameTime);
+            }
 
             base.Update(gameTime);
         }
@@ -119,6 +125,10 @@ namespace Vikingvalg
                 case "MiningLevel":
                     _miningLevel.InitializeLevel();
                     ToDrawInGame = _miningLevel.ToDrawInGameLevel;
+                    break;
+                case "TownLevel":
+                    _townLevel.InitializeLevel();
+                    ToDrawInGame = _townLevel.ToDrawInGameLevel;
                     break;
             }
         }

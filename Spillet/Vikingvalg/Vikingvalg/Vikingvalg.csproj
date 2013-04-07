@@ -103,6 +103,7 @@
     <Compile Include="Menu.cs" />
     <Compile Include="MenuManager.cs" />
     <Compile Include="MiningLevel.cs" />
+    <Compile Include="NeutralNPC.cs" />
     <Compile Include="PauseMenu.cs" />
     <Compile Include="PlayButton.cs" />
     <Compile Include="SettingsButton.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="SpriteManager.cs" />
     <Compile Include="StaticSprite.cs" />
     <Compile Include="Stone.cs" />
+    <Compile Include="TownLevel.cs" />
     <Compile Include="WolfEnemy.cs" />
   </ItemGroup>
   <ItemGroup>

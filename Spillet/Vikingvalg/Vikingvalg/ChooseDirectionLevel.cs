@@ -15,7 +15,10 @@ namespace Vikingvalg
     {
         public ChooseDirectionLevel(Player player1, IManageSprites spriteService, IManageCollision collisionService, InGameManager inGameService)
             : base(player1, spriteService, collisionService, inGameService)
-        { }
+        {
+            _background = new StaticSprite("ground", new Rectangle(0, 0, (int)spriteService.GameWindowSize.X, (int)spriteService.GameWindowSize.Y));
+            spriteService.LoadDrawable(_background);
+        }
 
         public override void InitializeLevel()
         {
@@ -35,6 +38,7 @@ namespace Vikingvalg
                 }
                 else if (_player1.FootBox.Top > ((spriteService.GameWindowSize.Y - spriteService.WalkBlockTop) / 3)*2 + spriteService.WalkBlockTop)
                 {
+                    inGameService.ChangeInGameState("TownLevel");
                 }
                 //Hvis spilleren er i midtre tredjedel av skjermen skal man endre InGameLevelState til "MiningLevel"
                 else

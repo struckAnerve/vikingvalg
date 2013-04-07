@@ -13,8 +13,6 @@ namespace Vikingvalg
 {
     class MiningLevel : InGameLevel
     {
-
-        private StaticSprite _background;
         private List<Stone> _stones = new List<Stone>();
 
         public int GoldStones { get; set; }
@@ -25,7 +23,6 @@ namespace Vikingvalg
             //Legger til en bakgrunn
             _background = new StaticSprite("ground", new Rectangle(0, 0, (int)spriteService.GameWindowSize.X, (int)spriteService.GameWindowSize.Y));
             spriteService.LoadDrawable(_background);
-            AddInGameLevelDrawable(_background);
 
             //Laster inn "stoneHit" som Texture2d
             spriteService.LoadDrawable(new StaticSprite("stonehit"));

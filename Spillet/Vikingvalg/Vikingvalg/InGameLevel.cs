@@ -17,6 +17,8 @@ namespace Vikingvalg
         protected IManageSprites spriteService;
         protected IManageCollision collisionService;
 
+        protected StaticSprite _background;
+
         protected Player _player1;
 
         protected List<Sprite> _toDrawQueue = new List<Sprite>();
@@ -40,6 +42,7 @@ namespace Vikingvalg
             _toDrawInGameLevel.Clear();
             _player1.Reset();
             AddInGameLevelDrawable(_player1);
+            AddInGameLevelDrawable(_background);
         }
 
         public virtual void Update(IManageInput inputService, GameTime gameTime)

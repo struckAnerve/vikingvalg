@@ -21,6 +21,8 @@ namespace Vikingvalg
             spriteService.LoadDrawable(new StaticSprite("healthBar", new Rectangle(0, 0, 0, 0)));
             spriteService.LoadDrawable(new StaticSprite("healthContainer", new Rectangle(0, 0, 0, 0)));
             spriteService.LoadDrawable(new StaticSprite("ground"));
+            spriteService.LoadDrawable(new StaticSprite("healthBar"));
+            spriteService.LoadDrawable(new StaticSprite("healthContainer"));
         }
 
         public override void InitializeLevel()
