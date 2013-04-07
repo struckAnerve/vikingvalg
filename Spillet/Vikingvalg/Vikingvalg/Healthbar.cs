@@ -24,10 +24,12 @@ namespace Vikingvalg
         private int _height = 29;
         private int _scaledHeight;
         private float _scale = 0.5f;
-        public Healthbar(int maxHp, Rectangle positionRectangle)
+        private int _characterHeight;
+        public Healthbar(int maxHp, Rectangle positionRectangle, int characterHeight)
         {
             _scaledWidth = (int)( _width * _scale);
             _scaledHeight = (int)(_height * _scale);
+            _characterHeight = (int)(characterHeight * _scale); 
             MaxHP = maxHp;
             PositionRectangle = positionRectangle;
             healthBarSprite = new StaticSprite("healthBar", new Rectangle(0,0, _scaledWidth, _scaledHeight), new Rectangle(0,0, _width, _height));
@@ -40,10 +42,10 @@ namespace Vikingvalg
         }
         public void setPosition(Rectangle receivedPosition)
         {
-            healthBarSprite.DestinationX = receivedPosition.Center.X;
-            healthBarSprite.DestinationY = receivedPosition.Top;
-            healthContainerSprite.DestinationX = receivedPosition.Center.X;
-            healthContainerSprite.DestinationY = receivedPosition.Top;
+            healthBarSprite.DestinationX = receivedPosition.Center.X - _scaledWidth / 2;
+            healthBarSprite.DestinationY = receivedPosition.Bottom - _characterHeight - 20;
+            healthContainerSprite.DestinationX = receivedPosition.Center.X - _scaledWidth / 2;
+            healthContainerSprite.DestinationY = receivedPosition.Bottom - _characterHeight - 20;
         }
     }
 }

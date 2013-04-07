@@ -105,16 +105,6 @@ namespace Vikingvalg
                         }
                         drawStaticSprite(drawable);
                     }
-                    else if (drawable is AnimatedCharacter)
-                    {
-                        AnimatedCharacter drawableCharacter = (AnimatedCharacter)drawable;
-                        if (drawableCharacter.healthbar != null && _loadedStaticArt.ContainsKey(drawableCharacter.healthbar.healthBarSprite.ArtName))
-                        {
-                            drawStaticSprite(drawableCharacter.healthbar.healthContainerSprite);
-                            drawStaticSprite(drawableCharacter.healthbar.healthBarSprite);
-                        }
-                        
-                    }
                 }
                 _spriteBatch.End();
 
@@ -136,6 +126,15 @@ namespace Vikingvalg
                                 drawStaticSprite(stoneToDraw.stoneHitArt);
                         }
                         drawStaticSprite(drawable);
+                    }
+                    else if (drawable is AnimatedCharacter)
+                    {
+                        AnimatedCharacter drawableCharacter = (AnimatedCharacter)drawable;
+                        if (drawableCharacter.healthbar != null && _loadedStaticArt.ContainsKey(drawableCharacter.healthbar.healthBarSprite.ArtName))
+                        {
+                            drawStaticSprite(drawableCharacter.healthbar.healthBarSprite);
+                            drawStaticSprite(drawableCharacter.healthbar.healthContainerSprite);
+                        }
                     }
                 }
                 _spriteBatch.End();

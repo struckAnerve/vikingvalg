@@ -85,6 +85,7 @@
     <Compile Include="BlobEnemy.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="ChooseDirectionLevel.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="CollisionManager.cs" />
     <Compile Include="ContinueButton.cs" />
     <Compile Include="FightingLevel.cs" />

@@ -43,12 +43,16 @@ namespace Vikingvalg
             Origin = origin;
             Effects = effects;
         }
-        public StaticSprite(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle)
+        public StaticSprite(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, float layerDepth)
             : this(artName, destinationRectangle, sourceRectangle,
-                new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.9f)
+                new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, layerDepth)
+        { }
+        
+        public StaticSprite(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle)
+            : this(artName, destinationRectangle, sourceRectangle, 0f)
         { }
         public StaticSprite(String artName, Rectangle destinationRectangle)
-            : this(artName, destinationRectangle, new Rectangle(0, 0, destinationRectangle.Width, destinationRectangle.Height))
+            : this(artName, destinationRectangle,new Rectangle(0, 0, destinationRectangle.Width, destinationRectangle.Height))
         { }
     }
 }

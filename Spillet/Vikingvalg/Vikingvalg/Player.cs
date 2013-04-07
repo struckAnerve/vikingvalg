@@ -29,11 +29,9 @@ namespace Vikingvalg
         {
             AnimationDirectory =  @"playerAnimation/";
             setSpeed(4);
-            hp = 50;
             //kan flyttes til base?
             destinationRectangle.Width = (int)(destinationRectangle.Width*scale);
             destinationRectangle.Height= (int)(destinationRectangle.Height*scale);
-
             //Setter hitboxen til spilleren til 40px høy og bredden på spilleren / 2
             footBoxWidth = (int)destinationRectangle.Width;
             footBoxXOffset =(int)footBoxWidth / 2;
@@ -82,6 +80,7 @@ namespace Vikingvalg
             //Flytter hitboxen til samme sted som spilleren
             _footBox.Y = ((int)(_destinationRectangle.Y + footBoxYOffset));
             _footBox.X = (int)(_destinationRectangle.X - footBoxXOffset);
+            healthbar.setPosition(_footBox);
         }
 
         public void Update(IManageInput inputService)
@@ -192,7 +191,7 @@ namespace Vikingvalg
                 _footBox.X = (int)(_destinationRectangle.X - footBoxXOffset);
                 targetBox.X = (int)(_footBox.X - targetBoxXDif / 2);
                 targetBox.Y = (int)_footBox.Y - targetBoxYDif / 2;
-                healthbar.setPosition(_destinationRectangle);
+                healthbar.setPosition(_footBox);
             }
         }
         /// <summary>

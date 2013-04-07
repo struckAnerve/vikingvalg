@@ -34,7 +34,8 @@ namespace Vikingvalg
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale)
         {
             hp = hitPoints;
-            healthbar = new Healthbar(hitPoints, destinationRectangle);
+            if (this is WolfEnemy) healthbar = new Healthbar(hitPoints, destinationRectangle, destinationRectangle.Height - 60);
+            else healthbar = new Healthbar(hitPoints, destinationRectangle, destinationRectangle.Height);
         }
         protected void setSpeed(int speed)
         {
