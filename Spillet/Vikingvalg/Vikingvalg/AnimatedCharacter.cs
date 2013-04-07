@@ -37,6 +37,12 @@ namespace Vikingvalg
             if (this is WolfEnemy) healthbar = new Healthbar(hitPoints, destinationRectangle, destinationRectangle.Height - 60);
             else healthbar = new Healthbar(hitPoints, destinationRectangle, destinationRectangle.Height);
         }
+
+        public bool FacesTowards(float point)
+        {
+            return (point < this._destinationRectangle.Center.X && this.Flipped) || (point > this._destinationRectangle.Center.X && !this.Flipped);
+        }
+
         protected void setSpeed(int speed)
         {
             _speed = speed;

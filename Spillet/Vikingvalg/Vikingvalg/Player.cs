@@ -22,7 +22,7 @@ namespace Vikingvalg
 
         //Mining
         public List<Stone> StonesToMine { get; set; }
-
+        
         public Player(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, 50)
@@ -120,8 +120,7 @@ namespace Vikingvalg
                 {
                     foreach (Stone stone in StonesToMine)
                     {
-                        if (targetBox.Intersects(stone.FootBox) && stone.endurance > 0 &&
-                            ((stone.FootBox.Center.X < this.FootBox.Center.X && this.Flipped) || (stone.FootBox.Center.X > this.FootBox.Center.X && !this.Flipped)))
+                        if (targetBox.Intersects(stone.FootBox) && stone.endurance > 0 && FacesTowards(stone.FootBox.Center.X))
                         {
                             stone.IsHit();
                         }
@@ -219,6 +218,5 @@ namespace Vikingvalg
             Console.WriteLine(hp);
             if (hp <= 0) Console.WriteLine("dead");
         }
-
     }
 }

@@ -18,6 +18,8 @@ namespace Vikingvalg
         public Vector2 GameWindowSize { get; protected set; }
         public int WalkBlockTop { get; set; }
 
+        public bool DrawHealthBar { get; set; }
+
         private SpriteBatch _spriteBatch;
         private Dictionary<String, Texture2D> _loadedStaticArt = new Dictionary<String,Texture2D>();
 
@@ -129,10 +131,10 @@ namespace Vikingvalg
                         }
                         drawStaticSprite(drawable);
                     }
-                    else if (drawable is AnimatedCharacter)
+                    else if (drawable is AnimatedCharacter && DrawHealthBar)
                     {
                         AnimatedCharacter drawableCharacter = (AnimatedCharacter)drawable;
-                        if (drawableCharacter.healthbar != null && _loadedStaticArt.ContainsKey(drawableCharacter.healthbar.healthBarSprite.ArtName))
+                        if (drawableCharacter.activeEnemy == drawableCharacter || drawableCharacter is Player)
                         {
                             drawStaticSprite(drawableCharacter.healthbar.healthBarSprite);
                             drawStaticSprite(drawableCharacter.healthbar.healthContainerSprite);

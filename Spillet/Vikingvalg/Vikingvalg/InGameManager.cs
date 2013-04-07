@@ -66,7 +66,7 @@ namespace Vikingvalg
             _miningLevel = new MiningLevel(_player1, spriteService, collisionService, this);
             _townLevel = new TownLevel(_player1, spriteService, collisionService, this);
 
-            ChangeInGameState("ChooseDirectionLevel");
+            ChangeInGameState("MiningLevel");
 
             base.Initialize();
         }

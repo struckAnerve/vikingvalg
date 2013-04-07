@@ -17,6 +17,8 @@ namespace Vikingvalg
         Vector2 GameWindowSize { get; }
         int WalkBlockTop { get; set; }
 
+        bool DrawHealthBar { get; set; }
+
         List<List<Sprite>> ListsToDraw { get; set; }
         void LoadDrawable(Sprite toLoad);
     }

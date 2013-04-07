@@ -25,16 +25,22 @@ namespace Vikingvalg
 
             _shopkeeper = new NeutralNPC("shopkeeper", new Rectangle(400, 300, 70, 200));
             spriteService.LoadDrawable(_shopkeeper);
-            AddInGameLevelDrawable(_shopkeeper);
             _oracle = new NeutralNPC("oracle", new Rectangle(900, 450, 130, 150));
             spriteService.LoadDrawable(_oracle);
-            AddInGameLevelDrawable(_oracle);
         }
 
         public override void InitializeLevel()
         {
             base.InitializeLevel();
 
+            AddInGameLevelDrawable(_shopkeeper);
+            AddInGameLevelDrawable(_oracle);
+        }
+
+        public override void Update(IManageInput inputService, GameTime gameTime)
+        {
+
+            base.Update(inputService, gameTime);
         }
     }
 }

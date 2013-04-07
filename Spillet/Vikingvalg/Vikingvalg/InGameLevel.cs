@@ -39,6 +39,12 @@ namespace Vikingvalg
 
         public virtual void InitializeLevel()
         {
+            spriteService.DrawHealthBar = false;
+            if (inGameService.InGameState == "FightingLevel")
+            {
+                spriteService.DrawHealthBar = true;
+            }
+
             _toDrawInGameLevel.Clear();
             _player1.Reset();
             AddInGameLevelDrawable(_player1);
