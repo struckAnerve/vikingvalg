@@ -35,7 +35,7 @@ namespace Vikingvalg
             Vector2 origin, SpriteEffects effects, float layerDepth)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth)
         {
-            stoneHitArt = new AnimatedStaticSprite("stoneHit", new Rectangle(_destinationRectangle.X, _destinationRectangle.Y, 180, 99), Vector2.Zero, 4, 1000);
+            stoneHitArt = new AnimatedStaticSprite("stoneHit", new Rectangle(_destinationRectangle.X - 40, _destinationRectangle.Y - ((99-_destinationRectangle.Height)/2), 180, 99), Vector2.Zero, 4, 50, true);
             stoneHitArt.IsPlaying = false;
             endurance = 8;
             _footBox = new Rectangle(destinationRectangle.X, destinationRectangle.Bottom - 20, destinationRectangle.Width, 20);
@@ -48,6 +48,7 @@ namespace Vikingvalg
 
         public void IsHit()
         {
+            stoneHitArt.currentFrame = 0;
             stoneHitArt.IsPlaying = true;
             endurance--;
             if (endurance <= 0)

@@ -98,6 +98,12 @@ namespace Vikingvalg
                     if (drawable is StaticSprite && drawable.LayerDepth <= playerDepth)
                     {
                         drawStaticSprite(drawable);
+                        if (drawable is Stone)
+                        {
+                            Stone stoneToDraw = (Stone)drawable;
+                            if(stoneToDraw.stoneHitArt.IsPlaying)
+                                drawStaticSprite(stoneToDraw.stoneHitArt);
+                        }
                     }
                     else if (drawable is AnimatedCharacter)
                     {
@@ -124,6 +130,12 @@ namespace Vikingvalg
                     if (drawable is StaticSprite && drawable.LayerDepth > playerDepth)
                     {
                         drawStaticSprite(drawable);
+                        if (drawable is Stone)
+                        {
+                            Stone stoneToDraw = (Stone)drawable;
+                            if (stoneToDraw.stoneHitArt.IsPlaying)
+                                drawStaticSprite(stoneToDraw.stoneHitArt);
+                        }
                     }
                 }
                 _spriteBatch.End();

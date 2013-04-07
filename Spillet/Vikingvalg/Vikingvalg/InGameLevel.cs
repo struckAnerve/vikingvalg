@@ -76,6 +76,12 @@ namespace Vikingvalg
                 else
                 {
                     toUpdate.Update();
+                    if (toUpdate is Stone)
+                    {
+                        Stone stoneToUpdate = (Stone)toUpdate;
+                        if (stoneToUpdate.stoneHitArt.IsPlaying)
+                            stoneToUpdate.stoneHitArt.Update(gameTime);
+                    }
                 }
                 if (toUpdate is AnimatedSprite)
                 {
