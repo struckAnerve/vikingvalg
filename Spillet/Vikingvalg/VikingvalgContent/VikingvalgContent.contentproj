@@ -509,13 +509,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="stonehit.png">
-      <Name>stonehit</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="stone.png">
       <Name>stone</Name>
       <Importer>TextureImporter</Importer>
@@ -567,6 +560,13 @@
     </Compile>
     <Compile Include="healthContainer.png">
       <Name>healthContainer</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="stonehit.png">
+      <Name>stonehit</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
