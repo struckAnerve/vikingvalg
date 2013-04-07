@@ -19,7 +19,7 @@ namespace Vikingvalg
             : base(player1, spriteService, collisionService, inGameService)
         {
             //Laster inn "stoneHit" som Texture2d
-            spriteService.LoadDrawable(new AnimatedStaticSprite("stoneHit", new Rectangle(0, 0, 180, 99), Vector2.Zero, 4, 1000));
+            spriteService.LoadDrawable(new AnimatedStaticSprite("stoneHit", new Rectangle(0, 0, 180, 99), Vector2.Zero, 4, 1, false));
         }
 
         public override void InitializeLevel()

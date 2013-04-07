@@ -14,38 +14,45 @@ namespace Vikingvalg
 {
     class AnimatedStaticSprite : StaticSprite
     {
-        protected int _currentFrame = 0;
+        public int currentFrame = 0;
         protected int _numberOfFrames;
         protected float _animationStepTime;
         protected float _timer;
+        protected bool _playOnce;
 
         public bool IsPlaying { get; set; }
 
         public AnimatedStaticSprite(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth, int numberOfFrames, float animationStepTime)
+            Vector2 origin, SpriteEffects effects, float layerDepth, int numberOfFrames, float animationStepTime, bool playOnce)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth)
         {
             _numberOfFrames = numberOfFrames;
             _animationStepTime = animationStepTime;
+            _playOnce = playOnce;
             IsPlaying = true;
         }
-        public AnimatedStaticSprite(String artName, Rectangle destinationRectangle, Vector2 sourcePos, int numberOfFrames, float animationStepTime)
+        public AnimatedStaticSprite(String artName, Rectangle destinationRectangle, Vector2 sourcePos, int numberOfFrames, float animationStepTime, bool playOnce)
             : this(artName, destinationRectangle, new Rectangle((int)sourcePos.X, (int)sourcePos.Y, destinationRectangle.Width, destinationRectangle.Height),
-                new Color(255, 255, 255, 255), 0, Vector2.Zero, SpriteEffects.None, 0.3f, numberOfFrames, animationStepTime)
+                new Color(255, 255, 255, 255), 0, Vector2.Zero, SpriteEffects.None, 0.3f, numberOfFrames, animationStepTime, playOnce)
         { }
 
         public void Update(GameTime gameTime)
         {
-            if (_currentFrame >= _numberOfFrames)
+            if (currentFrame >= _numberOfFrames)
             {
-                _currentFrame++;
+                if (_playOnce)
+                {
+                    IsPlaying = false;
+                }
+                else
+                    currentFrame = 0;
             }
+            _sourceRectangle.X = _destinationRectangle.Width * currentFrame;
             _timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             if (_timer >= _animationStepTime)
             {
                 _timer -= _animationStepTime;
-                _currentFrame++;
-                _sourceRectangle.X = _destinationRectangle.Width*_currentFrame;
+                currentFrame++;
             }
         }
     }
