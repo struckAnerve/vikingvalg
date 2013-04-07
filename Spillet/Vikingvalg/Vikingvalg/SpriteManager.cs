@@ -99,16 +99,6 @@ namespace Vikingvalg
                     {
                         drawStaticSprite(drawable);
                     }
-                    else if (drawable is AnimatedCharacter)
-                    {
-                        AnimatedCharacter drawableCharacter = (AnimatedCharacter)drawable;
-                        if (drawableCharacter.healthbar != null && _loadedStaticArt.ContainsKey(drawableCharacter.healthbar.healthBarSprite.ArtName))
-                        {
-                            drawStaticSprite(drawableCharacter.healthbar.healthContainerSprite);
-                            drawStaticSprite(drawableCharacter.healthbar.healthBarSprite);
-                        }
-                        
-                    }
                 }
                 _spriteBatch.End();
 
@@ -118,12 +108,21 @@ namespace Vikingvalg
                 {
                     drawAnimatedSprite(drawable);
                 }
-                _spriteBatch.Begin(SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
+                _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
                 foreach (Sprite drawable in listToDraw)
                 {
                     if (drawable is StaticSprite && drawable.LayerDepth > playerDepth)
                     {
                         drawStaticSprite(drawable);
+                    }
+                    else if (drawable is AnimatedCharacter)
+                    {
+                        AnimatedCharacter drawableCharacter = (AnimatedCharacter)drawable;
+                        if (drawableCharacter.healthbar != null && _loadedStaticArt.ContainsKey(drawableCharacter.healthbar.healthBarSprite.ArtName))
+                        {
+                            drawStaticSprite(drawableCharacter.healthbar.healthBarSprite);
+                            drawStaticSprite(drawableCharacter.healthbar.healthContainerSprite);
+                        }
                     }
                 }
                 _spriteBatch.End();

@@ -30,8 +30,6 @@ namespace Vikingvalg
             footBoxWidth = (int)(destinationRectangle.Width + (300 * scale));
             footBoxHeight = (int)(60 * scale);
             _footBox = new Rectangle(destinationRectangle.X - footBoxWidth / 2 + footBoxXOffset, destinationRectangle.Y + footBoxYOffset, footBoxWidth, footBoxHeight);
-
-            hp = 50;
         }
         public WolfEnemy(Rectangle destinationRectangle, float scale, Player player1)
             : this("mm", destinationRectangle, new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.6f, scale, player1)

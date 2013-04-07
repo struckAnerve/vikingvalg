@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,13 +16,16 @@ namespace Vikingvalg
 {
     class AnimatedEnemy : AnimatedCharacter
     {
+        protected int xTarget { get; set; }
+        protected int yTarget { get; set; }
         protected Player _player1 { get; set; }
-        protected Point _distance;
-        protected Point _target;
         private static Random rand = new Random();
-        public int mobIndex{get; set;}
+        public int mobIndex { get; set; }
         private int targetSpan = 7;
         int[] yPosArray;
+        private Point _distance;
+        private int _yTarget { get { return _player1.FootBox.Bottom; } }
+        private Point _target;
         bool positionRight = true;
         bool attackRight = true;
         private Rectangle _lastAllowedPosition;
@@ -49,9 +52,8 @@ namespace Vikingvalg
             }
             else if (animationPlayer.Transitioning == false && animationPlayer.CurrentKeyframeIndex > 0 && animationPlayer.CurrentKeyframeIndex == (animationPlayer.currentPlayingAnimation.Keyframes.Count() - 1))
             {
-                setAttackTargetDistance();
-                if(withinRangeOfTarget())
-                _player1.takeDamage();
+                Console.WriteLine(withinRangeOfTarget());
+                if (withinRangeOfTarget()) _player1.takeDamage();
                 idle();
             }
         }
@@ -93,7 +95,6 @@ namespace Vikingvalg
         }
         public void waitingFormation()
         {
-            // y = sqrt(300^2 - tall^2)
             if (rInt(0, 1000) >= 999)
             {
                 positionRight = !positionRight;
@@ -111,7 +112,7 @@ namespace Vikingvalg
 
             if (_footBox.Center.X > _player1.FootBox.Center.X) attackRight = true;
             else attackRight = false;
-            
+
             if (withinRangeOfTarget())
             {
                 if (attackRight) Flipped = true;
@@ -139,7 +140,7 @@ namespace Vikingvalg
                     {
                         Flipped = true;
                     }
-                    else if (_xSpeed < 0 && _footBox.Center.X < _target.X)
+                    else if (_xSpeed < 0 && _footBox.Center.X < xTarget)
                     {
                         Flipped = false;
                     }
@@ -161,12 +162,13 @@ namespace Vikingvalg
             if (BlockedBottom || BlockedTop || BlockedLeft || BlockedRight) return true;
             return false;
         }
-        private bool withinRangeOfTarget(){
+        private bool withinRangeOfTarget()
+        {
             if (_footBox.Bottom > _target.Y + 6 - targetSpan && _footBox.Bottom < _target.Y + targetSpan)
             {
                 if (attackRight)
                     return (_footBox.Left > _target.X - targetSpan && _footBox.Left < _target.X + targetSpan);
-                else 
+                else
                     return (_footBox.Right > _target.X - targetSpan && _footBox.Right < _target.X + targetSpan && _footBox.Bottom > _target.Y - targetSpan && _footBox.Bottom < _target.Y + targetSpan);
             }
             return false;
@@ -176,36 +178,7 @@ namespace Vikingvalg
             int t = rand.Next(min, max);
             return t;
         }
-        public void setAttackTargetDistance()
-        {
-            if (_footBox.Center.X > _player1.FootBox.Center.X)
-            {
-                _target.X = _player1.FootBox.X + _player1.FootBox.Width + 5;
-                _distance.X = _footBox.X - _target.X;
-            }
-            else
-            {
-                _target.X = _player1.FootBox.X - 5;
-                _distance.X = _footBox.X + _footBox.Width - _target.X;
-            }
-            _target.Y = _player1.FootBox.Y + _player1.FootBox.Height;
-            _distance.Y = _footBox.Y + _footBox.Height - _target.Y;
-        }
-        private void setWaitingTargetDistance()
-        {
-            if (positionRight)
-            {
-                _target.Y = _player1.FootBox.Y + _player1.FootBox.Height + yPosArray[mobIndex];
-                _target.X = _player1.FootBox.Right + 100 + (int)((Math.Sqrt(Math.Pow(200, 2) - Math.Pow(yPosArray[mobIndex], 2)) * 1.2));
-                _distance.X = _footBox.Left - _target.X;
-            }
-            else if (!positionRight)
-            {
-                _target.Y = _player1.FootBox.Y + _player1.FootBox.Height + (yPosArray[mobIndex] * -1);
-                _target.X = _player1.FootBox.Left - 100 - (int)((Math.Sqrt(Math.Pow(200, 2) - Math.Pow((yPosArray[mobIndex] * -1), 2)) * 1.2));
-                _distance.X = _footBox.Right - _target.X;
-            }
-            _distance.Y = _footBox.Y + _footBox.Height - _target.Y;
-        }
+        
     }
 }
+*/
