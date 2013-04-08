@@ -19,6 +19,7 @@ namespace Vikingvalg
         public Rectangle targetBox;
         public int targetBoxXDif = 60;
         public int targetBoxYDif = -6;
+
         //Mining
         public List<Stone> StonesToMine { get; set; }
         
