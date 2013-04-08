@@ -13,6 +13,7 @@ namespace Vikingvalg
 {
     class FightingLevel : InGameLevel
     {
+        private int _returnPositionY = 245;
         public AnimatedEnemy activeEnemy { get; private set; }
         private List<AnimatedEnemy> levelCharacters = new List<AnimatedEnemy>();
         public FightingLevel(Player player1, IManageSprites spriteService, IManageCollision collisionService, InGameManager inGameService)
@@ -27,7 +28,7 @@ namespace Vikingvalg
         public override void InitializeLevel(int playerX, int playerY)
         {
             base.InitializeLevel(playerX, playerY);
-
+            returnPositionY = _returnPositionY;
             levelCharacters.Add(new BlobEnemy(new Rectangle(100, 100, 400, 267), 0.5f, _player1));
             levelCharacters.Add(new WolfEnemy(new Rectangle(300, 300, 400, 267), 0.3f, _player1));
             levelCharacters.Add(new BlobEnemy(new Rectangle(100, 100, 400, 267), 0.5f, _player1));

@@ -13,7 +13,7 @@ namespace Vikingvalg
 {
     class TownLevel : InGameLevel
     {
-
+        private int _returnPositionY = 620;
         private NeutralNPC _shopkeeper;
         private NeutralNPC _oracle;
 
@@ -32,7 +32,7 @@ namespace Vikingvalg
         public override void InitializeLevel(int playerX, int playerY)
         {
             base.InitializeLevel(playerX, playerY);
-
+            returnPositionY = _returnPositionY;
             AddInGameLevelDrawable(_shopkeeper);
             AddInGameLevelDrawable(_oracle);
         }

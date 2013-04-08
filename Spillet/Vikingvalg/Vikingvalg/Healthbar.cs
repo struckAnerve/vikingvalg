@@ -47,5 +47,9 @@ namespace Vikingvalg
             healthContainerSprite.DestinationX = receivedPosition.Center.X - _scaledWidth / 2;
             healthContainerSprite.DestinationY = receivedPosition.Bottom - _characterHeight - 20;
         }
+        public void reset()
+        {
+            healthBarSprite.DestinationWidth = _scaledWidth;
+        }
     }
 }

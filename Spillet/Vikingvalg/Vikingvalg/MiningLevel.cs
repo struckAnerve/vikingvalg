@@ -13,6 +13,8 @@ namespace Vikingvalg
 {
     class MiningLevel : InGameLevel
     {
+        private int _returnPositionY = 430;
+        private Point _returnPosition = new Point(0, 430);
         private List<Stone> _stones = new List<Stone>();
 
         public int GoldStones { get; set; }
@@ -32,6 +34,7 @@ namespace Vikingvalg
 
         public override void InitializeLevel(int playerX, int playerY)
         {
+            returnPositionY = _returnPositionY;
             base.InitializeLevel(playerX, playerY);
 
             //Lager en liste med tall som representerer hvilke steiner som skal ha gull

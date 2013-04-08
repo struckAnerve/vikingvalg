@@ -24,6 +24,7 @@ namespace Vikingvalg
         protected List<Sprite> _toDrawQueue = new List<Sprite>();
         protected List<Sprite> _toDrawInGameLevel = new List<Sprite>();
         protected List<Sprite> _toRemoveInGameLevel = new List<Sprite>();
+        public int returnPositionY { get; set; }
         public List<Sprite> ToDrawInGameLevel 
         {
             get { return _toDrawInGameLevel; }
@@ -62,7 +63,7 @@ namespace Vikingvalg
             if (_player1.FootBox.Left <= 0 && inGameService.InGameState != "ChooseDirectionLevel")
             {
                 ClearLevel();
-                inGameService.ChangeInGameState("ChooseDirectionLevel", (int)spriteService.GameWindowSize.X - _player1.FootBox.Width, _player1.FootBox.Y);
+                inGameService.ChangeInGameState("ChooseDirectionLevel", (int)spriteService.GameWindowSize.X - _player1.FootBox.Width - 2, returnPositionY);
             }
 
             if (_toRemoveInGameLevel != null)

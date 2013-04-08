@@ -13,16 +13,21 @@ namespace Vikingvalg
 {
     class ChooseDirectionLevel : InGameLevel
     {
+        private StaticSprite _sign;
         public ChooseDirectionLevel(Player player1, IManageSprites spriteService, IManageCollision collisionService, InGameManager inGameService)
             : base(player1, spriteService, collisionService, inGameService)
         {
-            _background = new StaticSprite("ground", new Rectangle(0, 0, (int)spriteService.GameWindowSize.X, (int)spriteService.GameWindowSize.Y));
+            _background = new StaticSprite("chooseLevelGround", new Rectangle(0, 0, (int)spriteService.GameWindowSize.X, (int)spriteService.GameWindowSize.Y));
             spriteService.LoadDrawable(_background);
+            _sign = new StaticSprite("sign", new Rectangle(650, 200, 206, 173), (200 + 206) / 70);
+            Console.WriteLine((200f + 206f) / 70f);
+            spriteService.LoadDrawable(_sign);
         }
 
         public override void InitializeLevel(int playerX, int playerY)
         {
             base.InitializeLevel(playerX, playerY);
+            AddInGameLevelDrawable(_sign);
         }
 
         public override void Update(IManageInput inputService, GameTime gameTime)
@@ -31,21 +36,21 @@ namespace Vikingvalg
             if(_player1.FootBox.Right >= spriteService.GameWindowSize.X)
             {
                 //Hvis spilleren er i øvre tredjedel av skjermen skal man endre InGameLevelState til "FightingLevel"
-                if (_player1.FootBox.Bottom < ((spriteService.GameWindowSize.Y - spriteService.WalkBlockTop) / 3) + spriteService.WalkBlockTop)
+                if (_player1.FootBox.Bottom < 315 && _player1.FootBox.Bottom > 190)
                 {
                     ClearLevel();
-                    inGameService.ChangeInGameState("FightingLevel", 50, _player1.FootBox.Y);
-                }
-                else if (_player1.FootBox.Top > ((spriteService.GameWindowSize.Y - spriteService.WalkBlockTop) / 3)*2 + spriteService.WalkBlockTop)
-                {
-                    ClearLevel();
-                    inGameService.ChangeInGameState("TownLevel", 50, _player1.FootBox.Y);
+                    inGameService.ChangeInGameState("FightingLevel", _player1.FootBox.Width +2, _player1.FootBox.Y);
                 }
                 //Hvis spilleren er i midtre tredjedel av skjermen skal man endre InGameLevelState til "MiningLevel"
-                else
+                else if (_player1.FootBox.Bottom < 490 && _player1.FootBox.Bottom > 380)
                 {
                     ClearLevel();
-                    inGameService.ChangeInGameState("MiningLevel", 50, _player1.FootBox.Y);
+                    inGameService.ChangeInGameState("MiningLevel", _player1.FootBox.Width + 2, _player1.FootBox.Y);
+                }
+                else if (_player1.FootBox.Bottom < 690 && _player1.FootBox.Bottom > 570)
+                {
+                    ClearLevel();
+                    inGameService.ChangeInGameState("TownLevel", _player1.FootBox.Width + 2, _player1.FootBox.Y);
                 }
             }
 

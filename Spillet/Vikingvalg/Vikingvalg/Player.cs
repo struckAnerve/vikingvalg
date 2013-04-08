@@ -81,12 +81,12 @@ namespace Vikingvalg
 
         public void Reset(int resetX, int resetY)
         {
-            _destinationRectangle.X = resetX;
-            _destinationRectangle.Y = resetY;
-
+            _footBox.X = resetX;
+            _footBox.Y = resetY;
+            healthbar.reset();
             //Flytter hitboxen til samme sted som spilleren
-            _footBox.Y = ((int)(_destinationRectangle.Y + footBoxYOffset));
-            _footBox.X = (int)(_destinationRectangle.X - footBoxXOffset);
+            _destinationRectangle.Y = ((int)(_footBox.Y - footBoxYOffset));
+            _destinationRectangle.X = ((int)(_footBox.X - footBoxXOffset));
 
             hp = _maxHitpoints;
             healthbar.setPosition(_footBox);

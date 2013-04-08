@@ -105,6 +105,7 @@
     <Compile Include="NeutralNPC.cs" />
     <Compile Include="PauseMenu.cs" />
     <Compile Include="PlayButton.cs" />
+    <Compile Include="SaveGameData.cs" />
     <Compile Include="SettingsButton.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="IManageSprites.cs" />
