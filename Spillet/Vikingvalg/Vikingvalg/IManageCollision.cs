@@ -7,9 +7,9 @@ namespace Vikingvalg
 {
     interface IManageCollision
     {
-        void AddCollidable(ICanCollideBorder canCollide);
-        void RemoveCollidable(ICanCollideBorder toRemove);
-        void ClearCollis;
+        void AddCollidable(ICanCollide canCollide);
+        void RemoveCollidable(ICanCollide toRemove);
+        void ClearCollisionList();
 
         void Enable();
         void Disable();

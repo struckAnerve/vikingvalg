@@ -90,8 +90,7 @@
     <Compile Include="FightingLevel.cs" />
     <Compile Include="GameStateManager.cs" />
     <Compile Include="Healthbar.cs" />
-    <Compile Include="ICanCollideBorder.cs" />
-    <Compile Include="ICanCollideAll.cs" />
+    <Compile Include="ICanCollide.cs" />
     <Compile Include="IManageCollision.cs" />
     <Compile Include="IManageInput.cs" />
     <Compile Include="IManageStates.cs" />

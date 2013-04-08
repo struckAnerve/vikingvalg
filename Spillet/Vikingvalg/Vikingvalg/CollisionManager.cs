@@ -20,9 +20,9 @@ namespace Vikingvalg
         IManageSprites spriteService;
 
         //Liste over alt på skjermen som kan kræsje
-        private List<ICanCollideBorder> _canCollideList = new List<ICanCollideBorder>();
+        private List<ICanCollide> _canCollideList = new List<ICanCollide>();
         //Liste over alt på skjermen som kan kræsje utenom den det sjekkes mot
-        private List<ICanCollideBorder> _listToCheck = new List<ICanCollideBorder>();
+        private List<ICanCollide> _listToCheck = new List<ICanCollide>();
 
         private Rectangle _intersectionRectangle = new Rectangle();
 
@@ -51,7 +51,7 @@ namespace Vikingvalg
             this.Enabled = false;
         }
 
-        public void AddCollidable(ICanCollideBorder canCollide)
+        public void AddCollidable(ICanCollide canCollide)
         {
             if(_canCollideList.Contains(canCollide))
             {
@@ -64,14 +64,14 @@ namespace Vikingvalg
             }
 
             _canCollideList.Add(canCollide);
-            if(canCollide is ICanCollideAll) 
+            if(canCollide is ICanCollide) 
                 _listToCheck.Add(canCollide);
         }
 
-        public void RemoveCollidable(ICanCollideBorder toRemove)
+        public void RemoveCollidable(ICanCollide toRemove)
         {
             _canCollideList.Remove(toRemove);
-            if(toRemove is ICanCollideAll) 
+            if(toRemove is ICanCollide) 
                 _listToCheck.Remove(toRemove);
         }
 
@@ -81,7 +81,7 @@ namespace Vikingvalg
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            foreach (ICanCollideBorder canCollide in _canCollideList)
+            foreach (ICanCollide canCollide in _canCollideList)
             {
                 canCollide.BlockedTop = false;
                 canCollide.BlockedRight = false;
@@ -105,13 +105,13 @@ namespace Vikingvalg
                 {
                     canCollide.BlockedRight = true;
                 }
-                if (canCollide is ICanCollideAll)
+                if (canCollide is ICanCollide)
                 {
                     //Logikk for kollisjon mot andre objekter
                     _listToCheck.Remove(canCollide);
                     if (_listToCheck != null)
                     {
-                        foreach (ICanCollideBorder canCollideTwo in _listToCheck)
+                        foreach (ICanCollide canCollideTwo in _listToCheck)
                         {
                             if (canCollide.FootBox.Intersects(canCollideTwo.FootBox))
                             {

@@ -122,9 +122,9 @@ namespace Vikingvalg
                 spriteService.LoadDrawable(toAdd);
             }
 
-            if (toAdd is ICanCollideBorder)
+            if (toAdd is ICanCollide)
             {
-                ICanCollideBorder canCollide = (ICanCollideBorder)toAdd;
+                ICanCollide canCollide = (ICanCollide)toAdd;
                 collisionService.AddCollidable(canCollide);
             }
         }
@@ -133,9 +133,9 @@ namespace Vikingvalg
         {
             _toRemoveInGameLevel.Add(toRemove);
 
-            if (toRemove is ICanCollideBorder)
+            if (toRemove is ICanCollide)
             {
-                ICanCollideBorder collideRemove = (ICanCollideBorder)toRemove;
+                ICanCollide collideRemove = (ICanCollide)toRemove;
                 collisionService.RemoveCollidable(collideRemove);
             }
         }

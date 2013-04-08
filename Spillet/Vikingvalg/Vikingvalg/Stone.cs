@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
-    class Stone : StaticSprite, ICanCollideAll
+    class Stone : StaticSprite, ICanCollide
     {
         public AnimatedStaticSprite stoneHitArt { get; set; }
 

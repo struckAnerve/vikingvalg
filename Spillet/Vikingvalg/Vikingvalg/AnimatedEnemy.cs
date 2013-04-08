@@ -14,7 +14,7 @@ using Demina;
 
 namespace Vikingvalg
 {
-    class AnimatedEnemy : AnimatedCharacter, ICanCollideBorder
+    class AnimatedEnemy : AnimatedCharacter
     {
         public int mobIndex { get; set; }
         public Player _player1 { private get; set; }
