@@ -20,6 +20,8 @@ namespace Vikingvalg
         public int targetBoxXDif = 60;
         public int targetBoxYDif = -6;
 
+        private int _maxHitpoints;
+
         //Mining
         public List<Stone> StonesToMine { get; set; }
         
@@ -29,17 +31,22 @@ namespace Vikingvalg
         {
             AnimationDirectory =  @"playerAnimation/";
             setSpeed(4);
+            _maxHitpoints = 50;
+            
             //kan flyttes til base?
             destinationRectangle.Width = (int)(destinationRectangle.Width*scale);
             destinationRectangle.Height= (int)(destinationRectangle.Height*scale);
+            
             //Setter hitboxen til spilleren til 40px høy og bredden på spilleren / 2
             footBoxWidth = (int)destinationRectangle.Width;
             footBoxXOffset =(int)footBoxWidth / 2;
             footBoxYOffset = (int)(110 * scale);
             footBoxHeight = (int)(60 * scale);
+            
             //Plasserer boksen midstilt nederst på spilleren.
             _footBox = new Rectangle(destinationRectangle.X - footBoxXOffset, destinationRectangle.Y + footBoxYOffset, footBoxWidth, (int)footBoxHeight);
             targetBox = new Rectangle(_footBox.X - targetBoxXDif / 2 - 5, _footBox.Y, _footBox.Width + targetBoxXDif, _footBox.Height + targetBoxYDif);
+            
             //Legger til alle navn på animasjoner som spilleren har, brukes for å laste inn riktige animasjoner.
             animationList.Add("block");
             animationList.Add("strikeSword");
@@ -80,6 +87,8 @@ namespace Vikingvalg
             //Flytter hitboxen til samme sted som spilleren
             _footBox.Y = ((int)(_destinationRectangle.Y + footBoxYOffset));
             _footBox.X = (int)(_destinationRectangle.X - footBoxXOffset);
+
+            hp = _maxHitpoints;
             healthbar.setPosition(_footBox);
         }
 

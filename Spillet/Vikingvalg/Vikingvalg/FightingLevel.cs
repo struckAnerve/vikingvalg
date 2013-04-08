@@ -46,6 +46,7 @@ namespace Vikingvalg
 
         public override void ClearLevel()
         {
+            _player1.activeEnemy = null;
             levelCharacters.Clear();
 
             base.ClearLevel();
