@@ -39,24 +39,32 @@ namespace Vikingvalg
 
         public virtual void InitializeLevel(int playerX, int playerY)
         {
-            collisionService.ClearCollisionList();
             spriteService.DrawHealthBar = false;
             if (inGameService.InGameState == "FightingLevel")
             {
                 spriteService.DrawHealthBar = true;
             }
-            _toDrawInGameLevel.Clear();
             _player1.Reset(playerX, playerY);
             AddInGameLevelDrawable(_player1);
             AddInGameLevelDrawable(_background);
+        }
+
+        public virtual void ClearLevel()
+        {
+            _toDrawQueue.Clear();
+            _toRemoveInGameLevel.Clear();
+            _toDrawInGameLevel.Clear();
+            collisionService.ClearCollisionList();
         }
 
         public virtual void Update(IManageInput inputService, GameTime gameTime)
         {
             if (_player1.FootBox.Left <= 0 && inGameService.InGameState != "ChooseDirectionLevel")
             {
+                ClearLevel();
                 inGameService.ChangeInGameState("ChooseDirectionLevel", (int)spriteService.GameWindowSize.X - _player1.FootBox.Width, _player1.FootBox.Y);
             }
+
             if (_toRemoveInGameLevel != null)
             {
                 foreach (Sprite toRemove in _toRemoveInGameLevel)

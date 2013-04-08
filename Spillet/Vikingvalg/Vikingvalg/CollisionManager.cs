@@ -64,15 +64,13 @@ namespace Vikingvalg
             }
 
             _canCollideList.Add(canCollide);
-            if(canCollide is ICanCollide) 
-                _listToCheck.Add(canCollide);
+            _listToCheck.Add(canCollide);
         }
 
         public void RemoveCollidable(ICanCollide toRemove)
         {
             _canCollideList.Remove(toRemove);
-            if(toRemove is ICanCollide) 
-                _listToCheck.Remove(toRemove);
+            _listToCheck.Remove(toRemove);
         }
 
         /// <summary>

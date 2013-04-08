@@ -43,6 +43,14 @@ namespace Vikingvalg
                 enemy.mobIndex = levelCharacters.IndexOf(enemy);
             }
         }
+
+        public override void ClearLevel()
+        {
+            levelCharacters.Clear();
+
+            base.ClearLevel();
+        }
+
         public override void Update(IManageInput inputService, GameTime gameTime)
         {
             base.Update(inputService, gameTime);

@@ -101,5 +101,12 @@ namespace Vikingvalg
 
             _player1.StonesToMine = _stones;
         }
+
+        public override void ClearLevel()
+        {
+            _stones.Clear();
+
+            base.ClearLevel();
+        }
     }
 }
