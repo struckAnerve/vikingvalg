@@ -16,7 +16,7 @@ namespace Vikingvalg
 {
     class AnimatedCharacter : AnimatedSprite
     {
-        public AnimatedSprite ColidingWith { get; set; }
+        public AnimatedSprite CollidingWith { get; set; }
         public int hp { get; set; }
         public bool BlockedLeft { get; set; }
         public bool BlockedRight { get; set; }
@@ -40,7 +40,7 @@ namespace Vikingvalg
 
         public bool FacesTowards(float point)
         {
-            return (point < this._destinationRectangle.Center.X && this.Flipped) || (point > this._destinationRectangle.Center.X && !this.Flipped);
+            return (point < this.FootBox.Center.X && this.Flipped) || (point > this.FootBox.Center.X && !this.Flipped);
         }
 
         protected void setSpeed(int speed)
