@@ -12,26 +12,66 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
-    class NeutralNPC : StaticSprite
+    class NeutralNPC : StaticSprite, IUseInput
     {
+        protected InGameLevel _inGameLevel;
+
+        protected Player _player1;
+
+        public String npcName;
+        protected bool _inConversation;
+
         protected int _talkingRangeBoxOffset = 40;
         protected int _talkingRangeBoxHeight = 40;
         protected Rectangle _talkingRangeBox;
-        public Rectangle TalkingRangeBox
-        {
-            get { return _talkingRangeBox; }
-        }
 
         public NeutralNPC(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth)
+            Vector2 origin, SpriteEffects effects, float layerDepth, String npcName, Player player, InGameLevel inGameLevel)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth)
         {
+            _inConversation = false;
+            this.npcName = npcName;
+            _inGameLevel = inGameLevel;
+            _player1 = player;
+
             _talkingRangeBox = new Rectangle(destinationRectangle.Left - _talkingRangeBoxOffset, destinationRectangle.Bottom - _talkingRangeBoxHeight,
                 destinationRectangle.Width + _talkingRangeBoxOffset * 2, _talkingRangeBoxHeight); 
         }
-        public NeutralNPC(String artName, Rectangle destinationRectangle)
+        public NeutralNPC(String artName, Rectangle destinationRectangle, String npcName, Player player, InGameLevel inGameLevel)
             : this(artName, destinationRectangle, new Rectangle(0, 0, destinationRectangle.Width, destinationRectangle.Height),
-                new Color(255, 255, 255, 255), 0, Vector2.Zero, SpriteEffects.None, 0.5f)
+                new Color(255, 255, 255, 255), 0, Vector2.Zero, SpriteEffects.None, 0.5f, npcName, player, inGameLevel)
         { }
+
+        public void Update(IManageInput inputService)
+        {
+            if(_player1.FootBox.Intersects(_talkingRangeBox) && _player1.FacesTowards(this._talkingRangeBox.Center.X) && inputService.KeyWasPressedThisFrame(Keys.F))
+            {
+                ChangeConversationState();
+            }
+            if (_inConversation)
+            {
+                Console.Write("hei, ");
+                if (!_player1.FootBox.Intersects(_talkingRangeBox))
+                {
+                    ChangeConversationState();
+                }
+            }
+        }
+
+        public void ChangeConversationState()
+        {
+            _inConversation = !_inConversation;
+
+
+            //if for å sjekke om man skal legge til tekstboks eller fjerne
+            if (_inConversation)
+            {
+                Console.WriteLine("Started conversation with " + npcName);
+            }
+            else
+            {
+                Console.WriteLine("Ended conversation with " + npcName);
+            }
+        }
     }
 }

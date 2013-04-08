@@ -188,7 +188,7 @@ namespace Vikingvalg
                                     {
                                         Player playerCollidable = (Player)canCollide;
                                         AnimatedSprite animatedSpriteColision = (AnimatedSprite)canCollideTwo;
-                                        playerCollidable.ColidingWith = animatedSpriteColision;
+                                        playerCollidable.CollidingWith = animatedSpriteColision;
                                     }
                                 }
                             }

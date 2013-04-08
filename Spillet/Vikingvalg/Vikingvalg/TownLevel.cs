@@ -23,9 +23,9 @@ namespace Vikingvalg
             _background = new StaticSprite("ground", new Rectangle(0, 0, (int)spriteService.GameWindowSize.X, (int)spriteService.GameWindowSize.Y));
             spriteService.LoadDrawable(_background);
 
-            _shopkeeper = new NeutralNPC("shopkeeper", new Rectangle(400, 300, 70, 200));
+            _shopkeeper = new NeutralNPC("shopkeeper", new Rectangle(400, 300, 70, 200), "Shopkeeper", _player1, this);
             spriteService.LoadDrawable(_shopkeeper);
-            _oracle = new NeutralNPC("oracle", new Rectangle(900, 450, 130, 150));
+            _oracle = new NeutralNPC("oracle", new Rectangle(900, 450, 130, 150), "Oracle", _player1, this);
             spriteService.LoadDrawable(_oracle);
         }
 

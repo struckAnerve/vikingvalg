@@ -122,7 +122,7 @@ namespace Vikingvalg
                     if (targetBox.Intersects(activeEnemy.FootBox) &&
                         ((activeEnemy.FootBox.Center.X < this.FootBox.Center.X && this.Flipped) || (activeEnemy.FootBox.Center.X > this.FootBox.Center.X && !this.Flipped)))
                     {
-                        AnimatedEnemy enemyColidedWith = (AnimatedEnemy)ColidingWith;
+                        AnimatedEnemy enemyColidedWith = (AnimatedEnemy)CollidingWith;
                         activeEnemy.takeDamage();
                     }
                 }

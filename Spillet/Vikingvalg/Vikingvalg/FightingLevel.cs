@@ -55,7 +55,6 @@ namespace Vikingvalg
 
         public override void Update(IManageInput inputService, GameTime gameTime)
         {
-            base.Update(inputService, gameTime);
             if (activeEnemy.hp <= 0)
             {
                 levelCharacters.Remove(activeEnemy);
@@ -70,6 +69,8 @@ namespace Vikingvalg
                     _player1.activeEnemy = activeEnemy;
                 }
             }
+
+            base.Update(inputService, gameTime);
         }
     }
 }
