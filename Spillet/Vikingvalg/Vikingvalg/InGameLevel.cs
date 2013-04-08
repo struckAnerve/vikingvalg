@@ -59,7 +59,7 @@ namespace Vikingvalg
 
         public virtual void Update(IManageInput inputService, GameTime gameTime)
         {
-            if (_player1.FootBox.Left <= 0)
+            if (_player1.FootBox.Left <= 0 && inGameService.InGameState != "ChooseDirectionLevel")
             {
                 ClearLevel();
                 inGameService.ChangeInGameState("ChooseDirectionLevel", (int)spriteService.GameWindowSize.X - _player1.FootBox.Width, _player1.FootBox.Y);
