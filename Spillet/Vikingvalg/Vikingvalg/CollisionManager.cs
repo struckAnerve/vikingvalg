@@ -204,6 +204,7 @@ namespace Vikingvalg
         public void ClearCollisionList()
         {
             _canCollideList.Clear();
+            _listToCheck.Clear();
         }
     }
 }
