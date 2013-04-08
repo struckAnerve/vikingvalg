@@ -71,10 +71,10 @@ namespace Vikingvalg
             : this(Vector2.Zero)
         { }
 
-        public void Reset()
+        public void Reset(int resetX, int resetY)
         {
-            _destinationRectangle.X = 40;
-            _destinationRectangle.Y = 350;
+            _destinationRectangle.X = resetX;
+            _destinationRectangle.Y = resetY;
 
             //Flytter hitboxen til samme sted som spilleren
             _footBox.Y = ((int)(_destinationRectangle.Y + footBoxYOffset));

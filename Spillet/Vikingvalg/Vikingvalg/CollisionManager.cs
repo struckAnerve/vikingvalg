@@ -201,5 +201,9 @@ namespace Vikingvalg
             }
             base.Update(gameTime);
         }
+        public void ClearCollisionList()
+        {
+            _canCollideList.Clear();
+        }
     }
 }

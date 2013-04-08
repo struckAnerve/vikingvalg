@@ -24,9 +24,9 @@ namespace Vikingvalg
             spriteService.LoadDrawable(new StaticSprite("healthContainer"));
         }
 
-        public override void InitializeLevel()
+        public override void InitializeLevel(int playerX, int playerY)
         {
-            base.InitializeLevel();
+            base.InitializeLevel(playerX, playerY);
 
             levelCharacters.Add(new BlobEnemy(new Rectangle(100, 100, 400, 267), 0.5f, _player1));
             levelCharacters.Add(new WolfEnemy(new Rectangle(300, 300, 400, 267), 0.3f, _player1));

@@ -30,9 +30,9 @@ namespace Vikingvalg
             GoldStones = 3;
         }
 
-        public override void InitializeLevel()
+        public override void InitializeLevel(int playerX, int playerY)
         {
-            base.InitializeLevel();
+            base.InitializeLevel(playerX, playerY);
 
             //Lager en liste med tall som representerer hvilke steiner som skal ha gull
             if (GoldStones > 9)

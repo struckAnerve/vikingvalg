@@ -29,9 +29,9 @@ namespace Vikingvalg
             spriteService.LoadDrawable(_oracle);
         }
 
-        public override void InitializeLevel()
+        public override void InitializeLevel(int playerX, int playerY)
         {
-            base.InitializeLevel();
+            base.InitializeLevel(playerX, playerY);
 
             AddInGameLevelDrawable(_shopkeeper);
             AddInGameLevelDrawable(_oracle);

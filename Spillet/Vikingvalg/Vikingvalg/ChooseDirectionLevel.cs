@@ -20,10 +20,9 @@ namespace Vikingvalg
             spriteService.LoadDrawable(_background);
         }
 
-        public override void InitializeLevel()
+        public override void InitializeLevel(int playerX, int playerY)
         {
-            base.InitializeLevel();
- 
+            base.InitializeLevel(playerX, playerY);
         }
 
         public override void Update(IManageInput inputService, GameTime gameTime)
@@ -34,16 +33,16 @@ namespace Vikingvalg
                 //Hvis spilleren er i øvre tredjedel av skjermen skal man endre InGameLevelState til "FightingLevel"
                 if (_player1.FootBox.Bottom < ((spriteService.GameWindowSize.Y - spriteService.WalkBlockTop) / 3) + spriteService.WalkBlockTop)
                 {
-                    inGameService.ChangeInGameState("FightingLevel");
+                    inGameService.ChangeInGameState("FightingLevel", 50, _player1.FootBox.Y);
                 }
                 else if (_player1.FootBox.Top > ((spriteService.GameWindowSize.Y - spriteService.WalkBlockTop) / 3)*2 + spriteService.WalkBlockTop)
                 {
-                    inGameService.ChangeInGameState("TownLevel");
+                    inGameService.ChangeInGameState("TownLevel", 50, _player1.FootBox.Y);
                 }
                 //Hvis spilleren er i midtre tredjedel av skjermen skal man endre InGameLevelState til "MiningLevel"
                 else
                 {
-                    inGameService.ChangeInGameState("MiningLevel");
+                    inGameService.ChangeInGameState("MiningLevel", 50, _player1.FootBox.Y);
                 }
             }
 

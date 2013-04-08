@@ -56,7 +56,7 @@ namespace Vikingvalg
             rand = new Random();
 
             //Midlertidige plasseringer (?)
-            _player1 = new Player(new Rectangle(50, 100, 150, 330), 0.5f);
+            _player1 = new Player(new Rectangle(100, 100, 150, 330), 0.5f);
             spriteService.LoadDrawable(_player1);
 
             level = 1;
@@ -66,7 +66,7 @@ namespace Vikingvalg
             _miningLevel = new MiningLevel(_player1, spriteService, collisionService, this);
             _townLevel = new TownLevel(_player1, spriteService, collisionService, this);
 
-            ChangeInGameState("FightingLevel");
+            ChangeInGameState("TownLevel",_player1.FootBox.X, _player1.FootBox.Y);
 
             base.Initialize();
         }
@@ -102,7 +102,7 @@ namespace Vikingvalg
             base.Update(gameTime);
         }
 
-        public void ChangeInGameState(String changeTo)
+        public void ChangeInGameState(String changeTo, int playerX, int playerY)
         {
             if (!Enum.IsDefined(typeof(_possibleInGameStates), changeTo))
             {
@@ -115,19 +115,19 @@ namespace Vikingvalg
             switch (InGameState)
             {
                 case "ChooseDirectionLevel":
-                    _chooseDirectionlevel.InitializeLevel();
+                    _chooseDirectionlevel.InitializeLevel(playerX, playerY);
                     ToDrawInGame = _chooseDirectionlevel.ToDrawInGameLevel;
                     break;
                 case "FightingLevel":
-                    _fightingLevel.InitializeLevel();
+                    _fightingLevel.InitializeLevel(playerX, playerY);
                     ToDrawInGame = _fightingLevel.ToDrawInGameLevel;
                     break;
                 case "MiningLevel":
-                    _miningLevel.InitializeLevel();
+                    _miningLevel.InitializeLevel(playerX, playerY);
                     ToDrawInGame = _miningLevel.ToDrawInGameLevel;
                     break;
                 case "TownLevel":
-                    _townLevel.InitializeLevel();
+                    _townLevel.InitializeLevel(playerX, playerY);
                     ToDrawInGame = _townLevel.ToDrawInGameLevel;
                     break;
             }
