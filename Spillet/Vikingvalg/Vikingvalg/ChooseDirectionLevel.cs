@@ -19,8 +19,7 @@ namespace Vikingvalg
         {
             _background = new StaticSprite("chooseLevelGround", new Rectangle(0, 0, (int)spriteService.GameWindowSize.X, (int)spriteService.GameWindowSize.Y));
             spriteService.LoadDrawable(_background);
-            _sign = new StaticSprite("sign", new Rectangle(650, 200, 206, 173), (200 + 206) / 70);
-            Console.WriteLine((200f + 206f) / 70f);
+            _sign = new StaticSprite("sign", new Rectangle(650, 200, 206, 173), (200 + 206));
             spriteService.LoadDrawable(_sign);
         }
 
@@ -39,18 +38,18 @@ namespace Vikingvalg
                 if (_player1.FootBox.Bottom < 315 && _player1.FootBox.Bottom > 190)
                 {
                     ClearLevel();
-                    inGameService.ChangeInGameState("FightingLevel", _player1.FootBox.Width +2, _player1.FootBox.Y);
+                    _inGameService.ChangeInGameState("FightingLevel", _player1.FootBox.Width +2, _player1.FootBox.Y);
                 }
                 //Hvis spilleren er i midtre tredjedel av skjermen skal man endre InGameLevelState til "MiningLevel"
                 else if (_player1.FootBox.Bottom < 490 && _player1.FootBox.Bottom > 380)
                 {
                     ClearLevel();
-                    inGameService.ChangeInGameState("MiningLevel", _player1.FootBox.Width + 2, _player1.FootBox.Y);
+                    _inGameService.ChangeInGameState("MiningLevel", _player1.FootBox.Width + 2, _player1.FootBox.Y);
                 }
                 else if (_player1.FootBox.Bottom < 690 && _player1.FootBox.Bottom > 570)
                 {
                     ClearLevel();
-                    inGameService.ChangeInGameState("TownLevel", _player1.FootBox.Width + 2, _player1.FootBox.Y);
+                    _inGameService.ChangeInGameState("TownLevel", _player1.FootBox.Width + 2, _player1.FootBox.Y);
                 }
             }
 

@@ -94,7 +94,7 @@ namespace Vikingvalg
 
         public void Update(IManageInput inputService)
         {
-            setLayerDepth((float)(_footBox.Bottom / 70f));
+            setLayerDepth((float)(_footBox.Bottom));
             if (AnimationState != "slashing")
             {
                 if (inputService.KeyIsDown(Keys.Space))

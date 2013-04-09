@@ -45,7 +45,7 @@ namespace Vikingvalg
         }
         public override void Update()
         {
-            setLayerDepth((float)(_footBox.Bottom / 70f));
+            setLayerDepth((float)(_footBox.Bottom));
             if (AnimationState != "attacking")
             {
                 walk();
