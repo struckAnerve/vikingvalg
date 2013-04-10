@@ -28,7 +28,7 @@ namespace Vikingvalg
         Texture2D smallthing;
 
         private SpriteFont _arialFont;
-        private Color _fontColor = new Color(255, 255, 255, 255);
+        private Color _defaultFontColor = new Color(255, 255, 255, 255);
         private float playerDepth;
         public List<List<Sprite>> ListsToDraw { get; set; }
         private List<Sprite> sortedList;
@@ -157,7 +157,8 @@ namespace Vikingvalg
                                 DrawSpriteFont("You", conversationNpc.dialogController.playerNamePos);
                                 foreach (String playerAnswer in conversationNpc.dialogController.playerAnswers)
                                 {
-                                    DrawSpriteFont(playerAnswer, conversationNpc.dialogController.playerAnswersPos[conversationNpc.dialogController.playerAnswers.IndexOf(playerAnswer)]);
+                                    DrawSpriteFont(playerAnswer, conversationNpc.dialogController.playerAnswersPos[conversationNpc.dialogController.playerAnswers.IndexOf(playerAnswer)],
+                                        conversationNpc.dialogController.unselectedAnswerColor);
                                 }
 
                             }
@@ -191,7 +192,8 @@ namespace Vikingvalg
         private void DrawStaticSprite(Sprite drawable)
         {
                 StaticSprite staticDrawableSprite = (StaticSprite)drawable;
-                _spriteBatch.Draw(_loadedStaticArt[staticDrawableSprite.ArtName], staticDrawableSprite.DestinationRectangle, staticDrawableSprite.SourceRectangle, staticDrawableSprite.Color, staticDrawableSprite.Rotation,
+                _spriteBatch.Draw(_loadedStaticArt[staticDrawableSprite.ArtName], staticDrawableSprite.DestinationRectangle,
+                    staticDrawableSprite.SourceRectangle, staticDrawableSprite.Color, staticDrawableSprite.Rotation,
                     staticDrawableSprite.Origin, staticDrawableSprite.Effects, 1f);
         }
         private void drawAnimatedSprite(Sprite drawable)
@@ -217,10 +219,17 @@ namespace Vikingvalg
         }
         private void DrawSpriteFont(String toDraw, Vector2 whereToDraw)
         {
-            _spriteBatch.DrawString(_arialFont, toDraw, whereToDraw, _fontColor);
+            _spriteBatch.DrawString(_arialFont, toDraw, whereToDraw, _defaultFontColor);
+        }
+        private void DrawSpriteFont(String toDraw, Vector2 whereToDraw, Color color)
+        {
+            _spriteBatch.DrawString(_arialFont, toDraw, whereToDraw, color);
         }
 
-
+        public int TextLength(String text)
+        {
+            return (int)_arialFont.MeasureString(text).X;
+        }
         public string WrapText(string text, float maxLineWidth)
         {
             string[] words = text.Split(' ');

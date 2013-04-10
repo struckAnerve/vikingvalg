@@ -17,11 +17,15 @@ namespace Vikingvalg
         protected NeutralNpc _npc;
 
         protected Color _boxColor;
+        public Color unselectedAnswerColor = new Color(100, 100, 100, 255);
 
         public StaticSprite npcNameBox;
         public StaticSprite npcTalkBox;
         public StaticSprite playerNameBox;
         public StaticSprite playerTalkBox;
+
+        private Rectangle _npcTalkBoxHeight;
+        private Rectangle _playerTalkBoxHeight;
 
         public Vector2 npcNamePos;
         public Vector2 playerNamePos;
@@ -41,8 +45,8 @@ namespace Vikingvalg
             //Litt massive opprettelser for å legge boksene i en salgs mal
             npcTalkBox = new StaticSprite("box", new Rectangle(40, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y-30, 520, 30),
                 new Rectangle(0, 0, 520, 30), 701f, _boxColor);
-            npcNameBox = new StaticSprite("box", new Rectangle(70, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y-60, 30, 30),
-                new Rectangle(0, 0, 30, 30), 701f, _boxColor);
+            npcNameBox = new StaticSprite("box", new Rectangle(70, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y-60,
+                _npc.inGameLevel.spriteService.TextLength(_npc.npcName) + 10, 30), new Rectangle(0, 0, 30, 30), 701f, _boxColor);
             playerTalkBox = new StaticSprite("box",
                 new Rectangle((int)_npc.inGameLevel.spriteService.GameWindowSize.X - 560, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y - 30, 520, 30),
                 new Rectangle(0, 0, 520, 30), 701f, _boxColor);

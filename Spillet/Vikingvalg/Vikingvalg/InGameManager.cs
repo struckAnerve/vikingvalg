@@ -68,7 +68,7 @@ namespace Vikingvalg
             _miningLevel = new MiningLevel(_player1, spriteService, collisionService, this);
             _townLevel = new TownLevel(_player1, spriteService, collisionService, this);
 
-            ChangeInGameState("FightingLevel", 100, 450);
+            ChangeInGameState("TownLevel", 100, 450);
 
             base.Initialize();
         }
