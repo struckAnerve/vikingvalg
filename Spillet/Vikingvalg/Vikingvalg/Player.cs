@@ -94,6 +94,10 @@ namespace Vikingvalg
         public void Update(IManageInput inputService)
         {
             setLayerDepth(_footBox.Bottom );
+            if (animationPlayer.CurrentAnimation == "battleBlockWalk")
+                animationPlayer.PlaySpeedMultiplier = 1.4f;
+            else
+                animationPlayer.PlaySpeedMultiplier = 1f;
             if (AnimationState != "slashing")
             {
                 if (inputService.KeyIsDown(Keys.Space))
