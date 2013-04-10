@@ -81,18 +81,18 @@ namespace Vikingvalg
         }
         public virtual void attack1()
         {
-            if (AnimationState != "attack1" && AnimationState != "attacking")
+            if (animationPlayer.CurrentAnimation != "attack2" && AnimationState != "attacking")
             {
                 animationPlayer.TransitionToAnimation("attack1", 0.2f);
-                AnimationState = "attacking";
+                //AnimationState = "attacking";
             }
         }
         public virtual void attack2()
         {
-            if (spriteAnimation.CurrentAnimation != "attack2" && AnimationState != "attacking")
+            if (animationPlayer.CurrentAnimation != "attack2" && AnimationState != "attacking")
             {
                 animationPlayer.TransitionToAnimation("attack2", 0.2f);
-                AnimationState = "attacking";
+                //AnimationState = "attacking";
             }
         }
         public void attackFormation()
@@ -133,7 +133,7 @@ namespace Vikingvalg
             }
             else
             {
-                if (activeEnemy == this) Console.WriteLine(animationPlayer.CurrentAnimation + " " + spriteAnimation.CurrentAnimation);
+                if (activeEnemy == this) Console.WriteLine(animationPlayer.CurrentAnimation + " " +AnimationState);
                 if (animationPlayer.CurrentAnimation != "walking" && AnimationState != "walking")
                 {
                     animationPlayer.TransitionToAnimation("walk", 0.2f);

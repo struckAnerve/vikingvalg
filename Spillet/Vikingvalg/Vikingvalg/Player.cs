@@ -159,7 +159,7 @@ namespace Vikingvalg
         {
             /* Hvis "walking" animasjonen ikke er aktiv, og AnimationState ikke er "walking"
              * aktiveres "walking" animasjonen, og bytter AnimationState til "walking" */
-            if (spriteAnimation.CurrentAnimation != "walking" && AnimationState != "walking")
+            if (animationPlayer.CurrentAnimation != "walking" && AnimationState != "walking")
             {
                 animationPlayer.TransitionToAnimation("battleBlockWalk", 0.2f);
                 AnimationState = "walking";
@@ -209,7 +209,7 @@ namespace Vikingvalg
         /// </summary>
         public void block()
         {
-            if (spriteAnimation.CurrentAnimation != "blocking" && AnimationState != "blocking")
+            if (animationPlayer.CurrentAnimation != "blocking" && AnimationState != "blocking")
             {
                 animationPlayer.TransitionToAnimation("block", 0.2f);
                 AnimationState = "blocking";
