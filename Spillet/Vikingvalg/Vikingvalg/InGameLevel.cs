@@ -25,6 +25,7 @@ namespace Vikingvalg
         protected List<Sprite> _toDrawInGameLevel = new List<Sprite>();
         protected List<Sprite> _toRemoveInGameLevel = new List<Sprite>();
         public int returnPositionY { get; set; }
+        //TODO fikse knapper
         private ToggleButton musicToggle;
         private ToggleButton soundToggle;
         public List<Sprite> ToDrawInGameLevel 
@@ -37,6 +38,7 @@ namespace Vikingvalg
             this._inGameService = inGameService;
             this.spriteService = spriteService;
             this._collisionService = collisionService;
+            //TODO fikse knapper
             spriteService.LoadDrawable(new StaticSprite("musicOptions"));
             spriteService.LoadDrawable(new StaticSprite("soundOptions"));
             musicToggle = new ToggleButton("musicOptions", new Rectangle(100, 0, 50, 48), new Rectangle(0, 0, 50, 48), Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, 1000f);
@@ -55,6 +57,7 @@ namespace Vikingvalg
             _player1.Reset(playerX, playerY);
             AddInGameLevelDrawable(_player1);
             AddInGameLevelDrawable(_background);
+            //TODO fikse knapper
             AddInGameLevelDrawable(musicToggle);
             AddInGameLevelDrawable(soundToggle);
         }
