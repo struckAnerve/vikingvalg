@@ -25,6 +25,7 @@ namespace Vikingvalg
         public String currentSoundEffect { get; set; }
 
         public override String Directory { get; set; }
+        protected int _damage { get; set; }
         protected int _speed { get; set; }
         protected int _xSpeed { get; set; }
         protected int _ySpeed { get; set; }

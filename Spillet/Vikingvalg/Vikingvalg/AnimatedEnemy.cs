@@ -57,7 +57,7 @@ namespace Vikingvalg
                    setAttackTargetDistance();
                    _targetSpan += 70;
                    if (withinRangeOfTarget(_footBox, _target))
-                       _player1.takeDamage();
+                       _player1.takeDamage(_damage);
                    currentSoundEffect = "attack1";
                    _targetSpan -= 70;
                    _attackOfOpportunity = false;

@@ -219,15 +219,15 @@ namespace Vikingvalg
                 AnimationState = "blocking";
             }
         }
-        public void takeDamage()
+        public void takeDamage(int damageTaken)
         {
             if (AnimationState == "blocking")
             {
-                hp -= 3;
+                hp -= (int)(damageTaken * 0.3);
             }
             else
             {
-                hp -= 10;
+                hp -= damageTaken;
             }
             healthbar.updateHealtBar(hp);
             Console.WriteLine(hp);
