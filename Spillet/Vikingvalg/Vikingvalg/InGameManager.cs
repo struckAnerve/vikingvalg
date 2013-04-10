@@ -21,6 +21,7 @@ namespace Vikingvalg
         IManageStates stateService;
         IManageCollision collisionService;
         IManageInput inputService;
+        public IManageAudio audioService;
 
         private ChooseDirectionLevel _chooseDirectionlevel;
         private FightingLevel _fightingLevel;
@@ -52,6 +53,7 @@ namespace Vikingvalg
             stateService = (IManageStates)Game.Services.GetService(typeof(IManageStates));
             collisionService = (IManageCollision)Game.Services.GetService(typeof(IManageCollision));
             inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
+            audioService = (IManageAudio)Game.Services.GetService(typeof(IManageAudio));
 
             rand = new Random();
 
@@ -66,7 +68,7 @@ namespace Vikingvalg
             _miningLevel = new MiningLevel(_player1, spriteService, collisionService, this);
             _townLevel = new TownLevel(_player1, spriteService, collisionService, this);
 
-            ChangeInGameState("TownLevel",100, 450);
+            ChangeInGameState("FightingLevel", 100, 450);
 
             base.Initialize();
         }

@@ -125,7 +125,11 @@ namespace Vikingvalg
             }
 
             _toDrawQueue.Add(toAdd);
-
+            if (toAdd is IPlaySound)
+            {
+                IPlaySound iPlaySoundObject = (IPlaySound)toAdd;
+                _inGameService.audioService.addSoundPlayingObject(iPlaySoundObject);
+            } 
             if (toAdd is AnimatedEnemy || toAdd is Stone)
             {
                 spriteService.LoadDrawable(toAdd);

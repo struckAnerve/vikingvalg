@@ -613,6 +613,48 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Audio\Music\Scabeater_Searching.mp3">
+      <Name>Scabeater_Searching</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Audio\SoundEffects\clang.mp3">
+      <Name>clang</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Audio\Ambience\forestAmb.wav">
+      <Name>forestAmb</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Audio\SoundEffects\bite1.wav">
+      <Name>bite1</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Audio\SoundEffects\bite2.mp3">
+      <Name>bite2</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="arial.spritefont">
+      <Name>arial</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="box.jpg">
       <Name>box</Name>
       <Importer>TextureImporter</Importer>

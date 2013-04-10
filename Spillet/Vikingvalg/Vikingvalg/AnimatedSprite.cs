@@ -18,7 +18,6 @@ namespace Vikingvalg
     {
         protected Rectangle _destinationRectangle;
 
-        public AnimationPlayer spriteAnimation { get; set; }
         public String AnimationState{get; protected set;}
         public String ArtName { get; protected set; }
         public float Scale { get; protected set; }
@@ -32,9 +31,8 @@ namespace Vikingvalg
         public Rectangle SourceRectangle { get; protected set; }
         public Vector2 Origin { get; protected set; }
         public SpriteEffects Effects { get; protected set; }
-        public float LayerDepth { get; protected set; }
 
-        public String AnimationDirectory { get; protected set; }
+        public abstract String Directory { get; set; }
         public List<String> animationList { get; protected set; }
         public AnimationPlayer animationPlayer { get; set; }
 
@@ -51,7 +49,6 @@ namespace Vikingvalg
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
             : base(color, rotation, layerDepth)
         {
-            spriteAnimation = new AnimationPlayer();
             Flipped = false;
             AnimationState = "idle";
             animationList = new List<String>();

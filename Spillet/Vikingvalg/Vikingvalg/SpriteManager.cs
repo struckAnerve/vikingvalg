@@ -76,7 +76,7 @@ namespace Vikingvalg
                 AnimatedSprite drawableAnimation = (AnimatedSprite)toLoad;
                 foreach (String animationName in drawableAnimation.animationList)
                 {
-                    drawableAnimation.animationPlayer.AddAnimation(animationName, Game.Content.Load<Animation>(@"Animations/" + drawableAnimation.AnimationDirectory + animationName));
+                    drawableAnimation.animationPlayer.AddAnimation(animationName, Game.Content.Load<Animation>(@"Animations/" + drawableAnimation.Directory + "Animation/" + animationName));
                 }
 
                 drawableAnimation.animationPlayer.StartAnimation("idle");
