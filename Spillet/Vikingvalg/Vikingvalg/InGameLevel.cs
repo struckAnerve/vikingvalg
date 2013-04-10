@@ -128,7 +128,7 @@ namespace Vikingvalg
             if (toAdd is IPlaySound)
             {
                 IPlaySound iPlaySoundObject = (IPlaySound)toAdd;
-                inGameService.audioService.addSoundPlayingObject(iPlaySoundObject);
+                _inGameService.audioService.addSoundPlayingObject(iPlaySoundObject);
             } 
             if (toAdd is AnimatedEnemy || toAdd is Stone)
             {
