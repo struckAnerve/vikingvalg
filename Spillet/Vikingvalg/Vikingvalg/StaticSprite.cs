@@ -24,6 +24,7 @@ namespace Vikingvalg
             set { _destinationRectangle = value; }
         }
         public int DestinationWidth { get { return _destinationRectangle.Width; } set { _destinationRectangle.Width = value; } }
+        public int DestinationHeight { get { return _destinationRectangle.Height; } set { _destinationRectangle.Height = value; } }
         public int DestinationX { get { return _destinationRectangle.X; } set { _destinationRectangle.X = value; } }
         public int DestinationY { get { return _destinationRectangle.Y; } set { _destinationRectangle.Y = value; } }
         public Rectangle SourceRectangle

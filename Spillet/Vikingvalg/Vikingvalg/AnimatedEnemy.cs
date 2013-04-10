@@ -98,7 +98,7 @@ namespace Vikingvalg
         public void attackFormation()
         {
             setAttackTargetDistance();
-            if (withinRangeOfTarget(_footBox, _target) && AnimationState != "attacking" && (_firstAttack || _rand.Next(0, 100) > 95)
+            if (withinRangeOfTarget(_footBox, _target) && AnimationState != "attacking" && (_firstAttack || _rand.Next(0, 100) > 95))
             {
                 if (_rand.Next(0, 2) < 1) attack1();
                 else attack2();

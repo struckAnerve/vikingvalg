@@ -211,7 +211,7 @@ namespace Vikingvalg
                 {
                     _spriteBatch.Begin();
                     AnimatedCharacter p1 = (AnimatedCharacter)drawableAnimation;
-                    drawBoxPerimeter(p1.FootBox);
+                    DrawBoxPerimeter(p1.FootBox);
                     _spriteBatch.End();
                 } 
                 
@@ -226,10 +226,12 @@ namespace Vikingvalg
             _spriteBatch.DrawString(_arialFont, toDraw, whereToDraw, color);
         }
 
-        public int TextLength(String text)
+        public Vector2 TextSize(String text)
         {
-            return (int)_arialFont.MeasureString(text).X;
+            return _arialFont.MeasureString(text);
         }
+
+        //funksjon fra http://www.xnawiki.com/index.php/Basic_Word_Wrapping
         public string WrapText(string text, float maxLineWidth)
         {
             string[] words = text.Split(' ');

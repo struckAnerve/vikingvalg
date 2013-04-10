@@ -21,7 +21,7 @@ namespace Vikingvalg
 
         List<List<Sprite>> ListsToDraw { get; set; }
         void LoadDrawable(Sprite toLoad);
-        int TextLength(String text);
+        Vector2 TextSize(String text);
         String WrapText(string text, float maxLineWidth);
     }
 }
