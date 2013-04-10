@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
-    class ContinueButton : Button
+    class ContinueButton : MenuButton
     {
         public ContinueButton(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, Menu menuController)

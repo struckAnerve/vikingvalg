@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 namespace Vikingvalg 
 {
     //Satt til DrawableGameComponent for å bruke override loadcontent
-    class AudioManager : DrawableGameComponent, IManageAudio
+    public class AudioManager : DrawableGameComponent, IManageAudio
     {
         public Dictionary<String, Song> _songList { get; set; }
         public Dictionary<String, SoundEffect> _soundEffectList { get; set; }
@@ -20,7 +20,7 @@ namespace Vikingvalg
         public List<IPlaySound> checkForSoundList { get; set; }
         public Song _currentSong { get; set; }
         public SoundEffect _currentAmbience { get; set; }
-        public SoundEffectInstance AmbienceInstance { get; set; }
+        public SoundEffectInstance WalkLoop { get; set; }
 
         public float FXVolume { get; set; }
         public float MusicVolume { get; set; }
@@ -45,11 +45,21 @@ namespace Vikingvalg
 
         protected override void LoadContent()
         {
-            _soundEffectList.Add("player/attack1", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/bite1"));
-            _soundEffectList.Add("player/attack2", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/bite2"));
-            _soundEffectList.Add("player/clang", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/clang"));
-            _soundEffectList.Add("wolf/attack1", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/bite1"));
-            _soundEffectList.Add("blob/attack1", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/bite2"));
+            WalkLoop = Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/player/walkTest").CreateInstance();
+            WalkLoop.Volume = 0.1f;
+            _soundEffectList.Add("player/attack1", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/player/swordSlash1"));
+            _soundEffectList.Add("player/attack2", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/player/swordSlash2"));
+            _soundEffectList.Add("player/clang1", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/player/clang1"));
+            _soundEffectList.Add("player/clang2", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/player/clang2"));
+            _soundEffectList.Add("player/clang3", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/player/clang3"));
+            _soundEffectList.Add("wolf/attack1", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/wolf/attack1"));
+            _soundEffectList.Add("wolf/attack2", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/wolf/attack2"));
+            _soundEffectList.Add("blob/attack1", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/blob/attack1"));
+            _soundEffectList.Add("blob/attack2", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/blob/attack2"));
+            _soundEffectList.Add("stone/crumble", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/stone/crumble1"));
+            _soundEffectList.Add("stone/money", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/stone/money"));
+            /*_soundEffectList.Add("wolf/growl", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/wolf/taunt"));
+            _soundEffectList.Add("blob/growl", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/wolf/taunt"));*/
             _currentSong = Game.Content.Load<Song>(@"Audio/Music/Scabeater_Searching");
             _currentAmbience = Game.Content.Load<SoundEffect>(@"Audio/Ambience/forestAmb");
             AddSound(_currentAmbience, FXVolume, true);
@@ -60,21 +70,46 @@ namespace Vikingvalg
         {
             foreach (IPlaySound soundPlayingObject in checkForSoundList)
             {
-                if (!(soundPlayingObject.currentSoundEffect.Equals("")))
+
+                if (soundPlayingObject is Player && soundPlayingObject.currentSoundEffect != "walk") StopWalk();
+                if (soundPlayingObject is Player && soundPlayingObject.currentSoundEffect == "walk") AddWalk();
+                else if (!(soundPlayingObject.currentSoundEffect.Equals("")))
                 {
-                    AddSound(soundPlayingObject.Directory+"/"+soundPlayingObject.currentSoundEffect);
+                    AddSound(soundPlayingObject.Directory + "/" + soundPlayingObject.currentSoundEffect);
                     soundPlayingObject.currentSoundEffect = "";
                 }
             }
+            for (int i = 0; i < _soundQueue.Count; i++)
+            {
+                if (_soundQueue.Peek().State == SoundState.Stopped)
+                    _soundQueue.Dequeue();
+                else
+                    break;
+            }
             base.Update(gameTime);
         }
-        public void AddSound(Microsoft.Xna.Framework.Audio.SoundEffect sound, float volume, bool loop)
+        public void AddSound(SoundEffect sound, float volume, bool loop)
         {
             SoundEffectInstance handle = sound.CreateInstance();
             handle.Volume = volume;
             if (loop) handle.IsLooped = true;
             handle.Play();
             _soundQueue.Enqueue(handle);
+        }
+        public void AddWalk()
+        {
+            if (WalkLoop.State == SoundState.Stopped)
+            {
+                _soundQueue.Enqueue(WalkLoop);
+                WalkLoop.Play();
+            }
+        }
+        public void StopWalk()
+        {
+            if (WalkLoop.State == SoundState.Playing)
+            {
+                WalkLoop.Stop();
+            }
         }
         public void addSoundPlayingObject(IPlaySound soundPlayingObject)
         {

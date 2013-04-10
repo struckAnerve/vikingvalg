@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
-    class Stone : StaticSprite, ICanCollide
+    class Stone : StaticSprite, ICanCollide, IPlaySound
     {
         public AnimatedStaticSprite stoneHitArt { get; set; }
 
@@ -29,6 +29,10 @@ namespace Vikingvalg
         public bool BlockedTop { get; set; }
         public bool BlockedBottom { get; set; }
 
+
+        public String currentSoundEffect { get; set; }
+        public String Directory { get; set; }
+
         public int endurance;
 
         private bool _hasGold;
@@ -43,6 +47,8 @@ namespace Vikingvalg
             _footBox = new Rectangle(destinationRectangle.X, destinationRectangle.Bottom - 20, destinationRectangle.Width, 20);
             setLayerDepth(_footBox.Bottom);
             _hasGold = hasGold;
+            Directory = "stone";
+            currentSoundEffect = "";
         }
         public Stone(Rectangle destinationRectangle, int sourceYPos, int color, bool hasGold)
             : this("stone", destinationRectangle, new Rectangle(0, sourceYPos, destinationRectangle.Width, destinationRectangle.Height),
@@ -60,11 +66,13 @@ namespace Vikingvalg
                 {
                     stoneHitArt.ChangeYPosition(198);
                     _sourceRectangle.X = 500;
+                    currentSoundEffect = "money";
                 }
                 else
                 {
                     stoneHitArt.ChangeYPosition(99);
                     _sourceRectangle.X = 400;
+                    currentSoundEffect = "crumble";
                 }
             }
             else if (endurance % 2 == 0)

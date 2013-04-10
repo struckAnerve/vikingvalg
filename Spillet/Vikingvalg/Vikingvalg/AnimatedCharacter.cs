@@ -24,6 +24,8 @@ namespace Vikingvalg
         public bool BlockedBottom { get; set; }
         public String currentSoundEffect { get; set; }
 
+
+        private static Random _rand = new Random();
         public override String Directory { get; set; }
         protected int _damage { get; set; }
         protected int _speed { get; set; }
@@ -55,6 +57,11 @@ namespace Vikingvalg
             _speed = speed;
             _xSpeed = speed;
             _ySpeed = speed / 2;
+        }
+        public static int rInt(int min, int max)
+        {
+            int t = _rand.Next(min, max);
+            return t;
         }
     }
 }
