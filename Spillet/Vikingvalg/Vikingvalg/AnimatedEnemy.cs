@@ -21,13 +21,13 @@ namespace Vikingvalg
         
         private Point _distance;
         private Point _target;
-        private static Random _rand = new Random();
         private int _targetSpan = 7;
         private int[] _yPosArray;
         private bool _positionRight = true;
         private bool _attackRight = true;
         private bool _attackOfOpportunity = false;
         private bool _firstAttack = true;
+        private String _attackSound;
         private Rectangle _lastAllowedPosition;
         public AnimatedEnemy(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Player player1, int hitPoints)
@@ -57,8 +57,8 @@ namespace Vikingvalg
                    setAttackTargetDistance();
                    _targetSpan += 70;
                    if (withinRangeOfTarget(_footBox, _target))
-                       _player1.takeDamage();
-                   currentSoundEffect = "attack1";
+                       _player1.takeDamage(_damage);
+                   currentSoundEffect = _attackSound;
                    _targetSpan -= 70;
                    _attackOfOpportunity = false;
                    _attacked = true;
@@ -85,6 +85,7 @@ namespace Vikingvalg
             {
                 animationPlayer.TransitionToAnimation("attack1", 0.2f);
                 AnimationState = "attacking";
+                _attackSound = "attack1";
             }
         }
         public virtual void attack2()
@@ -93,14 +94,15 @@ namespace Vikingvalg
             {
                 animationPlayer.TransitionToAnimation("attack2", 0.2f);
                 AnimationState = "attacking";
+                _attackSound = "attack2";
             }
         }
         public void attackFormation()
         {
             setAttackTargetDistance();
-            if (withinRangeOfTarget(_footBox, _target) && AnimationState != "attacking" && (_firstAttack || _rand.Next(0, 100) > 95))
+            if (withinRangeOfTarget(_footBox, _target) && AnimationState != "attacking" && (_firstAttack || rInt(0, 100) > 95))
             {
-                if (_rand.Next(0, 2) < 1) attack1();
+                if (rInt(0,2) < 1) attack1();
                 else attack2();
                 _firstAttack = false;
             }
@@ -136,7 +138,6 @@ namespace Vikingvalg
             {
                 if (animationPlayer.CurrentAnimation != "walk" && AnimationState != "walking")
                 {
-                    if (activeEnemy == this) Console.WriteLine(animationPlayer.CurrentAnimation + " " + AnimationState);
                     animationPlayer.TransitionToAnimation("walk", 0.2f);
                     AnimationState = "walking";
                 }
@@ -187,11 +188,6 @@ namespace Vikingvalg
                     return (box.Right > target.X - _targetSpan && box.Right < target.X + _targetSpan && box.Bottom > target.Y - _targetSpan && box.Bottom < target.Y + _targetSpan);
             }
             return false;
-        }
-        public static int rInt(int min, int max)
-        {
-            int t = _rand.Next(min, max);
-            return t;
         }
         public void setAttackTargetDistance()
         {

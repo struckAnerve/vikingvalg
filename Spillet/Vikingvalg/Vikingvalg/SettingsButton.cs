@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
-    class SettingsButton : Button
+    class SettingsButton : MenuButton
     {
         public SettingsButton(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, Menu menuController)

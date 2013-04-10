@@ -20,7 +20,6 @@ namespace Vikingvalg
         Queue<SoundEffectInstance> _soundQueue{ get; set; }
         Song _currentSong{ get; set; }
         SoundEffect _currentAmbience { get; set; }
-        SoundEffectInstance AmbienceInstance { get; set; }
 
         float FXVolume{ get; set; }
         float MusicVolume{ get; set; }

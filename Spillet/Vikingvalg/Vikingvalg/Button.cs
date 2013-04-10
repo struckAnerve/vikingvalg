@@ -14,16 +14,13 @@ namespace Vikingvalg
 {
     abstract class Button : StaticSprite, IUseInput
     {
-        protected Menu _menuController;
-
         protected Rectangle _clickableBox;
         protected bool hovered;
 
         public Button(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth, Menu menuController)
+            Vector2 origin, SpriteEffects effects, float layerDepth)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth)
         {
-            _menuController = menuController;
             _clickableBox = new Rectangle(destinationRectangle.X, destinationRectangle.Y, sourceRectangle.Width, sourceRectangle.Height);
         }
 

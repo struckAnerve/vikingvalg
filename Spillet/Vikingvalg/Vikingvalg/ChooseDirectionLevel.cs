@@ -19,7 +19,7 @@ namespace Vikingvalg
         {
             _background = new StaticSprite("chooseLevelGround", new Rectangle(0, 0, (int)spriteService.GameWindowSize.X, (int)spriteService.GameWindowSize.Y));
             spriteService.LoadDrawable(_background);
-            _sign = new StaticSprite("sign", new Rectangle(650, 200, 206, 173), 200 + 206);
+            _sign = new StaticSprite("sign", new Rectangle(650, 200, 206, 173), 200 + 140);
             spriteService.LoadDrawable(_sign);
         }
 

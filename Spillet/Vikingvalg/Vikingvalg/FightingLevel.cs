@@ -29,12 +29,12 @@ namespace Vikingvalg
         {
             base.InitializeLevel(playerX, playerY);
             returnPositionY = _returnPositionY;
-            levelCharacters.Add(new BlobEnemy(new Rectangle(100, 100, 400, 267), 0.5f, _player1));
-            levelCharacters.Add(new WolfEnemy(new Rectangle(300, 300, 400, 267), 0.3f, _player1));
-            levelCharacters.Add(new BlobEnemy(new Rectangle(100, 100, 400, 267), 0.5f, _player1));
-            levelCharacters.Add(new WolfEnemy(new Rectangle(300, 300, 400, 267), 0.3f, _player1));
-            levelCharacters.Add(new WolfEnemy(new Rectangle(300, 300, 400, 267), 0.3f, _player1));
-            levelCharacters.Add(new WolfEnemy(new Rectangle(300, 300, 400, 267), 0.3f, _player1));
+            for (int i = 0; i <= _inGameService.rand.Next(1, 7); i++)
+            {
+                if(_inGameService.rand.Next(0,2) == 0)
+                    levelCharacters.Add(new BlobEnemy(new Rectangle(1245 + _inGameService.rand.Next(1,6)*50, _inGameService.rand.Next(2,6)*100, 400, 267), 0.5f, _player1));
+                else levelCharacters.Add(new WolfEnemy(new Rectangle(1245 + _inGameService.rand.Next(1, 6) * 50, _inGameService.rand.Next(2, 6) * 100, 400, 267), 0.3f, _player1));
+            }
             activeEnemy = levelCharacters[0];
             _player1.activeEnemy = activeEnemy;
             foreach (AnimatedEnemy enemy in levelCharacters)

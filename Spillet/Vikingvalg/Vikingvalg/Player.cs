@@ -90,10 +90,14 @@ namespace Vikingvalg
             hp = _maxHitpoints;
             healthbar.setPosition(_footBox);
         }
-
         public void Update(IManageInput inputService)
         {
             setLayerDepth(_footBox.Bottom );
+            if (animationPlayer.CurrentAnimation == "battleBlockWalk")
+                animationPlayer.PlaySpeedMultiplier = 1.4f;
+            else
+                animationPlayer.PlaySpeedMultiplier = 1f;
+            if (AnimationState != "walking" && currentSoundEffect == "walk") currentSoundEffect = "";
             if (AnimationState != "slashing")
             {
                 if (inputService.KeyIsDown(Keys.Space))
@@ -121,7 +125,7 @@ namespace Vikingvalg
                     if (targetBox.Intersects(activeEnemy.FootBox) &&
                         ((activeEnemy.FootBox.Center.X < this.FootBox.Center.X && this.Flipped) || (activeEnemy.FootBox.Center.X > this.FootBox.Center.X && !this.Flipped)))
                     {
-                        currentSoundEffect = "attack1";
+                        currentSoundEffect = "attack"+rInt(1,3);
                         AnimatedEnemy enemyColidedWith = (AnimatedEnemy)CollidingWith;
                         activeEnemy.takeDamage();
                     }
@@ -132,7 +136,7 @@ namespace Vikingvalg
                     {
                         if (targetBox.Intersects(stone.FootBox) && stone.endurance > 0 && FacesTowards(stone.FootBox.Center.X))
                         {
-                            currentSoundEffect = "clang";
+                            currentSoundEffect = "clang"+ rInt(1,4);
                             stone.IsHit();
                         }
                     }
@@ -166,6 +170,7 @@ namespace Vikingvalg
             }
             if (AnimationState == "walking")
             {
+                currentSoundEffect = "walk";
                 if (inputService.KeyIsDown(Keys.Right) && inputService.KeyIsDown(Keys.Left))
                 {
                     idle();
@@ -215,15 +220,15 @@ namespace Vikingvalg
                 AnimationState = "blocking";
             }
         }
-        public void takeDamage()
+        public void takeDamage(int damageTaken)
         {
             if (AnimationState == "blocking")
             {
-                hp -= 3;
+                hp -= (int)(damageTaken * 0.3);
             }
             else
             {
-                hp -= 10;
+                hp -= damageTaken;
             }
             healthbar.updateHealtBar(hp);
             Console.WriteLine(hp);
