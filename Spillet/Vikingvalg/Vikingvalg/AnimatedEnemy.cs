@@ -84,7 +84,7 @@ namespace Vikingvalg
             if (animationPlayer.CurrentAnimation != "attack2" && AnimationState != "attacking")
             {
                 animationPlayer.TransitionToAnimation("attack1", 0.2f);
-                //AnimationState = "attacking";
+                AnimationState = "attacking";
             }
         }
         public virtual void attack2()
@@ -92,18 +92,19 @@ namespace Vikingvalg
             if (animationPlayer.CurrentAnimation != "attack2" && AnimationState != "attacking")
             {
                 animationPlayer.TransitionToAnimation("attack2", 0.2f);
-                //AnimationState = "attacking";
+                AnimationState = "attacking";
             }
         }
         public void attackFormation()
         {
             setAttackTargetDistance();
-            if (_firstAttack || (withinRangeOfTarget(_footBox, _target) && AnimationState != "attacking" && _rand.Next(0, 100) > 95))
+            if (withinRangeOfTarget(_footBox, _target) && AnimationState != "attacking" && (_firstAttack || _rand.Next(0, 100) > 95)
             {
                 if (_rand.Next(0, 2) < 1) attack1();
                 else attack2();
                 _firstAttack = false;
             }
+            else if (withinRangeOfTarget(_footBox, _target)) idle();
         }
         public void waitingFormation()
         {
@@ -133,9 +134,9 @@ namespace Vikingvalg
             }
             else
             {
-                if (activeEnemy == this) Console.WriteLine(animationPlayer.CurrentAnimation + " " +AnimationState);
-                if (animationPlayer.CurrentAnimation != "walking" && AnimationState != "walking")
+                if (animationPlayer.CurrentAnimation != "walk" && AnimationState != "walking")
                 {
+                    if (activeEnemy == this) Console.WriteLine(animationPlayer.CurrentAnimation + " " + AnimationState);
                     animationPlayer.TransitionToAnimation("walk", 0.2f);
                     AnimationState = "walking";
                 }
@@ -162,6 +163,7 @@ namespace Vikingvalg
                     _destinationRectangle.X = _footBox.Center.X - footBoxXOffset;
                     _destinationRectangle.Y = _footBox.Y - footBoxXOffset;
                     healthbar.setPosition(_footBox);
+                    
                 }
             }
         }
