@@ -12,27 +12,27 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
-    class NeutralNPC : StaticSprite, IUseInput
+    class NeutralNpc : StaticSprite, IUseInput
     {
         public InGameLevel inGameLevel;
 
         protected Player _player1;
 
         public String npcName;
-        protected bool _inConversation;
-        protected DialogControl _dialogController;
+        public bool inConversation;
+        public DialogControl dialogController;
 
         protected int _talkingRangeBoxOffset = 40;
         protected int _talkingRangeBoxHeight = 40;
         protected Rectangle _talkingRangeBox;
 
-        public NeutralNPC(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
+        public NeutralNpc(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, String npcName, Player player, InGameLevel inGameLevel)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth)
         {
             this.inGameLevel = inGameLevel;
 
-            _inConversation = false;
+            inConversation = false;
             this.npcName = npcName;
             _player1 = player;
 
@@ -40,9 +40,13 @@ namespace Vikingvalg
                 destinationRectangle.Width + _talkingRangeBoxOffset * 2, _talkingRangeBoxHeight);
 
             inGameLevel.spriteService.LoadDrawable(new StaticSprite("box"));
-            _dialogController = new DialogControl(this);
+
+            dialogController = new DialogControl(this);
+            dialogController.ChangeNpcDialog("Hello, good sir! I have some fine wares for you to browse");
+            dialogController.AddPlayerAnswer("Hello, shopkeeper");
+            dialogController.AddPlayerAnswer("Could I get a discount from you, my friend?");
         }
-        public NeutralNPC(String artName, Rectangle destinationRectangle, String npcName, Player player, InGameLevel inGameLevel)
+        public NeutralNpc(String artName, Rectangle destinationRectangle, String npcName, Player player, InGameLevel inGameLevel)
             : this(artName, destinationRectangle, new Rectangle(0, 0, destinationRectangle.Width, destinationRectangle.Height),
                 new Color(255, 255, 255, 255), 0, Vector2.Zero, SpriteEffects.None, destinationRectangle.Bottom, npcName, player, inGameLevel)
         { }
@@ -53,9 +57,8 @@ namespace Vikingvalg
             {
                 ChangeConversationState();
             }
-            if (_inConversation)
+            if (inConversation)
             {
-                Console.Write("hei, ");
                 if (!_player1.FootBox.Intersects(_talkingRangeBox))
                 {
                     ChangeConversationState();
@@ -65,18 +68,7 @@ namespace Vikingvalg
 
         public void ChangeConversationState()
         {
-            _inConversation = !_inConversation;
-
-
-            //if for å sjekke om man skal legge til tekstboks eller fjerne
-            if (_inConversation)
-            {
-                _dialogController.Enabled();
-            }
-            else
-            {
-                _dialogController.Disabled();
-            }
+            inConversation = !inConversation;
         }
     }
 }

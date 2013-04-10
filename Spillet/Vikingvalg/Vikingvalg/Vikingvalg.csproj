@@ -103,7 +103,7 @@
     <Compile Include="Menu.cs" />
     <Compile Include="MenuManager.cs" />
     <Compile Include="MiningLevel.cs" />
-    <Compile Include="NeutralNPC.cs" />
+    <Compile Include="NeutralNpc.cs" />
     <Compile Include="PauseMenu.cs" />
     <Compile Include="PlayButton.cs" />
     <Compile Include="SaveGameData.cs" />
