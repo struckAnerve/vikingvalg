@@ -46,7 +46,7 @@ namespace Vikingvalg
             int stoneWithGold = 0;
             while (stonesWithGold.Count() < GoldStones)
             {
-                stoneWithGold = inGameService.rand.Next(1, 10);
+                stoneWithGold = _inGameService.rand.Next(1, 10);
                 if (!stonesWithGold.Contains(stoneWithGold))
                 {
                     stonesWithGold.Add(stoneWithGold);
@@ -68,14 +68,14 @@ namespace Vikingvalg
                     }
 
                     //bestemer "offset" på hver stens utgangsposisjon
-                    int stoneX = (350 * stoneColumn) + inGameService.rand.Next(101) + 250;
-                    int stoneY = (170 * stoneRow) + inGameService.rand.Next(51) + spriteService.WalkBlockTop + 20;
+                    int stoneX = (350 * stoneColumn) + _inGameService.rand.Next(101) + 250;
+                    int stoneY = (170 * stoneRow) + _inGameService.rand.Next(51) + spriteService.WalkBlockTop + 20;
 
                     //bestemmer "offset" på hver stens farge
-                    int stoneColor = inGameService.rand.Next(140, 206);
+                    int stoneColor = _inGameService.rand.Next(140, 206);
 
                     //bestemmer hvilken stein som skal tegnes
-                    int stone = inGameService.rand.Next(1, 4);
+                    int stone = _inGameService.rand.Next(1, 4);
 
                     //lager rektangel ut ifra hvilken stein som skal tegnes
                     Rectangle stoneDestination = new Rectangle(stoneX, stoneY, 100, 0);

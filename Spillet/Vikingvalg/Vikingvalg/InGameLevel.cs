@@ -13,9 +13,9 @@ namespace Vikingvalg
 {
     abstract class InGameLevel
     {
-        protected InGameManager inGameService;
-        protected IManageSprites spriteService;
-        protected IManageCollision collisionService;
+        protected InGameManager _inGameService;
+        public IManageSprites spriteService;
+        protected IManageCollision _collisionService;
 
         protected StaticSprite _background;
 
@@ -32,16 +32,16 @@ namespace Vikingvalg
 
         public InGameLevel(Player player1, IManageSprites spriteService, IManageCollision collisionService, InGameManager inGameService)
         {
-            this.inGameService = inGameService;
+            this._inGameService = inGameService;
             this.spriteService = spriteService;
-            this.collisionService = collisionService;
+            this._collisionService = collisionService;
             _player1 = player1;
         }
 
         public virtual void InitializeLevel(int playerX, int playerY)
         {
             spriteService.DrawHealthBar = false;
-            if (inGameService.InGameState == "FightingLevel")
+            if (_inGameService.InGameState == "FightingLevel")
             {
                 spriteService.DrawHealthBar = true;
             }
@@ -55,15 +55,15 @@ namespace Vikingvalg
             _toDrawQueue.Clear();
             _toRemoveInGameLevel.Clear();
             _toDrawInGameLevel.Clear();
-            collisionService.ClearCollisionList();
+            _collisionService.ClearCollisionList();
         }
 
         public virtual void Update(IManageInput inputService, GameTime gameTime)
         {
-            if (_player1.FootBox.Left <= 0 && inGameService.InGameState != "ChooseDirectionLevel")
+            if (_player1.FootBox.Left <= 0 && _inGameService.InGameState != "ChooseDirectionLevel")
             {
                 ClearLevel();
-                inGameService.ChangeInGameState("ChooseDirectionLevel", (int)spriteService.GameWindowSize.X - _player1.FootBox.Width - 2, returnPositionY);
+                _inGameService.ChangeInGameState("ChooseDirectionLevel", (int)spriteService.GameWindowSize.X - _player1.FootBox.Width - 2, returnPositionY);
             }
 
             if (_toRemoveInGameLevel != null)
@@ -138,7 +138,7 @@ namespace Vikingvalg
             if (toAdd is ICanCollide)
             {
                 ICanCollide canCollide = (ICanCollide)toAdd;
-                collisionService.AddCollidable(canCollide);
+                _collisionService.AddCollidable(canCollide);
             }
         }
 
@@ -149,7 +149,7 @@ namespace Vikingvalg
             if (toRemove is ICanCollide)
             {
                 ICanCollide collideRemove = (ICanCollide)toRemove;
-                collisionService.RemoveCollidable(collideRemove);
+                _collisionService.RemoveCollidable(collideRemove);
             }
         }
     }

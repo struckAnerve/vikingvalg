@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Text;
 
 using Demina;
 namespace Vikingvalg
@@ -26,6 +27,7 @@ namespace Vikingvalg
         //Midlertidig
         Texture2D smallthing;
 
+        private SpriteFont _arialFont;
         private float playerDepth;
         public List<List<Sprite>> ListsToDraw { get; set; }
         private List<Sprite> sortedList;
@@ -37,6 +39,8 @@ namespace Vikingvalg
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(this.Game.GraphicsDevice);
+
+            _arialFont = Game.Content.Load<SpriteFont>("arial");
 
             //midlertidig
             smallthing = Game.Content.Load<Texture2D>(@"redPixel");
@@ -99,6 +103,7 @@ namespace Vikingvalg
                 _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
                 foreach (Sprite drawable in listToDraw)
                 {
+                    //tegn bak spiller
                     if (drawable is StaticSprite && drawable.LayerDepth <= playerDepth)
                     {
                         if (drawable is Stone)
@@ -121,6 +126,7 @@ namespace Vikingvalg
                 _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
                 foreach (Sprite drawable in listToDraw)
                 {
+                    //tegn foran spiller
                     if (drawable is StaticSprite && drawable.LayerDepth > playerDepth)
                     {
                         if (drawable is Stone)
@@ -183,6 +189,36 @@ namespace Vikingvalg
                 */
             }
 
+        }
+
+
+        public string WrapText(string text, float maxLineWidth)
+        {
+            string[] words = text.Split(' ');
+
+            StringBuilder sb = new StringBuilder();
+
+            float lineWidth = 0f;
+
+            float spaceWidth = _arialFont.MeasureString(" ").X;
+
+            foreach (string word in words)
+            {
+                Vector2 size = _arialFont.MeasureString(word);
+
+                if (lineWidth + size.X < maxLineWidth)
+                {
+                    sb.Append(word + " ");
+                    lineWidth += size.X + spaceWidth;
+                }
+                else
+                {
+                    sb.Append("\n" + word + " ");
+                    lineWidth = size.X + spaceWidth;
+                }
+            }
+
+            return sb.ToString();
         }
     }
 }

@@ -14,12 +14,13 @@ namespace Vikingvalg
 {
     class NeutralNPC : StaticSprite, IUseInput
     {
-        protected InGameLevel _inGameLevel;
+        public InGameLevel inGameLevel;
 
         protected Player _player1;
 
         public String npcName;
         protected bool _inConversation;
+        protected DialogControl _dialogController;
 
         protected int _talkingRangeBoxOffset = 40;
         protected int _talkingRangeBoxHeight = 40;
@@ -29,17 +30,21 @@ namespace Vikingvalg
             Vector2 origin, SpriteEffects effects, float layerDepth, String npcName, Player player, InGameLevel inGameLevel)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth)
         {
+            this.inGameLevel = inGameLevel;
+
             _inConversation = false;
             this.npcName = npcName;
-            _inGameLevel = inGameLevel;
             _player1 = player;
 
             _talkingRangeBox = new Rectangle(destinationRectangle.Left - _talkingRangeBoxOffset, destinationRectangle.Bottom - _talkingRangeBoxHeight,
-                destinationRectangle.Width + _talkingRangeBoxOffset * 2, _talkingRangeBoxHeight); 
+                destinationRectangle.Width + _talkingRangeBoxOffset * 2, _talkingRangeBoxHeight);
+
+            inGameLevel.spriteService.LoadDrawable(new StaticSprite("box"));
+            _dialogController = new DialogControl(this);
         }
         public NeutralNPC(String artName, Rectangle destinationRectangle, String npcName, Player player, InGameLevel inGameLevel)
             : this(artName, destinationRectangle, new Rectangle(0, 0, destinationRectangle.Width, destinationRectangle.Height),
-                new Color(255, 255, 255, 255), 0, Vector2.Zero, SpriteEffects.None, 0.5f, npcName, player, inGameLevel)
+                new Color(255, 255, 255, 255), 0, Vector2.Zero, SpriteEffects.None, destinationRectangle.Bottom, npcName, player, inGameLevel)
         { }
 
         public void Update(IManageInput inputService)
@@ -66,11 +71,11 @@ namespace Vikingvalg
             //if for å sjekke om man skal legge til tekstboks eller fjerne
             if (_inConversation)
             {
-                Console.WriteLine("Started conversation with " + npcName);
+                _dialogController.Enabled();
             }
             else
             {
-                Console.WriteLine("Ended conversation with " + npcName);
+                _dialogController.Disabled();
             }
         }
     }

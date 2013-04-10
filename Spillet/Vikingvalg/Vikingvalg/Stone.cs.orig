@@ -41,7 +41,10 @@ namespace Vikingvalg
             stoneHitArt.IsPlaying = false;
             endurance = 8;
             _footBox = new Rectangle(destinationRectangle.X, destinationRectangle.Bottom - 20, destinationRectangle.Width, 20);
+<<<<<<< HEAD
             setLayerDepth(_footBox.Bottom);
+=======
+>>>>>>> 82f24ff17bb382dd3822c62032691279504de48b
             _hasGold = hasGold;
         }
         public Stone(Rectangle destinationRectangle, int sourceYPos, int color, bool hasGold)
