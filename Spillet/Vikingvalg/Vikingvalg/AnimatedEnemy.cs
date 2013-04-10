@@ -45,21 +45,30 @@ namespace Vikingvalg
         }
         public override void Update()
         {
-            setLayerDepth((float)(_footBox.Bottom / 70f));
+            setLayerDepth(_footBox.Bottom );
             if (AnimationState != "attacking")
             {
                 walk();
             }
-            else if (animationPlayer.Transitioning == false && animationPlayer.CurrentKeyframeIndex > 0 && animationPlayer.CurrentKeyframeIndex == (animationPlayer.currentPlayingAnimation.Keyframes.Count() - 1))
-           {
+            else if (animationPlayer.Transitioning == false && animationPlayer.CurrentKeyframeIndex > 0 && animationPlayer.CurrentKeyframeIndex >= _attackDamageFrame)
+            {
+                if (!_attacked)
+                {
+                   setAttackTargetDistance();
+                   _targetSpan += 70;
+                   if (withinRangeOfTarget(_footBox, _target))
+                       _player1.takeDamage();
+                   currentSoundEffect = "attack1";
+                   _targetSpan -= 70;
+                   _attackOfOpportunity = false;
+                   _attacked = true;
+                }
+                if (animationPlayer.CurrentKeyframeIndex == (animationPlayer.currentPlayingAnimation.Keyframes.Count() - 1))
+                {
+                    idle();
+                    _attacked = false;
+                }
                 
-                setAttackTargetDistance();
-                _targetSpan += 70;
-                if(withinRangeOfTarget(_footBox,_target))
-                _player1.takeDamage();
-                _targetSpan -= 70;
-                _attackOfOpportunity = false;
-                idle();
             }
         }
         public void taunt()
@@ -70,7 +79,7 @@ namespace Vikingvalg
                 AnimationState = "taunting";
             }
         }
-        public void attack1()
+        public virtual void attack1()
         {
             if (AnimationState != "attack1" && AnimationState != "attacking")
             {
@@ -78,7 +87,7 @@ namespace Vikingvalg
                 AnimationState = "attacking";
             }
         }
-        public void attack2()
+        public virtual void attack2()
         {
             if (spriteAnimation.CurrentAnimation != "attack2" && AnimationState != "attacking")
             {
@@ -111,15 +120,12 @@ namespace Vikingvalg
         public void walk()
         {
             if (rInt(0, 1000) >= 999 && _attackOfOpportunity == false) _attackOfOpportunity = true;
-            if (activeEnemy == this || _attackOfOpportunity == true){
+            if (activeEnemy == this || _attackOfOpportunity){
                 attackFormation();
             }
             else waitingFormation();
-
             if (_footBox.Center.X > _player1.FootBox.Center.X) _attackRight = true;
             else _attackRight = false;
-
-            
             if (withinRangeOfTarget(_footBox, _target))
             {
                 if (_attackRight) Flipped = true;
@@ -127,7 +133,8 @@ namespace Vikingvalg
             }
             else
             {
-                if (spriteAnimation.CurrentAnimation != "walking" && AnimationState != "walking")
+                if (activeEnemy == this) Console.WriteLine(animationPlayer.CurrentAnimation + " " + spriteAnimation.CurrentAnimation);
+                if (animationPlayer.CurrentAnimation != "walking" && AnimationState != "walking")
                 {
                     animationPlayer.TransitionToAnimation("walk", 0.2f);
                     AnimationState = "walking";
@@ -137,7 +144,7 @@ namespace Vikingvalg
                     // Kode fra http://www.berecursive.com/2008/c/rotating-a-sprite-towards-an-object-in-xna //
                     //Calculate the required rotation by doing a two-variable arc-tan
                     float rotation = (float)Math.Atan2(_distance.Y, _distance.X);
-                    //Move square towards mouse by closing the gap 3 pixels per update
+                    //Move square towards mouse by closing the gap by speed per update
                     _xSpeed = (int)(_speed * Math.Cos(rotation));
                     _ySpeed = (int)(_speed * Math.Sin(rotation));
                     // Kode fra http://www.berecursive.com/2008/c/rotating-a-sprite-towards-an-object-in-xna //

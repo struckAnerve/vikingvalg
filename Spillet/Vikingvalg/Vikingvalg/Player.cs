@@ -29,10 +29,9 @@ namespace Vikingvalg
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, 50)
         {
-            AnimationDirectory =  @"playerAnimation/";
+            Directory =  @"player";
             setSpeed(4);
             _maxHitpoints = 50;
-            
             //kan flyttes til base?
             destinationRectangle.Width = (int)(destinationRectangle.Width*scale);
             destinationRectangle.Height= (int)(destinationRectangle.Height*scale);
@@ -94,7 +93,7 @@ namespace Vikingvalg
 
         public void Update(IManageInput inputService)
         {
-            setLayerDepth((float)(_footBox.Bottom / 70f));
+            setLayerDepth(_footBox.Bottom );
             if (AnimationState != "slashing")
             {
                 if (inputService.KeyIsDown(Keys.Space))
@@ -122,6 +121,7 @@ namespace Vikingvalg
                     if (targetBox.Intersects(activeEnemy.FootBox) &&
                         ((activeEnemy.FootBox.Center.X < this.FootBox.Center.X && this.Flipped) || (activeEnemy.FootBox.Center.X > this.FootBox.Center.X && !this.Flipped)))
                     {
+                        currentSoundEffect = "attack1";
                         AnimatedEnemy enemyColidedWith = (AnimatedEnemy)CollidingWith;
                         activeEnemy.takeDamage();
                     }
@@ -132,6 +132,7 @@ namespace Vikingvalg
                     {
                         if (targetBox.Intersects(stone.FootBox) && stone.endurance > 0 && FacesTowards(stone.FootBox.Center.X))
                         {
+                            currentSoundEffect = "clang";
                             stone.IsHit();
                         }
                     }

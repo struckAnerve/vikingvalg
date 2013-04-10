@@ -19,6 +19,7 @@ namespace Vikingvalg
     {
         IManageSprites spriteService;
         IManageCollision collisionService;
+        IManageAudio audioService;
         MenuManager menuService;
         InGameManager inGameService;
 
@@ -47,6 +48,10 @@ namespace Vikingvalg
             GameComponent inGameManager = new InGameManager(game);
             Game.Components.Add(inGameManager);
             Game.Services.AddService(typeof(InGameManager), inGameManager);
+
+            DrawableGameComponent audioManager = new AudioManager(game);
+            Game.Components.Add(audioManager);
+            Game.Services.AddService(typeof(IManageAudio), audioManager);
         }
 
         /// <summary>
@@ -59,6 +64,7 @@ namespace Vikingvalg
             collisionService = (IManageCollision)Game.Services.GetService(typeof(IManageCollision));
             inGameService = (InGameManager)Game.Services.GetService(typeof(InGameManager));
             menuService = (MenuManager)Game.Services.GetService(typeof(MenuManager));
+            audioService = (IManageAudio)Game.Services.GetService(typeof(AudioManager));
 
             ChangeState("MainMenu");
 

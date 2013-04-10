@@ -32,9 +32,8 @@ namespace Vikingvalg
         public Rectangle SourceRectangle { get; protected set; }
         public Vector2 Origin { get; protected set; }
         public SpriteEffects Effects { get; protected set; }
-        public float LayerDepth { get; protected set; }
 
-        public String AnimationDirectory { get; protected set; }
+        public abstract String Directory { get; set; }
         public List<String> animationList { get; protected set; }
         public AnimationPlayer animationPlayer { get; set; }
 

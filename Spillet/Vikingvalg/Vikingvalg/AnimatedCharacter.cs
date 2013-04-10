@@ -14,7 +14,7 @@ using Demina;
 
 namespace Vikingvalg
 {
-    class AnimatedCharacter : AnimatedSprite
+    class AnimatedCharacter : AnimatedSprite, IPlaySound
     {
         public AnimatedSprite CollidingWith { get; set; }
         public int hp { get; set; }
@@ -22,10 +22,14 @@ namespace Vikingvalg
         public bool BlockedRight { get; set; }
         public bool BlockedTop { get; set; }
         public bool BlockedBottom { get; set; }
+        public String currentSoundEffect { get; set; }
 
+        public override String Directory { get; set; }
         protected int _speed { get; set; }
         protected int _xSpeed { get; set; }
         protected int _ySpeed { get; set; }
+        protected int _attackDamageFrame { get; set; }
+        protected bool _attacked { get; set; }
 
         public Healthbar healthbar {get; set;}
         public AnimatedEnemy activeEnemy;
@@ -36,6 +40,8 @@ namespace Vikingvalg
             hp = hitPoints;
             if (this is WolfEnemy) healthbar = new Healthbar(hitPoints, destinationRectangle, destinationRectangle.Height - 60);
             else healthbar = new Healthbar(hitPoints, destinationRectangle, destinationRectangle.Height);
+            currentSoundEffect = "";
+            _attacked = false;
         }
 
         public bool FacesTowards(float point)

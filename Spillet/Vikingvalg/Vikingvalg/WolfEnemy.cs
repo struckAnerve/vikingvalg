@@ -20,7 +20,7 @@ namespace Vikingvalg
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Player player1)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, player1, 50)
         {
-            AnimationDirectory = @"wolfAnimation/";
+            Directory = @"wolf";
             setSpeed(5);
             //kan flyttes til base?
             destinationRectangle.Width = (int)(destinationRectangle.Width * scale);
@@ -33,6 +33,16 @@ namespace Vikingvalg
         }
         public WolfEnemy(Rectangle destinationRectangle, float scale, Player player1)
             : this("mm", destinationRectangle, new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.6f, scale, player1)
-        { }  
+        { }
+        public override void attack1()
+        {
+            base.attack1();
+            _attackDamageFrame = 2;
+        }
+        public override void attack2()
+        {
+            base.attack2();
+            _attackDamageFrame = 2;
+        }
     }
 }

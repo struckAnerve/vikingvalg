@@ -82,6 +82,7 @@
     <Compile Include="AnimatedEnemy.cs" />
     <Compile Include="AnimatedSprite.cs" />
     <Compile Include="AnimatedStaticSprite.cs" />
+    <Compile Include="AudioManager.cs" />
     <Compile Include="BlobEnemy.cs" />
     <Compile Include="Button.cs" />
     <Compile Include="ChooseDirectionLevel.cs" />
@@ -91,12 +92,14 @@
     <Compile Include="GameStateManager.cs" />
     <Compile Include="Healthbar.cs" />
     <Compile Include="ICanCollide.cs" />
+    <Compile Include="IManageAudio.cs" />
     <Compile Include="IManageCollision.cs" />
     <Compile Include="IManageInput.cs" />
     <Compile Include="IManageStates.cs" />
     <Compile Include="InGameLevel.cs" />
     <Compile Include="InGameManager.cs" />
     <Compile Include="InputManager.cs" />
+    <Compile Include="IPlaySound.cs" />
     <Compile Include="IUseInput.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Menu.cs" />

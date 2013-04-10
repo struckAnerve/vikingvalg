@@ -21,6 +21,7 @@ namespace Vikingvalg
         IManageStates stateService;
         IManageCollision collisionService;
         IManageInput inputService;
+        public IManageAudio audioService;
 
         private ChooseDirectionLevel _chooseDirectionlevel;
         private FightingLevel _fightingLevel;
@@ -52,6 +53,7 @@ namespace Vikingvalg
             stateService = (IManageStates)Game.Services.GetService(typeof(IManageStates));
             collisionService = (IManageCollision)Game.Services.GetService(typeof(IManageCollision));
             inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
+            audioService = (IManageAudio)Game.Services.GetService(typeof(IManageAudio));
 
             rand = new Random();
 
