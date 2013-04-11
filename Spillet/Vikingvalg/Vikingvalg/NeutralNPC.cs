@@ -38,7 +38,7 @@ namespace Vikingvalg
             _talkingRangeBox = new Rectangle(destinationRectangle.Left - _talkingRangeBoxOffset, destinationRectangle.Bottom - _talkingRangeBoxHeight,
                 destinationRectangle.Width + _talkingRangeBoxOffset * 2, _talkingRangeBoxHeight);
 
-            inGameLevel.spriteService.LoadDrawable(new StaticSprite("box", 701));
+            inGameLevel.spriteService.LoadDrawable(new StaticSprite("box"));
         }
 
         public void Update(IManageInput inputService)
