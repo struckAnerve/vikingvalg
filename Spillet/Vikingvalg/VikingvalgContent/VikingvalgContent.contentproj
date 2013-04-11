@@ -96,116 +96,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Animations\playerAnimation\bicep.png">
-      <Name>bicep</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
-    </Compile>
-    <Compile Include="Animations\playerAnimation\foot.png">
-      <Name>foot</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
-    </Compile>
-    <Compile Include="Animations\playerAnimation\forearm.png">
-      <Name>forearm</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
-    </Compile>
-    <Compile Include="Animations\playerAnimation\head.png">
-      <Name>head</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
-    </Compile>
-    <Compile Include="Animations\playerAnimation\helmet0.png">
-      <Name>helmet0</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
-    </Compile>
-    <Compile Include="Animations\playerAnimation\helmet1.png">
-      <Name>helmet1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
-    </Compile>
-    <Compile Include="Animations\playerAnimation\hip.png">
-      <Name>hip</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
-    </Compile>
-    <Compile Include="Animations\playerAnimation\knifeHand.png">
-      <Name>knifeHand</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
-    </Compile>
-    <Compile Include="Animations\playerAnimation\shieldHand_Blocking.png">
-      <Name>shieldHand_Blocking</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
-    </Compile>
-    <Compile Include="Animations\playerAnimation\shieldHand_Walking.png">
-      <Name>shieldHand_Walking</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
-    </Compile>
-    <Compile Include="Animations\playerAnimation\shield_StudWood_Ready.png">
-      <Name>shield_StudWood_Ready</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
-    </Compile>
-    <Compile Include="Animations\playerAnimation\shield_StudWood_Slashing.png">
-      <Name>shield_StudWood_Slashing</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
-    </Compile>
-    <Compile Include="Animations\playerAnimation\shield_StudWood_Walking.png">
-      <Name>shield_StudWood_Walking</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
-    </Compile>
-    <Compile Include="Animations\playerAnimation\shin.png">
-      <Name>shin</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
-    </Compile>
-    <Compile Include="Animations\playerAnimation\swordHand.png">
-      <Name>swordHand</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
-    </Compile>
-    <Compile Include="Animations\playerAnimation\torso.png">
-      <Name>torso</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
-    </Compile>
-    <Compile Include="Animations\playerAnimation\torsoGreen.png">
-      <Name>torsoGreen</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
-    </Compile>
-    <Compile Include="Animations\playerAnimation\torsoLink.png">
-      <Name>torsoLink</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_ResizeToPowerOfTwo>True</ProcessorParameters_ResizeToPowerOfTwo>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="pixel.png">
       <Name>pixel</Name>
       <Importer>TextureImporter</Importer>
@@ -220,94 +110,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Animations\wolfAnimation\bodyBack.png">
-      <Name>bodyBack</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\wolfAnimation\bodyFront.png">
-      <Name>bodyFront</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\wolfAnimation\frontLegBottom.png">
-      <Name>frontLegBottom</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\wolfAnimation\frontLegMid.png">
-      <Name>frontLegMid</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\wolfAnimation\frontLegPaw.png">
-      <Name>frontLegPaw</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\wolfAnimation\frontLegTop.png">
-      <Name>frontLegTop</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\wolfAnimation\head.png">
-      <Name>head</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Animations\wolfAnimation\howl.anim">
       <Name>howl</Name>
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Animations\wolfAnimation\backLegBottom.png">
-      <Name>backLegBottom</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\wolfAnimation\backLegMid.png">
-      <Name>backLegMid</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\wolfAnimation\backLegPaw.png">
-      <Name>backLegPaw</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\wolfAnimation\backLegTop.png">
-      <Name>backLegTop</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\wolfAnimation\bellyBack.png">
-      <Name>bellyBack</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\wolfAnimation\bellyfront.png">
-      <Name>bellyfront</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\wolfAnimation\Jaw.png">
-      <Name>Jaw</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\wolfAnimation\tailBottom.png">
-      <Name>tailBottom</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\wolfAnimation\tailTop.png">
-      <Name>tailTop</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -357,113 +163,6 @@
   <ItemGroup>
     <Compile Include="continuebutton.png">
       <Name>continuebutton</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Animations\blobAnimation\axeHead.png">
-      <Name>axeHead</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\bone.png">
-      <Name>bone</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\bottomLeftBlob.png">
-      <Name>bottomLeftBlob</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\bottomRightBlob.png">
-      <Name>bottomRightBlob</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\bubble1.png">
-      <Name>bubble1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\bubble2.png">
-      <Name>bubble2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\eye.png">
-      <Name>eye</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\knife.png">
-      <Name>knife</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\leftBottomBlob.png">
-      <Name>leftBottomBlob</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\leftBottomEyebrow.png">
-      <Name>leftBottomEyebrow</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\leftTopBlob.png">
-      <Name>leftTopBlob</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\leftTopEyeBlob.png">
-      <Name>leftTopEyeBlob</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\leftTopEyebrow.png">
-      <Name>leftTopEyebrow</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\mainBody.png">
-      <Name>mainBody</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\mouthBlob.png">
-      <Name>mouthBlob</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\rightBottomEyebrow.png">
-      <Name>rightBottomEyebrow</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\rightTopEyebrow.png">
-      <Name>rightTopEyebrow</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\skull.png">
-      <Name>skull</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\topBlob.png">
-      <Name>topBlob</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\topEyeBlob.png">
-      <Name>topEyeBlob</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\topLeftBlob.png">
-      <Name>topLeftBlob</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -524,43 +223,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Animations\blobAnimation\mouthBlob1.png">
-      <Name>mouthBlob1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\mouthBlob2.png">
-      <Name>mouthBlob2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\mouthBlob3.png">
-      <Name>mouthBlob3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\spitBubble1.png">
-      <Name>spitBubble1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\spitBubble2.png">
-      <Name>spitBubble2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\spitBubble3.png">
-      <Name>spitBubble3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\blobAnimation\spitBubble4.png">
-      <Name>spitBubble4</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="healthBar.png">
       <Name>healthBar</Name>
       <Importer>TextureImporter</Importer>
@@ -575,13 +237,6 @@
   <ItemGroup>
     <Compile Include="ground.png">
       <Name>ground</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Animations\playerAnimation\shadow.png">
-      <Name>shadow</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
