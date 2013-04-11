@@ -26,23 +26,16 @@ namespace Vikingvalg
         protected List<Sprite> _toRemoveInGameLevel = new List<Sprite>();
         public int returnPositionY { get; set; }
         //TODO fikse knapper
-        private ToggleButton musicToggle;
-        private ToggleButton soundToggle;
         public List<Sprite> ToDrawInGameLevel 
         {
             get { return _toDrawInGameLevel; }
         }
 
-        public InGameLevel(Player player1, IManageSprites spriteService, IManageCollision collisionService, InGameManager inGameService)
+        public InGameLevel(Player player1, Game game)
         {
-            this._inGameService = inGameService;
-            this.spriteService = spriteService;
-            this._collisionService = collisionService;
-            //TODO fikse knapper
-            spriteService.LoadDrawable(new StaticSprite("musicOptions"));
-            spriteService.LoadDrawable(new StaticSprite("soundOptions"));
-            musicToggle = new ToggleButton("musicOptions", new Rectangle(100, 0, 50, 48), new Rectangle(0, 0, 50, 48), Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, 1000f);
-            soundToggle = new ToggleButton("soundOptions", new Rectangle(200, 0, 50, 48), new Rectangle(0, 0, 50, 48), Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, 1000f);
+            this._inGameService = (InGameManager)(game.Services.GetService(typeof(InGameManager)));
+            this.spriteService = (IManageSprites)(game.Services.GetService(typeof(IManageSprites)));
+            this._collisionService = (IManageCollision)(game.Services.GetService(typeof(IManageCollision)));
             
             _player1 = player1;
         }
@@ -57,9 +50,6 @@ namespace Vikingvalg
             _player1.Reset(playerX, playerY);
             AddInGameLevelDrawable(_player1);
             AddInGameLevelDrawable(_background);
-            //TODO fikse knapper
-            AddInGameLevelDrawable(musicToggle);
-            AddInGameLevelDrawable(soundToggle);
         }
 
         public virtual void ClearLevel()
@@ -137,11 +127,6 @@ namespace Vikingvalg
             }
 
             _toDrawQueue.Add(toAdd);
-            if (toAdd is IPlaySound)
-            {
-                IPlaySound iPlaySoundObject = (IPlaySound)toAdd;
-                _inGameService.audioService.addSoundPlayingObject(iPlaySoundObject);
-            } 
             if (toAdd is AnimatedEnemy || toAdd is Stone)
             {
                 spriteService.LoadDrawable(toAdd);

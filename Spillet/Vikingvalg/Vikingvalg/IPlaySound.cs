@@ -7,7 +7,7 @@ namespace Vikingvalg
 {
     public interface IPlaySound
     {
-        String currentSoundEffect { get; set; }
+        IManageAudio _audioManager { get; set; }
         String Directory { get; set; }
     }
 }

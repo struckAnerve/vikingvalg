@@ -15,7 +15,7 @@ namespace Vikingvalg
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class InGameManager : Microsoft.Xna.Framework.GameComponent
+    public class InGameManager : GameComponent
     {
         IManageSprites spriteService;
         IManageStates stateService;
@@ -32,10 +32,16 @@ namespace Vikingvalg
 
         private enum _possibleInGameStates { ChooseDirectionLevel, FightingLevel, MiningLevel, TownLevel };
         public String InGameState { get; private set; }
+        
+        
+
+        private ToggleButton musicToggle;
+        private ToggleButton soundToggle;
 
         private Player _player1;
 
         public List<Sprite> ToDrawInGame { get; private set; }
+        private List<Sprite> _persistentInGameUI = new List<Sprite>();
 
         public int level;
 
@@ -55,18 +61,25 @@ namespace Vikingvalg
             inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
             audioService = (IManageAudio)Game.Services.GetService(typeof(IManageAudio));
 
+            spriteService.LoadDrawable(new StaticSprite("musicOptions"));
+            spriteService.LoadDrawable(new StaticSprite("soundOptions"));
+            musicToggle = new musicToggleButton("musicOptions", new Rectangle((int)spriteService.GameWindowSize.X - 40, 0, 40, 40), new Rectangle(0, 0, 40, 40), Game);
+            soundToggle = new soundToggleButton("soundOptions", new Rectangle((int)spriteService.GameWindowSize.X - 80, 0, 40, 40), new Rectangle(0, 0, 40, 40), Game);
+            _persistentInGameUI.Add(musicToggle);
+            _persistentInGameUI.Add(soundToggle);
+
             rand = new Random();
 
             //Midlertidige plasseringer (?)
-            _player1 = new Player(new Rectangle(100, 100, 150, 330), 0.5f);
+            _player1 = new Player(new Rectangle(100, 100, 150, 330), 0.5f, Game);
             spriteService.LoadDrawable(_player1);
 
             level = 1;
 
-            _chooseDirectionlevel = new ChooseDirectionLevel(_player1, spriteService, collisionService, this);
-            _fightingLevel = new FightingLevel(_player1, spriteService, collisionService, this);
-            _miningLevel = new MiningLevel(_player1, spriteService, collisionService, this);
-            _townLevel = new TownLevel(_player1, spriteService, collisionService, this);
+            _chooseDirectionlevel = new ChooseDirectionLevel(_player1, Game);
+            _fightingLevel = new FightingLevel(_player1, Game);
+            _miningLevel = new MiningLevel(_player1, Game);
+            _townLevel = new TownLevel(_player1, Game);
 
             ChangeInGameState("TownLevel", 100, 450);
 
@@ -133,6 +146,7 @@ namespace Vikingvalg
                     ToDrawInGame = _townLevel.ToDrawInGameLevel;
                     break;
             }
+            foreach (Sprite spriteToDraw in _persistentInGameUI) ToDrawInGame.Add(spriteToDraw);
         }
     }
 }

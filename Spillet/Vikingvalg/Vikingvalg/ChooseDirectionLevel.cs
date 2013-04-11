@@ -14,8 +14,8 @@ namespace Vikingvalg
     class ChooseDirectionLevel : InGameLevel
     {
         private StaticSprite _sign;
-        public ChooseDirectionLevel(Player player1, IManageSprites spriteService, IManageCollision collisionService, InGameManager inGameService)
-            : base(player1, spriteService, collisionService, inGameService)
+        public ChooseDirectionLevel(Player player1, Game game)
+            : base(player1, game)
         {
             _background = new StaticSprite("chooseLevelGround", new Rectangle(0, 0, (int)spriteService.GameWindowSize.X, (int)spriteService.GameWindowSize.Y));
             spriteService.LoadDrawable(_background);

@@ -16,6 +16,7 @@ namespace Vikingvalg
     {
         public Dictionary<String, Song> _songList { get; set; }
         public Dictionary<String, SoundEffect> _soundEffectList { get; set; }
+        public Dictionary<String, SoundEffectInstance> _soundLoopInstanceList { get; set; }
         public Queue<SoundEffectInstance> _soundQueue { get; set; }
         public List<IPlaySound> checkForSoundList { get; set; }
         public Song _currentSong { get; set; }
@@ -24,12 +25,14 @@ namespace Vikingvalg
 
         public float FXVolume { get; set; }
         public float MusicVolume { get; set; }
+        private bool bPaused;
 
         public AudioManager(Game game)
             : base(game)
         {
             _songList = new Dictionary<string, Song>();
             _soundEffectList = new Dictionary<string, SoundEffect>();
+            _soundLoopInstanceList = new Dictionary<string, SoundEffectInstance>();
             _soundQueue = new Queue<SoundEffectInstance>();
             checkForSoundList = new List<IPlaySound>();
         }
@@ -45,10 +48,11 @@ namespace Vikingvalg
 
         protected override void LoadContent()
         {
-            WalkLoop = Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/player/walkTest").CreateInstance();
-            WalkLoop.Volume = 0.1f;
+            _soundLoopInstanceList.Add("walk",Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/player/walkTest").CreateInstance());
+            _soundLoopInstanceList["walk"].Volume = 0.1f;
             _soundEffectList.Add("player/attack1", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/player/swordSlash1"));
             _soundEffectList.Add("player/attack2", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/player/swordSlash2"));
+            _soundEffectList.Add("player/blockHit", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/player/shieldHit"));
             _soundEffectList.Add("player/clang1", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/player/clang1"));
             _soundEffectList.Add("player/clang2", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/player/clang2"));
             _soundEffectList.Add("player/clang3", Game.Content.Load<SoundEffect>(@"Audio/SoundEffects/player/clang3"));
@@ -71,13 +75,13 @@ namespace Vikingvalg
             foreach (IPlaySound soundPlayingObject in checkForSoundList)
             {
 
-                if (soundPlayingObject is Player && soundPlayingObject.currentSoundEffect != "walk") StopWalk();
-                if (soundPlayingObject is Player && soundPlayingObject.currentSoundEffect == "walk") AddWalk();
-                else if (!(soundPlayingObject.currentSoundEffect.Equals("")))
+                /*if (soundPlayingObject is Player && soundPlayingObject.currentSoundEffect != "walk") StopWalk();
+                if (soundPlayingObject is Player && soundPlayingObject.currentSoundEffect == "walk" && !bPaused) AddWalk();
+                else if (soundPlayingObject.currentSoundEffect !="" && soundPlayingObject.currentSoundEffect != "walk")
                 {
                     AddSound(soundPlayingObject.Directory + "/" + soundPlayingObject.currentSoundEffect);
                     soundPlayingObject.currentSoundEffect = "";
-                }
+                }*/
             }
             for (int i = 0; i < _soundQueue.Count; i++)
             {
@@ -90,38 +94,42 @@ namespace Vikingvalg
         }
         public void AddSound(SoundEffect sound, float volume, bool loop)
         {
-            SoundEffectInstance handle = sound.CreateInstance();
-            handle.Volume = volume;
-            if (loop) handle.IsLooped = true;
-            handle.Play();
-            _soundQueue.Enqueue(handle);
-        }
-        public void AddWalk()
-        {
-            if (WalkLoop.State == SoundState.Stopped)
+            if (!bPaused)
             {
-                _soundQueue.Enqueue(WalkLoop);
-                WalkLoop.Play();
+                SoundEffectInstance handle = sound.CreateInstance();
+                handle.Volume = volume;
+                if (loop) handle.IsLooped = true;
+                handle.Play();
+                _soundQueue.Enqueue(handle);
             }
-        }
-        public void StopWalk()
-        {
-            if (WalkLoop.State == SoundState.Playing)
-            {
-                WalkLoop.Stop();
-            }
-        }
-        public void addSoundPlayingObject(IPlaySound soundPlayingObject)
-        {
-            checkForSoundList.Add(soundPlayingObject);
         }
         public void AddSound(String effectName)
         {
             AddSound(getSoundFromDictionary(effectName), FXVolume, false);
         }
+        public void PlayLoop(String instanceName)
+        {
+            if (_soundLoopInstanceList[instanceName].State == SoundState.Stopped)
+            {
+                _soundQueue.Enqueue(_soundLoopInstanceList[instanceName]);
+                _soundLoopInstanceList[instanceName].Play();
+            }
+        }
+        public void StopLoop(String instanceName)
+        {
+            if (_soundLoopInstanceList[instanceName].State == SoundState.Playing)
+            {
+                _soundLoopInstanceList[instanceName].Stop();
+            }
+        }
         public SoundEffect getSoundFromDictionary(String effectName)
         {
-            return _soundEffectList[effectName];
+            if (_soundEffectList.ContainsKey(effectName))
+            {
+                return _soundEffectList[effectName];
+            }
+            return null;
+            
         }
         public void LoadAudio(Sprite toLoad)
         {
@@ -140,12 +148,17 @@ namespace Vikingvalg
 
         public void PauseMusic()
         {
-            throw new NotImplementedException();
+            MediaPlayer.Pause();
         }
 
         public void PauseSounds()
         {
-            throw new NotImplementedException();
+            bPaused = true;
+            foreach (SoundEffectInstance item in _soundQueue)
+            {
+                if (item.State == SoundState.Playing)
+                    item.Pause();
+            }
         }
 
         public void ResumeAll()
@@ -155,12 +168,17 @@ namespace Vikingvalg
 
         public void ResumeMusic()
         {
-            throw new NotImplementedException();
+            MediaPlayer.Resume();
         }
 
         public void ResumeSounds()
         {
-            throw new NotImplementedException();
+            foreach (SoundEffectInstance item in _soundQueue)
+            {
+                if (item.State == SoundState.Paused)
+                    item.Resume();
+            }
+            bPaused = false;
         }
     }
 }

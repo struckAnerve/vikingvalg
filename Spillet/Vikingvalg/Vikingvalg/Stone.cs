@@ -30,7 +30,7 @@ namespace Vikingvalg
         public bool BlockedBottom { get; set; }
 
 
-        public String currentSoundEffect { get; set; }
+        public IManageAudio _audioManager { get; set; }
         public String Directory { get; set; }
 
         public int endurance;
@@ -38,7 +38,7 @@ namespace Vikingvalg
         private bool _hasGold;
 
         public Stone(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth, bool hasGold)
+            Vector2 origin, SpriteEffects effects, float layerDepth, bool hasGold, Game game)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth)
         {
             stoneHitArt = new AnimatedStaticSprite("stonehit", new Rectangle(_destinationRectangle.X - 40, _destinationRectangle.Y - ((99-_destinationRectangle.Height)/2), 180, 99), Vector2.Zero, 4, 50, true);
@@ -47,12 +47,12 @@ namespace Vikingvalg
             _footBox = new Rectangle(destinationRectangle.X, destinationRectangle.Bottom - 20, destinationRectangle.Width, 20);
             setLayerDepth(_footBox.Bottom);
             _hasGold = hasGold;
+            _audioManager = (IManageAudio)game.Services.GetService(typeof(IManageAudio));
             Directory = "stone";
-            currentSoundEffect = "";
         }
-        public Stone(Rectangle destinationRectangle, int sourceYPos, int color, bool hasGold)
+        public Stone(Rectangle destinationRectangle, int sourceYPos, int color, bool hasGold, Game game)
             : this("stone", destinationRectangle, new Rectangle(0, sourceYPos, destinationRectangle.Width, destinationRectangle.Height),
-                new Color(200, color + 30, color, 255), 0, Vector2.Zero, SpriteEffects.None, destinationRectangle.Bottom, hasGold)
+                new Color(200, color + 30, color, 255), 0, Vector2.Zero, SpriteEffects.None, destinationRectangle.Bottom, hasGold, game)
         { }
 
         public void IsHit()
@@ -66,13 +66,13 @@ namespace Vikingvalg
                 {
                     stoneHitArt.ChangeYPosition(198);
                     _sourceRectangle.X = 500;
-                    currentSoundEffect = "money";
+                    _audioManager.AddSound(Directory + "/money");
                 }
                 else
                 {
                     stoneHitArt.ChangeYPosition(99);
                     _sourceRectangle.X = 400;
-                    currentSoundEffect = "crumble";
+                    _audioManager.AddSound(Directory+"/crumble");
                 }
             }
             else if (endurance % 2 == 0)

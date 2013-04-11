@@ -96,13 +96,14 @@ namespace Vikingvalg
         {
             foreach (List<Sprite> listToDraw in ListsToDraw)
             {
-                foreach (Sprite spr in listToDraw)
+                sortedList = listToDraw.OrderBy(x => x.LayerDepth).ToList();
+                foreach (Sprite spr in sortedList)
                 {
                     if (spr is Player)
                         playerDepth = spr.LayerDepth;
                 }
                 _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
-                foreach (Sprite drawable in listToDraw)
+                foreach (Sprite drawable in sortedList)
                 {
                     //tegn bak spiller
                     if (drawable is StaticSprite && drawable.LayerDepth <= playerDepth)
@@ -119,13 +120,12 @@ namespace Vikingvalg
                 _spriteBatch.End();
 
                 _spriteBatch.GraphicsDevice.BlendState = BlendState.AlphaBlend;
-                sortedList = listToDraw.OrderBy(x => x.LayerDepth).ToList();
                 foreach (Sprite drawable in sortedList)
                 {
                     drawAnimatedSprite(drawable);
                 }
                 _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
-                foreach (Sprite drawable in listToDraw)
+                foreach (Sprite drawable in sortedList)
                 {
                     //tegn foran spiller
                     if (drawable is StaticSprite)
