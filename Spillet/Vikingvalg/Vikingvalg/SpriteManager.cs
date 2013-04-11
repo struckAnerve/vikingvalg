@@ -161,7 +161,6 @@ namespace Vikingvalg
                                     DrawSpriteFont(playerAnswer, conversationNpc.dialogController.GetPlayerAnswerPos(conversationNpc.dialogController.playerAnswers.IndexOf(playerAnswer)),
                                         conversationNpc.dialogController.unselectedAnswerColor);
                                 }
-
                             }
                         }
                     }
@@ -192,10 +191,10 @@ namespace Vikingvalg
         }
         private void DrawStaticSprite(Sprite drawable)
         {
-                StaticSprite staticDrawableSprite = (StaticSprite)drawable;
-                _spriteBatch.Draw(_loadedStaticArt[staticDrawableSprite.ArtName], staticDrawableSprite.DestinationRectangle,
-                    staticDrawableSprite.SourceRectangle, staticDrawableSprite.Color, staticDrawableSprite.Rotation,
-                    staticDrawableSprite.Origin, staticDrawableSprite.Effects, 1f);
+            StaticSprite staticDrawableSprite = (StaticSprite)drawable;
+            _spriteBatch.Draw(_loadedStaticArt[staticDrawableSprite.ArtName], staticDrawableSprite.DestinationRectangle,
+                staticDrawableSprite.SourceRectangle, staticDrawableSprite.Color, staticDrawableSprite.Rotation,
+                staticDrawableSprite.Origin, staticDrawableSprite.Effects, 1f);
         }
         private void drawAnimatedSprite(Sprite drawable)
         {

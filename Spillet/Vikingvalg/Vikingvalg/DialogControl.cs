@@ -49,15 +49,15 @@ namespace Vikingvalg
 
             //Litt massive opprettelser for å legge boksene i en salgs mal. Source har ikke noe å si?
             npcTalkBox = new StaticSprite("box", new Rectangle(40, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y-_textOffsetY, _maxTextWidth + 20, _textOffsetY),
-                new Rectangle(0, 0, 1, 1), 701f, _boxColor);
+                new Rectangle(0, 0, 1, 1), 1001f, _boxColor);
             npcNameBox = new StaticSprite("box", new Rectangle(70, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y-(_lineHeight+_textOffsetY),
-                (int)_npc.inGameLevel.spriteService.TextSize(_npc.npcName).X + 10, _lineHeight), new Rectangle(0, 0, 1, 1), 701f, _boxColor);
+                (int)_npc.inGameLevel.spriteService.TextSize(_npc.npcName).X + 10, _lineHeight), new Rectangle(0, 0, 1, 1), 1001f, _boxColor);
             playerTalkBox = new StaticSprite("box",
                 new Rectangle((int)_npc.inGameLevel.spriteService.GameWindowSize.X - 560, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y-_textOffsetY, _maxTextWidth + 20, _textOffsetY),
-                new Rectangle(0, 0, 1, 1), 701f, _boxColor);
+                new Rectangle(0, 0, 1, 1), 1001f, _boxColor);
             playerNameBox = new StaticSprite("box",
                 new Rectangle((int)_npc.inGameLevel.spriteService.GameWindowSize.X - 105, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y - (_lineHeight+_textOffsetY), 35, _lineHeight),
-                new Rectangle(0, 0, 1, 1), 701f, _boxColor);
+                new Rectangle(0, 0, 1, 1), 1001f, _boxColor);
 
             npcSaysPos.X = npcTalkBox.DestinationX + 10;
             npcSaysPos.Y = npcTalkBox.DestinationY + _textOffsetY;
