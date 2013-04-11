@@ -14,33 +14,47 @@ namespace Vikingvalg
 {
     class DialogControl
     {
-        protected NeutralNPC _npc;
+        protected NeutralNpc _npc;
 
         protected Color _boxColor;
+        public Color unselectedAnswerColor = new Color(100, 100, 100, 255);
+        protected int _lineHeight;
 
-        protected StaticSprite _npcNameBox;
-        protected StaticSprite _npcTalkBox;
-        protected StaticSprite _playerNameBox;
-        protected StaticSprite _playerTalkBox;
+        public StaticSprite npcNameBox;
+        public StaticSprite npcTalkBox;
+        public StaticSprite playerNameBox;
+        public StaticSprite playerTalkBox;
 
-        public DialogControl(NeutralNPC npc)
+        public Vector2 npcNamePos;
+        public Vector2 playerNamePos;
+
+        public String npcSays;
+        public Vector2 npcSaysPos;
+        public List<String> playerAnswers = new List<string>();
+        public List<Vector2> playerAnswersPos = new List<Vector2>();
+
+        public DialogControl(NeutralNpc npc)
         {
             _npc = npc;
 
             _boxColor = new Color(0, 0, 0, 100);
-
+            _lineHeight = (int)_npc.inGameLevel.spriteService.TextSize("H").Y+12;
 
             //Litt massive opprettelser for å legge boksene i en salgs mal
-            _npcTalkBox = new StaticSprite("box", new Rectangle(40, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y-40, 520, 40),
-                new Rectangle(0, 0, 520, 40), 701f, _boxColor);
-            _npcNameBox = new StaticSprite("box", new Rectangle(70, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y-70, 30, 30),
-                new Rectangle(0, 0, 30, 30), 701f, _boxColor);
-            _playerTalkBox = new StaticSprite("box",
-                new Rectangle((int)_npc.inGameLevel.spriteService.GameWindowSize.X - 560, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y - 40, 520, 40),
-                new Rectangle(0, 0, 520, 40), 701f, _boxColor);
-            _playerNameBox = new StaticSprite("box",
-                new Rectangle((int)_npc.inGameLevel.spriteService.GameWindowSize.X - 100, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y - 70, 30, 30),
-                new Rectangle(0, 0, 30, 30), 701f, _boxColor);
+            npcTalkBox = new StaticSprite("box", new Rectangle(40, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y-30, 520, 30),
+                new Rectangle(0, 0, 520, 30), 701f, _boxColor);
+            npcNameBox = new StaticSprite("box", new Rectangle(70, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y-60,
+                (int)_npc.inGameLevel.spriteService.TextSize(_npc.npcName).X + 10, _lineHeight),
+                new Rectangle(0, 0, (int)_npc.inGameLevel.spriteService.TextSize(_npc.npcName).X + 10, _lineHeight), 701f, _boxColor);
+            playerTalkBox = new StaticSprite("box",
+                new Rectangle((int)_npc.inGameLevel.spriteService.GameWindowSize.X - 560, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y - 30, 520, 30),
+                new Rectangle(0, 0, 520, 30), 701f, _boxColor);
+            playerNameBox = new StaticSprite("box",
+                new Rectangle((int)_npc.inGameLevel.spriteService.GameWindowSize.X - 105, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y - 60, 35, _lineHeight),
+                new Rectangle(0, 0, 30, _lineHeight), 701f, _boxColor);
+
+            npcNamePos = new Vector2(npcNameBox.DestinationX + 5, npcNameBox.DestinationY + 6);
+            playerNamePos = new Vector2(playerNameBox.DestinationX + 5, playerNameBox.DestinationY + 6);
         }
 
         public void Update(IManageInput inputService)
@@ -48,19 +62,18 @@ namespace Vikingvalg
 
         }
 
-        public void Enabled()
+        public void ChangeNpcDialog(String changeTo)
         {
-            _npc.inGameLevel.AddInGameLevelDrawable(_npcNameBox);
-            _npc.inGameLevel.AddInGameLevelDrawable(_npcTalkBox);
-            _npc.inGameLevel.AddInGameLevelDrawable(_playerNameBox);
-            _npc.inGameLevel.AddInGameLevelDrawable(_playerTalkBox);
+            npcSays = changeTo;
+            npcSaysPos.X = npcTalkBox.DestinationX + 10;
+            npcSaysPos.Y = npcTalkBox.DestinationY + 7;
         }
-        public void Disabled()
+        public void AddPlayerAnswer(String toAdd)
         {
-            _npc.inGameLevel.RemoveInGameLevelDrawable(_npcNameBox);
-            _npc.inGameLevel.RemoveInGameLevelDrawable(_npcTalkBox);
-            _npc.inGameLevel.RemoveInGameLevelDrawable(_playerNameBox);
-            _npc.inGameLevel.RemoveInGameLevelDrawable(_playerTalkBox);
+            playerAnswers.Add(toAdd);
+            playerAnswersPos.Add(new Vector2(playerTalkBox.DestinationX + 10, playerTalkBox.DestinationY + 7 + (_lineHeight*playerAnswersPos.Count())));
+            playerTalkBox.DestinationHeight += _lineHeight;
+            playerTalkBox.DestinationY -= _lineHeight;
         }
     }
 }

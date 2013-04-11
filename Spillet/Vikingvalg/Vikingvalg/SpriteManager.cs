@@ -28,6 +28,7 @@ namespace Vikingvalg
         Texture2D smallthing;
 
         private SpriteFont _arialFont;
+        private Color _defaultFontColor = new Color(255, 255, 255, 255);
         private float playerDepth;
         public List<List<Sprite>> ListsToDraw { get; set; }
         private List<Sprite> sortedList;
@@ -110,9 +111,9 @@ namespace Vikingvalg
                         {
                             Stone stoneToDraw = (Stone)drawable;
                             if(stoneToDraw.stoneHitArt.IsPlaying)
-                                drawStaticSprite(stoneToDraw.stoneHitArt);
+                                DrawStaticSprite(stoneToDraw.stoneHitArt);
                         }
-                        drawStaticSprite(drawable);
+                        DrawStaticSprite(drawable);
                     }
                 }
                 _spriteBatch.End();
@@ -127,23 +128,49 @@ namespace Vikingvalg
                 foreach (Sprite drawable in listToDraw)
                 {
                     //tegn foran spiller
-                    if (drawable is StaticSprite && drawable.LayerDepth > playerDepth)
+                    if (drawable is StaticSprite)
                     {
-                        if (drawable is Stone)
+                        if (drawable.LayerDepth > playerDepth)
                         {
-                            Stone stoneToDraw = (Stone)drawable;
-                            if (stoneToDraw.stoneHitArt.IsPlaying)
-                                drawStaticSprite(stoneToDraw.stoneHitArt);
+                            if (drawable is Stone)
+                            {
+                                Stone stoneToDraw = (Stone)drawable;
+                                if (stoneToDraw.stoneHitArt.IsPlaying)
+                                    DrawStaticSprite(stoneToDraw.stoneHitArt);
+                            }
+                            DrawStaticSprite(drawable);
                         }
-                        drawStaticSprite(drawable);
+                        if (drawable is NeutralNpc)
+                        {
+                            NeutralNpc conversationNpc = (NeutralNpc)drawable;
+                            if (conversationNpc.inConversation)
+                            {
+                                //tegn dialogboks
+                                DrawStaticSprite(conversationNpc.dialogController.npcNameBox);
+                                DrawStaticSprite(conversationNpc.dialogController.npcTalkBox);
+                                DrawStaticSprite(conversationNpc.dialogController.playerNameBox);
+                                DrawStaticSprite(conversationNpc.dialogController.playerTalkBox);
+
+                                //tegn dialogtekst
+                                DrawSpriteFont(conversationNpc.npcName, conversationNpc.dialogController.npcNamePos);
+                                DrawSpriteFont(conversationNpc.dialogController.npcSays, conversationNpc.dialogController.npcSaysPos);
+                                DrawSpriteFont("You", conversationNpc.dialogController.playerNamePos);
+                                foreach (String playerAnswer in conversationNpc.dialogController.playerAnswers)
+                                {
+                                    DrawSpriteFont(playerAnswer, conversationNpc.dialogController.playerAnswersPos[conversationNpc.dialogController.playerAnswers.IndexOf(playerAnswer)],
+                                        conversationNpc.dialogController.unselectedAnswerColor);
+                                }
+
+                            }
+                        }
                     }
                     else if (drawable is AnimatedCharacter && DrawHealthBar)
                     {
                         AnimatedCharacter drawableCharacter = (AnimatedCharacter)drawable;
                         if (drawableCharacter.activeEnemy == drawableCharacter || drawableCharacter is Player)
                         {
-                            drawStaticSprite(drawableCharacter.healthbar.healthBarSprite);
-                            drawStaticSprite(drawableCharacter.healthbar.healthContainerSprite);
+                            DrawStaticSprite(drawableCharacter.healthbar.healthBarSprite);
+                            DrawStaticSprite(drawableCharacter.healthbar.healthContainerSprite);
                         }
                     }
                 }
@@ -153,7 +180,7 @@ namespace Vikingvalg
             base.Draw(gameTime);
         }
 
-        private void drawBoxPerimeter(Rectangle box)
+        private void DrawBoxPerimeter(Rectangle box)
         {
             _spriteBatch.Draw(smallthing, new Vector2(box.X, box.Y), Color.White);
             _spriteBatch.Draw(smallthing, new Vector2(box.X + box.Width, box.Y + box.Height), Color.White);
@@ -162,10 +189,11 @@ namespace Vikingvalg
             _spriteBatch.Draw(smallthing, new Vector2(box.X + box.Width / 2, box.Y), Color.White);
             _spriteBatch.Draw(smallthing, new Vector2(box.X, box.Y + box.Height), Color.White);
         }
-        private void drawStaticSprite(Sprite drawable)
+        private void DrawStaticSprite(Sprite drawable)
         {
                 StaticSprite staticDrawableSprite = (StaticSprite)drawable;
-                _spriteBatch.Draw(_loadedStaticArt[staticDrawableSprite.ArtName], staticDrawableSprite.DestinationRectangle, staticDrawableSprite.SourceRectangle, staticDrawableSprite.Color, staticDrawableSprite.Rotation,
+                _spriteBatch.Draw(_loadedStaticArt[staticDrawableSprite.ArtName], staticDrawableSprite.DestinationRectangle,
+                    staticDrawableSprite.SourceRectangle, staticDrawableSprite.Color, staticDrawableSprite.Rotation,
                     staticDrawableSprite.Origin, staticDrawableSprite.Effects, 1f);
         }
         private void drawAnimatedSprite(Sprite drawable)
@@ -183,15 +211,27 @@ namespace Vikingvalg
                 {
                     _spriteBatch.Begin();
                     AnimatedCharacter p1 = (AnimatedCharacter)drawableAnimation;
-                    drawBoxPerimeter(p1.FootBox);
+                    DrawBoxPerimeter(p1.FootBox);
                     _spriteBatch.End();
                 } 
                 */
             }
-
+        }
+        private void DrawSpriteFont(String toDraw, Vector2 whereToDraw)
+        {
+            _spriteBatch.DrawString(_arialFont, toDraw, whereToDraw, _defaultFontColor);
+        }
+        private void DrawSpriteFont(String toDraw, Vector2 whereToDraw, Color color)
+        {
+            _spriteBatch.DrawString(_arialFont, toDraw, whereToDraw, color);
         }
 
+        public Vector2 TextSize(String text)
+        {
+            return _arialFont.MeasureString(text);
+        }
 
+        //funksjon fra http://www.xnawiki.com/index.php/Basic_Word_Wrapping
         public string WrapText(string text, float maxLineWidth)
         {
             string[] words = text.Split(' ');
