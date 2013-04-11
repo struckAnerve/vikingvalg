@@ -18,7 +18,7 @@ namespace Vikingvalg
 
         public WolfEnemy(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Player player1, Game game)
-            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, player1, 50, game)
+            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, player1, game)
         {
             Directory = @"wolf";
             setSpeed(5);
@@ -30,9 +30,8 @@ namespace Vikingvalg
             footBoxWidth = (int)(destinationRectangle.Width + (300 * scale));
             footBoxHeight = (int)(60 * scale);
             _footBox = new Rectangle(destinationRectangle.X - footBoxWidth / 2 + footBoxXOffset, destinationRectangle.Y + footBoxYOffset, footBoxWidth, footBoxHeight);
-            randomDifficulty = rInt(1, 10);
-            _damage = 10 + (int)randomDifficulty;
-            _xpWorth = 10 + (int)randomDifficulty;
+            setDifficulty(player1.battleRating, 50, 12);
+            setHpBar();
 
         }
         public WolfEnemy(Rectangle destinationRectangle, float scale, Player player1, Game game)

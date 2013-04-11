@@ -22,17 +22,20 @@ namespace Vikingvalg
         public int totalMoney;
         public int totalXP;
         private int _maxHitpoints;
-
+        public int battleRating { get; set; }
+        private int statBonus { get; set; }
         //Mining
         public List<Stone> StonesToMine { get; set; }
-        
+        private IManageStates _inGameManager;
         public Player(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Game game)
-            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, 50, game)
+            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, game)
         {
             Directory =  @"player";
             setSpeed(4);
-            _maxHitpoints = 50;
+            battleRating = 1;
+            setStats();
+            setHpBar();
             //kan flyttes til base?
             destinationRectangle.Width = (int)(destinationRectangle.Width*scale);
             destinationRectangle.Height= (int)(destinationRectangle.Height*scale);
@@ -65,6 +68,7 @@ namespace Vikingvalg
             playerBoneList.Add("thigh", "thighL");
             playerBoneList.Add("shin", "shinL");
             playerBoneList.Add("foot", "footL");
+
         }
         public Player(Rectangle destinationRectangle, float scale, Game game)
             : this("mm", destinationRectangle, new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.6f, scale, game)
@@ -83,12 +87,13 @@ namespace Vikingvalg
         {
             _footBox.X = resetX;
             _footBox.Y = resetY;
+            _damage = 10 * battleRating;
+            hp = _maxHitpoints;
             healthbar.reset();
             //Flytter hitboxen til samme sted som spilleren
             _destinationRectangle.Y = ((int)(_footBox.Y - footBoxYOffset));
             _destinationRectangle.X = ((int)(_footBox.X - footBoxXOffset));
 
-            hp = _maxHitpoints;
             healthbar.setPosition(_footBox);
         }
         public void Update(IManageInput inputService)
@@ -129,7 +134,7 @@ namespace Vikingvalg
 
                         _audioManager.AddSound(Directory + "/attack" + rInt(1, 3));
                         AnimatedEnemy enemyColidedWith = (AnimatedEnemy)CollidingWith;
-                        activeEnemy.takeDamage();
+                        activeEnemy.takeDamage(_damage);
                     }
                 }
                 else if (StonesToMine != null)
@@ -235,16 +240,35 @@ namespace Vikingvalg
                 hp -= damageTaken;
             }
             healthbar.updateHealtBar(hp);
-            Console.WriteLine(hp);
-            if (hp <= 0) Console.WriteLine("dead");
+            if (hp <= 0) dead();
+        }
+        private void dead(){
+            _footBox.X -= 2000;
+            if (battleRating > 1)
+            {
+                totalXP -= 10 * battleRating;
+                totalMoney -= 10 * battleRating;
+            }
         }
         public void addXP(int xpToAdd)
         {
             totalXP += xpToAdd;
+            Console.WriteLine("XP: " + totalXP);
         }
         public void addMoney(int moneyToAdd)
         {
             totalMoney += moneyToAdd;
+            Console.WriteLine("Money: " + totalMoney);
+        }
+        public void setStats(){
+            statBonus = battleRating;
+            for (int i = 0; i <= 20; i += 2)
+            {
+                statBonus++;
+            }
+            hp = 50 * battleRating;
+            _maxHitpoints = 50 * battleRating;
+            _damage = 10 * battleRating;
         }
     }
 }

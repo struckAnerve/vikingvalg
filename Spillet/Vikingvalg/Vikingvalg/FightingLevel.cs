@@ -30,7 +30,12 @@ namespace Vikingvalg
         {
             base.InitializeLevel(playerX, playerY);
             returnPositionY = _returnPositionY;
-            for (int i = 0; i <= _inGameService.rand.Next(1, 7); i++)
+            int playerRating = _player1.battleRating;
+            int maxEnemies = 1;
+            for (int i = 1; i < playerRating; i += 2) maxEnemies++;
+            if (maxEnemies >= 5) maxEnemies = 5;
+            int numEnemies = _inGameService.rand.Next(1, maxEnemies + 1);
+            for (int i = 0; i <= numEnemies; i++)
             {
                 if(_inGameService.rand.Next(0,2) == 0)
                     levelCharacters.Add(new BlobEnemy(new Rectangle(1245 + _inGameService.rand.Next(1, 6) * 50, _inGameService.rand.Next(2, 6) * 100, 400, 267), 0.5f, _player1, _inGameService.Game));

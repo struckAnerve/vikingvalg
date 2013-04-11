@@ -94,7 +94,7 @@ namespace Vikingvalg
                     }
 
                     //oppretter steinen
-                    Stone toAdd = new Stone(stoneDestination, sourceYPos, stoneColor, hasGold, _inGameService.Game);
+                    Stone toAdd = new Stone(stoneDestination, sourceYPos, stoneColor, hasGold, _inGameService.Game, _player1);
 
                     //legger til steinen i privat (med bare steiner) og offentlig (med alt som skal tegnes/oppdateres i spillet) liste
                     _stones.Add(toAdd);

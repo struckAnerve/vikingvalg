@@ -32,8 +32,8 @@ namespace Vikingvalg
         protected float randomDifficulty;
         private Rectangle _lastAllowedPosition;
         public AnimatedEnemy(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Player player1, int hitPoints, Game game)
-            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, hitPoints, game)
+            Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Player player1, Game game)
+            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, game)
         {
             _yPosArray = new int[] { 0, -150, -100, 0, 100, 150 };
             _player1 = player1;
@@ -170,12 +170,11 @@ namespace Vikingvalg
                 }
             }
         }
-        public void takeDamage()
+        public void takeDamage(int damageTaken)
         {
-            hp -= 10;
+            hp -= damageTaken;
             healthbar.updateHealtBar(hp);
-            _player1.addXP(_xpWorth);
-            if (hp <= 0) Console.WriteLine("Dead");
+            if (hp <= 0) _player1.addXP(_xpWorth);
         }
         private bool blocked()
         {
@@ -228,6 +227,14 @@ namespace Vikingvalg
                 _distance.X = _footBox.Right - _target.X;
             }
             _distance.Y = _footBox.Y + _footBox.Height - _target.Y;
+        }
+        public void setDifficulty(int battleRating, int baseHp, int baseDamage)
+        {
+            randomDifficulty = rInt(battleRating - 2, battleRating + 1);
+            if (battleRating == 1 || randomDifficulty <= 1) randomDifficulty = 1;
+            _damage = baseDamage * (int)randomDifficulty;
+            _xpWorth = 10 * (int)randomDifficulty;
+            hp = baseHp * (int) randomDifficulty;
         }
     }
 }

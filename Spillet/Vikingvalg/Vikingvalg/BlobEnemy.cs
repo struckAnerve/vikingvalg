@@ -17,7 +17,7 @@ namespace Vikingvalg
     {
         public BlobEnemy(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Player player1, Game game)
-            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, player1, 80, game)
+            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, player1, game)
         {
             Directory = @"blob";
             setSpeed(4);
@@ -31,9 +31,8 @@ namespace Vikingvalg
             footBoxWidth = (int)(destinationRectangle.Width + (40 * scale));
             footBoxHeight = (int)(40 * scale + 10);
             _footBox = new Rectangle(destinationRectangle.X - footBoxWidth / 2 + footBoxXOffset, destinationRectangle.Y + footBoxYOffset, footBoxWidth, footBoxHeight);
-            randomDifficulty = rInt(1, 10);
-            _damage = 10 + (int)randomDifficulty;
-            _xpWorth = 10 + (int)randomDifficulty;
+            setDifficulty(player1.battleRating, 80, 10);
+            setHpBar();
         }
         public BlobEnemy(Rectangle destinationRectangle, float scale, Player player1, Game game)
             : this("mm", destinationRectangle, new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.6f, scale, player1, game)

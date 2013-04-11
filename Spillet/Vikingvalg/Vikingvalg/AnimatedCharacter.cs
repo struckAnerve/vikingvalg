@@ -37,15 +37,16 @@ namespace Vikingvalg
         public Healthbar healthbar {get; set;}
         public AnimatedEnemy activeEnemy;
         public AnimatedCharacter(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth, float scale, int hitPoints, Game game)
+            Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Game game)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale)
         {
-            hp = hitPoints;
-            if (this is WolfEnemy) healthbar = new Healthbar(hitPoints, destinationRectangle, destinationRectangle.Height - 60);
-            else healthbar = new Healthbar(hitPoints, destinationRectangle, destinationRectangle.Height);
             _audioManager = (IManageAudio)game.Services.GetService(typeof(IManageAudio));
         }
-
+        protected void setHpBar()
+        {
+            if (this is WolfEnemy) healthbar = new Healthbar(hp, _destinationRectangle, _destinationRectangle.Height - 60);
+            else healthbar = new Healthbar(hp, _destinationRectangle, _destinationRectangle.Height);
+        }
         public bool FacesTowards(float point)
         {
             return (point < this.FootBox.Center.X && this.Flipped) || (point > this.FootBox.Center.X && !this.Flipped);
