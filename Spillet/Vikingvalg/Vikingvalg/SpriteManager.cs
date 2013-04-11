@@ -42,6 +42,7 @@ namespace Vikingvalg
             _spriteBatch = new SpriteBatch(this.Game.GraphicsDevice);
 
             _arialFont = Game.Content.Load<SpriteFont>("arial");
+            _arialFont.LineSpacing = 22;
 
             //midlertidig
             smallthing = Game.Content.Load<Texture2D>(@"redPixel");
@@ -157,7 +158,7 @@ namespace Vikingvalg
                                 DrawSpriteFont("You", conversationNpc.dialogController.playerNamePos);
                                 foreach (String playerAnswer in conversationNpc.dialogController.playerAnswers)
                                 {
-                                    DrawSpriteFont(playerAnswer, conversationNpc.dialogController.playerAnswersPos[conversationNpc.dialogController.playerAnswers.IndexOf(playerAnswer)],
+                                    DrawSpriteFont(playerAnswer, conversationNpc.dialogController.GetPlayerAnswerPos(conversationNpc.dialogController.playerAnswers.IndexOf(playerAnswer)),
                                         conversationNpc.dialogController.unselectedAnswerColor);
                                 }
 

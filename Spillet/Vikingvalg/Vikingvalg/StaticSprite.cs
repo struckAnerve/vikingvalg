@@ -60,6 +60,9 @@ namespace Vikingvalg
         public StaticSprite(String artName, Rectangle destinationRectangle)
             : this(artName, destinationRectangle,new Rectangle(0, 0, destinationRectangle.Width, destinationRectangle.Height))
         { }
+        public StaticSprite(String artName, float layerDepth)
+            : this(artName, new Rectangle(-10, -10, 10, 10), layerDepth)
+        { }
         public StaticSprite(String artName)
             : this(artName, new Rectangle(-10, -10, 10, 10))
         { }

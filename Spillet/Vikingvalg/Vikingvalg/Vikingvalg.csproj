@@ -108,10 +108,12 @@
     <Compile Include="MenuManager.cs" />
     <Compile Include="MiningLevel.cs" />
     <Compile Include="NeutralNpc.cs" />
+    <Compile Include="OracleNpc.cs" />
     <Compile Include="PauseMenu.cs" />
     <Compile Include="PlayButton.cs" />
     <Compile Include="SaveGameData.cs" />
     <Compile Include="SettingsButton.cs" />
+    <Compile Include="ShopkeeperNpc.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="IManageSprites.cs" />
     <Compile Include="Player.cs" />

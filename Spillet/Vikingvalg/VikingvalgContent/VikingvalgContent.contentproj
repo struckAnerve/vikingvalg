@@ -627,13 +627,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="arial.spritefont">
-      <Name>arial</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="box.jpg">
       <Name>box</Name>
       <Importer>TextureImporter</Importer>

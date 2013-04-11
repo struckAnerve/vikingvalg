@@ -12,13 +12,13 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
-    class NeutralNpc : StaticSprite, IUseInput
+    abstract class NeutralNpc : StaticSprite, IUseInput
     {
         public InGameLevel inGameLevel;
 
+        public String npcName;
         protected Player _player1;
 
-        public String npcName;
         public bool inConversation;
         public DialogControl dialogController;
 
@@ -27,29 +27,19 @@ namespace Vikingvalg
         protected Rectangle _talkingRangeBox;
 
         public NeutralNpc(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth, String npcName, Player player, InGameLevel inGameLevel)
+            Vector2 origin, SpriteEffects effects, float layerDepth, Player player, InGameLevel inGameLevel)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth)
         {
             this.inGameLevel = inGameLevel;
 
             inConversation = false;
-            this.npcName = npcName;
             _player1 = player;
 
             _talkingRangeBox = new Rectangle(destinationRectangle.Left - _talkingRangeBoxOffset, destinationRectangle.Bottom - _talkingRangeBoxHeight,
                 destinationRectangle.Width + _talkingRangeBoxOffset * 2, _talkingRangeBoxHeight);
 
-            inGameLevel.spriteService.LoadDrawable(new StaticSprite("box"));
-
-            dialogController = new DialogControl(this);
-            dialogController.ChangeNpcDialog("Hello, good sir! I have some fine wares for you to browse");
-            dialogController.AddPlayerAnswer("Hello, shopkeeper");
-            dialogController.AddPlayerAnswer("Could I get a discount from you, my friend?");
+            inGameLevel.spriteService.LoadDrawable(new StaticSprite("box", 701));
         }
-        public NeutralNpc(String artName, Rectangle destinationRectangle, String npcName, Player player, InGameLevel inGameLevel)
-            : this(artName, destinationRectangle, new Rectangle(0, 0, destinationRectangle.Width, destinationRectangle.Height),
-                new Color(255, 255, 255, 255), 0, Vector2.Zero, SpriteEffects.None, destinationRectangle.Bottom, npcName, player, inGameLevel)
-        { }
 
         public void Update(IManageInput inputService)
         {
