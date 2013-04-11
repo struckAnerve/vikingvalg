@@ -25,9 +25,11 @@ namespace Vikingvalg
         float MusicVolume{ get; set; }
 
         void AddSound(SoundEffect sound, float volume, bool loop);
+        void AddSound(String effectName);
         SoundEffect getSoundFromDictionary(String effectName);
+        void PlayLoop(String instanceName);
+        void StopLoop(String instanceName);
         void LoadAudio(Sprite toLoad);
-        void addSoundPlayingObject(IPlaySound iPlaySoundObject);
         void PlayMusic();
         void PauseAll();
         void PauseMusic();

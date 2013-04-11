@@ -22,10 +22,10 @@ namespace Vikingvalg
         public bool BlockedRight { get; set; }
         public bool BlockedTop { get; set; }
         public bool BlockedBottom { get; set; }
-        public String currentSoundEffect { get; set; }
 
-
+        public IManageAudio _audioManager { get; set; }
         private static Random _rand = new Random();
+        private static readonly object syncLock = new object();
         public override String Directory { get; set; }
         protected int _damage { get; set; }
         protected int _speed { get; set; }
@@ -37,14 +37,13 @@ namespace Vikingvalg
         public Healthbar healthbar {get; set;}
         public AnimatedEnemy activeEnemy;
         public AnimatedCharacter(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth, float scale, int hitPoints)
+            Vector2 origin, SpriteEffects effects, float layerDepth, float scale, int hitPoints, Game game)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale)
         {
             hp = hitPoints;
             if (this is WolfEnemy) healthbar = new Healthbar(hitPoints, destinationRectangle, destinationRectangle.Height - 60);
             else healthbar = new Healthbar(hitPoints, destinationRectangle, destinationRectangle.Height);
-            currentSoundEffect = "";
-            _attacked = false;
+            _audioManager = (IManageAudio)game.Services.GetService(typeof(IManageAudio));
         }
 
         public bool FacesTowards(float point)
@@ -60,8 +59,10 @@ namespace Vikingvalg
         }
         public static int rInt(int min, int max)
         {
-            int t = _rand.Next(min, max);
-            return t;
+            lock (syncLock)
+            { // synchronize
+                return _rand.Next(min, max);
+            }
         }
     }
 }

@@ -27,11 +27,13 @@ namespace Vikingvalg
         private bool _attackRight = true;
         private bool _attackOfOpportunity = false;
         private bool _firstAttack = true;
-        private String _attackSound;
+        protected String _attackSound;
+        protected int _xpWorth;
+        protected float randomDifficulty;
         private Rectangle _lastAllowedPosition;
         public AnimatedEnemy(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Player player1, int hitPoints)
-            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, hitPoints)
+            Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Player player1, int hitPoints, Game game)
+            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, hitPoints, game)
         {
             _yPosArray = new int[] { 0, -150, -100, 0, 100, 150 };
             _player1 = player1;
@@ -58,7 +60,7 @@ namespace Vikingvalg
                    _targetSpan += 70;
                    if (withinRangeOfTarget(_footBox, _target))
                        _player1.takeDamage(_damage);
-                   currentSoundEffect = _attackSound;
+                   _audioManager.AddSound(Directory+"/"+_attackSound);
                    _targetSpan -= 70;
                    _attackOfOpportunity = false;
                    _attacked = true;
@@ -172,6 +174,7 @@ namespace Vikingvalg
         {
             hp -= 10;
             healthbar.updateHealtBar(hp);
+            _player1.addXP(_xpWorth);
             if (hp <= 0) Console.WriteLine("Dead");
         }
         private bool blocked()

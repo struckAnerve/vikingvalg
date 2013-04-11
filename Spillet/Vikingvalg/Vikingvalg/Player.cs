@@ -19,15 +19,16 @@ namespace Vikingvalg
         public Rectangle targetBox;
         public int targetBoxXDif = 60;
         public int targetBoxYDif = -6;
-
+        public int totalMoney;
+        public int totalXP;
         private int _maxHitpoints;
 
         //Mining
         public List<Stone> StonesToMine { get; set; }
         
         public Player(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
-            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, 50)
+            Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Game game)
+            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, 50, game)
         {
             Directory =  @"player";
             setSpeed(4);
@@ -65,17 +66,17 @@ namespace Vikingvalg
             playerBoneList.Add("shin", "shinL");
             playerBoneList.Add("foot", "footL");
         }
-        public Player(Rectangle destinationRectangle, float scale)
-            : this("mm", destinationRectangle, new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.6f, scale)
+        public Player(Rectangle destinationRectangle, float scale, Game game)
+            : this("mm", destinationRectangle, new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.6f, scale, game)
         { }
-        public Player(Rectangle destinationRectangle)
-            : this(destinationRectangle, 1f)
+        public Player(Rectangle destinationRectangle, Game game)
+            : this(destinationRectangle, 1f, game)
         { }
-        public Player(Vector2 destinationPosition)
-            : this(new Rectangle((int)destinationPosition.X, (int)destinationPosition.Y, 375, 485))
+        public Player(Vector2 destinationPosition, Game game)
+            : this(new Rectangle((int)destinationPosition.X, (int)destinationPosition.Y, 375, 485), game)
         { }
-        public Player()
-            : this(Vector2.Zero)
+        public Player(Game game)
+            : this(Vector2.Zero, game)
         { }
 
         public void Reset(int resetX, int resetY)
@@ -97,7 +98,7 @@ namespace Vikingvalg
                 animationPlayer.PlaySpeedMultiplier = 1.4f;
             else
                 animationPlayer.PlaySpeedMultiplier = 1f;
-            if (AnimationState != "walking" && currentSoundEffect == "walk") currentSoundEffect = "";
+            if(AnimationState != "walking") _audioManager.StopLoop("walk");
             if (AnimationState != "slashing")
             {
                 if (inputService.KeyIsDown(Keys.Space))
@@ -125,7 +126,8 @@ namespace Vikingvalg
                     if (targetBox.Intersects(activeEnemy.FootBox) &&
                         ((activeEnemy.FootBox.Center.X < this.FootBox.Center.X && this.Flipped) || (activeEnemy.FootBox.Center.X > this.FootBox.Center.X && !this.Flipped)))
                     {
-                        currentSoundEffect = "attack"+rInt(1,3);
+
+                        _audioManager.AddSound(Directory + "/attack" + rInt(1, 3));
                         AnimatedEnemy enemyColidedWith = (AnimatedEnemy)CollidingWith;
                         activeEnemy.takeDamage();
                     }
@@ -136,7 +138,7 @@ namespace Vikingvalg
                     {
                         if (targetBox.Intersects(stone.FootBox) && stone.endurance > 0 && FacesTowards(stone.FootBox.Center.X))
                         {
-                            currentSoundEffect = "clang"+ rInt(1,4);
+                            _audioManager.AddSound(Directory + "/clang" + rInt(1, 4));
                             stone.IsHit();
                         }
                     }
@@ -170,7 +172,8 @@ namespace Vikingvalg
             }
             if (AnimationState == "walking")
             {
-                currentSoundEffect = "walk";
+                //_audioManager.AddSound("walk");
+                _audioManager.PlayLoop("walk");
                 if (inputService.KeyIsDown(Keys.Right) && inputService.KeyIsDown(Keys.Left))
                 {
                     idle();
@@ -225,6 +228,7 @@ namespace Vikingvalg
             if (AnimationState == "blocking")
             {
                 hp -= (int)(damageTaken * 0.3);
+                _audioManager.AddSound(Directory + "/blockHit");
             }
             else
             {
@@ -233,6 +237,14 @@ namespace Vikingvalg
             healthbar.updateHealtBar(hp);
             Console.WriteLine(hp);
             if (hp <= 0) Console.WriteLine("dead");
+        }
+        public void addXP(int xpToAdd)
+        {
+            totalXP += xpToAdd;
+        }
+        public void addMoney(int moneyToAdd)
+        {
+            totalMoney += moneyToAdd;
         }
     }
 }

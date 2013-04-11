@@ -17,8 +17,8 @@ namespace Vikingvalg
         private NeutralNpc _shopkeeper;
         private NeutralNpc _oracle;
 
-        public TownLevel(Player player1, IManageSprites spriteService, IManageCollision collisionService, InGameManager inGameService)
-            : base(player1, spriteService, collisionService, inGameService)
+        public TownLevel(Player player1, Game game)
+            : base(player1, game)
         {
             _background = new StaticSprite("ground", new Rectangle(0, 0, (int)spriteService.GameWindowSize.X, (int)spriteService.GameWindowSize.Y));
             spriteService.LoadDrawable(_background);

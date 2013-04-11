@@ -67,5 +67,12 @@ namespace Vikingvalg
                 return true;
             return false;
         }
+        public bool MouseWasPressedThisFrame(String button)
+        {
+            if (button == "left" && CurrMouse.LeftButton == ButtonState.Pressed && PrevMouse.LeftButton == ButtonState.Released) return true;
+            if (button == "right" && CurrMouse.RightButton == ButtonState.Pressed && PrevMouse.RightButton == ButtonState.Released) return true;
+            if (button == "middle" && CurrMouse.MiddleButton == ButtonState.Pressed && PrevMouse.MiddleButton == ButtonState.Released) return true;
+            return false;
+        }
     }
 }

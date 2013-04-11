@@ -19,6 +19,7 @@ namespace Vikingvalg
         bool KeyIsUp(Keys key);
         bool KeyIsDown(Keys key);
         bool KeyWasPressedThisFrame(Keys key);
+        bool MouseWasPressedThisFrame(String button);
         //få alle knapper som presses
     }
 }

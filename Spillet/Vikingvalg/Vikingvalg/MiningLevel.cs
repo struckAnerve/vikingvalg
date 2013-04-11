@@ -19,8 +19,8 @@ namespace Vikingvalg
 
         public int GoldStones { get; set; }
 
-        public MiningLevel(Player player1, IManageSprites spriteService, IManageCollision collisionService, InGameManager inGameService)
-            : base(player1, spriteService, collisionService, inGameService)
+        public MiningLevel(Player player1, Game game)
+            : base(player1, game)
         {
             //Legger til en bakgrunn
             _background = new StaticSprite("ground", new Rectangle(0, 0, (int)spriteService.GameWindowSize.X, (int)spriteService.GameWindowSize.Y));
@@ -94,7 +94,7 @@ namespace Vikingvalg
                     }
 
                     //oppretter steinen
-                    Stone toAdd = new Stone(stoneDestination, sourceYPos, stoneColor, hasGold);
+                    Stone toAdd = new Stone(stoneDestination, sourceYPos, stoneColor, hasGold, _inGameService.Game);
 
                     //legger til steinen i privat (med bare steiner) og offentlig (med alt som skal tegnes/oppdateres i spillet) liste
                     _stones.Add(toAdd);
