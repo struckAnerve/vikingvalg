@@ -1,42 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
+    /// <summary>
+    /// Holder kontroll over størrelser på dialogbokser, og tekst (posisjon, hva som skal sies osv)
+    /// </summary>
     class DialogControl
     {
+        //NPCen dette objektet hører til
         protected NeutralNpc _npc;
 
+        //fargen på dialogboksen
         protected Color _boxColor;
+        //høyde på en linje tekst
         protected int _lineHeight;
+        //maks tekstbredde (piksler)
         protected int _maxTextWidth = 500;
 
+        //dialogbokser og navnebokser
         public StaticSprite npcNameBox;
         public StaticSprite npcTalkBox;
         public StaticSprite playerNameBox;
         public StaticSprite playerTalkBox;
 
+        //tekstmargin i forhold til boksene
         private int _textOffsetY = 7;
+        //hvor mange tekstlinjer NPCen har i sin dialogboks
         private int _npcTalkBoxLines = 0;
+        //hvor mange tekstlinjer spilleren har i sin dialogboks
         private int _playerTalkBoxLines = 0;
+        //representerer tekstlinjene i boksen med flest tekstlinjer
         private int _talkBoxLines = 0;
 
+        //posisjonen på navnene
         public Vector2 npcNamePos;
         public Vector2 playerNamePos;
 
+        //teksten til NPCen
         public String npcSays;
+        //posisjonen på teksten til NPCen
         public Vector2 npcSaysPos = Vector2.Zero;
+        //Liste over hvert av spillerens svaralternativer
         public List<PlayerTextAnswer> playerAnswers = new List<PlayerTextAnswer>();
+        //standradfarge på tekst
         private Color _defaultAnswerColor = new Color(100, 100, 100, 255);
+        //farge på hovered tekst
         private Color _hoveredAnswerColor = new Color(255, 255, 255, 255);
 
         public DialogControl(NeutralNpc npc)
@@ -69,6 +79,7 @@ namespace Vikingvalg
         {
             foreach (PlayerTextAnswer answer in playerAnswers)
             {
+                //sjekker om et svaralternativ er hovret eller ikke
                 if (!answer.hovered && answer.answerBox.Contains(inputService.CurrMouse.X, inputService.CurrMouse.Y))
                 {
                     answer.hovered = true;
@@ -80,6 +91,7 @@ namespace Vikingvalg
                     answer.textColor = _defaultAnswerColor;
                 }
 
+                //hvis svaralternativet klikkes
                 if(answer.hovered && inputService.MouseWasPressedThisFrame("left"))
                 {
                     _npc.AnswerClicked(answer);
@@ -88,14 +100,21 @@ namespace Vikingvalg
             }
         }
 
+        /// <summary>
+        /// Endre teksten som NPCen skal si
+        /// </summary>
+        /// <param name="changeTo">teksten du vil endre til</param>
         public void ChangeNpcDialog(String changeTo)
         {
+            //sjekker om NPCens dialogboks er den høyeste
             bool wasHighestBox = false;
             if (_npcTalkBoxLines == _talkBoxLines)
                 wasHighestBox = true;
 
+            //legger inn \n hvis changeTo er bredere enn maksbredden
             npcSays = _npc.inGameLevel.spriteService.WrapText(changeTo, _maxTextWidth);
 
+            //_npcTalkBoxLines = 1 + hver \n i teksten
             _npcTalkBoxLines = 1;
             //funnet her: http://stackoverflow.com/questions/541954/how-would-you-count-occurences-of-a-string-within-a-string-c
             _npcTalkBoxLines += npcSays.Length - npcSays.Replace("\n", "").Length;
@@ -121,32 +140,49 @@ namespace Vikingvalg
                 }
             }
         }
+
+        /// <summary>
+        /// Legg til et svaralternativ for spilleren
+        /// </summary>
+        /// <param name="answerToAdd"></param>
+        /// <param name="answerDesc"></param>
         public void AddPlayerAnswer(String answerToAdd, String answerDesc)
         {
+            //legger til en "-", samt en \n dersom answerToAdd er bredere enn maksbredden
             answerToAdd = _npc.inGameLevel.spriteService.WrapText(" - " + answerToAdd, _maxTextWidth);
 
+            //finner ut av hvor mange linjer dette svaret består av (1 + hver \n i svaret)
             int numOfLines = 1;
             //funnet her: http://stackoverflow.com/questions/541954/how-would-you-count-occurences-of-a-string-within-a-string-c
             numOfLines += answerToAdd.Length - answerToAdd.Replace("\n", "").Length;
 
+            //hvis _playerTalkBoxLines har flest linjer
             if (_playerTalkBoxLines + numOfLines > _talkBoxLines)
             {
                 ChangeHeight(numOfLines, true);
             }
 
+            //legg til et nytt PlayerTextAnswer i listen over svaralternativer
             playerAnswers.Add(new PlayerTextAnswer(answerToAdd, answerDesc, new Rectangle(playerTalkBox.DestinationX + 10,
                 playerTalkBox.DestinationRectangle.Top + _textOffsetY + (_lineHeight*_playerTalkBoxLines), 500, _lineHeight), _defaultAnswerColor));
             _playerTalkBoxLines += numOfLines;
         }
+
+        /// <summary>
+        /// Fjern alle spillerens svaralternativer fra listen
+        /// </summary>
         public void RemovePlayerAnswers()
         {
+            //sjekker om _playerTalkBoxLines har flest linjer
             bool wasHighestBox = false;
             if (_playerTalkBoxLines == _talkBoxLines)
                 wasHighestBox = true;
 
+            //fjerner alle svaralternativene, da er det nødvendigvis 0 linjer igjen
             playerAnswers.Clear();
             _playerTalkBoxLines = 0;
 
+            //hvis dialogboksen til spilleren hadde flest linjer settes ny høyde til høyden på NPCens dialogboks
             if (_playerTalkBoxLines < _talkBoxLines && wasHighestBox)
             {
                 ChangeHeight(_talkBoxLines - _npcTalkBoxLines, false);
@@ -154,6 +190,11 @@ namespace Vikingvalg
             }
         }
 
+        /// <summary>
+        /// Endre høyden på dialogboksene
+        /// </summary>
+        /// <param name="numOfLines"></param>
+        /// <param name="bigger"></param>
         private void ChangeHeight(int numOfLines, bool bigger)
         {
             int heightChange = _lineHeight * numOfLines;

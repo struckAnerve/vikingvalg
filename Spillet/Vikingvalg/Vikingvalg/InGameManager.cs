@@ -127,15 +127,19 @@ namespace Vikingvalg
         /// <param name="playerY">spillerens y posisjon på den nye banen</param>
         public void ChangeInGameState(String changeTo, int playerX, int playerY)
         {
+            //fjern elementer fra banen du går ifra
             ClearLevels(changeTo);
+            //passer på at man prøver å endre til en tillatt bane
             if (!Enum.IsDefined(typeof(_possibleInGameStates), changeTo))
             {
                 Console.WriteLine("Unable to change in-game state (you are trying to change to an unkown state: '" + changeTo + "')");
                 return;
             }
 
+            //endrer bane
             InGameState = changeTo;
 
+            //setter banen i utgangsposisjon og legger den til i tegnelisten
             switch (InGameState)
             {
                 case "ChooseDirectionLevel":
@@ -155,8 +159,14 @@ namespace Vikingvalg
                     ToDrawInGame = _townLevel.ToDrawInGameLevel;
                     break;
             }
+            //legger til GUI-elementer i tegnelisten
             foreach (Sprite spriteToDraw in _persistentInGameUI) ToDrawInGame.Add(spriteToDraw);
         }
+
+        /// <summary>
+        /// "Rensk opp" i banen du går ifra (egentlig alle som ikke er den du drar til)
+        /// </summary>
+        /// <param name="nextLevel">banen du skal til</param>
         private void ClearLevels(String nextLevel)
         {
             if (nextLevel != "ChooseDirectionLevel") _chooseDirectionlevel.ClearLevel();

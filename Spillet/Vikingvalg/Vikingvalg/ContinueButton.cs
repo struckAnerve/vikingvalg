@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
+    /// <summary>
+    /// Knapp i pausemenyen. Lar deg fortsette spillet
+    /// </summary>
     class ContinueButton : MenuButton
     {
         public ContinueButton(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
@@ -25,6 +21,7 @@ namespace Vikingvalg
 
         public override void Update(IManageInput inputService)
         {
+            //om knappen klikkes skal man fortsette spillet
             if (hovered && inputService.CurrMouse.LeftButton == ButtonState.Pressed)
             {
                 hovered = false;
