@@ -31,17 +31,22 @@ namespace Vikingvalg
             get { return _sourceRectangle; }
             protected set { _sourceRectangle = value; }
         }
+
+        public Color Color { get; protected set; }
+        public float Rotation { get; protected set; }
         public Vector2 Origin { get; protected set; }
         public SpriteEffects Effects { get; protected set; }
 
         public StaticSprite(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth) : base(color, rotation, layerDepth)
+            Vector2 origin, SpriteEffects effects, float layerDepth) : base(layerDepth)
         {
             ArtName = artName;
             DestinationRectangle = destinationRectangle;
             SourceRectangle = sourceRectangle;
             Origin = origin;
             Effects = effects;
+            Color = color;
+            Rotation = rotation;
         }
         public StaticSprite(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, float layerDepth, Color color)
             : this(artName, destinationRectangle, sourceRectangle, color, 0, Vector2.Zero, SpriteEffects.None, layerDepth)

@@ -26,9 +26,8 @@ namespace Vikingvalg
         private bool _firstAttack = true; //Om man har angrepet en gang før
         protected String _attackSound; //Hvilken lyd som skal spilles av når fienden angriper
 
-        public AnimatedEnemy(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Player player1, Game game)
-            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, game)
+        public AnimatedEnemy(Rectangle destinationRectangle, float layerDepth, float scale, Player player1, Game game)
+            : base(destinationRectangle, layerDepth, scale, game)
         {
             _yPosArray = new int[] { 0, -150, -100, 0, 100, 150 };
             _player1 = player1;

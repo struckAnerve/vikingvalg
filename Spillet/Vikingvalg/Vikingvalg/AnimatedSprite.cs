@@ -16,26 +16,23 @@ namespace Vikingvalg
 {
     public abstract class AnimatedSprite : Sprite
     {
+        /* Hvilken animasjonsstate spriten er i 
+         * (Annerledes fra currentplayinganimation, tar ikke hensyn til transition) */
+        public String AnimationState{get; protected set;} 
+        public float Scale { get; protected set; } //Størrelses-faktoren til spriten
+        public bool Flipped { get; set; } //Hvorvidt spriten ser til høyre eller venstre
 
-        public String AnimationState{get; protected set;}
-        public String ArtName { get; protected set; }
-        public float Scale { get; protected set; }
-        public bool Flipped { get; set; }
-
-        public Rectangle DestinationRectangle
+        public Rectangle DestinationRectangle //Hvor spriten skal tegnes
         {
             get { return _destinationRectangle; }
             protected set { _destinationRectangle = value; }
         }
-        public Rectangle SourceRectangle { get; protected set; }
-        public Vector2 Origin { get; protected set; }
-        public SpriteEffects Effects { get; protected set; }
 
-        public abstract String Directory { get; set; }
-        public List<String> animationList { get; protected set; }
-        public AnimationPlayer animationPlayer { get; set; }
+        public abstract String Directory { get; set; } //Mappen til animasjonen
+        public List<String> animationList { get; protected set; } //Liste over navn på animasjoner
+        public AnimationPlayer animationPlayer { get; set; } //Avspilleren til animasjonen
 
-        //Hitbox til spilleren
+        //Hitbox til spriten
         protected Rectangle _footBox;
 
         public Rectangle FootBox
@@ -44,9 +41,8 @@ namespace Vikingvalg
             set { }
         }
 
-        public AnimatedSprite(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
-            : base(color, rotation, layerDepth)
+        public AnimatedSprite(Rectangle destinationRectangle, float layerDepth, float scale)
+            : base(layerDepth)
         {
             Flipped = false;
             AnimationState = "idle";
@@ -54,13 +50,12 @@ namespace Vikingvalg
             animationList.Add("idle");
             animationPlayer = new AnimationPlayer();
             Scale = scale;
-            ArtName = artName;
             DestinationRectangle = destinationRectangle;
-            SourceRectangle = sourceRectangle;
-            Origin = origin;
-            Effects = effects;
             LayerDepth = layerDepth;
         }
+        /// <summary>
+        /// Aktiverer "idle" animasjonen, dette er standardanimasjonen til alt som er av AnimatedSprite typen
+        /// </summary>
         public void idle()
         {
             if (AnimationState != "idle")

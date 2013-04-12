@@ -12,11 +12,13 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
+    /// <summary>
+    /// Interface som beskriver Audiomanager
+    /// </summary>
     public interface IManageAudio
     {
         Dictionary<String, Song> _songList{ get; set; }
         Dictionary<String, SoundEffect> _soundEffectList{ get; set; }
-        List<IPlaySound> checkForSoundList { get; set; }
         Queue<SoundEffectInstance> _soundQueue{ get; set; }
         Song _currentSong{ get; set; }
         SoundEffect _currentAmbience { get; set; }
@@ -29,7 +31,6 @@ namespace Vikingvalg
         SoundEffect getSoundFromDictionary(String effectName);
         void PlayLoop(String instanceName);
         void StopLoop(String instanceName);
-        void LoadAudio(Sprite toLoad);
         void PlayMusic();
         void PauseAll();
         void PauseMusic();

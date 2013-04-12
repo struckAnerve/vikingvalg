@@ -24,9 +24,8 @@ namespace Vikingvalg
         public Healthbar healthbar {get; set;} //Healthbar
         public AnimatedEnemy activeEnemy; //Hvilken fiende som er aktiv
 
-        public AnimatedCharacter(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Game game)
-            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale)
+        public AnimatedCharacter(Rectangle destinationRectangle, float layerDepth, float scale, Game game)
+            : base(destinationRectangle, layerDepth, scale)
         {
             _audioManager = (IManageAudio)game.Services.GetService(typeof(IManageAudio)); //Henter ut audiomanager fra game
         }

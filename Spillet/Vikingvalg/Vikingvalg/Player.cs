@@ -35,9 +35,8 @@ namespace Vikingvalg
         public List<Stone> StonesToMine { get; set; } //Liste over steiner i området
         private InGameManager _inGameManager; //inGameManager(for å bytte ingamestate når spilleren dør)
         private IManageSprites _spritemanager; //Spritemanager(For å laste inn teksturer når spilleren går opp i level)
-        public Player(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Game game)
-            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, game)
+        public Player(Rectangle destinationRectangle, float layerDepth, float scale, Game game)
+            : base(destinationRectangle, layerDepth, scale, game)
         {
             Directory = @"player"; 
             setSpeed(4);
@@ -85,7 +84,7 @@ namespace Vikingvalg
             
         }
         public Player(Rectangle destinationRectangle, float scale, Game game)
-            : this("mm", destinationRectangle, new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.6f, scale, game)
+            : this(destinationRectangle, 0.6f, scale, game)
         { }
         public Player(Rectangle destinationRectangle, Game game)
             : this(destinationRectangle, 1f, game)
