@@ -4,7 +4,6 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Text;
-using Microsoft.Xna.Framework.Input;
 using Demina;
 
 namespace Vikingvalg
@@ -19,16 +18,25 @@ namespace Vikingvalg
         public Vector2 GameWindowSize { get; protected set; }
         //et tall som representerer margen fra toppen av vinduet og ned til der hvor spilleren kan gå
         public int WalkBlockTop { get; set; }
-        private MouseState mouseState;
+<<<<<<< HEAD
+        MouseState mouseState;
+=======
+
         //boolean som bestemmer om karakterers liv skal tegnes eller ikke
+>>>>>>> 3a00eb2aa9a91d30bb7ef85ea58dc2b51d2d8d46
         public bool DrawHealthBar { get; set; }
 
         private SpriteBatch _spriteBatch;
         //en dictionary med innlastede Texture2Der (nøkkelen er navnet på filen den har lastet inn)
         private Dictionary<String, Texture2D> _loadedStaticArt = new Dictionary<String,Texture2D>();
 
-        //SpriteFont for Arial
+<<<<<<< HEAD
+        //Midlertidig
+        Texture2D smallthing;
         StaticSprite cursor;
+=======
+        //SpriteFont for Arial
+>>>>>>> 3a00eb2aa9a91d30bb7ef85ea58dc2b51d2d8d46
         private SpriteFont _arialFont;
         //Standard tekstfarge
         private Color _defaultFontColor = new Color(255, 255, 255, 255);
@@ -50,9 +58,13 @@ namespace Vikingvalg
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(this.Game.GraphicsDevice);
+<<<<<<< HEAD
             cursor = new StaticSprite("cursor",new Rectangle(0,0,25,32));
             LoadDrawable(cursor);
+=======
+
             //laster inn Arial og setter linjehøyde
+>>>>>>> 3a00eb2aa9a91d30bb7ef85ea58dc2b51d2d8d46
             _arialFont = Game.Content.Load<SpriteFont>("arial");
             _arialFont.LineSpacing = 22;
 
@@ -255,10 +267,31 @@ namespace Vikingvalg
         /// <param name="drawableAnimation">AnimatedSprtien som skal tegnes</param>
         private void drawAnimatedSprite(AnimatedSprite drawableAnimation)
         {
+<<<<<<< HEAD
+            if (drawable is AnimatedSprite)
+            {
+                AnimatedSprite drawableAnimation = (AnimatedSprite)drawable;
+                //De neste to linjene er lagt til fordi Karl Gustav Georgsen var dum og tegnet ulven feil vei.
+                bool animFlip = drawableAnimation.Flipped;
+                if (drawableAnimation is WolfEnemy) animFlip = !drawableAnimation.Flipped;
+                drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, animFlip, 0, drawableAnimation.Scale);
+                /*
+                //Husk å fjerne
+                if (drawableAnimation is AnimatedCharacter)
+                {
+                    _spriteBatch.Begin();
+                    AnimatedCharacter p1 = (AnimatedCharacter)drawableAnimation;
+                    DrawBoxPerimeter(p1.FootBox);
+                    _spriteBatch.End();
+                } 
+                */
+            }
+=======
             //De neste to linjene er lagt til fordi Karl Gustav Georgsen var dum og tegnet ulven feil vei.
             bool animFlip = drawableAnimation.Flipped;
             if (drawableAnimation is WolfEnemy) animFlip = !drawableAnimation.Flipped;
-            drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, animFlip, 0, drawableAnimation.Scale);
+            drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, animFlip, drawableAnimation.Rotation, drawableAnimation.Scale);
+>>>>>>> 3a00eb2aa9a91d30bb7ef85ea58dc2b51d2d8d46
         }
 
         /// <summary>
