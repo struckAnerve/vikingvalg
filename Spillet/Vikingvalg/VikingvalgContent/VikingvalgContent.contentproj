@@ -779,6 +779,7 @@
       <Name>idle</Name>
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
+      <SubType>Designer</SubType>
     </Compile>
     <Compile Include="Animations\playerAnimation\strikeSword.anim">
       <Name>strikeSword</Name>

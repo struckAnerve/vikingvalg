@@ -21,7 +21,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>1</TextureIndex>
       <Position>
         <X>5</X>
@@ -69,7 +69,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>3</TextureIndex>
       <Position>
         <X>1</X>
@@ -113,6 +113,22 @@
         <Y>1</Y>
       </Scale>
     </Bone>
+    <Bone name="shadow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>7</ParentIndex>
+      <TextureIndex>13</TextureIndex>
+      <Position>
+        <X>20.97984</X>
+        <Y>204.8069</Y>
+      </Position>
+      <Rotation>-0.18</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
     <Bone name="Torso">
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
@@ -133,7 +149,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>3</TextureIndex>
       <Position>
         <X>1</X>
@@ -149,7 +165,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>7</ParentIndex>
+      <ParentIndex>8</ParentIndex>
       <TextureIndex>4</TextureIndex>
       <Position>
         <X>4.495693</X>
@@ -165,7 +181,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>8</ParentIndex>
+      <ParentIndex>9</ParentIndex>
       <TextureIndex>5</TextureIndex>
       <Position>
         <X>13</X>
@@ -181,7 +197,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>1</TextureIndex>
       <Position>
         <X>6.430964</X>
@@ -197,7 +213,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>6</TextureIndex>
       <Position>
         <X>2.133874</X>
@@ -213,7 +229,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>11</ParentIndex>
+      <ParentIndex>12</ParentIndex>
       <TextureIndex>9</TextureIndex>
       <Position>
         <X>2.687856</X>
@@ -229,7 +245,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>14</ParentIndex>
+      <ParentIndex>15</ParentIndex>
       <TextureIndex>8</TextureIndex>
       <Position>
         <X>9.95661</X>
@@ -245,7 +261,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>10</ParentIndex>
+      <ParentIndex>11</ParentIndex>
       <TextureIndex>7</TextureIndex>
       <Position>
         <X>6</X>
@@ -263,7 +279,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>1</TextureIndex>
       <Position>
         <X>5</X>
@@ -311,7 +327,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>3</TextureIndex>
       <Position>
         <X>1</X>
@@ -355,6 +371,22 @@
         <Y>1</Y>
       </Scale>
     </Bone>
+    <Bone name="shadow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>7</ParentIndex>
+      <TextureIndex>13</TextureIndex>
+      <Position>
+        <X>56.22094</X>
+        <Y>177.6901</Y>
+      </Position>
+      <Rotation>-0.37</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
     <Bone name="Torso">
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
@@ -375,7 +407,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>3</TextureIndex>
       <Position>
         <X>1</X>
@@ -391,7 +423,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>7</ParentIndex>
+      <ParentIndex>8</ParentIndex>
       <TextureIndex>4</TextureIndex>
       <Position>
         <X>5.956895</X>
@@ -407,7 +439,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>8</ParentIndex>
+      <ParentIndex>9</ParentIndex>
       <TextureIndex>5</TextureIndex>
       <Position>
         <X>13</X>
@@ -423,7 +455,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>1</TextureIndex>
       <Position>
         <X>6.383079</X>
@@ -439,7 +471,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>6</TextureIndex>
       <Position>
         <X>2.259235</X>
@@ -455,7 +487,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>11</ParentIndex>
+      <ParentIndex>12</ParentIndex>
       <TextureIndex>9</TextureIndex>
       <Position>
         <X>2.71555</X>
@@ -471,7 +503,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>14</ParentIndex>
+      <ParentIndex>15</ParentIndex>
       <TextureIndex>8</TextureIndex>
       <Position>
         <X>10.51035</X>
@@ -487,7 +519,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>10</ParentIndex>
+      <ParentIndex>11</ParentIndex>
       <TextureIndex>7</TextureIndex>
       <Position>
         <X>6</X>
@@ -537,7 +569,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>1</TextureIndex>
       <Position>
         <X>5</X>
@@ -553,7 +585,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>3</TextureIndex>
       <Position>
         <X>1</X>
@@ -597,6 +629,22 @@
         <Y>1</Y>
       </Scale>
     </Bone>
+    <Bone name="shadow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>7</ParentIndex>
+      <TextureIndex>13</TextureIndex>
+      <Position>
+        <X>30.16636</X>
+        <Y>208.7575</Y>
+      </Position>
+      <Rotation>-0.24</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
     <Bone name="Torso">
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
@@ -617,7 +665,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>3</TextureIndex>
       <Position>
         <X>1</X>
@@ -633,7 +681,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>7</ParentIndex>
+      <ParentIndex>8</ParentIndex>
       <TextureIndex>4</TextureIndex>
       <Position>
         <X>5.248059</X>
@@ -649,7 +697,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>8</ParentIndex>
+      <ParentIndex>9</ParentIndex>
       <TextureIndex>5</TextureIndex>
       <Position>
         <X>13</X>
@@ -665,7 +713,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>1</TextureIndex>
       <Position>
         <X>6.143655</X>
@@ -681,7 +729,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>6</TextureIndex>
       <Position>
         <X>2.668306</X>
@@ -697,7 +745,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>11</ParentIndex>
+      <ParentIndex>12</ParentIndex>
       <TextureIndex>9</TextureIndex>
       <Position>
         <X>2.513935</X>
@@ -713,7 +761,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>14</ParentIndex>
+      <ParentIndex>15</ParentIndex>
       <TextureIndex>8</TextureIndex>
       <Position>
         <X>11.44234</X>
@@ -729,7 +777,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>10</ParentIndex>
+      <ParentIndex>11</ParentIndex>
       <TextureIndex>7</TextureIndex>
       <Position>
         <X>6</X>
@@ -779,7 +827,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>1</TextureIndex>
       <Position>
         <X>5</X>
@@ -795,7 +843,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>3</TextureIndex>
       <Position>
         <X>1</X>
@@ -839,6 +887,22 @@
         <Y>1</Y>
       </Scale>
     </Bone>
+    <Bone name="shadow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>7</ParentIndex>
+      <TextureIndex>13</TextureIndex>
+      <Position>
+        <X>18.92182</X>
+        <Y>199.0828</Y>
+      </Position>
+      <Rotation>-0.18</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
     <Bone name="Torso">
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
@@ -859,7 +923,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>3</TextureIndex>
       <Position>
         <X>1</X>
@@ -875,7 +939,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>7</ParentIndex>
+      <ParentIndex>8</ParentIndex>
       <TextureIndex>4</TextureIndex>
       <Position>
         <X>3</X>
@@ -891,7 +955,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>8</ParentIndex>
+      <ParentIndex>9</ParentIndex>
       <TextureIndex>5</TextureIndex>
       <Position>
         <X>13</X>
@@ -907,7 +971,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>1</TextureIndex>
       <Position>
         <X>6</X>
@@ -923,7 +987,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>6</TextureIndex>
       <Position>
         <X>2.913749</X>
@@ -939,7 +1003,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>11</ParentIndex>
+      <ParentIndex>12</ParentIndex>
       <TextureIndex>9</TextureIndex>
       <Position>
         <X>2.392966</X>
@@ -955,7 +1019,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>14</ParentIndex>
+      <ParentIndex>15</ParentIndex>
       <TextureIndex>8</TextureIndex>
       <Position>
         <X>12.00153</X>
@@ -971,7 +1035,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>10</ParentIndex>
+      <ParentIndex>11</ParentIndex>
       <TextureIndex>7</TextureIndex>
       <Position>
         <X>6</X>
@@ -1021,7 +1085,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>1</TextureIndex>
       <Position>
         <X>5</X>
@@ -1037,7 +1101,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>3</TextureIndex>
       <Position>
         <X>1</X>
@@ -1081,6 +1145,22 @@
         <Y>1</Y>
       </Scale>
     </Bone>
+    <Bone name="shadow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>7</ParentIndex>
+      <TextureIndex>13</TextureIndex>
+      <Position>
+        <X>33.25576</X>
+        <Y>192.3449</Y>
+      </Position>
+      <Rotation>-0.25</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
     <Bone name="Torso">
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
@@ -1101,7 +1181,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>3</TextureIndex>
       <Position>
         <X>1</X>
@@ -1117,7 +1197,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>7</ParentIndex>
+      <ParentIndex>8</ParentIndex>
       <TextureIndex>4</TextureIndex>
       <Position>
         <X>3</X>
@@ -1133,7 +1213,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>8</ParentIndex>
+      <ParentIndex>9</ParentIndex>
       <TextureIndex>5</TextureIndex>
       <Position>
         <X>13</X>
@@ -1149,7 +1229,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>1</TextureIndex>
       <Position>
         <X>6.193934</X>
@@ -1165,7 +1245,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>6</TextureIndex>
       <Position>
         <X>2.367332</X>
@@ -1181,7 +1261,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>11</ParentIndex>
+      <ParentIndex>12</ParentIndex>
       <TextureIndex>9</TextureIndex>
       <Position>
         <X>2.542211</X>
@@ -1197,7 +1277,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>14</ParentIndex>
+      <ParentIndex>15</ParentIndex>
       <TextureIndex>8</TextureIndex>
       <Position>
         <X>10.62464</X>
@@ -1213,7 +1293,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>10</ParentIndex>
+      <ParentIndex>11</ParentIndex>
       <TextureIndex>7</TextureIndex>
       <Position>
         <X>6</X>
@@ -1263,7 +1343,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>1</TextureIndex>
       <Position>
         <X>5</X>
@@ -1279,7 +1359,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>3</TextureIndex>
       <Position>
         <X>1</X>
@@ -1323,6 +1403,22 @@
         <Y>1</Y>
       </Scale>
     </Bone>
+    <Bone name="shadow">
+      <Hidden>False</Hidden>
+      <TextureFlipHorizontal>False</TextureFlipHorizontal>
+      <TextureFlipVertical>False</TextureFlipVertical>
+      <ParentIndex>7</ParentIndex>
+      <TextureIndex>13</TextureIndex>
+      <Position>
+        <X>44.59789</X>
+        <Y>200.0965</Y>
+      </Position>
+      <Rotation>-0.28</Rotation>
+      <Scale>
+        <X>1</X>
+        <Y>1</Y>
+      </Scale>
+    </Bone>
     <Bone name="Torso">
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
@@ -1343,7 +1439,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>3</TextureIndex>
       <Position>
         <X>1</X>
@@ -1359,7 +1455,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>7</ParentIndex>
+      <ParentIndex>8</ParentIndex>
       <TextureIndex>4</TextureIndex>
       <Position>
         <X>3</X>
@@ -1375,7 +1471,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>8</ParentIndex>
+      <ParentIndex>9</ParentIndex>
       <TextureIndex>5</TextureIndex>
       <Position>
         <X>13</X>
@@ -1391,7 +1487,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>1</TextureIndex>
       <Position>
         <X>6.430964</X>
@@ -1407,7 +1503,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>6</ParentIndex>
+      <ParentIndex>7</ParentIndex>
       <TextureIndex>6</TextureIndex>
       <Position>
         <X>1.699489</X>
@@ -1423,7 +1519,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>11</ParentIndex>
+      <ParentIndex>12</ParentIndex>
       <TextureIndex>9</TextureIndex>
       <Position>
         <X>2.724622</X>
@@ -1439,7 +1535,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>14</ParentIndex>
+      <ParentIndex>15</ParentIndex>
       <TextureIndex>8</TextureIndex>
       <Position>
         <X>8.941778</X>
@@ -1455,7 +1551,7 @@
       <Hidden>False</Hidden>
       <TextureFlipHorizontal>False</TextureFlipHorizontal>
       <TextureFlipVertical>False</TextureFlipVertical>
-      <ParentIndex>10</ParentIndex>
+      <ParentIndex>11</ParentIndex>
       <TextureIndex>7</TextureIndex>
       <Position>
         <X>6</X>
