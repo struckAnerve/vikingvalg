@@ -12,6 +12,7 @@ namespace Vikingvalg
         public Player _player1 { private get; set; } //Spilleren
         protected float randomDifficulty; //Tilfeldig vanskelighetsgrad for fienden
 
+
         private Point _distance; //Avstand fra der fienden er, til der den skal
         private Point _target; // Målet som fienden skal til
         private int _targetSpan = 7; //Et slingringsmonn for hvor fienden kan ende opp
@@ -293,9 +294,14 @@ namespace Vikingvalg
         public void setDifficulty(int combatLevel, int baseHp, int baseDamage)
         {
             randomDifficulty = rInt(combatLevel - 2, combatLevel + 1);
+            _damage = baseDamage;
+            MaxHp = baseHp;
             if (combatLevel == 1 || randomDifficulty <= 1) randomDifficulty = 0;
-            _damage = baseDamage + (int)randomDifficulty * (int)randomDifficulty;
-            MaxHp = baseHp + 10 * (int)randomDifficulty * (int)randomDifficulty;
+            if (combatLevel != 1)
+            {
+                _damage += 10 + ((int)randomDifficulty * (int)randomDifficulty);
+                MaxHp += 10 * ((int)randomDifficulty * (int)randomDifficulty);
+            }   
             CurrHp = MaxHp;
             _xpWorth = 10 + 10 * (int)randomDifficulty * (int)randomDifficulty;
             

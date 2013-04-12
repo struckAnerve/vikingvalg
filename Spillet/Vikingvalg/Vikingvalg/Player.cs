@@ -19,19 +19,18 @@ namespace Vikingvalg
         public bool BlockedLeft { get; set; }
         public bool BlockedRight { get; set; }
         public bool BlockedTop { get; set; }
-        public int totalGold;
         public bool BlockedBottom { get; set; }
 
+        private Rectangle TargetBox;
         List<string> playerTextureList = new List<string>(); //Liste over teksturer i animasjonen
-        public int combatLevel { get; set; }
+        
         public int targetBoxXDif = 60; //Hvor mye større denne boksen er i bredden
         public int targetBoxYDif = -6; //Hvor mye større denne boksen er i høyden
-        public int totalMoney; //Hvor mye penger spilleren har
+        public int totalGold; //Hvor mye penger spilleren har
         public int totalXP; //Hvor mye xp spilleren har
         //Fighting
-        private int _maxHitpoints; //Maks hitpoints hos spiller
-        public int battleRating { get; set; } //Hvor "sterk" spilleren er/level
-        private int statBonus { get; set; } //Hvor mye bonus spilleren får fra battleRating
+        public int combatLevel { get; set; } //Hvor "sterk" spilleren er/level
+        private int statBonus { get; set; } //Hvor mye bonus spilleren får fra combatLevel
         //Mining
         public List<Stone> StonesToMine { get; set; } //Liste over steiner i området
         private InGameManager _inGameManager; //inGameManager(for å bytte ingamestate når spilleren dør)
@@ -110,6 +109,7 @@ namespace Vikingvalg
         }
         public void Update(IManageInput inputService)
         {
+            if(inputService.KeyWasPressedThisFrame(Keys.P)) levelUp();
             //setter layerdepth til bunnen av spilleren
             setLayerDepth(_footBox.Bottom);
             //Øker hastigheten til walk-animasjonen
@@ -272,15 +272,17 @@ namespace Vikingvalg
         }
         /// <summary>
         /// Når spilleren dør, bytt til Choosedirectionlevel, og hvis spilleren er over level 1, 
-        /// trekk fra 10 * battlerating i xp og penger
+        /// trekk fra 10 * combatLevel i xp og penger
         /// </summary>
         public override void dead()
         {
             _inGameManager.ChangeInGameState("ChooseDirectionLevel", 100, 450);
             if (combatLevel > 1)
             {
-                if(totalXP > 0) totalXP -= 10 * combatLevel;
-                if(totalGold > 0) totalGold -= 10 * combatLevel;
+                totalXP -= 10 * combatLevel;
+                totalGold -= 10 * combatLevel;
+                if (totalXP < 0) totalXP = 0;
+                if (totalGold < 0) totalGold = 0;
             }
         }
         /// <summary>
@@ -300,8 +302,8 @@ namespace Vikingvalg
             totalGold += moneyToAdd;
         }
         /// <summary>
-        /// Regner ut stats basert på battleRating
-        /// Statbonus øker med én annenhver battleRating
+        /// Regner ut stats basert på combatLevel
+        /// Statbonus øker med én annenhver combatLevel
         /// </summary>
         public void setStats()
         {
@@ -310,9 +312,10 @@ namespace Vikingvalg
             {
                 statBonus++;
             }
-            MaxHp = 50 * battleRating;
+            if (combatLevel != 1) _damage = 10 * (combatLevel / 2);
+            else _damage = 10;
+            MaxHp = 50 * combatLevel;
             CurrHp = MaxHp;
-            _damage = 10 * combatLevel;
             if (healthbar != null) 
             healthbar.reset();
         }

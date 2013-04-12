@@ -75,7 +75,7 @@ namespace Vikingvalg
             _miningLevel = new MiningLevel(_player1, Game);
             _townLevel = new TownLevel(_player1, Game);
 
-            ChangeInGameState("TownLevel", 100, 450);
+            ChangeInGameState("ChooseDirectionLevel", 100, 450);
 
             base.Initialize();
         }

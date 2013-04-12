@@ -15,91 +15,131 @@ namespace Vikingvalg
 {
     class Player : AnimatedCharacter, IUseInput, ICanCollide
     {
-        Dictionary<string, string> playerBoneList = new Dictionary<string, string>();
+<<<<<<< HEAD
+        //Hvorvidt spilleren er blokkert fra høyre, venstre, oppe, eller nede
+        public bool BlockedLeft { get; set; }
+        public bool BlockedRight { get; set; }
+        public bool BlockedTop { get; set; }
+        public bool BlockedBottom { get; set; }
+
+        List<string> playerTextureList = new List<string>(); //Liste over teksturer i animasjonen
+        public Rectangle TargetBox; //En boks som definerer et område rundt footbox hvor spilleren fortsatt kan treffe det som er forran ham
+        public int targetBoxXDif = 60; //Hvor mye større denne boksen er i bredden
+        public int targetBoxYDif = -6; //Hvor mye større denne boksen er i høyden
+        public int totalMoney; //Hvor mye penger spilleren har
+        public int totalXP; //Hvor mye xp spilleren har
+        //Fighting
+        private int _maxHitpoints; //Maks hitpoints hos spiller
+        public int battleRating { get; set; } //Hvor "sterk" spilleren er/level
+        private int statBonus { get; set; } //Hvor mye bonus spilleren får fra battleRating
+        //Mining
+        public List<Stone> StonesToMine { get; set; } //Liste over steiner i området
+        private InGameManager _inGameManager; //inGameManager(for å bytte ingamestate når spilleren dør)
+        private IManageSprites _spritemanager; //Spritemanager(For å laste inn teksturer når spilleren går opp i level)
+=======
+        List<string> playerTextureList = new List<string>();
         public Rectangle targetBox;
         public int targetBoxXDif = 60;
         public int targetBoxYDif = -6;
-
+        public int totalGold;
+        public int totalXP;
         private int _maxHitpoints;
+        public int combatLevel { get; set; }
+        private int statBonus { get; set; }
 
         //Mining
         public List<Stone> StonesToMine { get; set; }
-        
+
+        private InGameManager _inGameManager;
+        private IManageSprites _spritemanager;
+>>>>>>> ca7c258bf255837a9483a5d665fb472ffa0060c3
         public Player(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth, float scale)
-            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, 50)
+            Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Game game)
+            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, game)
         {
-            Directory =  @"player";
+            Directory = @"player"; 
             setSpeed(4);
-            _maxHitpoints = 50;
-            //kan flyttes til base?
-            destinationRectangle.Width = (int)(destinationRectangle.Width*scale);
-            destinationRectangle.Height= (int)(destinationRectangle.Height*scale);
-            
+            combatLevel = 1;
+            setStats();
+            setHpBar();
+
+            //Henter ut inGameManager og spriteManager fra game
+            _inGameManager = (InGameManager)game.Services.GetService(typeof(InGameManager));
+            _spritemanager = (IManageSprites)game.Services.GetService(typeof(IManageSprites));
+
+            //Skalerer spilleren med scale
+            destinationRectangle.Width = (int)(destinationRectangle.Width * scale);
+            destinationRectangle.Height = (int)(destinationRectangle.Height * scale);
+
             //Setter hitboxen til spilleren til 40px høy og bredden på spilleren / 2
             footBoxWidth = (int)destinationRectangle.Width;
-            footBoxXOffset =(int)footBoxWidth / 2;
+            footBoxXOffset = (int)footBoxWidth / 2;
             footBoxYOffset = (int)(110 * scale);
             footBoxHeight = (int)(60 * scale);
-            
+
             //Plasserer boksen midstilt nederst på spilleren.
             _footBox = new Rectangle(destinationRectangle.X - footBoxXOffset, destinationRectangle.Y + footBoxYOffset, footBoxWidth, (int)footBoxHeight);
-            targetBox = new Rectangle(_footBox.X - targetBoxXDif / 2 - 5, _footBox.Y, _footBox.Width + targetBoxXDif, _footBox.Height + targetBoxYDif);
-            
+            TargetBox = new Rectangle(_footBox.X - targetBoxXDif / 2 - 5, _footBox.Y, _footBox.Width + targetBoxXDif, _footBox.Height + targetBoxYDif);
+
             //Legger til alle navn på animasjoner som spilleren har, brukes for å laste inn riktige animasjoner.
             animationList.Add("block");
             animationList.Add("strikeSword");
             animationList.Add("battleBlockWalk");
-            animationList.Add("walkCycle");
 
             //Legger til alle navn på ben som hører til animasjonen, brukes for å endre på teksturer
-            playerBoneList.Add("head", "head");
-            playerBoneList.Add("torso", "torso");
-            playerBoneList.Add("bicep", "bicepL");
-            playerBoneList.Add("forearmR", "forearmR");
-            playerBoneList.Add("idleShieldArm", "idleShieldArm");
-            playerBoneList.Add("blockingShieldArm", "blockingShieldArm");
-            playerBoneList.Add("shield", "shield");
-            playerBoneList.Add("swordHand", "swordHand");
-            playerBoneList.Add("thigh", "thighL");
-            playerBoneList.Add("shin", "shinL");
-            playerBoneList.Add("foot", "footL");
+            playerTextureList.Add("torso");
+            playerTextureList.Add("bicep");
+            playerTextureList.Add("shieldHand_Walking");
+            playerTextureList.Add("hip");
+            playerTextureList.Add("shin");
+            playerTextureList.Add("foot");
+            playerTextureList.Add("head");
+            playerTextureList.Add("forearm");
+            playerTextureList.Add("swordHand");
+            playerTextureList.Add("helmet");
+            playerTextureList.Add("shield_StudWood_Ready");
+            playerTextureList.Add("shield_StudWood_Slashing");
+            playerTextureList.Add("shieldHand_Blocking");
+            
         }
-        public Player(Rectangle destinationRectangle, float scale)
-            : this("mm", destinationRectangle, new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.6f, scale)
+        public Player(Rectangle destinationRectangle, float scale, Game game)
+            : this("mm", destinationRectangle, new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.6f, scale, game)
         { }
-        public Player(Rectangle destinationRectangle)
-            : this(destinationRectangle, 1f)
+        public Player(Rectangle destinationRectangle, Game game)
+            : this(destinationRectangle, 1f, game)
         { }
-        public Player(Vector2 destinationPosition)
-            : this(new Rectangle((int)destinationPosition.X, (int)destinationPosition.Y, 375, 485))
+        public Player(Vector2 destinationPosition, Game game)
+            : this(new Rectangle((int)destinationPosition.X, (int)destinationPosition.Y, 375, 485), game)
         { }
-        public Player()
-            : this(Vector2.Zero)
+        public Player(Game game)
+            : this(Vector2.Zero, game)
         { }
 
         public void Reset(int resetX, int resetY)
         {
             _footBox.X = resetX;
             _footBox.Y = resetY;
-            healthbar.reset();
-            //Flytter hitboxen til samme sted som spilleren
+            setStats();
+            //Flytter spilleren til samme sted som hitboksen
             _destinationRectangle.Y = ((int)(_footBox.Y - footBoxYOffset));
             _destinationRectangle.X = ((int)(_footBox.X - footBoxXOffset));
-
-            hp = _maxHitpoints;
             healthbar.setPosition(_footBox);
         }
-
         public void Update(IManageInput inputService)
         {
-<<<<<<< HEAD
-            setLayerDepth(_footBox.Bottom );
-=======
-            setLayerDepth((float)(_footBox.Bottom));
->>>>>>> 82f24ff17bb382dd3822c62032691279504de48b
+            //setter layerdepth til bunnen av spilleren
+            setLayerDepth(_footBox.Bottom);
+            //Øker hastigheten til walk-animasjonen
+            if (animationPlayer.CurrentAnimation == "battleBlockWalk")
+                animationPlayer.PlaySpeedMultiplier = 1.4f;
+            else
+                animationPlayer.PlaySpeedMultiplier = 1f;
+            //Hvis spilleren ikke går, stopp gålyden
+            if (AnimationState != "walking") _audioManager.StopLoop("walk");
+            //Hvis spilleren ikke angriper
             if (AnimationState != "slashing")
             {
+                //SJekk hvilke knapper som blir trykket og aktiver funksjonene
                 if (inputService.KeyIsDown(Keys.Space))
                 {
                     attackSlash();
@@ -113,30 +153,36 @@ namespace Vikingvalg
                 {
                     walk(inputService);
                 }
+                //Hvis ingenting blir trykket, stå stille
                 else
                 {
                     idle();
                 }
             }
+            //Hvis spilleren angriper og er på slutten av animasjonen
             else if (animationPlayer.Transitioning == false && animationPlayer.CurrentKeyframeIndex > 0 && animationPlayer.CurrentKeyframeIndex == (animationPlayer.currentPlayingAnimation.Keyframes.Count() - 1))
             {
-                if(activeEnemy != null)
+                //Hvis det finnes en aktiv fiende
+                if (activeEnemy != null)
                 {
-                    if (targetBox.Intersects(activeEnemy.FootBox) &&
-                        ((activeEnemy.FootBox.Center.X < this.FootBox.Center.X && this.Flipped) || (activeEnemy.FootBox.Center.X > this.FootBox.Center.X && !this.Flipped)))
+                    //Hvis targetboksen er innenfor fiendens footbox, og spilleren ser mot fienden
+                    if (TargetBox.Intersects(activeEnemy.FootBox) && FacesTowards((float)activeEnemy.FootBox.Center.X))
                     {
-                        currentSoundEffect = "attack1";
-                        AnimatedEnemy enemyColidedWith = (AnimatedEnemy)CollidingWith;
-                        activeEnemy.takeDamage();
+                        //Aktiver tilfeldig angrepslyd og gjør skade på fienden
+                        _audioManager.AddSound(Directory + "/attack" + rInt(1, 3));
+                        activeEnemy.takeDamage(_damage);
                     }
                 }
+                //Hvis det finnes steiner som kan treffes
                 else if (StonesToMine != null)
                 {
+                    //Sjekker om spillerens targetbox er innenfor en av steinene i listen, og om han står mot dem
                     foreach (Stone stone in StonesToMine)
                     {
-                        if (targetBox.Intersects(stone.FootBox) && stone.endurance > 0 && FacesTowards(stone.FootBox.Center.X))
+                        if (TargetBox.Intersects(stone.FootBox) && stone.endurance > 0 && FacesTowards(stone.FootBox.Center.X))
                         {
-                            currentSoundEffect = "clang";
+                            //Aktiver tilfeldig "slå på stein"-lyd og gjør skade på steinen
+                            _audioManager.AddSound(Directory + "/clang" + rInt(1, 4));
                             stone.IsHit();
                         }
                     }
@@ -168,34 +214,42 @@ namespace Vikingvalg
                 animationPlayer.TransitionToAnimation("battleBlockWalk", 0.2f);
                 AnimationState = "walking";
             }
+            /* Hvis AnimationState er "walking"
+             * (Man kan ikke bruke currentanimation, fordi han skal bevege seg mens han er i overgang mellom to animasjoner)*/
             if (AnimationState == "walking")
             {
+                //Start gålyden
+                _audioManager.PlayLoop("walk");
+                //Hvis man både holder nede venstre og høyre, stå stille
                 if (inputService.KeyIsDown(Keys.Right) && inputService.KeyIsDown(Keys.Left))
                 {
                     idle();
                 }
-                else if (inputService.KeyIsDown(Keys.Right) && inputService.KeyIsUp(Keys.Left) && !BlockedRight)
+                //Hvis man holder nede høyreknappen, og man ikke er blokkert fra høyre
+                else if (inputService.KeyIsDown(Keys.Right) && !BlockedRight)
                 {
+                    //Ikke snu karakteren, beveg han mot høyre
                     _destinationRectangle.X += _xSpeed;
                     Flipped = false;
                 }
-                else if (inputService.KeyIsDown(Keys.Left) && inputService.KeyIsUp(Keys.Right) && !BlockedLeft)
+                //Hvis man holder nede venstreknappen, og man ikke er blokkert fra venstre
+                else if (inputService.KeyIsDown(Keys.Left) && !BlockedLeft)
                 {
+                    //Snu karakteren og beveg han mot venstre
                     _destinationRectangle.X -= _xSpeed;
                     Flipped = true;
                 }
-                else if (inputService.KeyIsUp(Keys.Up) && inputService.KeyIsUp(Keys.Down) || BlockedTop || BlockedBottom)
-                {
-                    idle();
-                }
+                //Hvis man både holder nede opp og ned, stå stille
                 if (inputService.KeyIsDown(Keys.Up) && inputService.KeyIsDown(Keys.Down))
                 {
                     idle();
                 }
+                //Hvis man holder nede opp, og man ikke er blokkert fra venstre
                 else if (inputService.KeyIsDown(Keys.Up) && !BlockedTop)
                 {
                     _destinationRectangle.Y -= _xSpeed;
                 }
+                //Hvis man holder nede ned, og man ikke er blokkert fra venstre
                 else if (inputService.KeyIsDown(Keys.Down) && !BlockedBottom)
                 {
                     _destinationRectangle.Y += _xSpeed;
@@ -203,8 +257,8 @@ namespace Vikingvalg
                 //Flytter hitboxen til samme sted som spilleren
                 _footBox.Y = ((int)(_destinationRectangle.Y + footBoxYOffset));
                 _footBox.X = (int)(_destinationRectangle.X - footBoxXOffset);
-                targetBox.X = (int)(_footBox.X - targetBoxXDif / 2);
-                targetBox.Y = (int)_footBox.Y - targetBoxYDif / 2;
+                TargetBox.X = (int)(_footBox.X - targetBoxXDif / 2);
+                TargetBox.Y = (int)_footBox.Y - targetBoxYDif / 2;
                 healthbar.setPosition(_footBox);
             }
         }
@@ -219,19 +273,100 @@ namespace Vikingvalg
                 AnimationState = "blocking";
             }
         }
-        public void takeDamage()
+        /// <summary>
+        /// Tar skade, basert på hvor mye som blir sendt inn
+        /// </summary>
+        /// <param name="damageTaken">Hvor mye skade som skal trekkes fra</param>
+        public override void takeDamage(int damageTaken)
         {
+            //Hvis spilleren blokkerer, trekk fra 70% på skaden og spill av "blockHit" lyden
             if (AnimationState == "blocking")
             {
-                hp -= 3;
+                damageTaken = (int)(damageTaken * 0.3);
+                _audioManager.AddSound(Directory + "/blockHit");
             }
-            else
+            base.takeDamage(damageTaken);
+        }
+        /// <summary>
+        /// Når spilleren dør, bytt til Choosedirectionlevel, og hvis spilleren er over level 1, 
+        /// trekk fra 10 * battlerating i xp og penger
+        /// </summary>
+        public override void dead()
+        {
+            _inGameManager.ChangeInGameState("ChooseDirectionLevel", 100, 450);
+            if (combatLevel > 1)
             {
-                hp -= 10;
+                if(totalXP > 0) totalXP -= 10 * combatLevel;
+                if(totalGold > 0) totalGold -= 10 * combatLevel;
             }
-            healthbar.updateHealtBar(hp);
-            Console.WriteLine(hp);
-            if (hp <= 0) Console.WriteLine("dead");
+        }
+        /// <summary>
+        /// Legg til så mye xp som blir sendt inn
+        /// </summary>
+        /// <param name="xpToAdd">hvor mye XP som skal legges til</param>
+        public void addXP(int xpToAdd)
+        {
+            totalXP += xpToAdd;
+        }
+        /// <summary>
+        /// Legg til så mye penger som blir sendt inn
+        /// </summary>
+        /// <param name="xpToAdd">hvor mye penger som skal legges til</param>
+        public void addMoney(int moneyToAdd)
+        {
+<<<<<<< HEAD
+            totalMoney += moneyToAdd;
+=======
+            totalGold += moneyToAdd;
+            Console.WriteLine("Money: " + totalGold);
+>>>>>>> ca7c258bf255837a9483a5d665fb472ffa0060c3
+        }
+        /// <summary>
+        /// Regner ut stats basert på battleRating
+        /// Statbonus øker med én annenhver battleRating
+        /// </summary>
+        public void setStats()
+        {
+            statBonus = combatLevel;
+            for (int i = 0; i <= 20; i += 2)
+            {
+                statBonus++;
+            }
+<<<<<<< HEAD
+            MaxHp = 50 * battleRating;
+            CurrHp = MaxHp;
+            _damage = 10 * battleRating;
+=======
+            maxHp = 50 * combatLevel;
+            currHp = maxHp;
+            _damage = 10 * combatLevel;
+>>>>>>> ca7c258bf255837a9483a5d665fb472ffa0060c3
+            if (healthbar != null) 
+            healthbar.reset();
+        }
+        /// <summary>
+        /// Funksjon for å gå opp i level
+        /// </summary>
+        public void levelUp()
+        {
+            combatLevel += 1;
+            Texture2D textureToLoad;
+            /*Går gjennom hver streng i playerTextureList, og endrer teksturen som tilsvarer det navnet til den 
+             *teksturen som ligger inne i mappen til levelet (E.g "level1" mappe som inneholder teksturer) */
+            foreach (String textureName in playerTextureList)
+            {
+                textureToLoad = _spritemanager.LoadTexture2D(@"Animations/" + Directory + "Animation/level" + combatLevel + "/" + textureName);
+                animationPlayer.setTexture(textureToLoad, playerTextureList.IndexOf(textureName));
+            }
+        }
+        /// <summary>
+        /// Sjekker om man er rettet mot det punktet som blir sendt inn
+        /// </summary>
+        /// <param name="point">Punkt som skal sjekkes imot</param>
+        /// <returns>bool</returns>
+        public bool FacesTowards(float point)
+        {
+            return (point < this.FootBox.Center.X && this.Flipped) || (point > this.FootBox.Center.X && !this.Flipped);
         }
     }
 }

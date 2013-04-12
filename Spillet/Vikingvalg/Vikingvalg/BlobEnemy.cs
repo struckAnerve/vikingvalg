@@ -19,10 +19,10 @@ namespace Vikingvalg
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Player player1, Game game)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, player1, game)
         {
+            //Setter diverse variabler som må settes fra denne klassen
             Directory = @"blob";
             setSpeed(4);
-            _damage = 20;
-            //kan flyttes til base?
+
             destinationRectangle.Width = (int)(destinationRectangle.Width * scale);
             destinationRectangle.Height = (int)(destinationRectangle.Height * scale);
 
@@ -30,7 +30,9 @@ namespace Vikingvalg
             footBoxYOffset = (int)(30 * scale);
             footBoxWidth = (int)(destinationRectangle.Width + (40 * scale));
             footBoxHeight = (int)(40 * scale + 10);
+            //Regner ut og setter footbox/hitboxen til ulven
             _footBox = new Rectangle(destinationRectangle.X - footBoxWidth / 2 + footBoxXOffset, destinationRectangle.Y + footBoxYOffset, footBoxWidth, footBoxHeight);
+            //Setter vanskelighetsgraden, sender ved combatLevel til spiller, grunn-hitpoints og grunn-skade
             setDifficulty(player1.combatLevel, 80, 10);
             setHpBar();
         }
