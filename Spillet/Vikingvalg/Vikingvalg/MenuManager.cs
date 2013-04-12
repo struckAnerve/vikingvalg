@@ -24,7 +24,7 @@ namespace Vikingvalg
         PauseMenu pauseMenu;
 
         //endres (?? Adrian husker ikke hvofor "endres")
-        public List<Sprite> ToDrawMainMenu { get; private set; }
+        public List<Sprite> ToDrawMainMenu = new List<Sprite>();
         public List<Sprite> ToDrawPauseMenu { get; private set; }
 
         public MenuManager(Game game)

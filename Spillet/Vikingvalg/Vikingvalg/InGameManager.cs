@@ -41,8 +41,6 @@ namespace Vikingvalg
         public List<Sprite> ToDrawInGame { get; private set; }
         private List<Sprite> _persistentInGameUI = new List<Sprite>();
 
-        public int level;
-
         public InGameManager(Game game)
             : base(game)
         { }
@@ -72,8 +70,6 @@ namespace Vikingvalg
             _player1 = new Player(new Rectangle(100, 100, 150, 330), 0.5f, Game);
             spriteService.LoadDrawable(_player1);
 
-            level = 1;
-
             _chooseDirectionlevel = new ChooseDirectionLevel(_player1, Game);
             _fightingLevel = new FightingLevel(_player1, Game);
             _miningLevel = new MiningLevel(_player1, Game);
@@ -90,7 +86,7 @@ namespace Vikingvalg
         public override void Update(GameTime gameTime)
         {
             //Midlertidig kode for å teste endring av State
-            if (inputService.KeyWasPressedThisFrame(Keys.Tab))
+            if (inputService.KeyWasPressedThisFrame(Keys.Escape))
             {
                 stateService.ChangeState("PauseMenu");
             }

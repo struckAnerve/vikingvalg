@@ -107,14 +107,13 @@
     <Compile Include="MenuButton.cs" />
     <Compile Include="MenuManager.cs" />
     <Compile Include="MiningLevel.cs" />
-    <Compile Include="musicToggleButton.cs" />
+    <Compile Include="MusicToggleButton.cs" />
     <Compile Include="NeutralNpc.cs" />
     <Compile Include="OracleNpc.cs" />
     <Compile Include="PauseMenu.cs" />
     <Compile Include="PlayButton.cs" />
     <Compile Include="PlayerTextAnswer.cs" />
     <Compile Include="SaveGameData.cs" />
-    <Compile Include="SettingsButton.cs" />
     <Compile Include="soundToggleButton.cs" />
     <Compile Include="ShopkeeperNpc.cs" />
     <Compile Include="Sprite.cs" />

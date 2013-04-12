@@ -25,7 +25,7 @@ namespace Vikingvalg
 
             _shopkeeper = new ShopkeeperNpc("shopkeeper", new Rectangle(400, 300, 118, 219), _player1, this);
             spriteService.LoadDrawable(_shopkeeper);
-            _oracle = new OracleNpc("oracle", new Rectangle(900, 450, 148, 174), _player1, this);
+            _oracle = new OracleNpc("oracle", new Rectangle(900, 200, 148, 174), _player1, this);
             spriteService.LoadDrawable(_oracle);
         }
 

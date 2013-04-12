@@ -14,7 +14,6 @@ namespace Vikingvalg
     class PauseMenu : Menu
     {
         public ContinueButton continueButton;
-        public SettingsButton settingsButton;
 
         private enum _possiblePauseMenuStates { Main };
         private String _pauseMenuState;
@@ -29,10 +28,6 @@ namespace Vikingvalg
                 ((int)spriteService.GameWindowSize.X / 2 - 90),
                 ((int)spriteService.GameWindowSize.Y / 2 - 37)), this);
             spriteService.LoadDrawable(continueButton);
-            settingsButton = new SettingsButton(new Vector2(
-                ((int)spriteService.GameWindowSize.X / 2 - 90),
-                ((int)spriteService.GameWindowSize.Y / 2 - 24 + (continueButton.SourceRectangle.Height + 40))), this);
-            spriteService.LoadDrawable(settingsButton);
         }
 
         public override void ChangeMenuState(string changeToState)
@@ -50,7 +45,6 @@ namespace Vikingvalg
         {
             toDrawMenuClass.Clear();
             AddDrawable((Sprite)continueButton);
-            AddDrawable((Sprite)settingsButton);
         }
 
         public override void Update(IManageInput inputService, GameTime gameTime)

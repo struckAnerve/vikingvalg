@@ -19,10 +19,11 @@ namespace Vikingvalg
         public bool BlockedLeft { get; set; }
         public bool BlockedRight { get; set; }
         public bool BlockedTop { get; set; }
+        public int totalGold;
         public bool BlockedBottom { get; set; }
 
         List<string> playerTextureList = new List<string>(); //Liste over teksturer i animasjonen
-        public Rectangle TargetBox; //En boks som definerer et område rundt footbox hvor spilleren fortsatt kan treffe det som er forran ham
+        public int combatLevel { get; set; }
         public int targetBoxXDif = 60; //Hvor mye større denne boksen er i bredden
         public int targetBoxYDif = -6; //Hvor mye større denne boksen er i høyden
         public int totalMoney; //Hvor mye penger spilleren har
@@ -41,7 +42,7 @@ namespace Vikingvalg
         {
             Directory = @"player"; 
             setSpeed(4);
-            battleRating = 1;
+            combatLevel = 1;
             setStats();
             setHpBar();
 
@@ -276,10 +277,10 @@ namespace Vikingvalg
         public override void dead()
         {
             _inGameManager.ChangeInGameState("ChooseDirectionLevel", 100, 450);
-            if (battleRating > 1)
+            if (combatLevel > 1)
             {
-                if(totalXP > 0) totalXP -= 10 * battleRating;
-                if(totalMoney > 0) totalMoney -= 10 * battleRating;
+                if(totalXP > 0) totalXP -= 10 * combatLevel;
+                if(totalGold > 0) totalGold -= 10 * combatLevel;
             }
         }
         /// <summary>
@@ -296,7 +297,7 @@ namespace Vikingvalg
         /// <param name="xpToAdd">hvor mye penger som skal legges til</param>
         public void addMoney(int moneyToAdd)
         {
-            totalMoney += moneyToAdd;
+            totalGold += moneyToAdd;
         }
         /// <summary>
         /// Regner ut stats basert på battleRating
@@ -304,14 +305,14 @@ namespace Vikingvalg
         /// </summary>
         public void setStats()
         {
-            statBonus = battleRating;
+            statBonus = combatLevel;
             for (int i = 0; i <= 20; i += 2)
             {
                 statBonus++;
             }
             MaxHp = 50 * battleRating;
             CurrHp = MaxHp;
-            _damage = 10 * battleRating;
+            _damage = 10 * combatLevel;
             if (healthbar != null) 
             healthbar.reset();
         }
@@ -320,13 +321,13 @@ namespace Vikingvalg
         /// </summary>
         public void levelUp()
         {
-            battleRating += 1;
+            combatLevel += 1;
             Texture2D textureToLoad;
             /*Går gjennom hver streng i playerTextureList, og endrer teksturen som tilsvarer det navnet til den 
              *teksturen som ligger inne i mappen til levelet (E.g "level1" mappe som inneholder teksturer) */
             foreach (String textureName in playerTextureList)
             {
-                textureToLoad = _spritemanager.LoadTexture2D(@"Animations/" + Directory + "Animation/level" + battleRating + "/" + textureName);
+                textureToLoad = _spritemanager.LoadTexture2D(@"Animations/" + Directory + "Animation/level" + combatLevel + "/" + textureName);
                 animationPlayer.setTexture(textureToLoad, playerTextureList.IndexOf(textureName));
             }
         }

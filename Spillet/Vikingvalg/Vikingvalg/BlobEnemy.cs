@@ -31,7 +31,7 @@ namespace Vikingvalg
             footBoxWidth = (int)(destinationRectangle.Width + (40 * scale));
             footBoxHeight = (int)(40 * scale + 10);
             _footBox = new Rectangle(destinationRectangle.X - footBoxWidth / 2 + footBoxXOffset, destinationRectangle.Y + footBoxYOffset, footBoxWidth, footBoxHeight);
-            setDifficulty(player1.battleRating, 80, 10);
+            setDifficulty(player1.combatLevel, 80, 10);
             setHpBar();
         }
         public BlobEnemy(Rectangle destinationRectangle, float scale, Player player1, Game game)

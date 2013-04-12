@@ -30,7 +30,7 @@ namespace Vikingvalg
         {
             base.InitializeLevel(playerX, playerY);
             returnPositionY = _returnPositionY;
-            int playerRating = _player1.battleRating;
+            int playerRating = _player1.combatLevel;
             int maxEnemies = 1;
             for (int i = 1; i < playerRating; i += 2) maxEnemies++;
             if (maxEnemies >= 5) maxEnemies = 5;

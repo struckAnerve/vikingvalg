@@ -30,7 +30,7 @@ namespace Vikingvalg
             footBoxWidth = (int)(destinationRectangle.Width + (300 * scale));
             footBoxHeight = (int)(60 * scale);
             _footBox = new Rectangle(destinationRectangle.X - footBoxWidth / 2 + footBoxXOffset, destinationRectangle.Y + footBoxYOffset, footBoxWidth, footBoxHeight);
-            setDifficulty(player1.battleRating, 50, 12);
+            setDifficulty(player1.combatLevel, 50, 12);
             setHpBar();
 
         }
