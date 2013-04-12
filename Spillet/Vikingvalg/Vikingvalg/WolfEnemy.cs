@@ -16,26 +16,29 @@ namespace Vikingvalg
     class WolfEnemy : AnimatedEnemy
     {
 
-        public WolfEnemy(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
-            Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Player player1, Game game)
-            : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, player1, game)
+        public WolfEnemy(Rectangle destinationRectangle, float layerDepth, float scale, Player player1, Game game)
+            : base(destinationRectangle, layerDepth, scale, player1, game)
         {
+            //Setter diverse variabler som må settes fra denne klassen
             Directory = @"wolf";
             setSpeed(5);
-            //kan flyttes til base?
+
             destinationRectangle.Width = (int)(destinationRectangle.Width * scale);
             destinationRectangle.Height = (int)(destinationRectangle.Height* scale);
+
             footBoxXOffset = (int)(20 * scale);
             footBoxYOffset = 0;
             footBoxWidth = (int)(destinationRectangle.Width + (300 * scale));
             footBoxHeight = (int)(60 * scale);
+            //Regner ut og setter footbox/hitboxen til ulven
             _footBox = new Rectangle(destinationRectangle.X - footBoxWidth / 2 + footBoxXOffset, destinationRectangle.Y + footBoxYOffset, footBoxWidth, footBoxHeight);
+            //Setter vanskelighetsgraden, sender ved combatLevel til spiller, grunn-hitpoints og grunn-skade
             setDifficulty(player1.combatLevel, 50, 12);
             setHpBar();
 
         }
         public WolfEnemy(Rectangle destinationRectangle, float scale, Player player1, Game game)
-            : this("mm", destinationRectangle, new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.6f, scale, player1, game)
+            : this(destinationRectangle, 0.6f, scale, player1, game)
         { }
         public override void attack1()
         {

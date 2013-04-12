@@ -14,6 +14,7 @@ namespace Vikingvalg
 {
     public abstract class Sprite
     {
+        protected Rectangle _destinationRectangle;
 
         //Bør flyttes
         protected int footBoxHeight { get; set; }
@@ -22,13 +23,9 @@ namespace Vikingvalg
         protected int footBoxYOffset { get; set; }
 
         public float LayerDepth { get; set; }
-        public Color Color { get; protected set; }
-        public float Rotation { get; protected set; }
 
-        public Sprite(Color color, float rotation, float layerDepth)
+        public Sprite(float layerDepth)
         {
-            Color = color;
-            Rotation = rotation;
             LayerDepth = layerDepth;
         }
         public void setLayerDepth(float layerDepth)

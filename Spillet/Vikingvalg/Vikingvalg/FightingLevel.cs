@@ -1,74 +1,78 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
     class FightingLevel : InGameLevel
     {
-        private int _returnPositionY = 245;
-        public AnimatedEnemy activeEnemy { get; private set; }
-        private List<AnimatedEnemy> levelCharacters = new List<AnimatedEnemy>();
+        //Y-posisjonen som spilleren skal settes på når han blir sendt tilbake til chooseDirectionLevel
+        private int _returnPositionY = 245; 
+        public AnimatedEnemy activeEnemy { get; private set; } //Fienden som angriper spilleren
+        private List<AnimatedEnemy> levelEnemies = new List<AnimatedEnemy>(); //Liste over fiender på banen
 
         public FightingLevel(Player player1, Game game)
             : base(player1, game)
         {
+            //Laster inn bakgrunnen og og healthbars
             _background = new StaticSprite("ground", new Rectangle(0, 0, 1245, 700));
             spriteService.LoadDrawable(_background);
             spriteService.LoadDrawable(new StaticSprite("healthBar"));
             spriteService.LoadDrawable(new StaticSprite("healthContainer"));
         }
-
+        /// <summary>
+        /// Initialiserer banen, tar imot posisjonen til spilleren
+        /// </summary>
+        /// <param name="playerX">x-posisjonen til spilleren</param>
+        /// <param name="playerY">y-posisjonen til spilleren</param>
         public override void InitializeLevel(int playerX, int playerY)
         {
             base.InitializeLevel(playerX, playerY);
             returnPositionY = _returnPositionY;
-            int playerRating = _player1.combatLevel;
+            //Legger inn et tilfeldig antall fiender, det er minimum 1 fiende, og maksimum 5. Det er aldri fler fiender enn levelet til spilleren
             int maxEnemies = 1;
-            for (int i = 1; i < playerRating; i += 2) maxEnemies++;
+            for (int i = 1; i < _player1.combatLevel; i += 2) maxEnemies++;
             if (maxEnemies >= 5) maxEnemies = 5;
             int numEnemies = _inGameService.rand.Next(1, maxEnemies + 1);
             for (int i = 0; i <= numEnemies; i++)
             {
                 if(_inGameService.rand.Next(0,2) == 0)
-                    levelCharacters.Add(new BlobEnemy(new Rectangle(1245 + _inGameService.rand.Next(1, 6) * 50, _inGameService.rand.Next(2, 6) * 100, 400, 267), 0.5f, _player1, _inGameService.Game));
-                else levelCharacters.Add(new WolfEnemy(new Rectangle(1245 + _inGameService.rand.Next(1, 6) * 50, _inGameService.rand.Next(2, 6) * 100, 400, 267), 0.3f, _player1, _inGameService.Game));
+                    levelEnemies.Add(new BlobEnemy(new Rectangle(1245 + _inGameService.rand.Next(1, 6) * 50, _inGameService.rand.Next(2, 6) * 100, 400, 267), 0.5f, _player1, _inGameService.Game));
+                else levelEnemies.Add(new WolfEnemy(new Rectangle(1245 + _inGameService.rand.Next(1, 6) * 50, _inGameService.rand.Next(2, 6) * 100, 400, 267), 0.3f, _player1, _inGameService.Game));
             }
-            activeEnemy = levelCharacters[0];
+            //setter den første fienden til å være den fienden som angriper
+            activeEnemy = levelEnemies[0];
             _player1.activeEnemy = activeEnemy;
-            foreach (AnimatedEnemy enemy in levelCharacters)
+            /* Legger alle fiendene inn til å tegnes
+             * Sette activ enemy i alle fiendene til den fienden 
+             * som er satt som active enemy 
+             * Setter mobIndex i hver fiende til
+             * tilsvarende index i levelEnemies */
+            foreach (AnimatedEnemy enemy in levelEnemies)
             {
                 AddInGameLevelDrawable(enemy);
                 enemy.activeEnemy = activeEnemy;
-                enemy.mobIndex = levelCharacters.IndexOf(enemy);
+                enemy.mobIndex = levelEnemies.IndexOf(enemy);
             }
         }
-
+        //Fjerner aktiv fiende hos spillere, tømmer listen over fiender
         public override void ClearLevel()
         {
             _player1.activeEnemy = null;
-            levelCharacters.Clear();
+            levelEnemies.Clear();
 
             base.ClearLevel();
         }
-
         public override void Update(IManageInput inputService, GameTime gameTime)
         {
-            if (activeEnemy.currHp <= 0)
+            //Sjekker om den aktive fienden er død, hvis den er det, fjern den, bytt til ny active enemy
+            if (activeEnemy.CurrHp <= 0)
             {
-                levelCharacters.Remove(activeEnemy);
+                levelEnemies.Remove(activeEnemy);
                 RemoveInGameLevelDrawable(activeEnemy);
-                if (levelCharacters.Count > 0)
+                if (levelEnemies.Count > 0)
                 {
-                    activeEnemy = levelCharacters[0];
-                    foreach (AnimatedCharacter enemy in levelCharacters)
+                    activeEnemy = levelEnemies[0];
+                    foreach (AnimatedCharacter enemy in levelEnemies)
                     {
                         enemy.activeEnemy = activeEnemy;
                     }

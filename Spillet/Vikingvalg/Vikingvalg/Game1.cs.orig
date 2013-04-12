@@ -68,8 +68,13 @@ namespace Vikingvalg
         /// </summary>
         protected override void Initialize()
         {
-            //Musen er synlig
+<<<<<<< HEAD
+            //Flyttes?
             IsMouseVisible = false;
+=======
+            //Musen er synlig
+            IsMouseVisible = true;
+>>>>>>> ca7c258bf255837a9483a5d665fb472ffa0060c3
 
             base.Initialize();
         }

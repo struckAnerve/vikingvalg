@@ -20,6 +20,7 @@ namespace Vikingvalg
             Vector2 origin, SpriteEffects effects, float layerDepth, Game game)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth)
         {
+            //Henter audiomanager fra game
             _audioManager = (IManageAudio)(game.Services.GetService(typeof(IManageAudio)));
         }
         public soundToggleButton(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Game game)
@@ -27,6 +28,9 @@ namespace Vikingvalg
         {
 
         }
+        /// <summary>
+        /// Pauser eller starter musikk
+        /// </summary>
         public override void buttonPressed()
         {
             if (!_toggled)

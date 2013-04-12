@@ -20,7 +20,9 @@ namespace Vikingvalg
         {
             _clickableBox = new Rectangle(destinationRectangle.X, destinationRectangle.Y, sourceRectangle.Width, sourceRectangle.Height);
         }
-
+        /// <summary>
+        /// Sjekker om musen er over boksen eller ikke
+        /// </summary>
         public virtual void Update(IManageInput inputService)
         {
             //om knappen hovres eller ikke
