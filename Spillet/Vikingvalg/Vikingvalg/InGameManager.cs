@@ -1,44 +1,46 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
-using Demina;
 namespace Vikingvalg
 {
     /// <summary>
-    /// This is a game component that implements IUpdateable.
+    /// Komponent som styrer tilstandene i selve spillet, hva som skal tegnes og oppdateres
     /// </summary>
     public class InGameManager : GameComponent
     {
-        IManageSprites spriteService;
-        IManageStates stateService;
-        IManageCollision collisionService;
-        IManageInput inputService;
-        public IManageAudio audioService;
+        //komponenter som trengs i denne klassen
+        private IManageSprites _spriteService;
+        private IManageStates _stateService;
+        private IManageCollision _collisionService;
+        private IManageInput _inputService;
+        private IManageAudio _audioService;
 
+        //de forskjellige spillbanene
         private ChooseDirectionLevel _chooseDirectionlevel;
         private FightingLevel _fightingLevel;
         private MiningLevel _miningLevel;
         private TownLevel _townLevel;
 
+        //en Random. Fin å kunne hente ut i de forskjellige spillbanene og objektene som opprettes der
         public Random rand;
 
+        //mulige spillbaner
         private enum _possibleInGameStates { ChooseDirectionLevel, FightingLevel, MiningLevel, TownLevel };
+        //nåværende spillbane
         public String InGameState { get; private set; }
 
+        //knappene for å styre lyden
         private ToggleButton musicToggle;
         private ToggleButton soundToggle;
 
+        //spilleren
         private Player _player1;
 
+        //Liste over hva som skal tegnes når man er i selve spillet
         public List<Sprite> ToDrawInGame { get; private set; }
+        //Liste over GUI som skal tegnes i alle spillbrett
         private List<Sprite> _persistentInGameUI = new List<Sprite>();
 
         public InGameManager(Game game)
@@ -51,31 +53,36 @@ namespace Vikingvalg
         /// </summary>
         public override void Initialize()
         {
-            spriteService = (IManageSprites)Game.Services.GetService(typeof(IManageSprites));
-            stateService = (IManageStates)Game.Services.GetService(typeof(IManageStates));
-            collisionService = (IManageCollision)Game.Services.GetService(typeof(IManageCollision));
-            inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
-            audioService = (IManageAudio)Game.Services.GetService(typeof(IManageAudio));
+            //laster inn komponenter
+            _spriteService = (IManageSprites)Game.Services.GetService(typeof(IManageSprites));
+            _stateService = (IManageStates)Game.Services.GetService(typeof(IManageStates));
+            _collisionService = (IManageCollision)Game.Services.GetService(typeof(IManageCollision));
+            _inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
+            _audioService = (IManageAudio)Game.Services.GetService(typeof(IManageAudio));
 
-            spriteService.LoadDrawable(new StaticSprite("musicOptions"));
-            spriteService.LoadDrawable(new StaticSprite("soundOptions"));
-            musicToggle = new musicToggleButton("musicOptions", new Rectangle((int)spriteService.GameWindowSize.X - 40, 0, 40, 40), new Rectangle(0, 0, 40, 40), Game);
-            soundToggle = new soundToggleButton("soundOptions", new Rectangle((int)spriteService.GameWindowSize.X - 80, 0, 40, 40), new Rectangle(0, 0, 40, 40), Game);
+            //oppretter musikkkontrollerne
+            _spriteService.LoadDrawable(new StaticSprite("musicOptions"));
+            _spriteService.LoadDrawable(new StaticSprite("soundOptions"));
+            musicToggle = new musicToggleButton("musicOptions", new Rectangle((int)_spriteService.GameWindowSize.X - 40, 0, 40, 40), new Rectangle(0, 0, 40, 40), Game);
+            soundToggle = new soundToggleButton("soundOptions", new Rectangle((int)_spriteService.GameWindowSize.X - 80, 0, 40, 40), new Rectangle(0, 0, 40, 40), Game);
             _persistentInGameUI.Add(musicToggle);
             _persistentInGameUI.Add(soundToggle);
 
+            //oppretter Random
             rand = new Random();
 
-            //Midlertidige plasseringer (?)
+            //oppretter spilleren
             _player1 = new Player(new Rectangle(100, 100, 150, 330), 0.5f, Game);
-            spriteService.LoadDrawable(_player1);
+            _spriteService.LoadDrawable(_player1);
 
+            //oppretter spillbanene
             _chooseDirectionlevel = new ChooseDirectionLevel(_player1, Game);
             _fightingLevel = new FightingLevel(_player1, Game);
             _miningLevel = new MiningLevel(_player1, Game);
             _townLevel = new TownLevel(_player1, Game);
 
-            ChangeInGameState("TownLevel", 100, 450);
+            //Selve spillet starter på denne banen
+            ChangeInGameState("ChooseDirectionLevel", 100, 450);
 
             base.Initialize();
         }
@@ -85,32 +92,39 @@ namespace Vikingvalg
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            //Midlertidig kode for å teste endring av State
-            if (inputService.KeyWasPressedThisFrame(Keys.Escape))
+            //Trykk escape for å pause
+            if (_inputService.KeyWasPressedThisFrame(Keys.Escape))
             {
-                stateService.ChangeState("PauseMenu");
+                _stateService.ChangeState("PauseMenu");
             }
 
+            //oppdaterer riktig spillbane
             if (InGameState == "ChooseDirectionLevel")
             {
-                _chooseDirectionlevel.Update(inputService, gameTime);
+                _chooseDirectionlevel.Update(_inputService, gameTime);
             }
             else if (InGameState == "FightingLevel")
             {
-                _fightingLevel.Update(inputService, gameTime);
+                _fightingLevel.Update(_inputService, gameTime);
             }
             else if (InGameState == "MiningLevel")
             {
-                _miningLevel.Update(inputService, gameTime);
+                _miningLevel.Update(_inputService, gameTime);
             }
             else if (InGameState == "TownLevel")
             {
-                _townLevel.Update(inputService, gameTime);
+                _townLevel.Update(_inputService, gameTime);
             }
 
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// Endre spillbane
+        /// </summary>
+        /// <param name="changeTo">navnet på banen du ønsker å endre til</param>
+        /// <param name="playerX">spillerens x posisjon på den nye banen</param>
+        /// <param name="playerY">spillerens y posisjon på den nye banen</param>
         public void ChangeInGameState(String changeTo, int playerX, int playerY)
         {
             ClearLevels(changeTo);

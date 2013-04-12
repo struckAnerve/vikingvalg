@@ -2,36 +2,43 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 using System.Text;
-
 using Demina;
+
 namespace Vikingvalg
 {
+    /// <summary>
+    /// hovedoppgaven til SpriteManager (/IManageSprites) er å tegne alt som skal på skjermen. Tar seg også av innlasting 
+    /// og å distribuere globale størrelser
+    /// </summary>
     public class SpriteManager : DrawableGameComponent, IManageSprites
     {
-        //Skal kanskje ikke stå her? Brukes flere steder gjennom SpriteManager
+        //Størrelsen på vinduet representert med en Vector2 (som dessverre betyr at x = width og y = height)
         public Vector2 GameWindowSize { get; protected set; }
+        //et tall som representerer margen fra toppen av vinduet og ned til der hvor spilleren kan gå
         public int WalkBlockTop { get; set; }
 
+        //boolean som bestemmer om karakterers liv skal tegnes eller ikke
         public bool DrawHealthBar { get; set; }
 
         private SpriteBatch _spriteBatch;
+        //en dictionary med innlastede Texture2Der (nøkkelen er navnet på filen den har lastet inn)
         private Dictionary<String, Texture2D> _loadedStaticArt = new Dictionary<String,Texture2D>();
 
-        //Midlertidig
-        Texture2D smallthing;
-
+        //SpriteFont for Arial
         private SpriteFont _arialFont;
+        //Standard tekstfarge
         private Color _defaultFontColor = new Color(255, 255, 255, 255);
+        //spillerens dybde på skjermen (han er dypere jo høyere "opp" han går)
         private float playerDepth;
+
+        //en liste over listene med Sprites som skal tegnes. Denne inneholder til enhver tid det aller meste som skal tegnes
         public List<List<Sprite>> ListsToDraw { get; set; }
+        //en sortert (på layer depth) liste med Sprites. Må til for at Sprites skal tegnes i riktig rekkefølge (vi måtte gjøre
+        //det slik pga. Demina)
         private List<Sprite> sortedList;
+
         public SpriteManager(Game game)
             : base(game)
         {
@@ -42,11 +49,9 @@ namespace Vikingvalg
         {
             _spriteBatch = new SpriteBatch(this.Game.GraphicsDevice);
 
+            //laster inn Arial og setter linjehøyde
             _arialFont = Game.Content.Load<SpriteFont>("arial");
             _arialFont.LineSpacing = 22;
-
-            //midlertidig
-            smallthing = Game.Content.Load<Texture2D>(@"redPixel");
 
             base.LoadContent();
         }
@@ -57,17 +62,27 @@ namespace Vikingvalg
         /// </summary>
         public override void Initialize()
         {
-            ListsToDraw = new List<List<Sprite>>();
+            //finner vindusstørrelsen og legger den i en property for å gjøre den tilgjengelig flere steder
             GameWindowSize = new Vector2(Game.Window.ClientBounds.Width, Game.Window.ClientBounds.Height);
+            //toppmargin (spiller kan ikke gå høyere enn dette)
             WalkBlockTop = 170;
+
             base.Initialize();
         }
+
+        /// <summary>
+        /// Laster inn en Texture2D fra en Sprite, og legger den i en liste. Vi tenkte at det ville være en god idé å samle all
+        /// innlasting i denne komponenten.
+        /// </summary>
+        /// <param name="toLoad">Spriten man ønsker å laste</param>
         public void LoadDrawable(Sprite toLoad)
         {
+            //skiller mellom StaticSprite og AnimatedSprite
             if (toLoad is StaticSprite)
             {
                 StaticSprite staticElement = (StaticSprite)toLoad;
-                if (!(_loadedStaticArt.ContainsKey(staticElement.ArtName)) && toLoad != null)
+                //laster inn en Texture2D og legger den i en liste dersom den ikke ligger i listen fra før
+                if (!(_loadedStaticArt.ContainsKey(staticElement.ArtName)))
                 {
                     _loadedStaticArt.Add(staticElement.ArtName, Game.Content.Load<Texture2D>(staticElement.ArtName));
                 }
@@ -75,14 +90,21 @@ namespace Vikingvalg
             else if (toLoad is AnimatedSprite)
             {
                 AnimatedSprite drawableAnimation = (AnimatedSprite)toLoad;
+                //laster inn animasjoner utifra en liste i AnimatedSprite, legger dem til i animationPlayer (Demina)
                 foreach (String animationName in drawableAnimation.animationList)
                 {
                     drawableAnimation.animationPlayer.AddAnimation(animationName, Game.Content.Load<Animation>(@"Animations/" + drawableAnimation.Directory + "Animation/" + animationName));
                 }
-
+                //bestemmer startanimasjon (Demina)
                 drawableAnimation.animationPlayer.StartAnimation("idle");
             }
         }
+
+        /// <summary>
+        /// Returnerer en Texture2D utifra navnet (laster den inn og legger den inn i en liste dersom den ikke ligger der fra før)
+        /// </summary>
+        /// <param name="artName">Navnet på filen du ønsker å laste inn som en Texture2D og få returnert</param>
+        /// <returns>Texture2Den som er lagret som artName</returns>
         public Texture2D LoadTexture2D(String artName)
         {
             if (!_loadedStaticArt.ContainsKey(artName))
@@ -104,20 +126,25 @@ namespace Vikingvalg
 
         public override void Draw(GameTime gameTime)
         {
+            //for hver liste i lister som skal tegnes
             foreach (List<Sprite> listToDraw in ListsToDraw)
             {
+                //sorterer listen
                 sortedList = listToDraw.OrderBy(x => x.LayerDepth).ToList();
+                //finner spillerens dybde
                 foreach (Sprite spr in sortedList)
                 {
                     if (spr is Player)
                         playerDepth = spr.LayerDepth;
                 }
+                //tegn bak spiller
                 _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+                //for hver Sprite i listen
                 foreach (Sprite drawable in sortedList)
                 {
-                    //tegn bak spiller
                     if (drawable is StaticSprite && drawable.LayerDepth <= playerDepth)
                     {
+                        //om elementet er Stone skal det sjekkes "steinspruten" skal tegnes
                         if (drawable is Stone)
                         {
                             Stone stoneToDraw = (Stone)drawable;
@@ -132,24 +159,29 @@ namespace Vikingvalg
                 _spriteBatch.GraphicsDevice.BlendState = BlendState.AlphaBlend;
                 foreach (Sprite drawable in sortedList)
                 {
-                    drawAnimatedSprite(drawable);
+                    if (drawable is AnimatedSprite)
+                    {
+                        AnimatedSprite drawableAnimation = (AnimatedSprite)drawable;
+                        drawAnimatedSprite(drawableAnimation);
+                    }
                 }
+                //tegn foran spiller
                 _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
                 foreach (Sprite drawable in sortedList)
                 {
-
+                    //Her tegnes teksten som forteller om xp, gull og level
                     if (drawable is Player)
                     {
-                        Player _player1 = (Player) drawable;
-                        DrawSpriteFont("Combat level: "+_player1.combatLevel.ToString(), new Vector2(10, 5));
-                        DrawSpriteFont("Experience: " + _player1.totalXP.ToString(), new Vector2(10, 25));
-                        DrawSpriteFont("Gold: " + _player1.totalGold.ToString(), new Vector2(10, 45));
+                        Player player1 = (Player) drawable;
+                        DrawSpriteFont("Combat level: " + player1.combatLevel.ToString(), new Vector2(10, 5));
+                        DrawSpriteFont("Experience: " + player1.totalXP.ToString(), new Vector2(10, 25));
+                        DrawSpriteFont("Gold: " + player1.totalGold.ToString(), new Vector2(10, 45));
                     }
-                    //tegn foran spiller
                     if (drawable is StaticSprite)
                     {
                         if (drawable.LayerDepth > playerDepth)
                         {
+                            //om elementet er Stone skal det sjekkes "steinspruten" skal tegnes
                             if (drawable is Stone)
                             {
                                 Stone stoneToDraw = (Stone)drawable;
@@ -158,6 +190,7 @@ namespace Vikingvalg
                             }
                             DrawStaticSprite(drawable);
                         }
+                        //om drawable er NeutralNpc skal det sjekkes om man skal tegne samtaletekst og boksene som ligger rundt teksten
                         if (drawable is NeutralNpc)
                         {
                             NeutralNpc conversationNpc = (NeutralNpc)drawable;
@@ -180,6 +213,7 @@ namespace Vikingvalg
                             }
                         }
                     }
+                    //sjekker om man skal tegne karakterers liv
                     else if (drawable is AnimatedCharacter && DrawHealthBar)
                     {
                         AnimatedCharacter drawableCharacter = (AnimatedCharacter)drawable;
@@ -196,15 +230,10 @@ namespace Vikingvalg
             base.Draw(gameTime);
         }
 
-        private void DrawBoxPerimeter(Rectangle box)
-        {
-            _spriteBatch.Draw(smallthing, new Vector2(box.X, box.Y), Color.White);
-            _spriteBatch.Draw(smallthing, new Vector2(box.X + box.Width, box.Y + box.Height), Color.White);
-            _spriteBatch.Draw(smallthing, new Vector2(box.X + box.Width / 2, box.Y + box.Height), Color.White);
-            _spriteBatch.Draw(smallthing, new Vector2(box.X + box.Width, box.Y), Color.White);
-            _spriteBatch.Draw(smallthing, new Vector2(box.X + box.Width / 2, box.Y), Color.White);
-            _spriteBatch.Draw(smallthing, new Vector2(box.X, box.Y + box.Height), Color.White);
-        }
+        /// <summary>
+        /// Funskjonen som blir kalt dersom man skal tegne en StaticSprite
+        /// </summary>
+        /// <param name="drawable">Spriten man skal tegne</param>
         private void DrawStaticSprite(Sprite drawable)
         {
             StaticSprite staticDrawableSprite = (StaticSprite)drawable;
@@ -212,42 +241,57 @@ namespace Vikingvalg
                 staticDrawableSprite.SourceRectangle, staticDrawableSprite.Color, staticDrawableSprite.Rotation,
                 staticDrawableSprite.Origin, staticDrawableSprite.Effects, 1f);
         }
-        private void drawAnimatedSprite(Sprite drawable)
+
+        /// <summary>
+        /// Funksjonen som blir kalt dersom man skal tegne en AnimatedSprite
+        /// </summary>
+        /// <param name="drawableAnimation">AnimatedSprtien som skal tegnes</param>
+        private void drawAnimatedSprite(AnimatedSprite drawableAnimation)
         {
-            if (drawable is AnimatedSprite)
-            {
-                AnimatedSprite drawableAnimation = (AnimatedSprite)drawable;
-                //De neste to linjene er lagt til fordi Karl Gustav Georgsen var dum og tegnet ulven feil vei.
-                bool animFlip = drawableAnimation.Flipped;
-                if (drawableAnimation is WolfEnemy) animFlip = !drawableAnimation.Flipped;
-                drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, animFlip, drawableAnimation.Rotation, drawableAnimation.Scale);
-                /*
-                //Husk å fjerne
-                if (drawableAnimation is AnimatedCharacter)
-                {
-                    _spriteBatch.Begin();
-                    AnimatedCharacter p1 = (AnimatedCharacter)drawableAnimation;
-                    DrawBoxPerimeter(p1.FootBox);
-                    _spriteBatch.End();
-                } 
-                */
-            }
+            //De neste to linjene er lagt til fordi Karl Gustav Georgsen var dum og tegnet ulven feil vei.
+            bool animFlip = drawableAnimation.Flipped;
+            if (drawableAnimation is WolfEnemy) animFlip = !drawableAnimation.Flipped;
+            drawableAnimation.animationPlayer.Draw(_spriteBatch, drawableAnimation.DestinationRectangle, animFlip, drawableAnimation.Rotation, drawableAnimation.Scale);
         }
+
+        /// <summary>
+        /// Funskjonen som blir kalt dersom tekst skal tegnes
+        /// </summary>
+        /// <param name="toDraw">Teksten som skal tegnes</param>
+        /// <param name="whereToDraw">Hvor teksten skal tegnes</param>
         private void DrawSpriteFont(String toDraw, Vector2 whereToDraw)
         {
             _spriteBatch.DrawString(_arialFont, toDraw, whereToDraw, _defaultFontColor);
         }
+
+        /// <summary>
+        /// En teksttegnefunksjon som tar imot en farge i tillegg
+        /// </summary>
+        /// <param name="toDraw">Teksten som skal tegnes</param>
+        /// <param name="whereToDraw">Hvor teksten skal tegnes</param>
+        /// <param name="color">Tekstfargen</param>
         private void DrawSpriteFont(String toDraw, Vector2 whereToDraw, Color color)
         {
             _spriteBatch.DrawString(_arialFont, toDraw, whereToDraw, color);
         }
 
+        /// <summary>
+        /// Måler og returnerer bredden og høyden på en streng
+        /// </summary>
+        /// <param name="text">Teksten du vil måle</param>
+        /// <returns>Returnerer bredd og høyde representert ved en Vector2, x = width y = height</returns>
         public Vector2 TextSize(String text)
         {
             return _arialFont.MeasureString(text);
         }
 
         //funksjon fra http://www.xnawiki.com/index.php/Basic_Word_Wrapping
+        /// <summary>
+        /// Funskjon som returnerer en "oppdelt" streng basert på en gitt maksbredde
+        /// </summary>
+        /// <param name="text">Teksten du vil dele opp</param>
+        /// <param name="maxLineWidth">Maks bredde</param>
+        /// <returns>Returnerer en streng med \n der teksten må deles opp for å passe inn i maksbredden</returns>
         public string WrapText(string text, float maxLineWidth)
         {
             string[] words = text.Split(' ');
@@ -256,7 +300,7 @@ namespace Vikingvalg
 
             float lineWidth = 0f;
 
-            float spaceWidth = _arialFont.MeasureString(" ").X;
+            float spaceWidth = TextSize(" ").X;
 
             foreach (string word in words)
             {

@@ -1,30 +1,24 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
 
 
 namespace Vikingvalg
 {
     /// <summary>
-    /// This is a game component that implements IUpdateable.
+    /// Holder oversikt over menytilstander, hva som skal oppdateres og tegnes
     /// </summary>
-    public class MenuManager : Microsoft.Xna.Framework.GameComponent
+    public class MenuManager : GameComponent
     {
-        IManageStates stateService;
-        IManageInput inputService;
+        //komponenter
+        private IManageStates _stateService;
+        private IManageInput _inputService;
 
-        MainMenu mainMenu;
-        PauseMenu pauseMenu;
+        //de forskjellige menyene
+        private MainMenu _mainMenu;
+        private PauseMenu _pauseMenu;
 
-        //endres (?? Adrian husker ikke hvofor "endres")
-        public List<Sprite> ToDrawMainMenu = new List<Sprite>();
+        //lister over hva som skal tegnes i de forskjellige menyene
+        public List<Sprite> ToDrawMainMenu { get; private set; }
         public List<Sprite> ToDrawPauseMenu { get; private set; }
 
         public MenuManager(Game game)
@@ -38,16 +32,19 @@ namespace Vikingvalg
         /// </summary>
         public override void Initialize()
         {
-            stateService = (IManageStates)Game.Services.GetService(typeof(IManageStates));
-            inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
+            //initialiserer komponenter
+            _stateService = (IManageStates)Game.Services.GetService(typeof(IManageStates));
+            _inputService = (IManageInput)Game.Services.GetService(typeof(IManageInput));
 
-            mainMenu = new MainMenu((IManageSprites)Game.Services.GetService(typeof(IManageSprites)), stateService);
-            mainMenu.MainState();
-            ToDrawMainMenu = mainMenu.toDrawMenuClass;
+            //oppretter hovedmenyen
+            _mainMenu = new MainMenu((IManageSprites)Game.Services.GetService(typeof(IManageSprites)), _stateService);
+            _mainMenu.MainState();
+            ToDrawMainMenu = _mainMenu.toDrawMenuClass;
 
-            pauseMenu = new PauseMenu((IManageSprites)Game.Services.GetService(typeof(IManageSprites)), stateService);
-            pauseMenu.MainState();
-            ToDrawPauseMenu = pauseMenu.toDrawMenuClass;
+            //oppretter pausemenyen
+            _pauseMenu = new PauseMenu((IManageSprites)Game.Services.GetService(typeof(IManageSprites)), _stateService);
+            _pauseMenu.MainState();
+            ToDrawPauseMenu = _pauseMenu.toDrawMenuClass;
 
             base.Initialize();
         }
@@ -58,13 +55,14 @@ namespace Vikingvalg
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            if (stateService.GameState == "MainMenu")
+            //oppdaterer hovedmanyen dersom du er der, eller pausemenyen dersom du er der
+            if (_stateService.GameState == "MainMenu")
             {
-                mainMenu.Update(inputService, gameTime);
+                _mainMenu.Update(_inputService, gameTime);
             }
-            else if (stateService.GameState == "PauseMenu")
+            else if (_stateService.GameState == "PauseMenu")
             {
-                pauseMenu.Update(inputService, gameTime);
+                _pauseMenu.Update(_inputService, gameTime);
             }
 
             base.Update(gameTime);

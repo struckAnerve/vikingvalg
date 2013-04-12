@@ -9,7 +9,7 @@ namespace Vikingvalg
     /// </summary>
     public class GameStateManager : GameComponent, IManageStates
     {
-        //komponenter som brukes
+        //komponenter som brukes i denne klassen
         private IManageSprites _spriteService;
         private IManageCollision _collisionService;
         private IManageAudio _audioService;
@@ -56,6 +56,8 @@ namespace Vikingvalg
                 ChangeState("PauseMenu");
             }
 
+            //dette er ganske så stygt. En liste tømmes og får elementer lagt til i hver eneste update. Dette ble oppdaget såppas sent at
+            //det ikke var tid til å skrive om (dette er en nødvendig del av å tegne ting til skjerm). Adrian legger seg langflat og beklager.
             switch (GameState)
             {
                 case "MainMenu":
@@ -76,16 +78,23 @@ namespace Vikingvalg
             base.Update(gameTime);
         }
 
+        /// <summary>
+        /// Metode for å endre spilltilstanden
+        /// </summary>
+        /// <param name="changeTo">Spilltilstanden du ønsker å endre til</param>
         public void ChangeState(String changeTo)
         {
+            //hvis changeTo ikke er definert i _possibleGameStates vil ikke spilltilstanden endres
             if (!Enum.IsDefined(typeof(_possibleGameStates), changeTo))
             {
                 Console.WriteLine("Unable to change state (you are trying to change to an unkown state: '" + changeTo + "')");
                 return;
             }
 
+            //endrer spilltilstand
             GameState = changeTo;
 
+            //sjekker hvilken spilltilstand det er endret til, og aktiverer/dekativerer komponenter deretter
             switch (GameState)
             {
                 case "MainMenu":
