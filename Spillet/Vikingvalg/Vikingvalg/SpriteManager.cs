@@ -141,9 +141,9 @@ namespace Vikingvalg
                     if (drawable is Player)
                     {
                         Player _player1 = (Player) drawable;
-                        DrawSpriteFont("Level: "+_player1.battleRating.ToString(), new Vector2(10, 5));
-                        DrawSpriteFont("XP: " + _player1.totalXP.ToString(), new Vector2(10, 25));
-                        DrawSpriteFont("Money: " + _player1.totalMoney.ToString(), new Vector2(10, 45));
+                        DrawSpriteFont("Combat level: "+_player1.combatLevel.ToString(), new Vector2(10, 5));
+                        DrawSpriteFont("Experience: " + _player1.totalXP.ToString(), new Vector2(10, 25));
+                        DrawSpriteFont("Gold: " + _player1.totalGold.ToString(), new Vector2(10, 45));
                     }
                     //tegn foran spiller
                     if (drawable is StaticSprite)

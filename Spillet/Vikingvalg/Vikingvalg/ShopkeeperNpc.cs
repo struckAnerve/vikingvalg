@@ -20,7 +20,7 @@ namespace Vikingvalg
         {
             _talkingRangeBox.Y -= 15;
 
-            npcName = "Shopkeeper";
+            npcName = "Merchant";
             dialogController = new DialogControl((NeutralNpc)this);
 
             InitialText();
@@ -34,20 +34,56 @@ namespace Vikingvalg
         {
             dialogController.RemovePlayerAnswers();
 
-            dialogController.ChangeNpcDialog("Hello, good sir! I have some fine wares for you to browse. If you want, I can sell you some raw " +
-                "materials, and you can craft equipment yourself. If not, bugger off, you are scaring the customers with that ugly face of yours. " +
-                "But look at me, jabbering like an old fool. PLEASE SIR, I NEED MONEY!");
-            dialogController.AddPlayerAnswer("Hello, shopkeeper", "endConvo");
-            dialogController.AddPlayerAnswer("Could I get a discount from you, my friend?", "endConvo");
-            dialogController.AddPlayerAnswer("Wakkala bing bang bo. Misala place to rest my friend. Never have I seen it before. Too long did not read", "endConvo");
+            if (_player1.combatLevel < 10)
+            {
+                dialogController.ChangeNpcDialog("Hello, good sir! I have gathered some mighty fine raw materials from around the globe, "
+                    + "and I'll give them to you for a good price! If you have enough experience, I'm sure you'll be able to make some great gear "
+                    + "out of my goods. If you don't have enough gold or experience, I advice you to check out the gold mine or the hunting grounds.");
+                dialogController.AddPlayerAnswer("*Buy some raw materials to make better equipment* [-" + 80*_player1.combatLevel +
+                " experience, -" + 40*_player1.combatLevel + " gold]*", "combatLevelUp");
+            }
+            else
+            {
+                dialogController.ChangeNpcDialog("Oh my, how strong you have become! I have sold all my materials, and you have become the " +
+                    "strongest person in Dragonview! Thinking about it, you have always been the strongest person in Dragonview..!");
+                dialogController.AddPlayerAnswer("You are right. Maybe I have hit enough stuff for today.", "endConvo");
+            }
+            
+            dialogController.AddPlayerAnswer("I'll be leaving now.", "endConvo");
         }
 
         public override void AnswerClicked(PlayerTextAnswer answer)
         {
             switch (answer.answerDesc)
             {
+                case "combatLevelUp":
+                    dialogController.RemovePlayerAnswers();
+                    if (_player1.totalGold < 40 * _player1.combatLevel)
+                    {
+                        dialogController.ChangeNpcDialog("Aren't you a funny one! I'm never ever selling these for the price you are offering."
+                            + " (you have insufficient gold)");
+                        dialogController.AddPlayerAnswer("I better go mine some gold, then.", "endConvo");
+                    }
+                    else if (_player1.totalXP < 80 * _player1.combatLevel)
+                    {
+                        dialogController.ChangeNpcDialog("I am not comfortable selling my stuff to such an inexperienced guy as yourself. " +
+                            " (you have insufficient experience)");
+                        dialogController.AddPlayerAnswer("Maybe my reputation will grow if I go out in the forest and punch some wolves.",
+                            "endConvo");
+                    }
+                    else
+                    {
+                        _player1.totalXP -= 80 * _player1.combatLevel;
+                        _player1.totalGold -= 40 * _player1.combatLevel;
+                        _player1.levelUp();
+                        dialogController.ChangeNpcDialog("Mighty fine, sir, mighty fine! I thank you with all of my heart!");
+                        dialogController.AddPlayerAnswer("You weren't lying, those raw materials was all i needed to craft some new" +
+                            " equipment. Thank you!", "endConvo");
+                    }
+                    break;
                 case "endConvo":
                     inConversation = false;
+                    InitialText();
                     break;
             }
         }

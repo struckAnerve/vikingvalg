@@ -86,7 +86,7 @@ namespace Vikingvalg
         public override void Update(GameTime gameTime)
         {
             //Midlertidig kode for å teste endring av State
-            if (inputService.KeyWasPressedThisFrame(Keys.Tab))
+            if (inputService.KeyWasPressedThisFrame(Keys.Escape))
             {
                 stateService.ChangeState("PauseMenu");
             }

@@ -19,13 +19,15 @@ namespace Vikingvalg
         public Rectangle targetBox;
         public int targetBoxXDif = 60;
         public int targetBoxYDif = -6;
-        public int totalMoney;
+        public int totalGold;
         public int totalXP;
         private int _maxHitpoints;
-        public int battleRating { get; set; }
+        public int combatLevel { get; set; }
         private int statBonus { get; set; }
+
         //Mining
         public List<Stone> StonesToMine { get; set; }
+
         private InGameManager _inGameManager;
         private IManageSprites _spritemanager;
         public Player(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
@@ -34,7 +36,7 @@ namespace Vikingvalg
         {
             Directory = @"player";
             setSpeed(4);
-            battleRating = 1;
+            combatLevel = 1;
             setStats();
             setHpBar();
 
@@ -248,10 +250,10 @@ namespace Vikingvalg
         private void dead()
         {
             _inGameManager.ChangeInGameState("ChooseDirectionLevel", 100, 450);
-            if (battleRating > 1)
+            if (combatLevel > 1)
             {
-                if(totalXP > 0) totalXP -= 10 * battleRating;
-                if(totalMoney > 0) totalMoney -= 10 * battleRating;
+                if(totalXP > 0) totalXP -= 10 * combatLevel;
+                if(totalGold > 0) totalGold -= 10 * combatLevel;
             }
         }
         public void addXP(int xpToAdd)
@@ -261,29 +263,29 @@ namespace Vikingvalg
         }
         public void addMoney(int moneyToAdd)
         {
-            totalMoney += moneyToAdd;
-            Console.WriteLine("Money: " + totalMoney);
+            totalGold += moneyToAdd;
+            Console.WriteLine("Money: " + totalGold);
         }
         public void setStats()
         {
-            statBonus = battleRating;
+            statBonus = combatLevel;
             for (int i = 0; i <= 20; i += 2)
             {
                 statBonus++;
             }
-            maxHp = 50 * battleRating;
+            maxHp = 50 * combatLevel;
             currHp = maxHp;
-            _damage = 10 * battleRating;
+            _damage = 10 * combatLevel;
             if (healthbar != null) 
             healthbar.reset();
         }
         public void levelUp()
         {
-            battleRating += 1;
+            combatLevel += 1;
             Texture2D textureToLoad;
             foreach (String textureName in playerTextureList)
             {
-                textureToLoad = _spritemanager.LoadTexture2D(@"Animations/" + Directory + "Animation/level" + battleRating + "/" + textureName);
+                textureToLoad = _spritemanager.LoadTexture2D(@"Animations/" + Directory + "Animation/level" + combatLevel + "/" + textureName);
                 animationPlayer.setTexture(textureToLoad, playerTextureList.IndexOf(textureName));
             }
         }

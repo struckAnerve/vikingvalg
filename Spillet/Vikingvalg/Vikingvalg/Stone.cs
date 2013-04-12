@@ -71,7 +71,7 @@ namespace Vikingvalg
                     stoneHitArt.ChangeYPosition(198);
                     _sourceRectangle.X = 500;
                     _audioManager.AddSound(Directory + "/money");
-                    _player1.addMoney(rInt(0, 10) * _player1.battleRating);
+                    _player1.addMoney(rInt(0, 10) * _player1.combatLevel);
                 }
                 else
                 {
