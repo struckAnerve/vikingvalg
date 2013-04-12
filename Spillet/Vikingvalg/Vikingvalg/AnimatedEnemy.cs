@@ -172,9 +172,9 @@ namespace Vikingvalg
         }
         public void takeDamage(int damageTaken)
         {
-            hp -= damageTaken;
-            healthbar.updateHealtBar(hp);
-            if (hp <= 0) _player1.addXP(_xpWorth);
+            currHp -= damageTaken;
+            healthbar.updateHealtBar(currHp, maxHp);
+            if (currHp <= 0) _player1.addXP(_xpWorth);
         }
         private bool blocked()
         {
@@ -231,10 +231,11 @@ namespace Vikingvalg
         public void setDifficulty(int battleRating, int baseHp, int baseDamage)
         {
             randomDifficulty = rInt(battleRating - 2, battleRating + 1);
-            if (battleRating == 1 || randomDifficulty <= 1) randomDifficulty = 1;
-            _damage = baseDamage * (int)randomDifficulty;
-            _xpWorth = 10 * (int)randomDifficulty;
-            hp = baseHp * (int) randomDifficulty;
+            if (battleRating == 1 || randomDifficulty <= 1) randomDifficulty = 0;
+            _damage = baseDamage + (int)randomDifficulty * (int)randomDifficulty;
+            _xpWorth = 10 + 10 * (int)randomDifficulty * (int)randomDifficulty;
+            maxHp = baseHp + 10 * (int)randomDifficulty * (int)randomDifficulty;
+            currHp = maxHp;
         }
     }
 }

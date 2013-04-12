@@ -32,8 +32,6 @@ namespace Vikingvalg
 
         private enum _possibleInGameStates { ChooseDirectionLevel, FightingLevel, MiningLevel, TownLevel };
         public String InGameState { get; private set; }
-        
-        
 
         private ToggleButton musicToggle;
         private ToggleButton soundToggle;
@@ -115,6 +113,7 @@ namespace Vikingvalg
 
         public void ChangeInGameState(String changeTo, int playerX, int playerY)
         {
+            ClearLevels(changeTo);
             if (!Enum.IsDefined(typeof(_possibleInGameStates), changeTo))
             {
                 Console.WriteLine("Unable to change in-game state (you are trying to change to an unkown state: '" + changeTo + "')");
@@ -143,6 +142,13 @@ namespace Vikingvalg
                     break;
             }
             foreach (Sprite spriteToDraw in _persistentInGameUI) ToDrawInGame.Add(spriteToDraw);
+        }
+        private void ClearLevels(String nextLevel)
+        {
+            if (nextLevel != "ChooseDirectionLevel") _chooseDirectionlevel.ClearLevel();
+            if (nextLevel != "FightingLevel") _fightingLevel.ClearLevel();
+            if (nextLevel != "MiningLevel") _miningLevel.ClearLevel();
+            if (nextLevel != "TownLevel") _townLevel.ClearLevel();
         }
     }
 }

@@ -17,7 +17,8 @@ namespace Vikingvalg
     class AnimatedCharacter : AnimatedSprite, IPlaySound
     {
         public AnimatedSprite CollidingWith { get; set; }
-        public int hp { get; set; }
+        public int currHp { get; set; }
+        public int maxHp { get; set; }
         public bool BlockedLeft { get; set; }
         public bool BlockedRight { get; set; }
         public bool BlockedTop { get; set; }
@@ -44,8 +45,8 @@ namespace Vikingvalg
         }
         protected void setHpBar()
         {
-            if (this is WolfEnemy) healthbar = new Healthbar(hp, _destinationRectangle, _destinationRectangle.Height - 60);
-            else healthbar = new Healthbar(hp, _destinationRectangle, _destinationRectangle.Height);
+            if (this is WolfEnemy) healthbar = new Healthbar(currHp, _destinationRectangle, _destinationRectangle.Height - 60);
+            else healthbar = new Healthbar(maxHp, _destinationRectangle, _destinationRectangle.Height);
         }
         public bool FacesTowards(float point)
         {

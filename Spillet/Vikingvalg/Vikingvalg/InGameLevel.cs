@@ -84,7 +84,7 @@ namespace Vikingvalg
                 }
                 _toDrawQueue.Clear();
             }
-            foreach (Sprite toUpdate in _toDrawInGameLevel)
+            foreach (Sprite toUpdate in _toDrawInGameLevel.ToList())
             {
                 if (toUpdate is IUseInput)
                 {

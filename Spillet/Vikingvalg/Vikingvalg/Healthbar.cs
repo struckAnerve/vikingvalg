@@ -35,9 +35,9 @@ namespace Vikingvalg
             healthBarSprite = new StaticSprite("healthBar", new Rectangle(0,0, _scaledWidth, _scaledHeight), new Rectangle(0,0, _width, _height));
             healthContainerSprite = new StaticSprite("healthContainer", new Rectangle(0, 0, _scaledWidth, _scaledHeight), new Rectangle(0, 0, _width, _height));
         }
-        public void updateHealtBar(int currHP)
+        public void updateHealtBar(int currHP, int maxHP)
         {
-            float newWidth = ((float)_scaledWidth / 100f) * (((float)currHP / (float)MaxHP) * 100f);
+            float newWidth = ((float)_scaledWidth / 100f) * (((float)currHP / (float)maxHP) * 100f);
             healthBarSprite.DestinationWidth = (int)newWidth;
         }
         public void setPosition(Rectangle receivedPosition)

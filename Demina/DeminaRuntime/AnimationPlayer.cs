@@ -36,20 +36,11 @@ namespace Demina
         {
             PlaySpeedMultiplier = 1.0f;
         }
-        public void setTexture(String boneName, Texture2D newTexture)
+        public void setTexture(Texture2D newTexture, int textureIndex)
         {
-            int textureIndex = 0;
             foreach (KeyValuePair<String, Animation> entry in animations)
             {
                 Animation currentCheckAnim = entry.Value;
-                for (int boneIndex = 0; boneIndex < currentCheckAnim.Keyframes[0].Bones.Count; boneIndex++)
-                {
-                    Bone bone = currentCheckAnim.Keyframes[currentKeyframeIndex].Bones[boneIndex];
-                    if (boneName == bone.Name)
-                    {
-                        textureIndex = bone.TextureIndex;
-                    }
-                }
                 currentCheckAnim.Textures[textureIndex].Texture = newTexture;
             }
         }
