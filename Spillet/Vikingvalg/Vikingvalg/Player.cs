@@ -92,17 +92,15 @@ namespace Vikingvalg
         {
             _footBox.X = resetX;
             _footBox.Y = resetY;
-            _damage = 10 * battleRating;
-            hp = _maxHitpoints;
-            healthbar.reset();
+            setStats();
             //Flytter hitboxen til samme sted som spilleren
             _destinationRectangle.Y = ((int)(_footBox.Y - footBoxYOffset));
             _destinationRectangle.X = ((int)(_footBox.X - footBoxXOffset));
-
             healthbar.setPosition(_footBox);
         }
         public void Update(IManageInput inputService)
         {
+            if (inputService.KeyWasPressedThisFrame(Keys.P)) levelUp();
             setLayerDepth(_footBox.Bottom);
             if (animationPlayer.CurrentAnimation == "battleBlockWalk")
                 animationPlayer.PlaySpeedMultiplier = 1.4f;
@@ -237,23 +235,23 @@ namespace Vikingvalg
         {
             if (AnimationState == "blocking")
             {
-                hp -= (int)(damageTaken * 0.3);
+                currHp -= (int)(damageTaken * 0.3);
                 _audioManager.AddSound(Directory + "/blockHit");
             }
             else
             {
-                hp -= damageTaken;
+                currHp -= damageTaken;
             }
-            healthbar.updateHealtBar(hp);
-            if (hp <= 0) dead();
+            healthbar.updateHealtBar(currHp, maxHp);
+            if (currHp <= 0) dead();
         }
         private void dead()
         {
             _inGameManager.ChangeInGameState("ChooseDirectionLevel", 100, 450);
             if (battleRating > 1)
             {
-                totalXP -= 10 * battleRating;
-                totalMoney -= 10 * battleRating;
+                if(totalXP > 0) totalXP -= 10 * battleRating;
+                if(totalMoney > 0) totalMoney -= 10 * battleRating;
             }
         }
         public void addXP(int xpToAdd)
@@ -273,9 +271,11 @@ namespace Vikingvalg
             {
                 statBonus++;
             }
-            hp = 50 * battleRating;
-            _maxHitpoints = 50 * battleRating;
+            maxHp = 50 * battleRating;
+            currHp = maxHp;
             _damage = 10 * battleRating;
+            if (healthbar != null) 
+            healthbar.reset();
         }
         public void levelUp()
         {

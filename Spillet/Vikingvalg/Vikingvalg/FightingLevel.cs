@@ -61,7 +61,7 @@ namespace Vikingvalg
 
         public override void Update(IManageInput inputService, GameTime gameTime)
         {
-            if (activeEnemy.hp <= 0)
+            if (activeEnemy.currHp <= 0)
             {
                 levelCharacters.Remove(activeEnemy);
                 RemoveInGameLevelDrawable(activeEnemy);
