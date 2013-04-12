@@ -11,9 +11,15 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
+    /// <summary>
+    /// By-banen
+    /// </summary>
     class TownLevel : InGameLevel
     {
+        //posisjonen spilleren returnerer til når han går fra byen
         private int _returnPositionY = 620;
+
+        //NPCene i byen
         private NeutralNpc _shopkeeper;
         private NeutralNpc _oracle;
 
@@ -29,6 +35,11 @@ namespace Vikingvalg
             spriteService.LoadDrawable(_oracle);
         }
 
+        /// <summary>
+        /// Kalles når spilleren går inn i byen
+        /// </summary>
+        /// <param name="playerX">spillerens x-posisjon</param>
+        /// <param name="playerY">spillerens y-posisjon</param>
         public override void InitializeLevel(int playerX, int playerY)
         {
             base.InitializeLevel(playerX, playerY);

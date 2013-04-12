@@ -33,27 +33,6 @@
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.VideoImporters, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pixel.png">
-      <Name>pixel</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="redPixel.png">
-      <Name>redPixel</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Animations\wolfAnimation\howl.anim">
-      <Name>howl</Name>
-      <Importer>AnimationImporter</Importer>
-      <Processor>AnimationProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Animations\wolfAnimation\attack1.anim">
       <Name>attack1</Name>
       <Importer>AnimationImporter</Importer>
@@ -66,11 +45,6 @@
     </Compile>
     <Compile Include="Animations\wolfAnimation\attack2.anim">
       <Name>attack2</Name>
-      <Importer>AnimationImporter</Importer>
-      <Processor>AnimationProcessor</Processor>
-    </Compile>
-    <Compile Include="Animations\wolfAnimation\run.anim">
-      <Name>run</Name>
       <Importer>AnimationImporter</Importer>
       <Processor>AnimationProcessor</Processor>
     </Compile>

@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 namespace Vikingvalg
 {
     /// <summary>
-    /// Holder kontroll over størrelser på dialogbokser, og tekst (posisjon, hva som skal sies osv)
+    /// Holder kontroll over størrelser på dialogbokser, og tekst (posisjon, hva som skal sies osv). Denne er litt bugga (hvor høy dialogboksen blir)
     /// </summary>
     class DialogControl
     {

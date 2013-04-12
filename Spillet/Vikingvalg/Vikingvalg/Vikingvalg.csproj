@@ -114,7 +114,7 @@
     <Compile Include="PlayButton.cs" />
     <Compile Include="PlayerTextAnswer.cs" />
     <Compile Include="SoundToggleButton.cs" />
-    <Compile Include="ShopkeeperNpc.cs" />
+    <Compile Include="MerchantNpc.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="IManageSprites.cs" />
     <Compile Include="Player.cs" />
