@@ -12,6 +12,9 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
+    /// <summary>
+    /// Spill-knapp. Trykkes den på begynner spillet
+    /// </summary>
     class PlayButton : MenuButton
     {
         public PlayButton(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
@@ -25,6 +28,7 @@ namespace Vikingvalg
 
         public override void Update(IManageInput inputService)
         {
+            //dersom knappen trykkes starter spillet
             if (hovered && inputService.CurrMouse.LeftButton == ButtonState.Pressed)
             {
                 hovered = false;

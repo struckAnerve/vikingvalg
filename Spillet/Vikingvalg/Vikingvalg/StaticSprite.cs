@@ -12,8 +12,12 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
+    /// <summary>
+    /// Superklasse for teksturer som ikke bruker Demina
+    /// </summary>
     public class StaticSprite : Sprite
     {
+        //Her følger variabler/properties om alt man trenger for å tegne en Sprite
         protected Rectangle _sourceRectangle;
 
         public String ArtName { get; protected set; }

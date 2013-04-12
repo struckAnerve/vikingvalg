@@ -30,6 +30,9 @@ namespace Vikingvalg
             new Color(255, 255, 255, 255), 0, Vector2.Zero, SpriteEffects.None, destinationRectangle.Bottom, player, inGameLevel)
         { }
 
+        /// <summary>
+        /// Teksten som skal være standard
+        /// </summary>
         public override void InitialText()
         {
             dialogController.RemovePlayerAnswers();
@@ -38,6 +41,7 @@ namespace Vikingvalg
             dialogController.AddPlayerAnswer("Go home, old lady", "insult");
         }
 
+        //Utfører operasjoner utifra hvilken knapp som er trykket
         public override void AnswerClicked(PlayerTextAnswer answer)
         {
             switch (answer.answerDesc)

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 
 namespace Vikingvalg
@@ -55,7 +56,13 @@ namespace Vikingvalg
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            //oppdaterer hovedmanyen dersom du er der, eller pausemenyen dersom du er der
+            //Trykk escape for å returnere til spiller dersom du er i pausemeny
+            if (_stateService.GameState == "PauseMenu" && _inputService.KeyWasPressedThisFrame(Keys.Escape))
+            {
+                _stateService.ChangeState("InGame");
+            }
+
+            //oppdaterer hovedmenyen dersom du er der, eller pausemenyen dersom du er der
             if (_stateService.GameState == "MainMenu")
             {
                 _mainMenu.Update(_inputService, gameTime);

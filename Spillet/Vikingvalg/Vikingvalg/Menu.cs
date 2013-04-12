@@ -11,25 +11,33 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
+    /// <summary>
+    /// Superklasse for menyene
+    /// </summary>
     abstract class Menu
     {
-        IManageSprites spriteService;
+        //komponenter
+        private IManageSprites _spriteService;
         public IManageStates stateService;
 
+        //liste over det som skal tegnes
         public List<Sprite> toDrawMenuClass = new List<Sprite>();
 
         public Menu(IManageSprites spriteService, IManageStates stateService)
         {
-            this.spriteService = spriteService;
+            this._spriteService = spriteService;
             this.stateService = stateService;
         }
         
-        //Kan kanskje defineres i denne klassen?
         public abstract void ChangeMenuState(String changeToState);
         public abstract void MainState();
-        //public void SettingsState() { }
+
         public abstract void Update(IManageInput inputService, GameTime gameTime);
 
+        /// <summary>
+        /// Legg til en Sprite i tegnelisten
+        /// </summary>
+        /// <param name="toAdd"></param>
         public void AddDrawable(Sprite toAdd)
         {
             if (toAdd == null || toDrawMenuClass.Contains(toAdd))
@@ -41,6 +49,7 @@ namespace Vikingvalg
             toDrawMenuClass.Add(toAdd);
         }
 
+        //Fjern Sprite fra tegnelisten
         public void RemoveDrawable(Sprite toRemove)
         {
             toDrawMenuClass.Remove(toRemove);

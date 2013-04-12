@@ -12,18 +12,18 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
-    class soundToggleButton : ToggleButton
+    class SoundToggleButton : ToggleButton
     {
         private IManageAudio _audioManager;
 
-        public soundToggleButton(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
+        public SoundToggleButton(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, Game game)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth)
         {
             //Henter audiomanager fra game
             _audioManager = (IManageAudio)(game.Services.GetService(typeof(IManageAudio)));
         }
-        public soundToggleButton(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Game game)
+        public SoundToggleButton(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Game game)
             : this(artName, destinationRectangle, sourceRectangle, Color.White, 0f, new Vector2(0, 0), SpriteEffects.None, 1000, game)
         {
 

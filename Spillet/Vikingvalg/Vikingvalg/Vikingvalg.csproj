@@ -113,7 +113,7 @@
     <Compile Include="PauseMenu.cs" />
     <Compile Include="PlayButton.cs" />
     <Compile Include="PlayerTextAnswer.cs" />
-    <Compile Include="soundToggleButton.cs" />
+    <Compile Include="SoundToggleButton.cs" />
     <Compile Include="ShopkeeperNpc.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="IManageSprites.cs" />

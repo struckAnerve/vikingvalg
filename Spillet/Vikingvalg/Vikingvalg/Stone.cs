@@ -12,10 +12,15 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
+    /// <summary>
+    /// Stein
+    /// </summary>
     class Stone : StaticSprite, ICanCollide, IPlaySound
     {
+        //Animasjonen som spilles av når man slår på en stein
         public AnimatedStaticSprite stoneHitArt { get; set; }
 
+        //steinens kollisjonsboks
         private Rectangle _footBox;
         public Rectangle FootBox
         {
@@ -29,8 +34,11 @@ namespace Vikingvalg
         public bool BlockedTop { get; set; }
         public bool BlockedBottom { get; set; }
 
+        //random-
         private static Random _rand = new Random();
         private static readonly object syncLock = new object();
+
+        //spilleren
         private Player _player1;
 
         public IManageAudio _audioManager { get; set; }

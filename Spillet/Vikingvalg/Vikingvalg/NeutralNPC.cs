@@ -12,16 +12,25 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
+    /// <summary>
+    /// Superklasse for NPCer
+    /// </summary>
     abstract class NeutralNpc : StaticSprite, IUseInput
     {
+        //banen NPCen hører til
         public InGameLevel inGameLevel;
 
+        //navnet på NPCen
         public String npcName;
+        //spilleren
         protected Player _player1;
 
+        //om NPCen er i dialog
         public bool inConversation;
+        //NPCens dialogkontroller
         public DialogControl dialogController;
 
+        //boksen man må stå innenfor for å kunne snakke med NPCen
         protected int _talkingRangeBoxOffset = 40;
         protected int _talkingRangeBoxHeight = 40;
         protected Rectangle _talkingRangeBox;
@@ -43,6 +52,7 @@ namespace Vikingvalg
 
         public void Update(IManageInput inputService)
         {
+            //Sjekker om spilleren prøver å snakke med NPCen
             if(_player1.FootBox.Intersects(_talkingRangeBox) && _player1.FacesTowards(this._talkingRangeBox.Center.X) && inputService.KeyWasPressedThisFrame(Keys.F))
             {
                 ChangeConversationState();
@@ -58,6 +68,9 @@ namespace Vikingvalg
             dialogController.Update(inputService);
         }
 
+        /// <summary>
+        /// Bytter mellom inConversation true/false
+        /// </summary>
         public void ChangeConversationState()
         {
             inConversation = !inConversation;
@@ -66,7 +79,10 @@ namespace Vikingvalg
                 InitialText();
         }
 
+        //dersom et svar klikkes
         public abstract void AnswerClicked(PlayerTextAnswer answer);
+
+        //tilbakestill samtale
         public abstract void InitialText();
     }
 }

@@ -12,11 +12,13 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
+    /// <summary>
+    /// Superklasse for alt som skal tegnes
+    /// </summary>
     public abstract class Sprite
     {
         protected Rectangle _destinationRectangle;
 
-        //Bør flyttes
         protected int footBoxHeight { get; set; }
         protected int footBoxWidth { get; set; }
         protected int footBoxXOffset { get; set; }

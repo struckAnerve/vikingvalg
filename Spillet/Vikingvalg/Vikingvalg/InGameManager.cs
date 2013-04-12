@@ -64,7 +64,7 @@ namespace Vikingvalg
             _spriteService.LoadDrawable(new StaticSprite("musicOptions"));
             _spriteService.LoadDrawable(new StaticSprite("soundOptions"));
             musicToggle = new musicToggleButton("musicOptions", new Rectangle((int)_spriteService.GameWindowSize.X - 40, 0, 40, 40), new Rectangle(0, 0, 40, 40), Game);
-            soundToggle = new soundToggleButton("soundOptions", new Rectangle((int)_spriteService.GameWindowSize.X - 80, 0, 40, 40), new Rectangle(0, 0, 40, 40), Game);
+            soundToggle = new SoundToggleButton("soundOptions", new Rectangle((int)_spriteService.GameWindowSize.X - 80, 0, 40, 40), new Rectangle(0, 0, 40, 40), Game);
             _persistentInGameUI.Add(musicToggle);
             _persistentInGameUI.Add(soundToggle);
 

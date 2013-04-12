@@ -11,12 +11,18 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
+    /// <summary>
+    /// Mining-banen. Her kan spilleren hakke gull
+    /// </summary>
     class MiningLevel : InGameLevel
     {
+        //hvor spilleren skal dukke opp når han går ut av denne banen
         private int _returnPositionY = 430;
-        private Point _returnPosition = new Point(0, 430);
+
+        //liste over steiner
         private List<Stone> _stones = new List<Stone>();
 
+        //antall steiner med gull i
         public int GoldStones { get; set; }
 
         public MiningLevel(Player player1, Game game)
@@ -32,6 +38,11 @@ namespace Vikingvalg
             GoldStones = 3;
         }
 
+        /// <summary>
+        /// Kalles når man kommer inn i banen
+        /// </summary>
+        /// <param name="playerX">spillerens x-posisjon</param>
+        /// <param name="playerY">spillerens y-posisjon</param>
         public override void InitializeLevel(int playerX, int playerY)
         {
             returnPositionY = _returnPositionY;
@@ -104,6 +115,9 @@ namespace Vikingvalg
             _player1.StonesToMine = _stones;
         }
 
+        /// <summary>
+        /// Rydder opp i banen (tømmer lister osv.)
+        /// </summary>
         public override void ClearLevel()
         {
             _stones.Clear();

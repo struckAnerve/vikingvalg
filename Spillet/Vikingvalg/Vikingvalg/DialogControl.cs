@@ -193,14 +193,16 @@ namespace Vikingvalg
         /// <summary>
         /// Endre høyden på dialogboksene
         /// </summary>
-        /// <param name="numOfLines"></param>
-        /// <param name="bigger"></param>
+        /// <param name="numOfLines">antall linjer man skal legge til/trekke fra</param>
+        /// <param name="bigger">om boksene skal bli større</param>
         private void ChangeHeight(int numOfLines, bool bigger)
         {
+            //regner ut hvor mye det skal legges til/trekkes fra (i piksler) og finner ut om det skal legges til/trekkes fra
             int heightChange = _lineHeight * numOfLines;
             if (!bigger)
                 heightChange *= -1;
 
+            //endrer hver boks, flytter på tekst (ja, det er mye å flytte på)
             npcNameBox.DestinationY -= heightChange;
             npcNamePos.Y = npcNameBox.DestinationY + 6;
             npcTalkBox.DestinationY -= heightChange;

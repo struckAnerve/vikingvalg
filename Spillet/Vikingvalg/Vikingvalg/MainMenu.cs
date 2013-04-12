@@ -11,25 +11,36 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
+    /// <summary>
+    /// Klassen for hovedmenyen
+    /// </summary>
     class MainMenu : Menu
     {
+        //Spill-knappen
         public PlayButton playButton;
 
+        //Mulige hovedmenytilstander
         private enum _possibleMainMenuStates { Main };
+        //nåværende hovedmenytilstand
         private String _mainMenuState;
 
         public MainMenu(IManageSprites spriteService, IManageStates stateService)
             : base(spriteService, stateService)
         {
+            //man starter hovedmenyen i denne tilstanden
             ChangeMenuState("Main");
 
-            //Bør forbedres
+            //opprett Spill-knappen
             playButton = new PlayButton(new Vector2(
                 ((int)spriteService.GameWindowSize.X / 2 - 90),
                 ((int)spriteService.GameWindowSize.Y / 2 - 37)), this);
             spriteService.LoadDrawable(playButton);
         }
 
+        /// <summary>
+        /// For å endre hovedmenytilstand
+        /// </summary>
+        /// <param name="changeToState"></param>
         public override void ChangeMenuState(string changeToState)
         {
             if (!Enum.IsDefined(typeof(_possibleMainMenuStates), changeToState))
@@ -41,6 +52,7 @@ namespace Vikingvalg
             _mainMenuState = changeToState;
         }
 
+        //Kalles på når man endrer til hovedtilstanden til hovedmenyen
         public override void MainState()
         {
             toDrawMenuClass.Clear();
@@ -49,6 +61,7 @@ namespace Vikingvalg
 
         public override void Update(IManageInput inputService, GameTime gameTime)
         {
+            //oppdaterer det som er i tegnelisten
             foreach (Sprite toUpdate in toDrawMenuClass)
             {
                 if (toUpdate is IUseInput)

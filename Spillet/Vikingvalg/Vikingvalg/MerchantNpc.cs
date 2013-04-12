@@ -12,9 +12,12 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
-    class ShopkeeperNpc : NeutralNpc
+    /// <summary>
+    /// Butikkmann.
+    /// </summary>
+    class MerchantNpc : NeutralNpc
     {
-        public ShopkeeperNpc(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
+        public MerchantNpc(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, Player player, InGameLevel inGameLevel)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, player, inGameLevel)
         {
@@ -25,11 +28,14 @@ namespace Vikingvalg
 
             InitialText();
         }
-        public ShopkeeperNpc(String artName, Rectangle destinationRectangle, Player player, InGameLevel inGameLevel)
+        public MerchantNpc(String artName, Rectangle destinationRectangle, Player player, InGameLevel inGameLevel)
             : this(artName, destinationRectangle, new Rectangle(0, 0, destinationRectangle.Width, destinationRectangle.Height),
             new Color(255, 255, 255, 255), 0, Vector2.Zero, SpriteEffects.None, destinationRectangle.Bottom, player, inGameLevel)
         { }
 
+        /// <summary>
+        /// Standard tekst for butikkmannen
+        /// </summary>
         public override void InitialText()
         {
             dialogController.RemovePlayerAnswers();
@@ -52,6 +58,10 @@ namespace Vikingvalg
             dialogController.AddPlayerAnswer("I'll be leaving now.", "endConvo");
         }
 
+        /// <summary>
+        /// Utfører operasjoner utifra hvilken knapp som er trykket
+        /// </summary>
+        /// <param name="answer"></param>
         public override void AnswerClicked(PlayerTextAnswer answer)
         {
             switch (answer.answerDesc)

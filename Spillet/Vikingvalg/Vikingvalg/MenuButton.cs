@@ -11,8 +11,12 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 namespace Vikingvalg
 {
+    /// <summary>
+    /// Superklasse for menyknapper
+    /// </summary>
     class MenuButton : Button
     {
+        //menyen denne knappen tilhører
         protected Menu _menuController;
 
         public MenuButton(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,

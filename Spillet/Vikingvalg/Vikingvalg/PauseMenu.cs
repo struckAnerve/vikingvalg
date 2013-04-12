@@ -11,11 +11,17 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Vikingvalg
 {
+    /// <summary>
+    /// Pausemenyen
+    /// </summary>
     class PauseMenu : Menu
     {
+        //Fortsett-knapp
         public ContinueButton continueButton;
 
+        //mulige tilstander i pausemenyen
         private enum _possiblePauseMenuStates { Main };
+        //nåværende tilstand i pausemenyen
         private String _pauseMenuState;
 
         public PauseMenu(IManageSprites spriteService, IManageStates stateService)
@@ -23,7 +29,6 @@ namespace Vikingvalg
         {
             ChangeMenuState("Main");
 
-            //Bør forbedres
             continueButton = new ContinueButton(new Vector2(
                 ((int)spriteService.GameWindowSize.X / 2 - 90),
                 ((int)spriteService.GameWindowSize.Y / 2 - 37)), this);
@@ -41,6 +46,9 @@ namespace Vikingvalg
             _pauseMenuState = changeToState;
         }
 
+        /// <summary>
+        /// Dette skal tegnes når man er i hovedtilstanden til pausemenyen
+        /// </summary>
         public override void MainState()
         {
             toDrawMenuClass.Clear();
@@ -49,6 +57,7 @@ namespace Vikingvalg
 
         public override void Update(IManageInput inputService, GameTime gameTime)
         {
+            //oppdaterer det som ligger i tegnelisten
             foreach (Sprite toUpdate in toDrawMenuClass)
             {
                 if (toUpdate is IUseInput)
