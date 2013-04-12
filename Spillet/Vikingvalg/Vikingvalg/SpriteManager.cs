@@ -18,7 +18,7 @@ namespace Vikingvalg
         //Skal kanskje ikke stå her? Brukes flere steder gjennom SpriteManager
         public Vector2 GameWindowSize { get; protected set; }
         public int WalkBlockTop { get; set; }
-
+        MouseState mouseState;
         public bool DrawHealthBar { get; set; }
 
         private SpriteBatch _spriteBatch;
@@ -26,7 +26,7 @@ namespace Vikingvalg
 
         //Midlertidig
         Texture2D smallthing;
-
+        StaticSprite cursor;
         private SpriteFont _arialFont;
         private Color _defaultFontColor = new Color(255, 255, 255, 255);
         private float playerDepth;
@@ -40,7 +40,8 @@ namespace Vikingvalg
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(this.Game.GraphicsDevice);
-
+            cursor = new StaticSprite("cursor",new Rectangle(0,0,25,32));
+            LoadDrawable(cursor);
             _arialFont = Game.Content.Load<SpriteFont>("arial");
             _arialFont.LineSpacing = 22;
 
@@ -98,6 +99,9 @@ namespace Vikingvalg
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            mouseState = Mouse.GetState();
+            cursor.DestinationX = mouseState.X;
+            cursor.DestinationY = mouseState.Y;
             base.Update(gameTime);
         }
 
@@ -189,6 +193,7 @@ namespace Vikingvalg
                         }
                     }
                 }
+                DrawStaticSprite(cursor);
                 _spriteBatch.End();
             }
 

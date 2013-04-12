@@ -14,7 +14,7 @@ namespace Vikingvalg
 {
     abstract class ToggleButton : Button
     {
-        protected bool _toggled;
+        protected bool _toggled; //Hvorvidt knappen har blitt trykket på eller ikke
         public ToggleButton(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth)
@@ -23,6 +23,7 @@ namespace Vikingvalg
         }
         public override void Update(IManageInput inputService)
         {
+            //Hvis spilleren trykket på venstreknappen denne framen
             if (hovered && inputService.MouseWasPressedThisFrame("left"))
             {
                 buttonPressed();
@@ -31,6 +32,7 @@ namespace Vikingvalg
         }
         public virtual void buttonPressed()
         {
+            //Flytter source.Y til riktig sted
             if (!_toggled)
             {
                 _sourceRectangle.Y = _sourceRectangle.Height;

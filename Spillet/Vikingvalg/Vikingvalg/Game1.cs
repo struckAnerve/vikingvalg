@@ -41,7 +41,7 @@ namespace Vikingvalg
         protected override void Initialize()
         {
             //Flyttes?
-            IsMouseVisible = true;
+            IsMouseVisible = false;
 
             base.Initialize();
         }

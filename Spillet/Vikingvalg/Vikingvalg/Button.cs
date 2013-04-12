@@ -14,8 +14,8 @@ namespace Vikingvalg
 {
     abstract class Button : StaticSprite, IUseInput
     {
-        protected Rectangle _clickableBox;
-        protected bool hovered;
+        protected Rectangle _clickableBox; //Boks man kan klikke på
+        protected bool hovered; //Om musen er over boksen eller ikke
 
         public Button(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth)
@@ -23,7 +23,9 @@ namespace Vikingvalg
         {
             _clickableBox = new Rectangle(destinationRectangle.X, destinationRectangle.Y, sourceRectangle.Width, sourceRectangle.Height);
         }
-
+        /// <summary>
+        /// Sjekker om musen er over boksen eller ikke
+        /// </summary>
         public virtual void Update(IManageInput inputService)
         {
             if (hovered == false && _clickableBox.Contains(inputService.CurrMouse.X, inputService.CurrMouse.Y))

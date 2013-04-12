@@ -14,6 +14,7 @@ namespace Vikingvalg
 {
     public abstract class Sprite
     {
+        protected Rectangle _destinationRectangle;
 
         //Bør flyttes
         protected int footBoxHeight { get; set; }

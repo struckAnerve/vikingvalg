@@ -101,7 +101,6 @@ namespace Vikingvalg
                     AddInGameLevelDrawable(toAdd);
                 }
             }
-
             _player1.StonesToMine = _stones;
         }
 

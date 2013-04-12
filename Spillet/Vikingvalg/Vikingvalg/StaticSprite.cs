@@ -14,7 +14,6 @@ namespace Vikingvalg
 {
     public class StaticSprite : Sprite
     {
-        protected Rectangle _destinationRectangle;
         protected Rectangle _sourceRectangle;
 
         public String ArtName { get; protected set; }

@@ -16,7 +16,6 @@ namespace Vikingvalg
 {
     public abstract class AnimatedSprite : Sprite
     {
-        protected Rectangle _destinationRectangle;
 
         public String AnimationState{get; protected set;}
         public String ArtName { get; protected set; }
