@@ -15,7 +15,7 @@ namespace Vikingvalg
 {
     class Player : AnimatedCharacter, IUseInput, ICanCollide
     {
-        Dictionary<string, string> playerBoneList = new Dictionary<string, string>();
+        List<string> playerTextureList = new List<string>();
         public Rectangle targetBox;
         public int targetBoxXDif = 60;
         public int targetBoxYDif = -6;
@@ -26,49 +26,54 @@ namespace Vikingvalg
         private int statBonus { get; set; }
         //Mining
         public List<Stone> StonesToMine { get; set; }
-        private IManageStates _inGameManager;
+        private InGameManager _inGameManager;
+        private IManageSprites _spritemanager;
         public Player(String artName, Rectangle destinationRectangle, Rectangle sourceRectangle, Color color, float rotation,
             Vector2 origin, SpriteEffects effects, float layerDepth, float scale, Game game)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, scale, game)
         {
-            Directory =  @"player";
+            Directory = @"player";
             setSpeed(4);
             battleRating = 1;
             setStats();
             setHpBar();
+
+            _inGameManager = (InGameManager)game.Services.GetService(typeof(InGameManager));
+            _spritemanager = (IManageSprites)game.Services.GetService(typeof(IManageSprites));
             //kan flyttes til base?
-            destinationRectangle.Width = (int)(destinationRectangle.Width*scale);
-            destinationRectangle.Height= (int)(destinationRectangle.Height*scale);
-            
+            destinationRectangle.Width = (int)(destinationRectangle.Width * scale);
+            destinationRectangle.Height = (int)(destinationRectangle.Height * scale);
+
             //Setter hitboxen til spilleren til 40px høy og bredden på spilleren / 2
             footBoxWidth = (int)destinationRectangle.Width;
-            footBoxXOffset =(int)footBoxWidth / 2;
+            footBoxXOffset = (int)footBoxWidth / 2;
             footBoxYOffset = (int)(110 * scale);
             footBoxHeight = (int)(60 * scale);
-            
+
             //Plasserer boksen midstilt nederst på spilleren.
             _footBox = new Rectangle(destinationRectangle.X - footBoxXOffset, destinationRectangle.Y + footBoxYOffset, footBoxWidth, (int)footBoxHeight);
             targetBox = new Rectangle(_footBox.X - targetBoxXDif / 2 - 5, _footBox.Y, _footBox.Width + targetBoxXDif, _footBox.Height + targetBoxYDif);
-            
+
             //Legger til alle navn på animasjoner som spilleren har, brukes for å laste inn riktige animasjoner.
             animationList.Add("block");
             animationList.Add("strikeSword");
             animationList.Add("battleBlockWalk");
-            animationList.Add("walkCycle");
 
             //Legger til alle navn på ben som hører til animasjonen, brukes for å endre på teksturer
-            playerBoneList.Add("head", "head");
-            playerBoneList.Add("torso", "torso");
-            playerBoneList.Add("bicep", "bicepL");
-            playerBoneList.Add("forearmR", "forearmR");
-            playerBoneList.Add("idleShieldArm", "idleShieldArm");
-            playerBoneList.Add("blockingShieldArm", "blockingShieldArm");
-            playerBoneList.Add("shield", "shield");
-            playerBoneList.Add("swordHand", "swordHand");
-            playerBoneList.Add("thigh", "thighL");
-            playerBoneList.Add("shin", "shinL");
-            playerBoneList.Add("foot", "footL");
-
+            playerTextureList.Add("torso");
+            playerTextureList.Add("bicep");
+            playerTextureList.Add("shieldHand_Walking");
+            playerTextureList.Add("hip");
+            playerTextureList.Add("shin");
+            playerTextureList.Add("foot");
+            playerTextureList.Add("head");
+            playerTextureList.Add("forearm");
+            playerTextureList.Add("swordHand");
+            playerTextureList.Add("helmet");
+            playerTextureList.Add("shield_StudWood_Ready");
+            playerTextureList.Add("shield_StudWood_Slashing");
+            playerTextureList.Add("shieldHand_Blocking");
+            
         }
         public Player(Rectangle destinationRectangle, float scale, Game game)
             : this("mm", destinationRectangle, new Rectangle(0, 0, 375, 485), new Color(255, 255, 255, 1f), 0, Vector2.Zero, SpriteEffects.None, 0.6f, scale, game)
@@ -98,12 +103,12 @@ namespace Vikingvalg
         }
         public void Update(IManageInput inputService)
         {
-            setLayerDepth(_footBox.Bottom );
+            setLayerDepth(_footBox.Bottom);
             if (animationPlayer.CurrentAnimation == "battleBlockWalk")
                 animationPlayer.PlaySpeedMultiplier = 1.4f;
             else
                 animationPlayer.PlaySpeedMultiplier = 1f;
-            if(AnimationState != "walking") _audioManager.StopLoop("walk");
+            if (AnimationState != "walking") _audioManager.StopLoop("walk");
             if (AnimationState != "slashing")
             {
                 if (inputService.KeyIsDown(Keys.Space))
@@ -126,7 +131,7 @@ namespace Vikingvalg
             }
             else if (animationPlayer.Transitioning == false && animationPlayer.CurrentKeyframeIndex > 0 && animationPlayer.CurrentKeyframeIndex == (animationPlayer.currentPlayingAnimation.Keyframes.Count() - 1))
             {
-                if(activeEnemy != null)
+                if (activeEnemy != null)
                 {
                     if (targetBox.Intersects(activeEnemy.FootBox) &&
                         ((activeEnemy.FootBox.Center.X < this.FootBox.Center.X && this.Flipped) || (activeEnemy.FootBox.Center.X > this.FootBox.Center.X && !this.Flipped)))
@@ -242,8 +247,9 @@ namespace Vikingvalg
             healthbar.updateHealtBar(hp);
             if (hp <= 0) dead();
         }
-        private void dead(){
-            _footBox.X -= 2000;
+        private void dead()
+        {
+            _inGameManager.ChangeInGameState("ChooseDirectionLevel", 100, 450);
             if (battleRating > 1)
             {
                 totalXP -= 10 * battleRating;
@@ -260,7 +266,8 @@ namespace Vikingvalg
             totalMoney += moneyToAdd;
             Console.WriteLine("Money: " + totalMoney);
         }
-        public void setStats(){
+        public void setStats()
+        {
             statBonus = battleRating;
             for (int i = 0; i <= 20; i += 2)
             {
@@ -269,6 +276,16 @@ namespace Vikingvalg
             hp = 50 * battleRating;
             _maxHitpoints = 50 * battleRating;
             _damage = 10 * battleRating;
+        }
+        public void levelUp()
+        {
+            battleRating += 1;
+            Texture2D textureToLoad;
+            foreach (String textureName in playerTextureList)
+            {
+                textureToLoad = _spritemanager.LoadTexture2D(@"Animations/" + Directory + "Animation/level" + battleRating + "/" + textureName);
+                animationPlayer.setTexture(textureToLoad, playerTextureList.IndexOf(textureName));
+            }
         }
     }
 }

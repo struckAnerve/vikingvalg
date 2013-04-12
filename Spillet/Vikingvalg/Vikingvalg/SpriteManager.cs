@@ -61,7 +61,6 @@ namespace Vikingvalg
             WalkBlockTop = 170;
             base.Initialize();
         }
-
         public void LoadDrawable(Sprite toLoad)
         {
             if (toLoad is StaticSprite)
@@ -83,6 +82,15 @@ namespace Vikingvalg
                 drawableAnimation.animationPlayer.StartAnimation("idle");
             }
         }
+        public Texture2D LoadTexture2D(String artName)
+        {
+            if (!_loadedStaticArt.ContainsKey(artName))
+            {
+                _loadedStaticArt.Add(artName, Game.Content.Load<Texture2D>(artName));
+            }
+            return _loadedStaticArt[artName];
+        }
+            
 
         /// <summary>
         /// Allows the game component to update itself.
@@ -128,6 +136,14 @@ namespace Vikingvalg
                 _spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
                 foreach (Sprite drawable in sortedList)
                 {
+
+                    if (drawable is Player)
+                    {
+                        Player _player1 = (Player) drawable;
+                        DrawSpriteFont("Level: "+_player1.battleRating.ToString(), new Vector2(10, 5));
+                        DrawSpriteFont("XP: " + _player1.totalXP.ToString(), new Vector2(10, 25));
+                        DrawSpriteFont("Money: " + _player1.totalMoney.ToString(), new Vector2(10, 45));
+                    }
                     //tegn foran spiller
                     if (drawable is StaticSprite)
                     {
