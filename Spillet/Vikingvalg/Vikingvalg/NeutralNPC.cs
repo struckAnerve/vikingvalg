@@ -54,11 +54,19 @@ namespace Vikingvalg
                     ChangeConversationState();
                 }
             }
+
+            dialogController.Update(inputService);
         }
 
         public void ChangeConversationState()
         {
             inConversation = !inConversation;
+
+            if (!inConversation)
+                InitialText();
         }
+
+        public abstract void AnswerClicked(PlayerTextAnswer answer);
+        public abstract void InitialText();
     }
 }

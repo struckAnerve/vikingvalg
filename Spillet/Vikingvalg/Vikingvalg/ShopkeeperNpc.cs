@@ -18,19 +18,38 @@ namespace Vikingvalg
             Vector2 origin, SpriteEffects effects, float layerDepth, Player player, InGameLevel inGameLevel)
             : base(artName, destinationRectangle, sourceRectangle, color, rotation, origin, effects, layerDepth, player, inGameLevel)
         {
+            _talkingRangeBox.Y -= 15;
+
             npcName = "Shopkeeper";
             dialogController = new DialogControl((NeutralNpc)this);
 
-            dialogController.ChangeNpcDialog("Hello, good sir! I have some fine wares for you to browse. If you want, I can sell you some raw " + 
-                "materials, and you can craft equipment yourself. If not, bugger off, you are scaring the customers with that ugly face of yours. " +
-                "But look at me, jabbering like an old fool. PLEASE SIR, I NEED MONEY!");
-            dialogController.AddPlayerAnswer("Hello, shopkeeper");
-            dialogController.AddPlayerAnswer("Could I get a discount from you, my friend?");
-            dialogController.AddPlayerAnswer("Wakkala bing bang bo. Misala place to rest my friend. Never have I seen it before. Too long did not read");
+            InitialText();
         }
         public ShopkeeperNpc(String artName, Rectangle destinationRectangle, Player player, InGameLevel inGameLevel)
             : this(artName, destinationRectangle, new Rectangle(0, 0, destinationRectangle.Width, destinationRectangle.Height),
             new Color(255, 255, 255, 255), 0, Vector2.Zero, SpriteEffects.None, destinationRectangle.Bottom, player, inGameLevel)
         { }
+
+        public override void InitialText()
+        {
+            dialogController.RemovePlayerAnswers();
+
+            dialogController.ChangeNpcDialog("Hello, good sir! I have some fine wares for you to browse. If you want, I can sell you some raw " +
+                "materials, and you can craft equipment yourself. If not, bugger off, you are scaring the customers with that ugly face of yours. " +
+                "But look at me, jabbering like an old fool. PLEASE SIR, I NEED MONEY!");
+            dialogController.AddPlayerAnswer("Hello, shopkeeper", "endConvo");
+            dialogController.AddPlayerAnswer("Could I get a discount from you, my friend?", "endConvo");
+            dialogController.AddPlayerAnswer("Wakkala bing bang bo. Misala place to rest my friend. Never have I seen it before. Too long did not read", "endConvo");
+        }
+
+        public override void AnswerClicked(PlayerTextAnswer answer)
+        {
+            switch (answer.answerDesc)
+            {
+                case "endConvo":
+                    inConversation = false;
+                    break;
+            }
+        }
     }
 }

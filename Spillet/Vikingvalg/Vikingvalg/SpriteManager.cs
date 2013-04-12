@@ -156,10 +156,9 @@ namespace Vikingvalg
                                 DrawSpriteFont(conversationNpc.npcName, conversationNpc.dialogController.npcNamePos);
                                 DrawSpriteFont(conversationNpc.dialogController.npcSays, conversationNpc.dialogController.npcSaysPos);
                                 DrawSpriteFont("You", conversationNpc.dialogController.playerNamePos);
-                                foreach (String playerAnswer in conversationNpc.dialogController.playerAnswers)
+                                foreach (PlayerTextAnswer playerAnswer in conversationNpc.dialogController.playerAnswers)
                                 {
-                                    DrawSpriteFont(playerAnswer, conversationNpc.dialogController.GetPlayerAnswerPos(conversationNpc.dialogController.playerAnswers.IndexOf(playerAnswer)),
-                                        conversationNpc.dialogController.unselectedAnswerColor);
+                                    DrawSpriteFont(playerAnswer.answer, playerAnswer.AnswerBoxLocation, playerAnswer.textColor);
                                 }
                             }
                         }

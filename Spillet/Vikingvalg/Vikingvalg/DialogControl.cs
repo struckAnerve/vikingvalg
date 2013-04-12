@@ -17,7 +17,6 @@ namespace Vikingvalg
         protected NeutralNpc _npc;
 
         protected Color _boxColor;
-        public Color unselectedAnswerColor = new Color(100, 100, 100, 255);
         protected int _lineHeight;
         protected int _maxTextWidth = 500;
 
@@ -36,9 +35,9 @@ namespace Vikingvalg
 
         public String npcSays;
         public Vector2 npcSaysPos = Vector2.Zero;
-        public List<String> playerAnswers = new List<string>();
-        private Vector2 _playerAnswerPos = Vector2.Zero;
-        public List<Rectangle> playerAnswersBox = new List<Rectangle>();
+        public List<PlayerTextAnswer> playerAnswers = new List<PlayerTextAnswer>();
+        private Color _defaultAnswerColor = new Color(100, 100, 100, 255);
+        private Color _hoveredAnswerColor = new Color(255, 255, 255, 255);
 
         public DialogControl(NeutralNpc npc)
         {
@@ -48,15 +47,15 @@ namespace Vikingvalg
             _lineHeight = (int)_npc.inGameLevel.spriteService.TextSize("H").Y+12;
 
             //Litt massive opprettelser for å legge boksene i en salgs mal. Source har ikke noe å si?
-            npcTalkBox = new StaticSprite("box", new Rectangle(40, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y-_textOffsetY, _maxTextWidth + 20, _textOffsetY),
+            npcTalkBox = new StaticSprite("box", new Rectangle(40, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y, _maxTextWidth + 20, 0),
                 new Rectangle(0, 0, 1, 1), 1001f, _boxColor);
-            npcNameBox = new StaticSprite("box", new Rectangle(70, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y-(_lineHeight+_textOffsetY),
+            npcNameBox = new StaticSprite("box", new Rectangle(70, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y-(_lineHeight),
                 (int)_npc.inGameLevel.spriteService.TextSize(_npc.npcName).X + 10, _lineHeight), new Rectangle(0, 0, 1, 1), 1001f, _boxColor);
             playerTalkBox = new StaticSprite("box",
-                new Rectangle((int)_npc.inGameLevel.spriteService.GameWindowSize.X - 560, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y-_textOffsetY, _maxTextWidth + 20, _textOffsetY),
+                new Rectangle((int)_npc.inGameLevel.spriteService.GameWindowSize.X - 560, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y, _maxTextWidth + 20, 0),
                 new Rectangle(0, 0, 1, 1), 1001f, _boxColor);
             playerNameBox = new StaticSprite("box",
-                new Rectangle((int)_npc.inGameLevel.spriteService.GameWindowSize.X - 105, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y - (_lineHeight+_textOffsetY), 35, _lineHeight),
+                new Rectangle((int)_npc.inGameLevel.spriteService.GameWindowSize.X - 105, (int)_npc.inGameLevel.spriteService.GameWindowSize.Y - (_lineHeight), 35, _lineHeight),
                 new Rectangle(0, 0, 1, 1), 1001f, _boxColor);
 
             npcSaysPos.X = npcTalkBox.DestinationX + 10;
@@ -68,7 +67,25 @@ namespace Vikingvalg
 
         public void Update(IManageInput inputService)
         {
+            foreach (PlayerTextAnswer answer in playerAnswers)
+            {
+                if (!answer.hovered && answer.answerBox.Contains(inputService.CurrMouse.X, inputService.CurrMouse.Y))
+                {
+                    answer.hovered = true;
+                    answer.textColor = _hoveredAnswerColor;
+                }
+                else if(answer.hovered && !answer.answerBox.Contains(inputService.CurrMouse.X, inputService.CurrMouse.Y))
+                {
+                    answer.hovered = false;
+                    answer.textColor = _defaultAnswerColor;
+                }
 
+                if(answer.hovered && inputService.MouseWasPressedThisFrame("left"))
+                {
+                    _npc.AnswerClicked(answer);
+                    break;
+                }
+            }
         }
 
         public void ChangeNpcDialog(String changeTo)
@@ -104,22 +121,37 @@ namespace Vikingvalg
                 }
             }
         }
-        public void AddPlayerAnswer(String toAdd)
+        public void AddPlayerAnswer(String answerToAdd, String answerDesc)
         {
-            toAdd = _npc.inGameLevel.spriteService.WrapText((playerAnswers.Count + 1) + ". " + toAdd, _maxTextWidth);
+            answerToAdd = _npc.inGameLevel.spriteService.WrapText(" - " + answerToAdd, _maxTextWidth);
 
             int numOfLines = 1;
             //funnet her: http://stackoverflow.com/questions/541954/how-would-you-count-occurences-of-a-string-within-a-string-c
-            numOfLines += toAdd.Length - toAdd.Replace("\n", "").Length;
+            numOfLines += answerToAdd.Length - answerToAdd.Replace("\n", "").Length;
 
             if (_playerTalkBoxLines + numOfLines > _talkBoxLines)
             {
                 ChangeHeight(numOfLines, true);
             }
 
-            playerAnswers.Add(toAdd);
-            playerAnswersBox.Add(new Rectangle(playerTalkBox.DestinationX + 10, playerTalkBox.DestinationRectangle.Top + _textOffsetY + (_lineHeight*_playerTalkBoxLines), 500, _lineHeight));
+            playerAnswers.Add(new PlayerTextAnswer(answerToAdd, answerDesc, new Rectangle(playerTalkBox.DestinationX + 10,
+                playerTalkBox.DestinationRectangle.Top + _textOffsetY + (_lineHeight*_playerTalkBoxLines), 500, _lineHeight), _defaultAnswerColor));
             _playerTalkBoxLines += numOfLines;
+        }
+        public void RemovePlayerAnswers()
+        {
+            bool wasHighestBox = false;
+            if (_playerTalkBoxLines == _talkBoxLines)
+                wasHighestBox = true;
+
+            playerAnswers.Clear();
+            _playerTalkBoxLines = 0;
+
+            if (_playerTalkBoxLines < _talkBoxLines && wasHighestBox)
+            {
+                ChangeHeight(_talkBoxLines - _npcTalkBoxLines, false);
+                _talkBoxLines = _npcTalkBoxLines;
+            }
         }
 
         private void ChangeHeight(int numOfLines, bool bigger)
@@ -137,19 +169,10 @@ namespace Vikingvalg
             playerNamePos.Y = playerNameBox.DestinationY + 6;
             playerTalkBox.DestinationY -= heightChange;
             playerTalkBox.DestinationHeight += heightChange;
-            foreach (String playerAnswer in playerAnswers)
+            foreach (PlayerTextAnswer playerAnswer in playerAnswers)
             {
-                playerAnswersBox[playerAnswers.IndexOf(playerAnswer)] = new Rectangle(playerAnswersBox[playerAnswers.IndexOf(playerAnswer)].X,
-                    playerAnswersBox[playerAnswers.IndexOf(playerAnswer)].Y - heightChange, playerAnswersBox[playerAnswers.IndexOf(playerAnswer)].Width,
-                    playerAnswersBox[playerAnswers.IndexOf(playerAnswer)].Height);
+                playerAnswer.answerBox.Y -= heightChange;
             }
-        }
-
-        public Vector2 GetPlayerAnswerPos(int index)
-        {
-            _playerAnswerPos.X = playerAnswersBox[index].X;
-            _playerAnswerPos.Y = playerAnswersBox[index].Y;
-            return _playerAnswerPos;
         }
     }
 }
