@@ -13,7 +13,7 @@ using System.Text;
 using Demina;
 namespace Vikingvalg
 {
-    public class SpriteManager : Microsoft.Xna.Framework.DrawableGameComponent, IManageSprites
+    public class SpriteManager : DrawableGameComponent, IManageSprites
     {
         //Skal kanskje ikke stå her? Brukes flere steder gjennom SpriteManager
         public Vector2 GameWindowSize { get; protected set; }
@@ -35,6 +35,7 @@ namespace Vikingvalg
         public SpriteManager(Game game)
             : base(game)
         {
+            ListsToDraw = new List<List<Sprite>>();
         }
 
         protected override void LoadContent()

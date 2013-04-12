@@ -43,8 +43,6 @@ namespace Vikingvalg
         public List<Sprite> ToDrawInGame { get; private set; }
         private List<Sprite> _persistentInGameUI = new List<Sprite>();
 
-        public int level;
-
         public InGameManager(Game game)
             : base(game)
         { }
@@ -73,8 +71,6 @@ namespace Vikingvalg
             //Midlertidige plasseringer (?)
             _player1 = new Player(new Rectangle(100, 100, 150, 330), 0.5f, Game);
             spriteService.LoadDrawable(_player1);
-
-            level = 1;
 
             _chooseDirectionlevel = new ChooseDirectionLevel(_player1, Game);
             _fightingLevel = new FightingLevel(_player1, Game);

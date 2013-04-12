@@ -107,7 +107,7 @@
     <Compile Include="MenuButton.cs" />
     <Compile Include="MenuManager.cs" />
     <Compile Include="MiningLevel.cs" />
-    <Compile Include="musicToggleButton.cs" />
+    <Compile Include="MusicToggleButton.cs" />
     <Compile Include="NeutralNpc.cs" />
     <Compile Include="OracleNpc.cs" />
     <Compile Include="PauseMenu.cs" />
