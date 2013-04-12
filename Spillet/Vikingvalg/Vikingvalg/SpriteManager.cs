@@ -27,8 +27,10 @@ namespace Vikingvalg
         //en dictionary med innlastede Texture2Der (nøkkelen er navnet på filen den har lastet inn)
         private Dictionary<String, Texture2D> _loadedStaticArt = new Dictionary<String,Texture2D>();
 
-        //SpriteFont for Arial
+        //Sprite som skal "erstatte" musepekeren
         StaticSprite cursor;
+
+        //SpriteFont for Arial
         private SpriteFont _arialFont;
         //Standard tekstfarge
         private Color _defaultFontColor = new Color(255, 255, 255, 255);
@@ -50,6 +52,7 @@ namespace Vikingvalg
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(this.Game.GraphicsDevice);
+            //Laster inn sprite som brukes til å "erstatte" musepekeren
             cursor = new StaticSprite("cursor",new Rectangle(0,0,25,32));
             LoadDrawable(cursor);
             //laster inn Arial og setter linjehøyde
@@ -124,6 +127,7 @@ namespace Vikingvalg
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            //Setter musespriten til samme posisjon som musen
             mouseState = Mouse.GetState();
             cursor.DestinationX = mouseState.X;
             cursor.DestinationY = mouseState.Y;
